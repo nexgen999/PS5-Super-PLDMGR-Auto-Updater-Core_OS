@@ -2,7 +2,6 @@ import os
 import sys
 import json
 import re
-import hashlib
 import zipfile
 import urllib.request
 import datetime
@@ -23,7 +22,7 @@ date_tag = datetime.datetime.now().strftime("%Y.%m.%d-%H%M")
 opml_files = [f for f in os.listdir(PKG_FEED_DIR) if f.endswith('.opml')]
 
 opener = urllib.request.build_opener()
-opener.addheaders = [('User-Agent', 'Mozilla/5.0')]
+opener.addheaders = [('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)')]
 urllib.request.install_opener(opener)
 
 for opml_file in opml_files:
@@ -42,7 +41,7 @@ for opml_file in opml_files:
 
         raw_filename = xml_url.split('/')[-1].split('?')[0]
         if not raw_filename.lower().endswith('.pkg'):
-            raw_filename = f"{title}.pkg"
+            raw_filename = f"{re.sub(r'[^a-zA-Z0-9._-]', '_', title)}.pkg"
 
         target_pkg_path = os.path.join(TMP_BUILD_DIR, raw_filename)
         print(f" 📥 Téléchargement de {raw_filename} pour l'archive AIO...")
@@ -55,10 +54,13 @@ for opml_file in opml_files:
 # Copie du JSON global pkg dans l'archive AIO s'il existe
 global_json_src = os.path.join(PKG_JSON_DIR, "pkg.json")
 if os.path.exists(global_json_src):
-    with open(global_json_src, 'r', encoding='utf-8') as fj:
-        data = json.load(fj)
-    with open(os.path.join(TMP_BUILD_DIR, "pkg.json"), 'w', encoding='utf-8') as fj_out:
-        json.dump(data, fj_out, indent=2, ensure_ascii=False)
+    try:
+        with open(global_json_src, 'r', encoding='utf-8') as fj:
+            data = json.load(fj)
+        with open(os.path.join(TMP_BUILD_DIR, "pkg.json"), 'w', encoding='utf-8') as fj_out:
+            json.dump(data, fj_out, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"⚠️ Échec lors du transfert de pkg.json dans l'archive : {e}")
 
 zip_latest_name = "PS5PKG_aio_latest.zip"
 zip_tag_name = f"PS5PKG_aio_{date_tag}.zip"
@@ -75,7 +77,14 @@ for zip_target in [zip_latest_name, zip_tag_name]:
 
 # Nettoyage complet du dossier temporaire
 for f in os.listdir(TMP_BUILD_DIR):
-    os.remove(os.path.join(TMP_BUILD_DIR, f))
-os.rmdir(TMP_BUILD_DIR)
+    try:
+        os.remove(os.path.join(TMP_BUILD_DIR, f))
+    except Exception as e:
+        print(f"⚠️ Erreur de suppression de fichier temporaire: {e}")
+
+try:
+    os.rmdir(TMP_BUILD_DIR)
+except Exception:
+    pass
 
 print("=== Construction du package AIO PKG terminée avec succès ===")
