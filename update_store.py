@@ -80,11 +80,12 @@ if os.path.exists(PAYLOAD_FEED_DIR):
             downloaded = False
             clean_xml_url = xml_url.split('?')[0].lower()
             
-            # Sources Fixes
+            # --- Source Fixe Directe ---
             if clean_xml_url.endswith('.elf') or clean_xml_url.endswith('.bin'):
                 try:
                     version = "Source-Fixe"
-                    target_dir = os.path.join(PAYLOADS_ROOT, cat_tech_name, title.replace(" ", "_"), version)
+                    version_clean = "Source-Fixe"
+                    target_dir = os.path.join(PAYLOADS_ROOT, cat_tech_name, title.replace(" ", "_"), version_clean)
                     os.makedirs(target_dir, exist_ok=True)
                     f_name = xml_url.split('?')[0].split('/')[-1]
                     opener = urllib.request.build_opener()
@@ -92,9 +93,10 @@ if os.path.exists(PAYLOAD_FEED_DIR):
                     urllib.request.install_opener(opener)
                     urllib.request.urlretrieve(xml_url, os.path.join(target_dir, f_name))
                     downloaded = True
-                except Exception as e: pass
+                except Exception as e:
+                    print(f"   ⚠️ Échec source fixe : {e}")
 
-            # Releases GitHub
+            # --- Release GitHub ---
             repo_lower = ""
             if not downloaded and "github.com" in xml_url:
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
@@ -103,7 +105,11 @@ if os.path.exists(PAYLOAD_FEED_DIR):
                     repo_lower = repo.lower()
                     try:
                         res_tag = subprocess.check_output(f"gh release list --repo {repo} --limit 1 --json tagName --jq '.[0].tagName'", shell=True).decode().strip()
-                        if res_tag: version = res_tag
+                        if res_tag: 
+                            version = res_tag
+                        else:
+                            res_tag = subprocess.check_output(f"gh repo view {repo} --json latestRelease --jq '.latestRelease.tagName'", shell=True).decode().strip()
+                            if res_tag: version = res_tag
                     except: pass
                     
                     version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version)
@@ -112,36 +118,125 @@ if os.path.exists(PAYLOAD_FEED_DIR):
 
                     try:
                         subprocess.call(f"gh release download '{version}' --repo '{repo}' --dir '{target_dir}' --clobber 2>/dev/null", shell=True)
+                        
+                        # RÈGLE SPÉCIFIQUE 1 : Extraction de ZIPs pour certains dépôts précis
+                        if any(k in repo_lower for k in ["poords4", "fan_target", "shadowmountplus", "instalador-host-psm-poop2jb"]):
+                            for item in os.listdir(target_dir):
+                                item_path = os.path.join(target_dir, item)
+                                if item.lower().endswith('.zip'):
+                                    try:
+                                        with zipfile.ZipFile(item_path, 'r') as zf:
+                                            for member in zf.namelist():
+                                                if member.lower().endswith(('.elf', '.bin')):
+                                                    zf.extract(member, target_dir)
+                                                    extracted_path = os.path.join(target_dir, member)
+                                                    dest_path = os.path.join(target_dir, os.path.basename(member))
+                                                    if extracted_path != dest_path:
+                                                        os.rename(extracted_path, dest_path)
+                                    except: pass
+                                    finally:
+                                        if os.path.exists(item_path):
+                                            os.remove(item_path)
+
+                        # RÈGLE SPÉCIFIQUE 2 : Nettoyage strict selon le type de dépôt
                         files_downloaded = os.listdir(target_dir)
-                        for f in files_downloaded:
-                            if not (f.lower().endswith('.elf') or f.lower().endswith('.bin')):
-                                try: os.remove(os.path.join(target_dir, f))
-                                except: pass
+                        if any(k in repo_lower for k in ["ps5-payload-dev/websrv", "phantomptr/ps5upload", "boazvdwansem/ps5-debugger"]):
+                            for f in files_downloaded:
+                                if not (f.lower().endswith('.elf') or f.lower().endswith('.bin')):
+                                    try: os.remove(os.path.join(target_dir, f))
+                                    except: pass
+                        else:
+                            for f in files_downloaded:
+                                f_lower = f.lower()
+                                if f_lower.endswith('.elf') or f_lower.endswith('.bin'):
+                                    continue
+                                if f_lower.endswith(('.dmg', '.exe', '.appimage', '.msi', '.txt')):
+                                    try: os.remove(os.path.join(target_dir, f))
+                                    except: pass
+
                         if os.listdir(target_dir): downloaded = True
                     except: pass
 
+            # --- Release Forgejo / Gitea ---
+            if not downloaded and "git.etawen.dev" in xml_url:
+                try:
+                    api_repo_match = re.search(r'git\.etawen\.dev/([^/]+/[^/]+)', xml_url)
+                    if api_repo_match:
+                        repo_path = api_repo_match.group(1).rstrip('/')
+                        api_url = f"https://git.etawen.dev/api/v1/repos/{repo_path}/releases"
+                        req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
+                        with urllib.request.urlopen(req) as response:
+                            releases_data = json.loads(response.read().decode('utf-8'))
+                            if releases_data:
+                                latest_release = releases_data[0]
+                                version = latest_release.get('tag_name', 'v1.0.0')
+                                version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version)
+                                target_dir = os.path.join(PAYLOADS_ROOT, cat_tech_name, title.replace(" ", "_"), version_clean)
+                                os.makedirs(target_dir, exist_ok=True)
+                                
+                                for asset in latest_release.get('assets', []):
+                                    asset_url = asset.get('browser_download_url', '')
+                                    asset_name = asset.get('name', '')
+                                    if asset_name.lower().endswith(('.elf', '.bin')):
+                                        urllib.request.urlretrieve(asset_url, os.path.join(target_dir, asset_name))
+                                        downloaded = True
+                                        break
+                except: pass
+
+            # --- Normalisation des noms de fichiers ---
             version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version) if version != "Source-Fixe" else "Source-Fixe"
             target_dir = os.path.join(PAYLOADS_ROOT, cat_tech_name, title.replace(" ", "_"), version_clean)
             files_in_dir = os.listdir(target_dir) if os.path.exists(target_dir) else []
+            eligible_binaries = []
 
-            for main_file in [f for f in files_in_dir if f.lower().endswith(('.elf', '.bin'))]:
-                full_path = os.path.join(target_dir, main_file)
-                hasher = hashlib.sha256()
-                with open(full_path, 'rb') as fb:
-                    for chunk in iter(lambda: fb.read(4096), b""): hasher.update(chunk)
+            default_base_name = re.sub(r'[^a-zA-Z0-9._-]', '_', title)
+            default_base_name = re.sub(r'_{2,}', '_', default_base_name).strip('_')
+
+            v_suffix = version_clean
+            if v_suffix != "Source-Fixe":
+                if not v_suffix.lower().startswith('v'): v_suffix = f"v{v_suffix}"
+                v_suffix = f"_{v_suffix}"
+            else:
+                v_suffix = ""
+
+            for f_name in [f for f in files_in_dir if f.lower().endswith(('.elf', '.bin'))]:
+                base_name, ext = os.path.splitext(f_name)
                 
-                credits_list.add(f"- **{author}** : [{title}]({xml_url})")
-                item_data = {
-                    "name": title,
-                    "filename": main_file,
-                    "url": f"{BASE_URL}/{target_dir.replace(os.sep, '/')}/{main_file}",
-                    "description": description if description else f"Payload {title} pour PS5",
-                    "version": version,
-                    "category": cat_display_name,
-                    "checksum": hasher.hexdigest()
-                }
-                category_payloads_list.append(item_data)
-                all_payloads_flat_list.append(item_data)
+                # RÈGLE SPÉCIFIQUE 3 : Renommage conservateur pour certains dépôts de hosts
+                final_base = default_base_name if not any(k in repo_lower for k in ["instalador-host-psm-poop2jb", "psm", "poords4"]) else base_name
+                
+                new_f_name = f"{final_base}{v_suffix}{ext}" if not f_name.lower().endswith(f"{v_suffix.lower()}{ext.lower()}") else f_name
+                old_path = os.path.join(target_dir, f_name)
+                new_path = os.path.join(target_dir, new_f_name)
+                
+                if old_path != new_path:
+                    try: os.rename(old_path, new_path)
+                    except: new_f_name = f_name
+                
+                if new_f_name not in eligible_binaries:
+                    eligible_binaries.append(new_f_name)
+
+            if eligible_binaries:
+                for main_file in eligible_binaries:
+                    full_path = os.path.join(target_dir, main_file)
+                    hasher = hashlib.sha256()
+                    with open(full_path, 'rb') as fb:
+                        for chunk in iter(lambda: fb.read(4096), b""): hasher.update(chunk)
+                    
+                    credits_list.add(f"- **{author}** : [{title}]({xml_url})")
+                    display_name = os.path.splitext(main_file)[0].split('_v')[0]
+
+                    item_data = {
+                        "name": display_name,
+                        "filename": main_file,
+                        "url": f"{BASE_URL}/{target_dir.replace(os.sep, '/')}/{main_file}",
+                        "description": description if description else f"Payload {display_name} pour PS5",
+                        "version": version,
+                        "category": cat_display_name,
+                        "checksum": hasher.hexdigest()
+                    }
+                    category_payloads_list.append(item_data)
+                    all_payloads_flat_list.append(item_data)
 
         with open(os.path.join(PAYLOAD_JSON_DIR, f"{cat_tech_name}.json"), 'w', encoding='utf-8') as out_cat:
             json.dump({"name": cat_display_name, "payloads": category_payloads_list}, out_cat, indent=2, ensure_ascii=False)
@@ -173,7 +268,6 @@ if os.path.exists(PKG_FEED_DIR):
 
             if not xml_url: continue
 
-            # Détection GitHub Release dynamique pour .pkg
             if "github.com" in xml_url and not xml_url.endswith('.pkg'):
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
                 if repo_match:
@@ -233,7 +327,6 @@ if os.path.exists(FFPFSC_FEED_DIR):
 
             if not xml_url: continue
 
-            # Scraping dynamique GitHub Release si lien global
             if "github.com" in xml_url and not xml_url.endswith('.ffpfsc'):
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
                 if repo_match:
@@ -271,9 +364,9 @@ with open(os.path.join(JSON_DIR, "ffpfsc.json"), 'w', encoding='utf-8') as out_f
 
 
 # =========================================================================
-# 4. TRAITEMENT DES APPLICATIONS (LISTE TOUS LES ASSETS DU DEPOT)
+# 4. TRAITEMENT DES APPLICATIONS (APPS)
 # =========================================================================
-print("\n📱 Traitement des Applications APPS (Scraping de tous les assets)...")
+print("\n📱 Traitement des Applications APPS...")
 
 if os.path.exists(APPS_FEED_DIR):
     for opml_file in [f for f in os.listdir(APPS_FEED_DIR) if f.endswith('.opml')]:
@@ -293,7 +386,6 @@ if os.path.exists(APPS_FEED_DIR):
 
             if not xml_url: continue
 
-            # Extraire TOUS les fichiers de la release sur GitHub
             if "github.com" in xml_url:
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
                 if repo_match:
@@ -321,10 +413,8 @@ if os.path.exists(APPS_FEED_DIR):
                                 category_apps_list.append(item_data)
                                 all_apps_flat_list.append(item_data)
                             continue
-                    except Exception as e:
-                        pass
+                    except: pass
 
-            # Fallback direct link
             raw_filename = xml_url.split('/')[-1].split('?')[0]
             v_match = re.search(r'v(\d+[\.\d+]*)', raw_filename, re.IGNORECASE)
             version = f"v{v_match.group(1)}" if v_match else "v1.0.0"
