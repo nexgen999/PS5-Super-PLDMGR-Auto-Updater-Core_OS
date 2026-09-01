@@ -39,37 +39,54 @@ jobs:
         run: |
           python generate_web.py
 
-      - name: Build AIO Payload Package (.zip)
-        run: |
-          python build_aio_package.py
+      # --- Build des 4 Zips Individuels ---
+      - name: Build AIO Payloads Package (.zip)
+        env:
+          DATE_TAG: ${{ env.DATE_TAG }}
+        run: python build_aio_package.py
 
       - name: Build AIO PKG Package (.zip)
-        run: |
-          python build_aio_package_pkg.py
+        env:
+          DATE_TAG: ${{ env.DATE_TAG }}
+        run: python build_aio_package_pkg.py
 
       - name: Build AIO FFPFSC Package (.zip)
-        run: |
-          python build_aio_package_ffpfsc.py
+        env:
+          DATE_TAG: ${{ env.DATE_TAG }}
+        run: python build_aio_package_ffpfsc.py
+
+      - name: Build AIO Apps Package (.zip)
+        env:
+          DATE_TAG: ${{ env.DATE_TAG }}
+        run: python build_aio_package_apps.py
+
+      # --- Build du Zip Ultime (Contient les 4 zips) ---
+      - name: Build Ultimate Pack AIO (.zip)
+        env:
+          DATE_TAG: ${{ env.DATE_TAG }}
+        run: python build_aio_ultimate.py
 
       - name: Generate Release Notes
         run: |
           echo "## 🚀 Nouveautés & Contenu de cette Build" > release_notes.md
           echo "" >> release_notes.md
-          if [ -f "json/pkg/pkg.json" ]; then
+          if [ -f "json/pkg.json" ]; then
             echo "### 📦 Packages PKG Inclus" >> release_notes.md
-            echo "" >> release_notes.md
-            python -c "import json; data=json.load(open('json/pkg/pkg.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"description\", \"\")}' for p in data.get('packages', [])]))" >> release_notes.md
+            python -c "import json; data=json.load(open('json/pkg.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")})' for p in data.get('packages', [])]))" >> release_notes.md
             echo "" >> release_notes.md
           fi
-          if [ -f "json/ffpfsc/ffpfsc.json" ]; then
+          if [ -f "json/ffpfsc.json" ]; then
             echo "### 📄 Fichiers FFPFSC Inclus" >> release_notes.md
+            python -c "import json; data=json.load(open('json/ffpfsc.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")})' for p in data.get('files', [])]))" >> release_notes.md
             echo "" >> release_notes.md
-            python -c "import json; data=json.load(open('json/ffpfsc/ffpfsc.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"description\", \"\")}' for p in data.get('files', [])]))" >> release_notes.md
+          fi
+          if [ -f "json/apps.json" ]; then
+            echo "### 📱 Applications Incluses" >> release_notes.md
+            python -c "import json; data=json.load(open('json/apps.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")})' for p in data.get('apps', [])]))" >> release_notes.md
             echo "" >> release_notes.md
           fi
           if [ -f "json/payloads.json" ]; then
             echo "### ⚡ Payloads Inclus" >> release_notes.md
-            echo "" >> release_notes.md
             python -c "import json; data=json.load(open('json/payloads.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"category\", \"\")}' for p in data.get('payloads', [])]))" >> release_notes.md
           fi
 
@@ -85,10 +102,11 @@ jobs:
           [ -f "README.md" ] && git add README.md
           [ -f "index.html" ] && git add index.html
           
-          git commit -m "auto: update stores, payloads, ffpfsc, web site & readme [skip ci]" || echo "No changes to commit"
+          git commit -m "auto: update stores, payloads, web site & readme [skip ci]" || echo "No changes to commit"
           git push
 
-      - name: Update 'latest' Release (Only Latest Archives)
+      # --- 1. Release Fixe "latest" ---
+      - name: Update 'latest' Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "latest"
@@ -97,20 +115,25 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ps5_super_pldmgr_auto_updated_offline.aio_latest.zip
-            PS5PKG_aio_latest.zip
-            ffpfsc_aio_latest.zip
-            json/pkg/pkg.json
-            json/ffpfsc/ffpfsc.json
+            PS5_ultimate_pack_aio_latest.zip
+            PS5_payloads_aio_latest.zip
+            PS5_pkg_aio_latest.zip
+            PS5_ffpfsc_aio_latest.zip
+            PS5_apps_aio_latest.zip
+            json/payloads.json
+            json/pkg.json
+            json/ffpfsc.json
+            json/apps.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # --- 2. Release Horodatée avec le TAG Date-Time ---
       - name: Create Horodated Tag
         run: |
           git tag -f "aio-${{ env.DATE_TAG }}"
           git push origin "aio-${{ env.DATE_TAG }}" --force
 
-      - name: Create Horodated Release (Full Archives)
+      - name: Create Horodated Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "aio-${{ env.DATE_TAG }}"
@@ -119,10 +142,14 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ps5_super_pldmgr_auto_updated_offline.aio_v*.zip
-            PS5PKG_aio_*.zip
-            ffpfsc_aio_*.zip
-            json/pkg/pkg.json
-            json/ffpfsc/ffpfsc.json
+            PS5_ultimate_pack_aio_${{ env.DATE_TAG }}.zip
+            PS5_payloads_aio_${{ env.DATE_TAG }}.zip
+            PS5_pkg_aio_${{ env.DATE_TAG }}.zip
+            PS5_ffpfsc_aio_${{ env.DATE_TAG }}.zip
+            PS5_apps_aio_${{ env.DATE_TAG }}.zip
+            json/payloads.json
+            json/pkg.json
+            json/ffpfsc.json
+            json/apps.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
