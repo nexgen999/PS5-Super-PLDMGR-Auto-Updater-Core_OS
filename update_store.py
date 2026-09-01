@@ -8,40 +8,41 @@ import urllib.request
 import zipfile
 import html
 
+# --- Chemins Unifiés ---
 FEED_DIR = "feed"
+PKG_FEED_DIR = os.path.join(FEED_DIR, "pkg")
 FFPFSC_FEED_DIR = os.path.join(FEED_DIR, "ffpfsc")
-PKG_FEED_DIR = "PKGfeed"
 
 JSON_DIR = "json"
+PKG_JSON_DIR = os.path.join(JSON_DIR, "pkg")
 FFPFSC_JSON_DIR = os.path.join(JSON_DIR, "ffpfsc")
-PKG_JSON_DIR = "PKGjson"
 
 RSS_DIR = "rss"
 PAYLOADS_ROOT = "payloads"
 
+# Création des dossiers de sortie
 os.makedirs(JSON_DIR, exist_ok=True)
-os.makedirs(FFPFSC_JSON_DIR, exist_ok=True)
 os.makedirs(PKG_JSON_DIR, exist_ok=True)
+os.makedirs(FFPFSC_JSON_DIR, exist_ok=True)
 os.makedirs(RSS_DIR, exist_ok=True)
 os.makedirs(PAYLOADS_ROOT, exist_ok=True)
 
 all_payloads_flat_list = []
 all_pkgs_flat_list = []
 all_ffpfsc_flat_list = []
-readme_rows = []
 credits_list = set()
 
 print("=== Début de la synchronisation ===")
 
 # =========================================================================
-# 1. TRAITEMENT DES PAYLOADS (.ELF / .BIN)
+# 1. TRAITEMENT DES PAYLOADS (.ELF / .BIN) -> feed/ / json/
 # =========================================================================
 
 if not os.path.exists(FEED_DIR):
     print(f"Erreur: Le dossier {FEED_DIR} n'existe pas.")
     sys.exit(1)
 
-# Exclusion du sous-dossier ffpfsc lors de la recherche des OPML de payloads standard
+# On filtre les fichiers .opml directement à la racine de feed/ (en ignorant les sous-dossiers pkg et ffpfsc)
 opml_files = [f for f in os.listdir(FEED_DIR) if f.endswith('.opml') and os.path.isfile(os.path.join(FEED_DIR, f))]
 
 for opml_file in opml_files:
@@ -269,7 +270,7 @@ with open(os.path.join(JSON_DIR, "payloads.json"), 'w', encoding='utf-8') as out
 
 
 # =========================================================================
-# 2. TRAITEMENT DES PACKAGES (.PKG) -> PKGfeed / PKGjson
+# 2. TRAITEMENT DES PACKAGES (.PKG) -> feed/pkg/ / json/pkg/
 # =========================================================================
 
 print("\n📦 Traitement des métadonnées PKG...")
@@ -326,7 +327,7 @@ with open(os.path.join(PKG_JSON_DIR, "pkg.json"), 'w', encoding='utf-8') as out_
 
 
 # =========================================================================
-# 3. TRAITEMENT DES FICHIERS FFPFSC -> feed/ffpfsc / json/ffpfsc/ffpfsc.json
+# 3. TRAITEMENT DES FICHIERS FFPFSC -> feed/ffpfsc/ / json/ffpfsc/
 # =========================================================================
 
 print("\n📄 Traitement des métadonnées FFPFSC...")
@@ -421,7 +422,7 @@ with open("README.md", "w", encoding="utf-8") as r_file:
     
     r_file.write("## 🔗 URLs Fixes des Stores JSON\n")
     r_file.write(f"* **Payloads Store JSON :** `https://nexgen999.github.io/{repo_name}/json/payloads.json`\n")
-    r_file.write(f"* **Packages PKG Store JSON :** `https://nexgen999.github.io/{repo_name}/PKGjson/pkg.json`\n")
+    r_file.write(f"* **Packages PKG Store JSON :** `https://nexgen999.github.io/{repo_name}/json/pkg/pkg.json`\n")
     r_file.write(f"* **FFPFSC Store JSON :** `https://nexgen999.github.io/{repo_name}/json/ffpfsc/ffpfsc.json`\n\n")
     
     r_file.write("## 📦 Archives AIO Releases (Dernières Versions)\n")
