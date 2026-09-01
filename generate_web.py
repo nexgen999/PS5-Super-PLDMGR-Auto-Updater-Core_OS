@@ -2,6 +2,7 @@ import os
 import json
 import re
 import datetime
+import html
 
 JSON_DIR = "json"
 PAYLOADS_JSON = os.path.join(JSON_DIR, "payloads.json")
@@ -40,13 +41,19 @@ def generate_html():
 
     payload_rows_html = ""
     for item in payloads_data:
+        p_name = html.escape(str(item.get('name', 'Inconnu')))
+        p_cat = html.escape(str(item.get('category', 'Général')))
+        p_ver = html.escape(str(item.get('version', 'v1.0')))
+        p_checksum = html.escape(str(item.get('checksum', ''))[:10])
+        p_url = html.escape(str(item.get('url', '#')))
+
         payload_rows_html += f"""
         <tr>
-            <td><strong>{item.get('name', 'Inconnu')}</strong></td>
-            <td><span class="badge badge-cat">{item.get('category', 'Général')}</span></td>
-            <td><span class="badge badge-ver">{item.get('version', 'v1.0')}</span></td>
-            <td><code>{item.get('checksum', '')[:10]}...</code></td>
-            <td><a href="{item.get('url', '#')}" class="btn-download-sm" target="_blank">ELF</a></td>
+            <td><strong>{p_name}</strong></td>
+            <td><span class="badge badge-cat">{p_cat}</span></td>
+            <td><span class="badge badge-ver">{p_ver}</span></td>
+            <td><code>{p_checksum}...</code></td>
+            <td><a href="{p_url}" class="btn-download-sm" target="_blank">ELF</a></td>
         </tr>
         """
 
@@ -95,7 +102,7 @@ def generate_html():
         .card {{ background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 20px; }}
         h1, h2, h3 {{ margin-bottom: 15px; }}
         p {{ color: var(--text-muted); line-height: 1.6; margin-bottom: 15px; }}
-        code {{ background-color: #10171e; color: var(--accent-blue); padding: 3px 8px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; }}
+        code {{ background-color: #10171e; color: var(--accent-blue); padding: 3px 8px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; word-break: break-all; }}
 
         .btn-primary {{ display: inline-block; background-color: var(--accent-blue); color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; transition: 0.2s; border: none; cursor: pointer; }}
         .btn-primary:hover {{ background-color: var(--accent-blue-hover); }}
@@ -128,12 +135,12 @@ def generate_html():
         </div>
 
         <nav class="nav-menu">
-            <div class="nav-item active" onclick="switchTab('home')">🏠 Accueil</div>
-            <div class="nav-item" onclick="switchTab('json-info')">📄 payloads.json</div>
-            <div class="nav-item" onclick="switchTab('aio-package')">📦 Package AIO</div>
-            <div class="nav-item" onclick="switchTab('payloads-list')">🛠️ Payloads ELF ({len(payloads_data)})</div>
-            <div class="nav-item" onclick="switchTab('credits')">🤝 Crédits</div>
-            <div class="nav-item" onclick="switchTab('about')">ℹ️ À Propos</div>
+            <div class="nav-item active" onclick="switchTab('home', event)">🏠 Accueil</div>
+            <div class="nav-item" onclick="switchTab('json-info', event)">📄 payloads.json</div>
+            <div class="nav-item" onclick="switchTab('aio-package', event)">📦 Package AIO</div>
+            <div class="nav-item" onclick="switchTab('payloads-list', event)">🛠️ Payloads ELF ({len(payloads_data)})</div>
+            <div class="nav-item" onclick="switchTab('credits', event)">🤝 Crédits</div>
+            <div class="nav-item" onclick="switchTab('about', event)">ℹ️ À Propos</div>
         </nav>
     </div>
 
@@ -146,7 +153,7 @@ def generate_html():
                 <p><strong>Dernière synchronisation :</strong> <code>{now_str}</code></p>
                 <div style="display: flex; gap: 15px; margin-top: 20px;">
                     <a href="{LATEST_ZIP_URL}" class="btn-primary">📦 Télécharger AIO Latest (.zip)</a>
-                    <button class="btn-primary" style="background-color: var(--bg-hover);" onclick="switchTab('json-info')">⚙️ Configurer le JSON</button>
+                    <button class="btn-primary" style="background-color: var(--bg-hover);" onclick="switchTab('json-info', event)">⚙️ Configurer le JSON</button>
                 </div>
             </div>
         </div>
@@ -210,12 +217,14 @@ def generate_html():
     </div>
 
     <script>
-        function switchTab(tabId) {{
+        function switchTab(tabId, evt) {{
             document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             
             document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            if (evt && evt.currentTarget) {{
+                evt.currentTarget.classList.add('active');
+            }}
         }}
     </script>
 </body>
