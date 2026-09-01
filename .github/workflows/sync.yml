@@ -47,6 +47,10 @@ jobs:
         run: |
           python build_aio_package_pkg.py
 
+      - name: Build AIO FFPFSC Package (.zip)
+        run: |
+          python build_aio_package_ffpfsc.py
+
       - name: Generate Release Notes
         run: |
           echo "## 🚀 Nouveautés & Contenu de cette Build" > release_notes.md
@@ -55,6 +59,12 @@ jobs:
             echo "### 📦 Packages PKG Inclus" >> release_notes.md
             echo "" >> release_notes.md
             python -c "import json; data=json.load(open('PKGjson/pkg.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"description\", \"\")}' for p in data.get('packages', [])]))" >> release_notes.md
+            echo "" >> release_notes.md
+          fi
+          if [ -f "json/ffpfsc/ffpfsc.json" ]; then
+            echo "### 📄 Fichiers FFPFSC Inclus" >> release_notes.md
+            echo "" >> release_notes.md
+            python -c "import json; data=json.load(open('json/ffpfsc/ffpfsc.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"description\", \"\")}' for p in data.get('files', [])]))" >> release_notes.md
             echo "" >> release_notes.md
           fi
           if [ -f "json/payloads.json" ]; then
@@ -68,7 +78,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Ajoute uniquement les dossiers s'ils existent
+          # Ajoute les répertoires et fichiers modifiés
           [ -d "json" ] && git add json/
           [ -d "PKGjson" ] && git add PKGjson/
           [ -d "payloads" ] && git add payloads/
@@ -77,7 +87,7 @@ jobs:
           [ -f "README.md" ] && git add README.md
           [ -f "index.html" ] && git add index.html
           
-          git commit -m "auto: update stores, payloads, web site & readme [skip ci]" || echo "No changes to commit"
+          git commit -m "auto: update stores, payloads, ffpfsc, web site & readme [skip ci]" || echo "No changes to commit"
           git push
 
       - name: Update 'latest' Release (Only Latest Archives)
@@ -91,7 +101,9 @@ jobs:
           files: |
             ps5_super_pldmgr_auto_updated_offline.aio_latest.zip
             PS5PKG_aio_latest.zip
+            ffpfsc_aio_latest.zip
             PKGjson/pkg.json
+            json/ffpfsc/ffpfsc.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -111,6 +123,8 @@ jobs:
           files: |
             ps5_super_pldmgr_auto_updated_offline.aio_v*.zip
             PS5PKG_aio_*.zip
+            ffpfsc_aio_*.zip
             PKGjson/pkg.json
+            json/ffpfsc/ffpfsc.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
