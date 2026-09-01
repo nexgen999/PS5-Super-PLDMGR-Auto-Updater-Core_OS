@@ -2,8 +2,8 @@ name: Sync & Build AIO Package
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # S'exécute toutes les 6 heures
-  workflow_dispatch: # Permet de lancer le script manuellement depuis GitHub
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -55,10 +55,10 @@ jobs:
         run: |
           echo "## 🚀 Nouveautés & Contenu de cette Build" > release_notes.md
           echo "" >> release_notes.md
-          if [ -f "PKGjson/pkg.json" ]; then
+          if [ -f "json/pkg/pkg.json" ]; then
             echo "### 📦 Packages PKG Inclus" >> release_notes.md
             echo "" >> release_notes.md
-            python -c "import json; data=json.load(open('PKGjson/pkg.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"description\", \"\")}' for p in data.get('packages', [])]))" >> release_notes.md
+            python -c "import json; data=json.load(open('json/pkg/pkg.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"description\", \"\")}' for p in data.get('packages', [])]))" >> release_notes.md
             echo "" >> release_notes.md
           fi
           if [ -f "json/ffpfsc/ffpfsc.json" ]; then
@@ -78,9 +78,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Ajoute les répertoires et fichiers modifiés
           [ -d "json" ] && git add json/
-          [ -d "PKGjson" ] && git add PKGjson/
           [ -d "payloads" ] && git add payloads/
           [ -d "docs" ] && git add docs/
           [ -d "rss" ] && git add rss/
@@ -102,7 +100,7 @@ jobs:
             ps5_super_pldmgr_auto_updated_offline.aio_latest.zip
             PS5PKG_aio_latest.zip
             ffpfsc_aio_latest.zip
-            PKGjson/pkg.json
+            json/pkg/pkg.json
             json/ffpfsc/ffpfsc.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -124,7 +122,7 @@ jobs:
             ps5_super_pldmgr_auto_updated_offline.aio_v*.zip
             PS5PKG_aio_*.zip
             ffpfsc_aio_*.zip
-            PKGjson/pkg.json
+            json/pkg/pkg.json
             json/ffpfsc/ffpfsc.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
