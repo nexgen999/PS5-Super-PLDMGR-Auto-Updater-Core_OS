@@ -481,10 +481,12 @@ with open("README.md", "w", encoding="utf-8") as r_file:
     r_file.write(f"* 📄 **Flux RSS FFPFSC :** `{BASE_URL}/rss/ffpfsc.xml`\n")
     r_file.write(f"* 📱 **Flux RSS Apps :** `{BASE_URL}/rss/apps.xml`\n\n")
 
-    r_file.write("## 📦 Archives AIO Releases (Dernières Versions)\n")
-    r_file.write(f"* 🚀 **AIO Payloads Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip)\n")
-    r_file.write(f"* 📦 **AIO PKG Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/PS5PKG_aio_latest.zip)\n")
-    r_file.write(f"* 📄 **AIO FFPFSC Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/ffpfsc_aio_latest.zip)\n\n")
+r_file.write("## 📦 Archives AIO Releases (Dernières Versions)\n")
+    r_file.write(f"* 🌐 **PS5 Ultimate Pack (TOUT INCLUS) (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/PS5_ultimate_pack_aio_latest.zip)\n")
+    r_file.write(f"* 🚀 **AIO Payloads Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/PS5_payloads_aio_latest.zip)\n")
+    r_file.write(f"* 📦 **AIO PKG Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/PS5_pkg_aio_latest.zip)\n")
+    r_file.write(f"* 📄 **AIO FFPFSC Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/PS5_ffpfsc_aio_latest.zip)\n")
+    r_file.write(f"* 📱 **AIO Apps Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/PS5_apps_aio_latest.zip)\n\n")
     
     r_file.write("---\n\n")
     r_file.write("## 🤝 Crédits & Remerciements\n")
