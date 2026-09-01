@@ -1,0 +1,53 @@
+name: Auto Update Store & Packages
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # S'exécute toutes les 6 heures
+  workflow_dispatch:        # Permet le lancement manuel depuis GitHub
+
+jobs:
+  update-store:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Configuration du dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 2. Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 3. Installation du CLI GitHub (gh)
+        run: |
+          type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          sudo apt update
+          sudo apt install gh -y
+
+      - name: 4. Authentification GitHub CLI
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: 5. Lancement de la mise à jour globale (Scripts & JSONs)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python update_store.py
+
+      - name: 6. Génération des archives AIO (Packaging)
+        run: |
+          python build_aio_package.py || echo "⚠️ build_aio_package skipped"
+          python build_aio_package_pkg.py || echo "⚠️ build_aio_package_pkg skipped"
+          python build_aio_package_ffpfsc.py || echo "⚠️ build_aio_package_ffpfsc skipped"
+          python build_aio_package_apps.py || echo "⚠️ build_aio_package_apps skipped"
+          python build_aio_ultimate.py || echo "⚠️ build_aio_ultimate skipped"
+
+      - name: 7. Commit et Push des modifications
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web & Packages AIO [skip ci]" && git push)
