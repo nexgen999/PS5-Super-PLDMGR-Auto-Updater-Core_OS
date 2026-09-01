@@ -5,6 +5,9 @@ on:
     - cron: '0 */6 * * *'  # S'exécute toutes les 6 heures
   workflow_dispatch:        # Permet le lancement manuel depuis GitHub
 
+permissions:
+  contents: write
+
 jobs:
   update-store:
     runs-on: ubuntu-latest
