@@ -7,12 +7,14 @@ Bienvenue sur mon écosystème automatisé pour la scène jailbreak PS5 !
 🌐 **Site Web Vitrine :** [Visiter le site PS5 Super PLDMGR Auto Updater](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/index.html)
 
 ## 🔗 URLs Fixes des Stores JSON
-* **Payloads Store JSON :** `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/json/payloads.json`
-* **Packages PKG Store JSON :** `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/PKGjson/pkg.json`
+* **Payloads Store JSON :** `https://nexgen999.github.io/<repo>/json/payloads.json`
+* **Packages PKG Store JSON :** `https://nexgen999.github.io/<repo>/json/pkg.json`
+* **FFPFSC Store JSON :** `https://nexgen999.github.io/<repo>/json/ffpfsc/ffpfsc.json`
 
 ## 📦 Archives AIO Releases (Dernières Versions)
-* 🚀 **AIO Payloads Offline (.zip) :** [Télécharger](https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/download/latest/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip)
-* 📦 **AIO PKG Offline (.zip) :** [Télécharger](https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/download/latest/PS5PKG_aio_latest.zip)
+* 🚀 **AIO Payloads Offline (.zip) :** [Télécharger](https://github.com/nexgen999/<repo>/releases/download/latest/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip)
+* 📦 **AIO PKG Offline (.zip) :** [Télécharger](https://github.com/nexgen999/<repo>/releases/download/latest/PS5PKG_aio_latest.zip)
+* 📄 **AIO FFPFSC Offline (.zip) :** [Télécharger](https://github.com/nexgen999/<repo>/releases/download/latest/ffpfsc_aio_latest.zip)
 
 ---
 
