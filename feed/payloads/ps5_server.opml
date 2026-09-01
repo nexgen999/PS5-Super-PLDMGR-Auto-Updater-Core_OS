@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_server</title>
+  </head>
+  <body>
+    <outline text="zftpd" title="zftpd" type="rss" xmlUrl="https://github.com/seregonwar/zftpd" author="seregonwar" description="FTP server payload for PS5. Port: 21" />
+    <outline text="elfldr" title="elfldr" type="rss" xmlUrl="https://github.com/ps5-payload-dev/elfldr" author="ps5-payload-dev" description="ELF Loader utility. Port: 9020 / 9021" />
+    <outline text="ftpsrv_ps5-payload" title="ftpsrv_ps5-payload" type="rss" xmlUrl="https://github.com/ps5-payload-dev/ftpsrv" author="ps5-payload-dev" description="FTP server background daemon. Port: 21" />
+    <outline text="websrv" title="websrv" type="rss" xmlUrl="https://github.com/ps5-payload-dev/websrv" author="ps5-payload-dev" description="HTTP Web server payload. Port: 8080" />
+    <outline text="gdbsrv" title="gdbsrv" type="rss" xmlUrl="https://github.com/ps5-payload-dev/gdbsrv" author="ps5-payload-dev" description="GDB Debugger server payload. Port: 1234" />
+    <outline text="klogsrv" title="klogsrv" type="rss" xmlUrl="https://github.com/ps5-payload-dev/klogsrv" author="ps5-payload-dev" description="Kernel log server daemon. Port: 3232" />
+    <outline text="ftpsrv_drakmor" title="ftpsrv_drakmor" type="rss" xmlUrl="https://github.com/drakmor/ftpsrv" author="drakmor" description="Drakmor's variant of the FTP server. Port: 21" />
+    <outline text="ps5-ezremote-client" title="ps5-ezremote-client" type="rss" xmlUrl="https://github.com/cy33hc/ps5-ezremote-client" author="cy33hc" description="Easy remote client application for PS5." />
+    <outline text="ps5-ezremote-server" title="ps5-ezremote-server" type="rss" xmlUrl="https://github.com/cy33hc/ps5-ezremote-server" author="cy33hc" description="Easy remote server component. Port: 8080" />
+    <outline text="ps5upload" title="ps5upload" type="rss" xmlUrl="https://github.com/phantomptr/ps5upload" author="phantomptr" description="PS5 Upload server / tool. Port: 9025" />
+    <outline text="airpsx" title="airpsx" type="rss" xmlUrl="https://github.com/barisyild/airpsx" author="barisyild" description="AirPSX server tool for PS5 ecosystem." />
+  </body>
+</opml>

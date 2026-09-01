@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_utility</title>
+  </head>
+  <body>
+    <outline text="ChronicLoader-PS5-Payload" title="ChronicLoader-PS5-Payload" type="rss" xmlUrl="https://github.com/StonedModder/ChronicLoader-PS5-Payload" author="StonedModder" description="ChronicLoader utility payload for PS5."/>
+    <outline text="Ghostpad" title="Ghostpad" type="rss" xmlUrl="https://github.com/StonedModder/Ghostpad" author="StonedModder" description="Ghostpad controller input utility."/>
+    <outline text="Ghostcontrol-PS5-USB-Controller-Patcher" title="Ghostcontrol-PS5-USB-Controller-Patcher" type="rss" xmlUrl="https://github.com/StonedModder/Ghostcontrol-PS5-USB-Controller-Patcher" author="StonedModder" description="USB Controller patcher tool for PS5."/>
+    <outline text="PoorDS4" title="PoorDS4" type="rss" xmlUrl="https://github.com/ItsBlurf/PoorDS4" author="ItsBlurf" description="PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5."/>
+    <outline text="PS Game State Lib" title="PS Game State Lib" type="rss" xmlUrl="https://github.com/StonedModder/ps-game-state-lib" author="StonedModder" description="Standalone PS5 game-state detection payload - webui ps5ip:9877 ."/>
+    <outline text="PS-DiscordPresence" title="PS-DiscordPresence" type="rss" xmlUrl="https://github.com/StonedModder/PS-DiscordPresence" author="StonedModder" description="PS5 game activity service with a local status endpoint and a Python Discord RPC bridge."/>
+    <outline text="unrar-ps5" title="unrar-ps5" type="rss" xmlUrl="https://github.com/bizkut/unrar-ps5" author="bizkut" description="PS5 ELF payload for extracting RAR and 7z archives on a jailbroken PS5 and installing extracted apps into a configurable layout.."/>
+    <outline text="PS5-Power-Payloads-Project" title="PS5-Power-Payloads-Project" type="rss" xmlUrl="https://github.com/MasterPS0/PS5-Power-Payloads-Project" author="MasterPS0" description="PS5-Power-Payloads-Project utility."/>
+    <outline text="ps5-date-time-sync" title="ps5-date-time-sync" type="rss" xmlUrl="https://github.com/kerrdec97/ps5-date-time-sync" author="kerrdec97" description="A lightweight, standalone PS5 payload that restores the console's system date and time using public NTP servers."/>
+  </body>
+</opml>

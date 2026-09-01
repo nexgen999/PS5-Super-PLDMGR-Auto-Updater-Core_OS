@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>PS5 DNS Tools</title>
+  </head>
+  <body>
+    <outline title="PS5 DNS">
+      <outline title="nanoDNS" xmlUrl="https://github.com/drakmor/nanoDNS" author="Drakmor" description="Un serveur DNS ultra-léger et rapide idéal pour rediriger les requêtes de la console vers votre hôte local d'exploits." />
+      <outline title="Chukei DNS" xmlUrl="https://github.com/Al-Azif/chukei-dns" author="Al-Azif" description="Serveur DNS de redirection d'envergure conçu spécifiquement pour bloquer les mises à jour de Sony et rediriger le guide de l'utilisateur." />
+    </outline>
+  </body>
+</opml>

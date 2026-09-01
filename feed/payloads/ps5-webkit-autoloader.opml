@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5-webkit-autoloader</title>
+  </head>
+  <body>
+    <outline title="ps5-webkit-autoloader">
+      <outline title="ps5-webkit-autoloader" xmlUrl="https://github.com/itsPLK/ps5-webkit-autoloader" author="itsPLK" description="Installs WebKit Autoloader on homescreen for firmwares 9.00-12.00." />
+      <outline title="Host-PSM pooP2JB" xmlUrl="https://github.com/ps4macedo/instalador-host-psm-poop2jb" author="ps4macedo" description="Host-PSM pooP2JB." />
+    </outline>
+  </body>
+</opml>

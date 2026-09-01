@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>PS5 Activation</title>
+  </head>
+  <body>
+    <outline title="PS5 Activation">
+      <outline title="np-fake-signin" xmlUrl="https://git.etawen.dev/earthonion/np-fake-signin" author="earthonion" description="Fake activate PS5 without PSN." />
+    </outline>
+  </body>
+</opml>

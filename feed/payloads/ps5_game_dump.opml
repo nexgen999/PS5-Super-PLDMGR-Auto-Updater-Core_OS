@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_game_dump</title>
+  </head>
+  <body>
+    <outline text="PS5-Game-Compressor" title="PS5-Game-Compressor" type="rss" xmlUrl="https://github.com/juma-sayeh/PS5-Game-Compressor" author="juma-sayeh" description="Tool to compress PS5 games." />
+    <outline text="ps5-app-dumper" title="ps5-app-dumper" type="rss" xmlUrl="https://github.com/EchoStretch/ps5-app-dumper" author="EchoStretch" description="PS5 App Dumper payload." />
+    <outline text="dump_installer" title="dump_installer" type="rss" xmlUrl="https://github.com/EchoStretch/dump_installer" author="EchoStretch" description="Dump Installer utility." />
+    <outline text="dump_runner" title="dump_runner" type="rss" xmlUrl="https://github.com/EchoStretch/dump_runner" author="EchoStretch" description="Dump Runner tool." />
+    <outline text="ShadowMountPlus" title="ShadowMountPlus" type="rss" xmlUrl="https://github.com/drakmor/ShadowMountPlus" author="drakmor" description="ShadowMountPlus payload for game mounting." />
+    <outline text="BackPork" title="BackPork" type="rss" xmlUrl="https://github.com/BestPig/BackPork" author="BestPig" description="BackPork PS5 tool." />
+    <outline text="dlc_emu" title="dlc_emu" type="rss" xmlUrl="https://github.com/drakmor/dlc_emu" author="drakmor" description="DLC Emulator for PS5." />
+    <outline text="pgo_stub" title="pgo_stub" type="rss" xmlUrl="https://github.com/drakmor/pgo_stub" author="drakmor" description="PGO stub utility." />
+    <outline text="apr-emu-updater" title="apr-emu-updater" type="rss" xmlUrl="https://github.com/tsuramatsu1/apr-emu-updater" author="tsuramatsu1" description="APR Emu Updater must always be loaded." />
+  </body>
+</opml>

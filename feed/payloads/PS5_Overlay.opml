@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>PS5_Overlay</title>
+  </head>
+  <body>
+    <outline text="Common-FPS-for-PS5" title="Common-FPS-for-PS5" type="rss" xmlUrl="https://github.com/porhe911/Common-FPS-for-PS5" author="porhe911" description="A lightweight, open-source real-time FPS counter for PlayStation 5."/>
+  </body>
+</opml>

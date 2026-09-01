@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_sdk_debug</title>
+  </head>
+  <body>
+    <outline text="ps5debug-NG" title="ps5debug-NG" type="rss" xmlUrl="https://github.com/OpenSourcereR-dev/ps5debug-NG" author="OpenSourcereR-dev" description="Next generation debugger payload for PS5." />
+    <outline text="ps5-fw-spoof" title="ps5-fw-spoof" type="rss" xmlUrl="https://github.com/illusionyy/ps5-fw-spoof" author="illusionyy" description="Firmware spoofer utility for PS5." />
+    <outline text="ps5-self-pager" title="ps5-self-pager" type="rss" xmlUrl="https://github.com/idlesauce/ps5-self-pager" author="idlesauce" description="SELF pager payload tool." />
+    <outline text="PS5-SELF-Decrypter" title="PS5-SELF-Decrypter" type="rss" xmlUrl="https://github.com/idlesauce/PS5-SELF-Decrypter" author="idlesauce" description="SELF decrypter tool for PS5 binaries." />
+    <outline text="ps5-remoteplay-get-pin" title="ps5-remoteplay-get-pin" type="rss" xmlUrl="https://github.com/idlesauce/ps5-remoteplay-get-pin" author="idlesauce" description="Utility to get Remote Play PIN." />
+    <outline text="MemDBG" title="MemDBG" type="rss" xmlUrl="https://github.com/seregonwar/MemDBG" author="seregonwar" description="Memory debugging and inspection suite." />
+    <outline text="ps5-hwinfo" title="ps5-hwinfo" type="rss" xmlUrl="https://github.com/drakmor/ps5-hwinfo" author="drakmor" description="PS5 payload for collecting hardware and runtime telemetry." />
+    <outline text="PS5 Debugger GUI" title="PS5 Debugger GUI" type="rss" xmlUrl="https://github.com/boazvdwansem/ps5-debugger" author="boazvdwansem" description="Graphical user interface for interacting with the debugger payload." />
+  </body>
+</opml>

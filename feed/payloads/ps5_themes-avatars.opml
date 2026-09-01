@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_themes-avatars</title>
+  </head>
+  <body>
+    <outline text="PS5-Custom-Tool-Manager-" title="PS5-Custom-Tool-Manager-" type="rss" xmlUrl="https://github.com/NikoBellikJR31/PS5-Custom-Tool-Manager-" author="NikoBellikJR31" description="Custom manager tool for PS5 personalization." />
+    <outline text="ps5-wallpaper-modd" title="ps5-wallpaper-modd" type="rss" xmlUrl="https://github.com/hgr9519/ps5-wallpaper-modd" author="hgr9519" description="Wallpaper modification utility for PS5." />
+  </body>
+</opml>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_trophy</title>
+  </head>
+  <body>
+    <outline text="uds-trophy-unlocker" title="uds-trophy-unlocker" type="rss" xmlUrl="https://git.etawen.dev/soniciso/uds-trophy-unlocker" author="soniciso" description="Trophy unlocker utility for PS5 hosted on Forgejo." />
+  </body>
+</opml>

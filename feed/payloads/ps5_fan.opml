@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>PS5 Fan Tools</title>
+  </head>
+  <body>
+    <outline title="PS5 Fan">
+      <outline title="ps5-fan-control" xmlUrl="https://github.com/owendswang/ps5-fan-control" author="owendswang" description="Small PS5 daemon payload ELF that sets the system fan temperature." />
+      <outline title="fan_target" xmlUrl="https://github.com/drakmor/fan_target" author="drakmor" description="fan_target keeps the PS5 fan controller at a selected target temperature while leaving the console's automatic fan control enabled." />
+    </outline>
+  </body>
+</opml>

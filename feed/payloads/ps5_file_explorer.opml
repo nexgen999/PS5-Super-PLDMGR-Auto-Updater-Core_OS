@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_file_explorer</title>
+  </head>
+  <body>
+    <outline text="BFpilot" title="BFpilot" type="rss" xmlUrl="https://github.com/ItsBlurf/BFpilot" author="ItsBlurf" description="BFpilot is a lightweight PS5 payload that serves a browser-based file manager." />
+    <outline text="Lapy JB Daemon" title="Lapy JB Daemon" type="rss" xmlUrl="https://raw.githubusercontent.com/ArkSama/PS5-Lapy-JB-Daemon/main/lapy_jb_daemon.elf" author="ArkSama" description="Daemon pour le jailbreak de Lapy"/>
+    <outline text="ps5-web-file-manager" title="ps5-web-file-manager" type="rss" xmlUrl="https://github.com/owendswang/ps5-web-file-manager" author="owendswang" description="PS5 Web File Manager http://your-ps5-ip:8888." />
+    <outline text="PS5-File-Explorer" title="PS5-File-Explorer" type="rss" xmlUrl="https://github.com/juma-sayeh/PS5-File-Explorer" author="juma-sayeh" description="PS5 File Explorer http://your-ps5-ip:5905." />
+  </body>
+</opml>

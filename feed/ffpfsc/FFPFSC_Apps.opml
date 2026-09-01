@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>FFPFSC_Apps</title>
+  </head>
+  <body>
+    <outline text="ProsperoLight" title="ProsperoLight" type="rss" xmlUrl="https://github.com/blackbearreloaded/ProsperoLight" author="blackbearreloaded" description="PS5 Moonlight"/>
+    <outline text="ProsperoRadio" title="ProsperoRadio" type="rss" xmlUrl="https://github.com/blackbearreloaded/ProsperoRadio" author="blackbearreloaded" description="PS5 Radio Player"/>
+    <outline text="ProsperoTV" title="ProsperoTV" type="rss" xmlUrl="https://github.com/blackbearreloaded/ProsperoTV" author="blackbearreloaded" description="PS5 IPTV"/>
+  </body>
+</opml>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>PS5 HEN &amp; Loaders</title>
+  </head>
+  <body>
+    <outline title="PS5 HEN Loader">
+      <outline title="etaHEN" xmlUrl="https://github.com/etaHEN/etaHEN" author="LightningMods" description="Le Homebrew Enabler (HEN) de référence pour la PS5 avec serveurs de triche, plugins et gestionnaire de mémoire intégrés." />
+      <outline title="PS5 Unified Autoloader" xmlUrl="https://github.com/itsPLK/ps5-unified-autoloader" author="itsPLK" description="Chargeur universel de payloads permettant de lancer automatiquement vos outils favoris au démarrage de l'exploit." />
+      <outline title="PS5 Payload Manager" xmlUrl="https://github.com/itsPLK/ps5-payload-manager" author="itsPLK" description="Interface d'administration et de gestion réseau pour envoyer, activer et ordonner vos fichiers ELF/BIN sur la console." />
+      <outline title="ELF Arsenal" xmlUrl="https://git.etawen.dev/soniciso/elf-arsenal" author="SonicIso" description="Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées." />
+      <outline title="Kura" xmlUrl="https://github.com/NookieAI/kura" author="NookieAI" description="Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5." />
+      <outline title="PIZZA-HEN" xmlUrl="https://github.com/Michele-M-Media/PIZZA-HEN" author="Michele-M-Media" description="PIZZA HEN is an experimental all-in-one PS5 homebrew environment." />
+      <outline title="onionHEN" xmlUrl="https://github.com/aydencharles/onionHEN" author="aydencharles" description="An all-in-one HEN and Toolbox for PlayStation 5." />
+      <outline title="etaHEN-Beta" xmlUrl="https://github.com/zecoxao/zecoxao.github.io/raw/refs/heads/main/luasauce/payloads/etaHEN-2.6B.bin" author="zecoxao - LightningMods" description="etahen beta version experimental." />
+      <outline title="ProsperoMgr" xmlUrl="https://github.com/notmaj0r/ProsperoMgr" author="notmaj0r" description="A Web-Based All-In-One homebrew manager for your PlayStation 5" />
+    </outline>
+  </body>
+</opml>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_saves</title>
+  </head>
+  <body>
+    <outline text="garlic-savemgr" title="garlic-savemgr" type="rss" xmlUrl="https://git.etawen.dev/earthonion/garlic-savemgr" author="earthonion" description="Save manager utility hosted on Forgejo." />
+    <outline text="garlic-worker" title="garlic-worker" type="rss" xmlUrl="https://git.etawen.dev/earthonion/garlic-worker" author="earthonion" description="Garlic worker payload component." />
+    <outline text="Playstation-5-Save-Mounter" title="Playstation-5-Save-Mounter" type="rss" xmlUrl="https://github.com/n0llptr/Playstation-5-Save-Mounter" author="n0llptr" description="PS5 Save Mounter application." />
+    <outline text="savemnt-offset-dumper" title="savemnt-offset-dumper" type="rss" xmlUrl="https://github.com/StonedModder/savemnt-offset-dumper" author="StonedModder" description="Offset dumper for save mounting utilities." />
+  </body>
+</opml>

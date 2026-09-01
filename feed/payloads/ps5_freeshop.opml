@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>ps5_freeshop</title>
+  </head>
+  <body>
+    <outline text="Spectrum-Library" title="Spectrum-Library" type="rss" xmlUrl="https://github.com/Phoenixx1202/Spectrum-Library" author="Phoenixx1202" description="free store webadmin http://your-ps5-ip:7575." />
+    <outline text="pegasus-dl" title="pegasus-dl" type="rss" xmlUrl="https://github.com/pegasus-ps5/pegasus-dl" author="pegasus-ps5" description="free store webadmin http://your-ps5-ip:6970." />
+    <outline text="ps5shopappkg-dpi" title="ps5shopappkg-dpi" type="rss" xmlUrl="https://github.com/ps5xploit/ps5shopappkg/releases/download/ps5shopappkg/ps5shopappkg-dpi.elf" author="ps5xploit" description="You need PS5-SHOP-APPKG.pkg DPI port 9040." />
+  </body>
+</opml>
