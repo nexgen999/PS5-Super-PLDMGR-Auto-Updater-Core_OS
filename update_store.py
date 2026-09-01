@@ -53,10 +53,10 @@ for opml_file in opml_files:
     
     for outline in outlines:
         attrs = dict(re.findall(r'(\w+)="([^"]*)"', outline))
-        title = attrs.get('title', 'Inconnu')
-        xml_url = attrs.get('xmlUrl', '').strip('/')
-        author = attrs.get('author', 'Inconnu')
-        description = attrs.get('description', '')
+        title = html.unescape(attrs.get('title', attrs.get('text', 'Inconnu')))
+        xml_url = attrs.get('xmlUrl', '').strip()
+        author = html.unescape(attrs.get('author', 'Inconnu'))
+        description = html.unescape(attrs.get('description', ''))
 
         if not xml_url or "ps4" in title.lower() or "ps4" in description.lower():
             continue
@@ -88,7 +88,7 @@ for opml_file in opml_files:
         if not downloaded and "github.com" in xml_url:
             repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
             if repo_match:
-                repo = repo_match.group(1)
+                repo = repo_match.group(1).rstrip('/')
                 repo_lower = repo.lower()
                 try:
                     res_tag = subprocess.check_output(f"gh release list --repo {repo} --limit 1 --json tagName --jq '.[0].tagName'", shell=True).decode().strip()
@@ -108,14 +108,14 @@ for opml_file in opml_files:
                     print(f"   -> Téléchargement GitHub ({version})...")
                     subprocess.call(f"gh release download '{version}' --repo '{repo}' --dir '{target_dir}' --clobber 2>/dev/null", shell=True)
                     
-                    if "poords4" in repo_lower or "fan_target" in repo_lower or "shadowmountplus" in repo_lower or "instalador-host-psm-poop2jb" in repo_lower:
+                    if any(k in repo_lower for k in ["poords4", "fan_target", "shadowmountplus", "instalador-host-psm-poop2jb"]):
                         for item in os.listdir(target_dir):
                             item_path = os.path.join(target_dir, item)
                             if item.lower().endswith('.zip'):
                                 try:
                                     with zipfile.ZipFile(item_path, 'r') as zf:
                                         for member in zf.namelist():
-                                            if member.lower().endswith('.elf'):
+                                            if member.lower().endswith(('.elf', '.bin')):
                                                 zf.extract(member, target_dir)
                                                 extracted_path = os.path.join(target_dir, member)
                                                 dest_path = os.path.join(target_dir, os.path.basename(member))
@@ -128,7 +128,7 @@ for opml_file in opml_files:
                                         os.remove(item_path)
 
                     files_downloaded = os.listdir(target_dir)
-                    if "ps5-payload-dev/websrv" in repo_lower or "phantomptr/ps5upload" in repo_lower or "boazvdwansem/ps5-debugger" in repo_lower:
+                    if any(k in repo_lower for k in ["ps5-payload-dev/websrv", "phantomptr/ps5upload", "boazvdwansem/ps5-debugger"]):
                         for f in files_downloaded:
                             if not (f.lower().endswith('.elf') or f.lower().endswith('.bin')):
                                 try: os.remove(os.path.join(target_dir, f))
@@ -138,7 +138,7 @@ for opml_file in opml_files:
                             f_lower = f.lower()
                             if f_lower.endswith('.elf') or f_lower.endswith('.bin'):
                                 continue
-                            if f_lower.endswith('.dmg') or f_lower.endswith('.exe') or f_lower.endswith('.appimage') or f_lower.endswith('.msi') or f_lower.endswith('.txt'):
+                            if f_lower.endswith(('.dmg', '.exe', '.appimage', '.msi', '.txt')):
                                 try: os.remove(os.path.join(target_dir, f))
                                 except: pass
 
@@ -152,7 +152,7 @@ for opml_file in opml_files:
             try:
                 api_repo_match = re.search(r'git\.etawen\.dev/([^/]+/[^/]+)', xml_url)
                 if api_repo_match:
-                    repo_path = api_repo_match.group(1)
+                    repo_path = api_repo_match.group(1).rstrip('/')
                     api_url = f"https://git.etawen.dev/api/v1/repos/{repo_path}/releases"
                     
                     req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -174,9 +174,9 @@ for opml_file in opml_files:
                                 asset_url = asset.get('browser_download_url', '')
                                 asset_name = asset.get('name', '')
                                 clean_name = asset_name.lower()
-                                if clean_name.endswith('.dmg') or clean_name.endswith('.exe') or clean_name.endswith('.appimage') or clean_name.endswith('.msi'):
+                                if clean_name.endswith(('.dmg', '.exe', '.appimage', '.msi')):
                                     continue
-                                if clean_name.endswith('.elf') or clean_name.endswith('.bin') or clean_name.endswith('.pkg'):
+                                if clean_name.endswith(('.elf', '.bin', '.pkg')):
                                     valid_file_url = asset_url
                                     f_name = asset_name
                                     break
@@ -204,13 +204,13 @@ for opml_file in opml_files:
         else:
             v_suffix = ""
 
-        binaries_found = [f for f in files_in_dir if f.lower().endswith('.elf') or f.lower().endswith('.bin')]
+        binaries_found = [f for f in files_in_dir if f.lower().endswith(('.elf', '.bin'))]
 
         for f_name in binaries_found:
             base_name, ext = os.path.splitext(f_name)
             final_base = None
 
-            if "instalador-host-psm-poop2jb" in repo_lower or "psm" in repo_lower or "poords4" in repo_lower:
+            if any(k in repo_lower for k in ["instalador-host-psm-poop2jb", "psm", "poords4"]):
                 final_base = base_name
             elif "fan_target" in repo_lower or "fan_target" in f_name.lower():
                 temp_match = re.search(r'(\d+c)', f_name.lower())
@@ -282,10 +282,10 @@ if os.path.exists(PKG_FEED_DIR):
         
         for outline in outlines:
             attrs = dict(re.findall(r'(\w+)="([^"]*)"', outline))
-            title = attrs.get('title', 'Inconnu')
+            title = html.unescape(attrs.get('title', attrs.get('text', 'Inconnu')))
             xml_url = attrs.get('xmlUrl', '').strip()
-            author = attrs.get('author', 'Inconnu')
-            description = attrs.get('description', '')
+            author = html.unescape(attrs.get('author', 'Inconnu'))
+            description = html.unescape(attrs.get('description', ''))
 
             if not xml_url:
                 continue
@@ -311,7 +311,7 @@ if os.path.exists(PKG_FEED_DIR):
             category_pkgs_list.append(item_data)
             all_pkgs_flat_list.append(item_data)
 
-        # Génération du JSON dédié (ex: PKGjson/ps5pkg.json)
+        # Génération du JSON dédié
         with open(os.path.join(PKG_JSON_DIR, f"{cat_tech_name}.json"), 'w', encoding='utf-8') as out_pkg_cat:
             json.dump({"name": cat_display_name, "packages": category_pkgs_list}, out_pkg_cat, indent=2, ensure_ascii=False)
 
@@ -331,7 +331,7 @@ with open(os.path.join(RSS_DIR, "store-global.opml"), "w", encoding="utf-8") as 
         match = re.search(r'\*\*([^*]+)\*\*\s*:\s*\[([^\]]+)\]\(([^)]+)\)', row)
         if match:
             author_name, title_name, raw_url = match.group(1), match.group(2), match.group(3)
-            opml_out.write(f'    <outline text="{title_name}" title="{title_name}" type="rss" xmlUrl="{raw_url}" author="{author_name}"/>\n')
+            opml_out.write(f'    <outline text="{html.escape(title_name)}" title="{html.escape(title_name)}" type="rss" xmlUrl="{html.escape(raw_url)}" author="{html.escape(author_name)}"/>\n')
     opml_out.write('  </body>\n</opml>')
 
 with open(os.path.join(RSS_DIR, "feed.xml"), "w", encoding="utf-8") as feed_out:
@@ -340,9 +340,9 @@ with open(os.path.join(RSS_DIR, "feed.xml"), "w", encoding="utf-8") as feed_out:
     feed_out.write(f'    <link>https://nexgen999.github.io/{repo_name}/</link>\n    <description>Suivi automatique des payloads</description>\n')
     for item in all_payloads_flat_list:
         feed_out.write('    <item>\n')
-        feed_out.write(f'      <title>{item["name"]} ({item["version"]})</title>\n')
-        feed_out.write(f'      <link>{item["url"]}</link>\n')
-        feed_out.write(f'      <description>{item["description"]} - Checksum: {item["checksum"]}</description>\n')
+        feed_out.write(f'      <title>{html.escape(item["name"])} ({html.escape(item["version"])})</title>\n')
+        feed_out.write(f'      <link>{html.escape(item["url"])}</link>\n')
+        feed_out.write(f'      <description>{html.escape(item["description"])} - Checksum: {item["checksum"]}</description>\n')
         feed_out.write('    </item>\n')
     feed_out.write('  </channel>\n</rss>')
 
