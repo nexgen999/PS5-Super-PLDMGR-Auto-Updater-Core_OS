@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="evoX AIO Store — PS5 Payloads & PKG">
+<title>evoX AIO Store</title>
+<style>
+:root{
+ --bg:#070a0f;--panel:#0e141d;--panel2:#131b27;--text:#f5f8ff;--muted:#8995a7;
+ --line:#263242;--accent:#1687ff;--accent2:#00c6ff;--glow:#1687ff44;
+ --pkg:#8b5cf6;--good:#3ddc97
+}
+*{box-sizing:border-box}
+body{
+ margin:0;color:var(--text);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif;
+ background:radial-gradient(circle at 50% -15%,#173c70 0,#070a0f 45%);
+ min-height:100vh;transition:.25s
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1380px;margin:auto;padding:18px 20px 50px}
+
+/* TOP */
+.top{
+ position:relative;z-index:100;height:58px;display:flex;align-items:center;gap:18px;justify-content:space-between;
+ padding:0 15px;background:#0b1119dd;border:1px solid var(--line);
+ border-radius:14px;backdrop-filter:blur(15px);margin-bottom:18px
+}
+.logo{font-size:22px;font-weight:900;letter-spacing:-1px;white-space:nowrap}
+.logo b{color:var(--accent)}
+.nav{display:flex;gap:15px;color:var(--muted);font-size:12px}
+.nav a:hover{color:var(--text)}
+.topIcon{
+ width:34px;height:34px;display:flex!important;align-items:center;justify-content:center;
+ border:1px solid var(--line);border-radius:9px;background:var(--panel2);
+ color:var(--text)!important;transition:.16s ease;overflow:hidden;
+}
+.topIcon:hover{transform:translateY(-1px);border-color:var(--accent);box-shadow:0 0 15px var(--glow)}
+.topIcon.githubIcon{border-radius:50%;padding:2px;background:var(--panel2)}
+.githubIcon img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.socialIcon svg{width:18px;height:18px;fill:currentColor;display:block}
+.aioPayload,.aioPkg{font-size:17px}
+.theme{position:relative}
+.themeBtn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:8px 10px;font-weight:700}
+.menu{
+ position:absolute;right:0;top:42px;width:200px;padding:6px;background:var(--panel);
+ border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 45px #0009;display:none;z-index:50
+}
+.menu.open{display:block}
+.themeOpt{width:100%;display:flex;gap:8px;align-items:center;text-align:left;border:0;background:transparent;color:var(--text);padding:9px;border-radius:8px}
+.themeOpt:hover,.themeOpt.active{background:var(--panel2)}
+.dot{width:10px;height:10px;border-radius:50%}.blue{background:#1687ff}.green{background:#72ff38}.glass{background:#8356f4}
+
+/* HERO BANNER */
+.banner{
+ position:relative;z-index:1;overflow:hidden;min-height:210px;padding:34px 38px;
+ border:1px solid #1e5ca0;border-radius:20px;
+ background:
+ radial-gradient(circle at 78% 45%,#1687ff40 0,transparent 25%),
+ radial-gradient(circle at 90% 20%,#00c6ff22 0,transparent 25%),
+ linear-gradient(110deg,#0a111c 0%,#0c1725 48%,#07101c 100%);
+ box-shadow:0 20px 55px #0006
+}
+.banner:before{
+ content:"";position:absolute;inset:0;
+ background-image:linear-gradient(90deg,#07101ce8 0%,#07101c9c 48%,#07101c2e 100%),url('https://raw.githubusercontent.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/main/assets/banner.png');
+ background-size:cover;background-position:center;opacity:.62
+}
+.banner:after{
+ content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07101c66,transparent 65%);
+ pointer-events:none
+}
+.bannerContent{position:relative;z-index:2;max-width:650px}
+.banner h1{font-size:clamp(35px,5vw,58px);line-height:1;margin:0 0 12px;letter-spacing:-3px}
+.banner h1 span{color:var(--accent)}
+.banner p{color:#aeb9ca;margin:0 0 17px}
+.badges{display:flex;flex-wrap:wrap;gap:7px}
+.badge{border:1px solid #ffffff15;background:#ffffff08;color:#cbd5e4;border-radius:999px;padding:5px 9px;font-size:11px}
+.bannerArt{position:absolute;right:6%;top:25px;width:260px;height:160px;opacity:.9}
+.cube{position:absolute;right:75px;top:32px;width:88px;height:88px;border:2px solid #42b7ff;border-radius:20px;transform:rotate(45deg);box-shadow:0 0 35px #1687ff77}
+.cube:after{content:"";position:absolute;inset:14px;border:1px solid #00c6ff88;border-radius:12px}
+.orbit{position:absolute;width:210px;height:75px;border:2px solid #1687ff99;border-radius:50%;right:15px;top:45px;transform:rotate(-20deg)}
+.orbit:before{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#00c6ff;right:12px;top:10px;box-shadow:0 0 20px #00c6ff}
+
+/* TABS */
+.tabs{display:flex;gap:7px;margin:18px 0 10px}
+.tab{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 17px;border-radius:9px;font-weight:800}
+.tab.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;box-shadow:0 7px 20px var(--glow)}
+.tab.pkg.active{background:linear-gradient(135deg,#6d35d9,#a855f7);box-shadow:0 7px 20px #8b5cf655}
+
+
+/* VIEW MODE */
+.viewBar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0}
+.viewTitle{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;font-weight:800}
+.viewButtons{display:flex;gap:5px}
+.viewBtn{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:8px;padding:7px 10px;font-size:11px;font-weight:800}
+.viewBtn.active{background:var(--panel2);color:var(--text);border-color:var(--accent);box-shadow:0 0 0 2px var(--glow)}
+.aioBar{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.aioBtn{display:inline-flex;align-items:center;gap:7px;border:1px solid #ffffff18;background:#07121fbb;color:#dce8f7;border-radius:10px;padding:9px 12px;font-size:11px;font-weight:800;backdrop-filter:blur(8px)}
+.aioBtn:hover{border-color:var(--accent);background:#10223abb}
+.githubIcon{width:17px;height:17px;display:inline-block;vertical-align:-4px}
+/* SEARCH */
+.toolbar{
+ display:grid;grid-template-columns:minmax(0,1fr) 230px auto;gap:9px;
+ padding:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px
+}
+input,select{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px 12px;outline:0}
+input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.refresh{border:0;border-radius:8px;color:#fff;font-weight:800;padding:0 18px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.stats{padding:13px 2px;color:var(--muted);font-size:12px}
+
+/* LIST */
+.list{
+ border:1px solid var(--line);border-radius:15px;overflow:hidden;background:var(--panel);
+ box-shadow:0 12px 35px #0004
+}
+.listHead,.row{
+ display:grid;grid-template-columns:64px minmax(220px,2fr) 100px 145px minmax(180px,1.4fr) 105px 130px;
+ align-items:center;gap:12px
+}
+.listHead{
+ padding:11px 15px;background:var(--panel2);border-bottom:1px solid var(--line);
+ color:#687589;text-transform:uppercase;font-size:10px;font-weight:800;letter-spacing:.7px
+}
+.row{
+ padding:10px 15px;min-height:76px;border-bottom:1px solid var(--line);
+ transition:.15s
+}
+.row:last-child{border-bottom:0}
+.row:hover{background:#ffffff04}
+.icon{
+ width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+ font-size:22px;font-weight:900;color:#fff;border:1px solid #ffffff18;
+ background:linear-gradient(135deg,#12365f,#0a1728);box-shadow:inset 0 0 18px #1687ff22
+}
+.name{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.desc{color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.cell{font-size:12px;color:#b8c2d0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tag{display:inline-block;padding:4px 7px;border-radius:999px;background:#1d2a3b;color:#aebed2;font-size:10px}
+.ver{background:#092e5d;color:#6eb5ff}
+.author{background:#163322;color:#88dfaa}
+.file{font-size:10px;color:#707d8f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.actions{display:flex;gap:6px}
+.dl,.open{
+ border-radius:8px;padding:8px 9px;text-align:center;font-size:11px;font-weight:800;white-space:nowrap
+}
+.dl{border:0;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.open{border:1px solid var(--line);color:#bdc8d8;background:var(--panel2)}
+.dl:disabled{opacity:.55;cursor:wait}
+.hash{font-size:9px;color:#596678;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+
+/* MOBILE CARDS */
+.mobileGrid{display:none}
+.mobileGrid.tileMode{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}
+.card{
+ background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+ box-shadow:0 9px 25px #0004
+}
+.cardTop{display:flex;gap:11px}
+.cardInfo{min-width:0;flex:1}
+.card .name{font-size:16px}
+.card .desc{white-space:normal;margin-top:4px}
+.cardMeta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.cardBottom{display:flex;gap:7px}.cardBottom>*{flex:1}
+.card .file{margin:8px 0}
+.loading,.error,.empty{padding:50px;text-align:center;color:var(--muted)}
+.error{color:#ff8491}
+
+/* THEMES */
+body[data-theme="green"]{
+ --bg:#020604;--panel:#071109;--panel2:#0c1a10;--text:#f0fff2;--muted:#839487;
+ --line:#1d3b24;--accent:#72ff38;--accent2:#19d85a;--glow:#72ff3840;
+ background:radial-gradient(circle at 50% -15%,#153e1b 0,#020604 45%)
+}
+body[data-theme="green"] .banner{
+ border-color:#316d28;background:
+ radial-gradient(circle at 78% 45%,#72ff3830 0,transparent 25%),
+ linear-gradient(110deg,#071007,#09160b,#040a05)
+}
+body[data-theme="green"] .cube{border-color:#72ff38;box-shadow:0 0 35px #72ff3866}
+body[data-theme="green"] .orbit{border-color:#72ff3899}
+body[data-theme="green"] .orbit:before{background:#72ff38}
+body[data-theme="green"] .tab.active,body[data-theme="green"] .refresh,body[data-theme="green"] .dl{
+ color:#041006;background:linear-gradient(135deg,#72ff38,#19d85a)
+}
+body[data-theme="green"] .tab.pkg.active{color:#fff;background:linear-gradient(135deg,#6d35d9,#a855f7)}
+
+body[data-theme="glass"]{
+ --bg:#eef2f8;--panel:#ffffffbd;--panel2:#fff;--text:#182236;--muted:#68758a;
+ --line:#d8deea;--accent:#6d3df5;--accent2:#a855f7;--glow:#7549ff2b;
+ background:radial-gradient(circle at 50% -15%,#d9e7ff,#eef2f8 48%)
+}
+body[data-theme="glass"] .top,body[data-theme="glass"] .banner,body[data-theme="glass"] .toolbar,
+body[data-theme="glass"] .list,body[data-theme="glass"] .card{
+ background:#ffffffaa;backdrop-filter:blur(18px);box-shadow:0 15px 40px #71809c22
+}
+body[data-theme="glass"] .banner{
+ border-color:#cfd8ea;background:
+ radial-gradient(circle at 78% 45%,#9dbdff45 0,transparent 28%),
+ linear-gradient(110deg,#ffffff,#e9effa)
+}
+body[data-theme="glass"] .banner p{color:#657188}
+body[data-theme="glass"] .badge{background:#ffffff80;color:#56647b;border-color:#d9dfeb}
+body[data-theme="glass"] .cube{border-color:#7550e8;box-shadow:0 0 35px #7550e844}
+body[data-theme="glass"] .orbit{border-color:#7550e866}
+body[data-theme="glass"] .orbit:before{background:#8b5cf6}
+body[data-theme="glass"] .tab.active,body[data-theme="glass"] .refresh,body[data-theme="glass"] .dl{
+ background:linear-gradient(135deg,#653bf0,#a855f7)
+}
+body[data-theme="glass"] .icon{background:linear-gradient(135deg,#eef3ff,#e4e9f8);color:#5e43c9;border-color:#d4dcec}
+body[data-theme="glass"] .tag{background:#f0f3f8;color:#59667a}
+body[data-theme="glass"] .ver{background:#e9f2ff;color:#2563c9}
+body[data-theme="glass"] .author{background:#e8f8ee;color:#28784c}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+ .listHead,.row{grid-template-columns:60px minmax(190px,2fr) 90px 120px minmax(140px,1fr) 110px}
+ .listHead> :nth-child(7),.row> :nth-child(7){display:none}
+}
+@media(max-width:780px){
+ .wrap{padding:12px}
+ .top{height:52px}
+ .nav{display:flex;gap:5px}
+ .topIcon{width:31px;height:31px}
+ .banner{min-height:185px;padding:26px 22px}
+ .bannerArt{right:-40px;opacity:.45}
+ .toolbar{grid-template-columns:1fr}
+ .refresh{padding:10px}
+ .list{display:none}
+ .mobileGrid{display:grid;grid-template-columns:1fr;gap:10px}
+}
+@media(min-width:781px){
+ .mobileGrid{display:none!important}
+ .mobileGrid.tileMode{display:grid!important}
+}
+@media(max-width:430px){
+ .nav{gap:3px}
+ .topIcon{width:29px;height:29px}
+ .banner h1{font-size:35px}
+ .banner{padding:24px 18px}
+ .tabs{display:grid;grid-template-columns:1fr 1fr}
+ .tab{width:100%}
+ .top{padding:0 10px}
+ .logo{font-size:19px}
+}
+</style>
+</head>
+
+<body data-theme="blue">
+<div class="wrap">
+
+<header class="top">
+ <div class="logo"><b>evoX</b> AIO STORE</div>
+
+ <nav class="nav" aria-label="Liens rapides">
+  <a class="topIcon aioPayload" href="https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/download/latest/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip"
+     title="🚀 AIO Payloads Offline" aria-label="AIO Payloads Offline">🚀</a>
+
+  <a class="topIcon aioPkg" href="https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/download/latest/PS5PKG_aio_latest.zip"
+     title="📦 AIO PKG Offline" aria-label="AIO PKG Offline">📦</a>
+
+  <a class="topIcon githubIcon" href="https://github.com/nexgen999" target="_blank" rel="noopener"
+     title="GitHub — nexgen999" aria-label="GitHub — nexgen999">
+    <img src="https://github.com/nexgen999.png?size=80" alt="nexgen999">
+  </a>
+
+  <a class="topIcon socialIcon" href="https://x.com/nexgen999" target="_blank" rel="noopener"
+     title="X — @nexgen999" aria-label="X — @nexgen999">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.96 6.817H1.687l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+    </svg>
+  </a>
+
+  <a class="topIcon socialIcon" href="https://bsky.app/profile/nexgen999.bsky.social" target="_blank" rel="noopener"
+     title="Bluesky — nexgen999" aria-label="Bluesky — nexgen999">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 10.8C11.1 9.05 8.65 5.05 5.7 3.1 2.87 1.23 1.78 1.55 1.2 1.8.53 2.1.42 3.08.42 3.66c0 .58.32 4.8.53 5.5.7 2.36 3.2 3.02 5.83 2.64-4.61.7-8.7 2.43-3.33 8.58 5.9 6.76 7.7-1.45 8.55-5.6.85 4.15 2.65 12.36 8.55 5.6 5.37-6.15 1.28-7.88-3.33-8.58 2.63.38 5.13-.28 5.83-2.64.21-.7.53-4.92.53-5.5 0-.58-.11-1.56-.78-1.86-.58-.25-1.67-.57-4.5 1.3C15.35 5.05 12.9 9.05 12 10.8Z"/>
+    </svg>
+  </a>
+ </nav>
+
+ <div class="theme">
+  <button class="themeBtn" id="themeBtn">🎨 Thème</button>
+  <div class="menu" id="themeMenu">
+   <button class="themeOpt" data-theme="blue"><i class="dot blue"></i> evoX Blue</button>
+   <button class="themeOpt" data-theme="green"><i class="dot green"></i> Cyber Green</button>
+   <button class="themeOpt" data-theme="glass"><i class="dot glass"></i> Glass / Light</button>
+  </div>
+ </div>
+</header>
+
+<section class="banner">
+ <div class="bannerContent">
+  <h1><span>evoX</span> STORE</h1>
+  <p>Le hub central pour les payloads et applications PKG PS5. Catalogue synchronisé avec GitHub.</p>
+  <div class="badges">
+   <span class="badge">⚡ Payloads</span>
+   <span class="badge">📦 PKG</span>
+   <span class="badge">🔎 Recherche</span>
+   <span class="badge">⬇ Téléchargement</span>
+   <span class="badge">🔐 SHA-256</span>
+  </div>
+  <div class="aioBar">
+   <a class="aioBtn" href="https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/download/latest/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip">
+    🚀 AIO Payloads Offline
+   </a>
+   <a class="aioBtn" href="https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/download/latest/PS5PKG_aio_latest.zip">
+    📦 AIO PKG Offline
+   </a>
+  </div>
+ </div>
+ <div class="bannerArt" aria-hidden="true"><div class="orbit"></div><div class="cube"></div></div>
+</section>
+
+<div class="tabs">
+ <button class="tab active" id="payloadTab">⚡ PAYLOADS</button>
+ <button class="tab pkg" id="pkgTab">📦 PS5 PKG</button>
+</div>
+
+<div class="viewBar">
+ <div class="viewTitle">Mode d'affichage</div>
+ <div class="viewButtons">
+  <button class="viewBtn active" id="listViewBtn">☷ Liste / détails</button>
+  <button class="viewBtn" id="tileViewBtn">▦ Tuiles</button>
+ </div>
+</div>
+
+<div class="toolbar">
+ <input id="search" type="search" placeholder="🔎 Rechercher un payload..." autocomplete="off">
+ <select id="category"><option value="">Toutes les catégories</option></select>
+ <button class="refresh" id="refresh">↻ Actualiser</button>
+</div>
+
+<div class="stats" id="stats">Chargement…</div>
+
+<!-- DESKTOP / TABLET : LISTE DETAILLEE -->
+<section class="list" id="desktopList">
+ <div class="listHead">
+  <div>Icône</div><div>Nom / description</div><div>Version</div><div>Catégorie</div>
+  <div>Fichier</div><div>Intégrité</div><div>Action</div>
+ </div>
+ <div id="rows"><div class="loading">⏳ Chargement…</div></div>
+</section>
+
+<!-- MOBILE : CARTES -->
+<section class="mobileGrid" id="mobileGrid"><div class="loading">⏳ Chargement…</div></section>
+
+<footer>
+ <div>evoX AIO Store · catalogue dynamique</div>
+ <div>
+  <a href="https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater" target="_blank">PS5-Super-PLDMGR-Auto-Updater</a>
+ </div>
+</footer>
+</div>
+
+<script>
+const PAYLOAD_URL="https://raw.githubusercontent.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/main/json/payloads.json";
+const PKG_URL="https://raw.githubusercontent.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/main/PKGjson/pkg.json";
+
+let payloads=[],packages=[],mode="payload",currentList=[],viewMode=localStorage.getItem("evox-view")||"list";
+
+const $=id=>document.getElementById(id);
+
+function themeApply(t){
+ const allowed=["blue","green","glass"];
+ if(!allowed.includes(t))t="blue";
+ document.body.dataset.theme=t;
+ localStorage.setItem("evox-theme",t);
+ document.querySelectorAll(".themeOpt").forEach(b=>b.classList.toggle("active",b.dataset.theme===t));
+ $("themeBtn").textContent={blue:"🔵 Blue",green:"🟢 Cyber",glass:"🟣 Glass"}[t];
+}
+themeApply(localStorage.getItem("evox-theme")||"blue");
+
+$("themeBtn").onclick=()=> $("themeMenu").classList.toggle("open");
+document.querySelectorAll(".themeOpt").forEach(b=>b.onclick=()=>{
+ themeApply(b.dataset.theme);
+ $("themeMenu").classList.remove("open");
+});
+document.addEventListener("click",e=>{
+ if(!e.target.closest(".theme"))$("themeMenu").classList.remove("open");
+});
+
+async function getJson(url){
+ const r=await fetch(url+"?t="+Date.now(),{cache:"no-store"});
+ if(!r.ok)throw new Error("HTTP "+r.status);
+ return r.json();
+}
+
+async function load(){
+ $("rows").innerHTML='<div class="loading">⏳ Chargement des catalogues…</div>';
+ $("mobileGrid").innerHTML='<div class="loading">⏳ Chargement…</div>';
+ try{
+  const [a,b]=await Promise.all([getJson(PAYLOAD_URL),getJson(PKG_URL)]);
+  payloads=Array.isArray(a)?a:(a.payloads||[]);
+  packages=Array.isArray(b)?b:(b.packages||[]);
+  categories();
+  render();
+ }catch(e){
+  $("stats").textContent="Erreur de chargement";
+  $("rows").innerHTML='<div class="error">❌ '+esc(e.message)+'</div>';
+  $("mobileGrid").innerHTML='<div class="error">❌ '+esc(e.message)+'</div>';
+ }
+}
+
+function setMode(m){
+ mode=m;
+ $("payloadTab").classList.toggle("active",m==="payload");
+ $("pkgTab").classList.toggle("active",m==="pkg");
+ $("search").placeholder=m==="pkg"?"🔎 Rechercher un PKG...":"🔎 Rechercher un payload...";
+ categories();
+ render();
+}
+
+$("payloadTab").onclick=()=>setMode("payload");
+$("pkgTab").onclick=()=>setMode("pkg");
+
+function categories(){
+ const src=mode==="pkg"?packages:payloads;
+ const old=$("category").value;
+ const cats=[...new Set(src.map(x=>x.category).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b)));
+ $("category").innerHTML='<option value="">Toutes les catégories</option>'+cats.map(c=>`<option value="${attr(c)}">${esc(c)}</option>`).join("");
+ if(cats.includes(old))$("category").value=old;
+}
+
+function filtered(){
+ const src=mode==="pkg"?packages:payloads;
+ const q=$("search").value.trim().toLowerCase();
+ const cat=$("category").value;
+ return src.filter(x=>{
+  const s=[x.name,x.filename,x.description,x.version,x.category,x.author].join(" ").toLowerCase();
+  return (!q||s.includes(q))&&(!cat||x.category===cat);
+ });
+}
+
+function iconFor(x){
+ const n=String(x.name||x.filename||"?").trim();
+ const cat=String(x.category||"").toLowerCase().trim();
+ const icons={
+  "ps5 activation":"🔓",
+  "ps5 cheat":"🏴‍☠️",
+  "ps5 webkit autoloader":"📦",
+  "ps5 dns":"🌐",
+  "ps5 fan":"📦",
+  "ps5 file explorer":"📂",
+  "ps5 freeshop":"💾",
+  "ps5 game dump":"💿",
+  "ps5 hen loader":"🚀",
+  "ps5 kstuff":"🧪",
+  "ps5 linux":"🐧",
+  "ps5 saves":"📝",
+  "ps5 sdk debug":"⚙️",
+  "ps5 server":"🖥️",
+  "ps5 themes-avatars":"📦",
+  "ps5 trophy":"🏆",
+  "ps5 utility":"🛠️"
+ };
+ if(mode==="pkg") return "📦";
+ for(const key of Object.keys(icons)){
+   if(cat.includes(key)) return icons[key];
+ }
+ const first=n.replace(/[^a-zA-Z0-9]/g,"").slice(0,1).toUpperCase()||"E";
+ return first;
+}
+
+function setView(v){
+ viewMode=v==="tiles"?"tiles":"list";
+ localStorage.setItem("evox-view",viewMode);
+ $("listViewBtn").classList.toggle("active",viewMode==="list");
+ $("tileViewBtn").classList.toggle("active",viewMode==="tiles");
+ $("desktopList").style.display=viewMode==="list"?"block":"none";
+ $("mobileGrid").classList.toggle("tileMode",viewMode==="tiles");
+}
+function render(){
+ setView(viewMode);
+ currentList=filtered();
+ const total=mode==="pkg"?packages.length:payloads.length;
+ const label=mode==="pkg"?"PKG":"payload";
+ $("stats").textContent=`${currentList.length} ${label}${currentList.length>1?"s":""} affiché${currentList.length>1?"s":""} sur ${total}`;
+
+ if(!currentList.length){
+  $("rows").innerHTML='<div class="empty">Aucun résultat.</div>';
+  $("mobileGrid").innerHTML='<div class="empty">Aucun résultat.</div>';
+  return;
+ }
+
+ $("rows").innerHTML=currentList.map((x,i)=>`
+  <div class="row">
+   <div><div class="icon">${iconFor(x)}</div></div>
+   <div>
+    <div class="name" title="${attr(x.name||x.filename)}">${esc(x.name||x.filename||"Fichier")}</div>
+    <div class="desc" title="${attr(x.description||"")}">${esc(x.description||"Aucune description.")}</div>
+   </div>
+   <div class="cell"><span class="tag ver">${esc(x.version||"—")}</span></div>
+   <div class="cell"><span class="tag">${esc(x.category||"—")}</span></div>
+   <div class="file" title="${attr(x.filename||"")}">${esc(x.filename||"—")}</div>
+   <div class="hash" title="${attr(x.checksum||"SHA-256 non fourni")}" onclick="${x.checksum?`copyHash('${attr(x.checksum)}')`:""}">${x.checksum?"🔐 "+esc(x.checksum.slice(0,12))+"…":"—"}</div>
+   <div class="actions">
+    <button class="dl" onclick="download(${i},this)">⬇</button>
+    ${x.url?`<a class="open" href="${attr(x.url)}" target="_blank" rel="noopener">↗</a>`:""}
+   </div>
+  </div>
+ `).join("");
+
+ $("mobileGrid").innerHTML=currentList.map((x,i)=>`
+  <article class="card">
+   <div class="cardTop">
+    <div class="icon">${iconFor(x)}</div>
+    <div class="cardInfo">
+     <div class="name">${esc(x.name||x.filename||"Fichier")}</div>
+     <div class="desc">${esc(x.description||"Aucune description.")}</div>
+    </div>
+   </div>
+   <div class="cardMeta">
+    ${x.version?`<span class="tag ver">${esc(x.version)}</span>`:""}
+    ${x.category?`<span class="tag">${esc(x.category)}</span>`:""}
+    ${x.author?`<span class="tag author">👤 ${esc(x.author)}</span>`:""}
+   </div>
+   <div class="file">📄 ${esc(x.filename||"—")}</div>
+   <div class="cardBottom">
+    <button class="dl" onclick="download(${i},this)">⬇ Télécharger</button>
+    ${x.url?`<a class="open" href="${attr(x.url)}" target="_blank" rel="noopener">↗ Ouvrir</a>`:""}
+   </div>
+   ${x.checksum?`<div class="hash" onclick="copyHash('${attr(x.checksum)}')">🔐 SHA-256: ${esc(x.checksum)}</div>`:""}
+  </article>
+ `).join("");
+}
+
+async function download(i,btn){
+ const x=currentList[i];
+ if(!x?.url)return;
+ const old=btn.textContent;
+ btn.disabled=true;btn.textContent="…";
+ try{
+  const r=await fetch(x.url);
+  if(!r.ok)throw new Error("HTTP "+r.status);
+  const blob=await r.blob();
+  const u=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=u;a.download=x.filename||"download";
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),1200);
+  btn.textContent="✓";
+ }catch(e){
+  window.open(x.url,"_blank","noopener");
+  btn.textContent="↗";
+ }
+ setTimeout(()=>{btn.disabled=false;btn.textContent=old},1500);
+}
+
+async function copyHash(v){
+ try{await navigator.clipboard.writeText(v);alert("SHA-256 copié !")}catch{alert(v)}
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function attr(s){return esc(s).replace(/`/g,"&#96;")}
+
+$("search").oninput=render;
+$("category").onchange=render;
+$("refresh").onclick=load;
+$("listViewBtn").onclick=()=>setView("list");
+$("tileViewBtn").onclick=()=>setView("tiles");
+
+load();
+</script>
+</body>
+</html>
