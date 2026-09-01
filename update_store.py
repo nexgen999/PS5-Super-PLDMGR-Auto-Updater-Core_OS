@@ -9,19 +9,25 @@ import zipfile
 import html
 
 FEED_DIR = "feed"
+FFPFSC_FEED_DIR = os.path.join(FEED_DIR, "ffpfsc")
 PKG_FEED_DIR = "PKGfeed"
+
 JSON_DIR = "json"
+FFPFSC_JSON_DIR = os.path.join(JSON_DIR, "ffpfsc")
 PKG_JSON_DIR = "PKGjson"
+
 RSS_DIR = "rss"
 PAYLOADS_ROOT = "payloads"
 
 os.makedirs(JSON_DIR, exist_ok=True)
+os.makedirs(FFPFSC_JSON_DIR, exist_ok=True)
 os.makedirs(PKG_JSON_DIR, exist_ok=True)
 os.makedirs(RSS_DIR, exist_ok=True)
 os.makedirs(PAYLOADS_ROOT, exist_ok=True)
 
 all_payloads_flat_list = []
 all_pkgs_flat_list = []
+all_ffpfsc_flat_list = []
 readme_rows = []
 credits_list = set()
 
@@ -35,7 +41,8 @@ if not os.path.exists(FEED_DIR):
     print(f"Erreur: Le dossier {FEED_DIR} n'existe pas.")
     sys.exit(1)
 
-opml_files = [f for f in os.listdir(FEED_DIR) if f.endswith('.opml')]
+# Exclusion du sous-dossier ffpfsc lors de la recherche des OPML de payloads standard
+opml_files = [f for f in os.listdir(FEED_DIR) if f.endswith('.opml') and os.path.isfile(os.path.join(FEED_DIR, f))]
 
 for opml_file in opml_files:
     cat_tech_name = opml_file.replace('.opml', '')
@@ -311,17 +318,67 @@ if os.path.exists(PKG_FEED_DIR):
             category_pkgs_list.append(item_data)
             all_pkgs_flat_list.append(item_data)
 
-        # Génération du JSON dédié
         with open(os.path.join(PKG_JSON_DIR, f"{cat_tech_name}.json"), 'w', encoding='utf-8') as out_pkg_cat:
             json.dump({"name": cat_display_name, "packages": category_pkgs_list}, out_pkg_cat, indent=2, ensure_ascii=False)
 
-# Génération du JSON Global PKG
 with open(os.path.join(PKG_JSON_DIR, "pkg.json"), 'w', encoding='utf-8') as out_pkg_glob:
     json.dump({"name": "AIO Store PKG", "packages": all_pkgs_flat_list}, out_pkg_glob, indent=2, ensure_ascii=False)
 
 
 # =========================================================================
-# 3. GENERATION RSS & README.MD
+# 3. TRAITEMENT DES FICHIERS FFPFSC -> feed/ffpfsc / json/ffpfsc/ffpfsc.json
+# =========================================================================
+
+print("\n📄 Traitement des métadonnées FFPFSC...")
+
+if os.path.exists(FFPFSC_FEED_DIR):
+    ffpfsc_opml_files = [f for f in os.listdir(FFPFSC_FEED_DIR) if f.endswith('.opml')]
+
+    for opml_file in ffpfsc_opml_files:
+        cat_tech_name = opml_file.replace('.opml', '').lower()
+        cat_display_name = cat_tech_name.upper()
+
+        with open(os.path.join(FFPFSC_FEED_DIR, opml_file), 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        outlines = re.findall(r'<outline\s+([^>]+)/>', content)
+        
+        for outline in outlines:
+            attrs = dict(re.findall(r'(\w+)="([^"]*)"', outline))
+            title = html.unescape(attrs.get('title', attrs.get('text', 'Inconnu')))
+            xml_url = attrs.get('xmlUrl', '').strip()
+            author = html.unescape(attrs.get('author', 'Inconnu'))
+            description = html.unescape(attrs.get('description', ''))
+
+            if not xml_url:
+                continue
+
+            raw_filename = xml_url.split('/')[-1].split('?')[0]
+            if not raw_filename.lower().endswith('.ffpfsc'):
+                raw_filename = f"{re.sub(r'[^a-zA-Z0-9._-]', '_', title)}.ffpfsc"
+
+            v_match = re.search(r'v(\d+[\.\d+]*)', raw_filename, re.IGNORECASE)
+            version = f"v{v_match.group(1)}" if v_match else "v1.0.0"
+
+            credits_list.add(f"- **{author}** : [{title}]({xml_url})")
+
+            item_data = {
+                "name": title,
+                "filename": raw_filename,
+                "url": xml_url,
+                "description": description if description else f"Fichier FFPFSC {title}",
+                "version": version,
+                "author": author,
+                "category": cat_display_name
+            }
+            all_ffpfsc_flat_list.append(item_data)
+
+with open(os.path.join(FFPFSC_JSON_DIR, "ffpfsc.json"), 'w', encoding='utf-8') as out_ffpfsc:
+    json.dump({"name": "AIO Store FFPFSC", "files": all_ffpfsc_flat_list}, out_ffpfsc, indent=2, ensure_ascii=False)
+
+
+# =========================================================================
+# 4. GENERATION RSS & README.MD
 # =========================================================================
 
 print("\n📡 Génération des flux RSS...")
@@ -357,18 +414,20 @@ print("📝 Génération du README.md...")
 with open("README.md", "w", encoding="utf-8") as r_file:
     repo_name = os.environ.get('GITHUB_REPOSITORY', 'PS5-Super-PLDMGR-Auto-Updater').split('/')[-1]
     
-    r_file.write(f"![Banner](assets/banner.png)\n\n")
+    r_file.write("![Banner](assets/banner.png)\n\n")
     r_file.write("# 🎮 PS5 Payload Manager & Mini-Store\n\n")
     r_file.write("Bienvenue sur mon écosystème automatisé pour la scène jailbreak PS5 !\n\n")
     r_file.write(f"🌐 **Site Web Vitrine :** [Visiter le site PS5 Super PLDMGR Auto Updater](https://nexgen999.github.io/{repo_name}/index.html)\n\n")
     
     r_file.write("## 🔗 URLs Fixes des Stores JSON\n")
     r_file.write(f"* **Payloads Store JSON :** `https://nexgen999.github.io/{repo_name}/json/payloads.json`\n")
-    r_file.write(f"* **Packages PKG Store JSON :** `https://nexgen999.github.io/{repo_name}/PKGjson/pkg.json`\n\n")
+    r_file.write(f"* **Packages PKG Store JSON :** `https://nexgen999.github.io/{repo_name}/PKGjson/pkg.json`\n")
+    r_file.write(f"* **FFPFSC Store JSON :** `https://nexgen999.github.io/{repo_name}/json/ffpfsc/ffpfsc.json`\n\n")
     
     r_file.write("## 📦 Archives AIO Releases (Dernières Versions)\n")
     r_file.write(f"* 🚀 **AIO Payloads Offline (.zip) :** [Télécharger](https://github.com/nexgen999/{repo_name}/releases/download/latest/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip)\n")
-    r_file.write(f"* 📦 **AIO PKG Offline (.zip) :** [Télécharger](https://github.com/nexgen999/{repo_name}/releases/download/latest/PS5PKG_aio_latest.zip)\n\n")
+    r_file.write(f"* 📦 **AIO PKG Offline (.zip) :** [Télécharger](https://github.com/nexgen999/{repo_name}/releases/download/latest/PS5PKG_aio_latest.zip)\n")
+    r_file.write(f"* 📄 **AIO FFPFSC Offline (.zip) :** [Télécharger](https://github.com/nexgen999/{repo_name}/releases/download/latest/ffpfsc_aio_latest.zip)\n\n")
     
     r_file.write("---\n\n")
     
@@ -381,11 +440,21 @@ with open("README.md", "w", encoding="utf-8") as r_file:
             r_file.write(f"| **[{pkg['name']}]({pkg['url']})** | {pkg['author']} | {pkg['version']} | {pkg['description']} |\n")
         r_file.write("\n---\n\n")
 
+    # Section FFPFSC
+    if all_ffpfsc_flat_list:
+        r_file.write("## 📄 Fichiers FFPFSC (.ffpfsc) Disponibles\n\n")
+        r_file.write("| Fichier | Auteur | Version | Description |\n")
+        r_file.write("| :--- | :--- | :--- | :--- |\n")
+        for ff in all_ffpfsc_flat_list:
+            r_file.write(f"| **[{ff['name']}]({ff['url']})** | {ff['author']} | {ff['version']} | {ff['description']} |\n")
+        r_file.write("\n---\n\n")
+
     # Section Payloads par catégorie
     r_file.write("## 📦 Payloads (.elf / .bin) Disponibles par Catégorie\n\n")
     if os.path.exists(FEED_DIR):
         for opml_file in sorted(os.listdir(FEED_DIR)):
-            if not opml_file.endswith('.opml'): continue
+            if not opml_file.endswith('.opml') or not os.path.isfile(os.path.join(FEED_DIR, opml_file)): 
+                continue
             cat_tech = opml_file.replace('.opml', '')
             cat_display = cat_tech.replace('_', ' ').title()
             if "Hen" in cat_display: cat_display = cat_display.replace("Hen", "HEN")
