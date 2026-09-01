@@ -11,7 +11,7 @@ RELEASE_NOTES_FILE = "release_notes.md"
 
 def get_latest_elf_paths():
     """
-    Extrait les chemins des derniers fichiers ELF uniquement à partir du fichier payloads.json
+    Extrait les chemins des derniers fichiers ELF/BIN uniquement à partir du fichier payloads.json
     """
     elf_files = []
 
@@ -27,13 +27,12 @@ def get_latest_elf_paths():
             for item in payloads:
                 url = item.get("url", "")
                 if url:
-                    # Extrait le chemin local du fichier depuis l'URL ou le nom relatif
-                    # Exemple d'URL : https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/category/name/v1.0/file.elf
+                    # Extraction flexible du chemin relatif quel que soit l'OS
                     if "/payloads/" in url:
                         rel_path = url.split("/payloads/")[-1]
-                        full_path = os.path.join(PAYLOADS_ROOT, rel_path)
+                        full_path = os.path.join(PAYLOADS_ROOT, os.path.normpath(rel_path))
                     else:
-                        full_path = url
+                        full_path = os.path.normpath(url)
 
                     if os.path.exists(full_path):
                         filename = os.path.basename(full_path)
@@ -49,7 +48,7 @@ def get_latest_elf_paths():
 
 def build_aio():
     now = datetime.datetime.now()
-    tag_timestamp = now.strftime("%d.%m.%Y_%H.%M")
+    tag_timestamp = now.strftime("%Y.%m.%d-%H%M")
 
     zip_timestamp_name = f"ps5_super_pldmgr_auto_updated_offline.aio_v{tag_timestamp}.zip"
     zip_latest_name = "ps5_super_pldmgr_auto_updated_offline.aio_latest.zip"
@@ -59,7 +58,7 @@ def build_aio():
     elf_to_pack = get_latest_elf_paths()
 
     if not elf_to_pack:
-        print("⚠️ Aucun fichier ELF trouvé dans payloads.json.")
+        print("⚠️ Aucun fichier ELF/BIN trouvé dans payloads.json.")
         sys.exit(0)
 
     print(f"📌 {len(elf_to_pack)} payloads uniques (dernières versions) identifiés dans payloads.json.")
@@ -68,9 +67,8 @@ def build_aio():
     for zip_name in [zip_timestamp_name, zip_latest_name]:
         with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zf:
             for full_p, filename, name, ver in elf_to_pack:
-                # Stocke le fichier sous son nom ELF uniquement à la racine du ZIP
                 zf.write(full_p, arcname=filename)
-        print(f"📦 Archive créée : {zip_name} ({len(elf_to_pack)} ELF)")
+        print(f"📦 Archive créée : {zip_name} ({len(elf_to_pack)} fichiers)")
 
     # Génération des Release Notes
     with open(RELEASE_NOTES_FILE, "w", encoding="utf-8") as rn:
