@@ -1,0 +1,115 @@
+name: Sync & Build AIO Package
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # S'exécute toutes les 6 heures
+  workflow_dispatch: # Permet de lancer le script manuellement depuis GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  sync-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Set Date Tag
+        id: date
+        run: echo "DATE_TAG=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+
+      - name: Run update_store.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python update_store.py
+
+      - name: Run generate_web.py
+        run: |
+          python generate_web.py
+
+      - name: Build AIO Payload Package (.zip)
+        run: |
+          python build_aio_package.py
+
+      - name: Build AIO PKG Package (.zip)
+        run: |
+          python build_aio_package_pkg.py
+
+      - name: Generate Release Notes
+        run: |
+          echo "## 🚀 Nouveautés & Contenu de cette Build" > release_notes.md
+          echo "" >> release_notes.md
+          if [ -f "PKGjson/pkg.json" ]; then
+            echo "### 📦 Packages PKG Inclus" >> release_notes.md
+            echo "" >> release_notes.md
+            python -c "import json; data=json.load(open('PKGjson/pkg.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"description\", \"\")}' for p in data.get('packages', [])]))" >> release_notes.md
+            echo "" >> release_notes.md
+          fi
+          if [ -f "json/payloads.json" ]; then
+            echo "### ⚡ Payloads Inclus" >> release_notes.md
+            echo "" >> release_notes.md
+            python -c "import json; data=json.load(open('json/payloads.json')); print('\n'.join([f'- **{p[\"name\"]}** ({p.get(\"version\", \"v1.0.0\")}) - {p.get(\"category\", \"\")}' for p in data.get('payloads', [])]))" >> release_notes.md
+          fi
+
+      - name: Commit and push updated JSONs, Web & README
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Ajoute uniquement les dossiers s'ils existent
+          [ -d "json" ] && git add json/
+          [ -d "PKGjson" ] && git add PKGjson/
+          [ -d "payloads" ] && git add payloads/
+          [ -d "docs" ] && git add docs/
+          [ -d "rss" ] && git add rss/
+          [ -f "README.md" ] && git add README.md
+          
+          git commit -m "auto: update stores, payloads, web site & readme [skip ci]" || echo "No changes to commit"
+          git push
+
+      - name: Update 'latest' Release (Only Latest Archives)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "latest"
+          name: "PS5 AIO Packages (Dernière version)"
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
+          files: |
+            ps5_super_pldmgr_auto_updated_offline.aio_latest.zip
+            PS5PKG_aio_latest.zip
+            PKGjson/pkg.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Horodated Tag
+        run: |
+          git tag -f "aio-${{ env.DATE_TAG }}"
+          git push origin "aio-${{ env.DATE_TAG }}" --force
+
+      - name: Create Horodated Release (Full Archives)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "aio-${{ env.DATE_TAG }}"
+          name: "PS5 AIO Packages (${{ env.DATE_TAG }})"
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
+          files: |
+            ps5_super_pldmgr_auto_updated_offline.aio_*.zip
+            PS5PKG_aio_*.zip
+            PKGjson/pkg.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
