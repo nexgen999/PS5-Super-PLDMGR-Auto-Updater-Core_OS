@@ -417,10 +417,40 @@ with open(os.path.join(JSON_DIR, "apps.json"), 'w', encoding='utf-8') as out_app
 
 
 # =========================================================================
-# 5. GENERATION RSS & README.MD
+# 5. GENERATION RSS PAR CATEGORIE & DISCORD + README.MD
 # =========================================================================
 
-print("\n📡 Génération des flux RSS...")
+print("\n📡 Génération des flux RSS (Dédiés + Global Discord)...")
+
+def generate_rss_xml(filename, title, description, items):
+    filepath = os.path.join(RSS_DIR, filename)
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write('<?xml version="1.0" encoding="UTF-8" ?>\n<rss version="2.0">\n  <channel>\n')
+        f.write(f'    <title>{html.escape(title)}</title>\n')
+        f.write(f'    <link>{BASE_URL}/</link>\n')
+        f.write(f'    <description>{html.escape(description)}</description>\n')
+        for item in items:
+            f.write('    <item>\n')
+            f.write(f'      <title>{html.escape(item.get("name", "Inconnu"))} ({html.escape(item.get("version", "v1.0.0"))})</title>\n')
+            f.write(f'      <link>{html.escape(item.get("url", ""))}</link>\n')
+            desc = item.get("description", "")
+            if "checksum" in item:
+                desc += f" - Checksum: {item['checksum']}"
+            f.write(f'      <description>{html.escape(desc)}</description>\n')
+            f.write('    </item>\n')
+        f.write('  </channel>\n</rss>')
+
+# Génération des 4 RSS dédiés
+generate_rss_xml("payloads.xml", "PS5 Payloads Radar", "Suivi des derniers Payloads PS5", all_payloads_flat_list)
+generate_rss_xml("pkg.xml", "PS5 PKG Radar", "Suivi des derniers Packages PKG PS5", all_pkgs_flat_list)
+generate_rss_xml("ffpfsc.xml", "PS5 FFPFSC Radar", "Suivi des derniers Fichiers FFPFSC", all_ffpfsc_flat_list)
+generate_rss_xml("apps.xml", "PS5 Apps Radar", "Suivi des dernières Applications PS5", all_apps_flat_list)
+
+# RSS Global dédié à Discord (Combine TOUT)
+all_items_combined = all_payloads_flat_list + all_pkgs_flat_list + all_ffpfsc_flat_list + all_apps_flat_list
+generate_rss_xml("feed.xml", "PS5 Mini-Store Global (Discord Feed)", "Flux complet récapitulatif pour webhooks Discord", all_items_combined)
+
+# Génération de l'OPML Global
 with open(os.path.join(RSS_DIR, "store-global.opml"), "w", encoding="utf-8") as opml_out:
     opml_out.write('<?xml version="1.0" encoding="UTF-8"?>\n<opml version="2.0">\n  <head>\n    <title>PS5 Store Global Radar</title>\n  </head>\n  <body>\n')
     for row in sorted(list(credits_list)):
@@ -429,17 +459,6 @@ with open(os.path.join(RSS_DIR, "store-global.opml"), "w", encoding="utf-8") as 
             author_name, title_name, raw_url = match.group(1), match.group(2), match.group(3)
             opml_out.write(f'    <outline text="{html.escape(title_name)}" title="{html.escape(title_name)}" type="rss" xmlUrl="{html.escape(raw_url)}" author="{html.escape(author_name)}"/>\n')
     opml_out.write('  </body>\n</opml>')
-
-with open(os.path.join(RSS_DIR, "feed.xml"), "w", encoding="utf-8") as feed_out:
-    feed_out.write('<?xml version="1.0" encoding="UTF-8" ?>\n<rss version="2.0">\n  <channel>\n    <title>PS5 Mini-Store Mises à jour</title>\n')
-    feed_out.write(f'    <link>{BASE_URL}/</link>\n    <description>Suivi automatique des payloads</description>\n')
-    for item in all_payloads_flat_list:
-        feed_out.write('    <item>\n')
-        feed_out.write(f'      <title>{html.escape(item["name"])} ({html.escape(item["version"])})</title>\n')
-        feed_out.write(f'      <link>{html.escape(item["url"])}</link>\n')
-        feed_out.write(f'      <description>{html.escape(item["description"])} - Checksum: {item["checksum"]}</description>\n')
-        feed_out.write('    </item>\n')
-    feed_out.write('  </channel>\n</rss>')
 
 print("📝 Génération du README.md...")
 with open("README.md", "w", encoding="utf-8") as r_file:
@@ -454,6 +473,14 @@ with open("README.md", "w", encoding="utf-8") as r_file:
     r_file.write(f"* **FFPFSC Store JSON :** `{BASE_URL}/json/ffpfsc.json`\n")
     r_file.write(f"* **Apps Store JSON :** `{BASE_URL}/json/apps.json`\n\n")
     
+    r_file.write("## 📡 Flux RSS & OPML (Webhooks Discord & Lecteurs RSS)\n")
+    r_file.write(f"* 🤖 **Feed Global (Discord Webhook) :** `{BASE_URL}/rss/feed.xml`\n")
+    r_file.write(f"* 📁 **Import OPML Global :** `{BASE_URL}/rss/store-global.opml`\n")
+    r_file.write(f"* ⚡ **Flux RSS Payloads :** `{BASE_URL}/rss/payloads.xml`\n")
+    r_file.write(f"* 📦 **Flux RSS PKG :** `{BASE_URL}/rss/pkg.xml`\n")
+    r_file.write(f"* 📄 **Flux RSS FFPFSC :** `{BASE_URL}/rss/ffpfsc.xml`\n")
+    r_file.write(f"* 📱 **Flux RSS Apps :** `{BASE_URL}/rss/apps.xml`\n\n")
+
     r_file.write("## 📦 Archives AIO Releases (Dernières Versions)\n")
     r_file.write(f"* 🚀 **AIO Payloads Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip)\n")
     r_file.write(f"* 📦 **AIO PKG Offline (.zip) :** [Télécharger](https://github.com/{GITHUB_USER}/{REPO_NAME}/releases/download/latest/PS5PKG_aio_latest.zip)\n")
