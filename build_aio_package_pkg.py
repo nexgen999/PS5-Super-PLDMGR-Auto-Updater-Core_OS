@@ -1,90 +1,70 @@
 import os
 import sys
 import json
-import re
 import zipfile
-import urllib.request
 import datetime
 
-PKG_FEED_DIR = "PKGfeed"
-PKG_JSON_DIR = "PKGjson"
-TMP_BUILD_DIR = "tmp_pkg_aio_build"
+JSON_DIR = "json"
+PKG_JSON = os.path.join(JSON_DIR, "pkg.json")
+PKG_ROOT = "pkg"
 
-if not os.path.exists(PKG_FEED_DIR):
-    print(f"⚠️ Le dossier {PKG_FEED_DIR} n'existe pas. Annulation.")
-    sys.exit(0)
+def get_latest_pkg_paths():
+    pkg_files = []
 
-print("=== Début de la construction de l'archive AIO PKG ===")
+    if not os.path.exists(PKG_JSON):
+        print(f"⚠️ Le fichier {PKG_JSON} n'existe pas.")
+        return pkg_files
 
-os.makedirs(TMP_BUILD_DIR, exist_ok=True)
-date_tag = datetime.datetime.now().strftime("%Y.%m.%d-%H%M")
-
-opml_files = [f for f in os.listdir(PKG_FEED_DIR) if f.endswith('.opml')]
-
-opener = urllib.request.build_opener()
-opener.addheaders = [('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)')]
-urllib.request.install_opener(opener)
-
-for opml_file in opml_files:
-    with open(os.path.join(PKG_FEED_DIR, opml_file), 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    outlines = re.findall(r'<outline\s+([^>]+)/>', content)
-    
-    for outline in outlines:
-        attrs = dict(re.findall(r'(\w+)="([^"]*)"', outline))
-        title = attrs.get('title', 'Inconnu')
-        xml_url = attrs.get('xmlUrl', '').strip()
-
-        if not xml_url:
-            continue
-
-        raw_filename = xml_url.split('/')[-1].split('?')[0]
-        if not raw_filename.lower().endswith('.pkg'):
-            raw_filename = f"{re.sub(r'[^a-zA-Z0-9._-]', '_', title)}.pkg"
-
-        target_pkg_path = os.path.join(TMP_BUILD_DIR, raw_filename)
-        print(f" 📥 Téléchargement de {raw_filename} pour l'archive AIO...")
-        
-        try:
-            urllib.request.urlretrieve(xml_url, target_pkg_path)
-        except Exception as e:
-            print(f"   ⚠️ Échec de téléchargement pour {raw_filename} : {e}")
-
-# Copie du JSON global pkg dans l'archive AIO s'il existe
-global_json_src = os.path.join(PKG_JSON_DIR, "pkg.json")
-if os.path.exists(global_json_src):
     try:
-        with open(global_json_src, 'r', encoding='utf-8') as fj:
-            data = json.load(fj)
-        with open(os.path.join(TMP_BUILD_DIR, "pkg.json"), 'w', encoding='utf-8') as fj_out:
-            json.dump(data, fj_out, indent=2, ensure_ascii=False)
+        with open(PKG_JSON, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            packages = data.get("packages", [])
+
+            for item in packages:
+                url = item.get("url", "")
+                if url:
+                    if "/pkg/" in url:
+                        rel_path = url.split("/pkg/")[-1]
+                        full_path = os.path.join(PKG_ROOT, os.path.normpath(rel_path))
+                    else:
+                        full_path = os.path.normpath(url)
+
+                    if os.path.exists(full_path):
+                        filename = os.path.basename(full_path)
+                        pkg_files.append((full_path, filename))
+                    else:
+                        print(f"⚠️ Fichier PKG introuvable : {full_path}")
+
     except Exception as e:
-        print(f"⚠️ Échec lors du transfert de pkg.json dans l'archive : {e}")
+        print(f"❌ Erreur lors de la lecture de {PKG_JSON} : {e}")
+        sys.exit(1)
 
-zip_latest_name = "PS5PKG_aio_latest.zip"
-zip_tag_name = f"PS5PKG_aio_{date_tag}.zip"
+    return pkg_files
 
-print(f"\n📦 Compression des archives : {zip_latest_name} & {zip_tag_name}...")
+def build_aio():
+    date_tag = os.environ.get("DATE_TAG")
+    if not date_tag:
+        now = datetime.datetime.now()
+        date_tag = now.strftime("%Y.%m.%d-%H%M")
 
-for zip_target in [zip_latest_name, zip_tag_name]:
-    with zipfile.ZipFile(zip_target, 'w', zipfile.ZIP_DEFLATED) as zipf:
-        for root, _, files in os.walk(TMP_BUILD_DIR):
-            for file in files:
-                file_path = os.path.join(root, file)
-                arcname = os.path.relpath(file_path, TMP_BUILD_DIR)
-                zipf.write(file_path, arcname)
+    zip_timestamp_name = f"PS5_pkg_aio_{date_tag}.zip"
+    zip_latest_name = "PS5_pkg_aio_latest.zip"
 
-# Nettoyage complet du dossier temporaire
-for f in os.listdir(TMP_BUILD_DIR):
-    try:
-        os.remove(os.path.join(TMP_BUILD_DIR, f))
-    except Exception as e:
-        print(f"⚠️ Erreur de suppression de fichier temporaire: {e}")
+    print(f"=== Création du package AIO PKG ({date_tag}) ===")
 
-try:
-    os.rmdir(TMP_BUILD_DIR)
-except Exception:
-    pass
+    pkg_to_pack = get_latest_pkg_paths()
 
-print("=== Construction du package AIO PKG terminée avec succès ===")
+    if not pkg_to_pack:
+        print("⚠️ Aucun fichier PKG trouvé.")
+        sys.exit(0)
+
+    for zip_name in [zip_timestamp_name, zip_latest_name]:
+        with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zf:
+            for full_p, filename in pkg_to_pack:
+                zf.write(full_p, arcname=filename)
+        print(f"📦 Archive créée : {zip_name} ({len(pkg_to_pack)} fichiers)")
+
+    print("=== Packaging AIO PKG terminé avec succès ===")
+
+if __name__ == "__main__":
+    build_aio()
