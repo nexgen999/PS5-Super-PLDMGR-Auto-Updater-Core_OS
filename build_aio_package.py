@@ -47,13 +47,17 @@ def get_latest_elf_paths():
     return elf_files
 
 def build_aio():
-    now = datetime.datetime.now()
-    tag_timestamp = now.strftime("%Y.%m.%d-%H%M")
+    # Priorité à la variable d'environnement DATE_TAG transmise par GitHub Actions
+    date_tag = os.environ.get("DATE_TAG")
+    if not date_tag:
+        now = datetime.datetime.now()
+        date_tag = now.strftime("%Y.%m.%d-%H%M")
 
-    zip_timestamp_name = f"ps5_super_pldmgr_auto_updated_offline.aio_v{tag_timestamp}.zip"
-    zip_latest_name = "ps5_super_pldmgr_auto_updated_offline.aio_latest.zip"
+    # Nouveaux noms conformes à la nomenclature
+    zip_timestamp_name = f"PS5_payloads_aio_{date_tag}.zip"
+    zip_latest_name = "PS5_payloads_aio_latest.zip"
 
-    print(f"=== Création du package AIO à partir de payloads.json ({tag_timestamp}) ===")
+    print(f"=== Création du package AIO Payloads ({date_tag}) ===")
 
     elf_to_pack = get_latest_elf_paths()
 
@@ -70,9 +74,9 @@ def build_aio():
                 zf.write(full_p, arcname=filename)
         print(f"📦 Archive créée : {zip_name} ({len(elf_to_pack)} fichiers)")
 
-    # Génération des Release Notes
+    # Génération / Complétion des Release Notes
     with open(RELEASE_NOTES_FILE, "w", encoding="utf-8") as rn:
-        rn.write(f"## 🚀 Release AIO Auto-Updated ({tag_timestamp})\n\n")
+        rn.write(f"## 🚀 Release AIO Auto-Updated ({date_tag})\n\n")
         rn.write("Cette archive contient **exclusivement la dernière version** de chaque payload répertorié dans `payloads.json`.\n\n")
         rn.write("### 📦 Payloads inclus dans ce package :\n")
         for _, filename, name, ver in sorted(elf_to_pack, key=lambda x: x[1].lower()):
@@ -82,10 +86,10 @@ def build_aio():
     github_env = os.environ.get('GITHUB_ENV')
     if github_env:
         with open(github_env, 'a', encoding='utf-8') as f:
-            f.write(f"AIO_TAG={tag_timestamp}\n")
+            f.write(f"AIO_TAG={date_tag}\n")
             f.write(f"ZIP_TIMESTAMP_NAME={zip_timestamp_name}\n")
 
-    print("=== Packaging AIO terminé avec succès ===")
+    print("=== Packaging AIO Payloads terminé avec succès ===")
 
 if __name__ == "__main__":
     build_aio()
