@@ -1,17 +1,13 @@
 # scripts/config_rules.py
 import os
 
-# --- Configuration Générale ---
-# Récupération dynamique depuis l'environnement GitHub Actions, avec un repli neutre/générique si exécuté en local
 GITHUB_REPO_ENV = os.environ.get('GITHUB_REPOSITORY', '')
 if '/' in GITHUB_REPO_ENV:
     GITHUB_USER, REPO_NAME = GITHUB_REPO_ENV.split('/', 1)
 else:
-    # Repli basé sur le nom du dossier courant ou une valeur générique propre
     GITHUB_USER, REPO_NAME = 'nexgen999', 'PS5-Super-PLDMGR-Auto-Updater-Core_OS' 
 BASE_URL = f"https://{GITHUB_USER}.github.io/{REPO_NAME}"
 
-# --- Chemins des dossiers ---
 PATHS = {
     "feed_dir": "feed",
     "json_dir": "json",
@@ -26,7 +22,6 @@ PATHS = {
     }
 }
 
-# --- Règles Spécifiques par Dépôt ---
 REPO_RULES = {
     "extract_zip_repos": [
         "poords4", 
