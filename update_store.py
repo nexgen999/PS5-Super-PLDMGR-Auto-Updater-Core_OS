@@ -17,19 +17,28 @@ def main():
 
     # 1. Scraping et téléchargement par module dédié
     print("🔍 [1/5] Scraping des sources OPML et téléchargement des binaires...")
-    payloads_data, payloads_flat = fetch_payloads_category(credits_set)
-    pkg_data, pkg_flat = fetch_pkg_category(credits_set)
-    ffpfsc_data, ffpfsc_flat = fetch_ffpfsc_category(credits_set)
-    apps_data, apps_flat = fetch_apps_category(credits_set)
+    payloads_by_cat, payloads_flat = fetch_payloads_category(credits_set)
+    pkg_by_cat, pkg_flat = fetch_pkg_category(credits_set)
+    ffpfsc_by_cat, ffpfsc_flat = fetch_ffpfsc_category(credits_set)
+    apps_by_cat, apps_flat = fetch_apps_category(credits_set)
 
-    data_store = {
+    # Structure complète par catégories pour le README / index
+    data_store_by_cat = {
+        "payloads": payloads_by_cat,
+        "pkg": pkg_by_cat,
+        "ffpfsc": ffpfsc_by_cat,
+        "apps": apps_by_cat
+    }
+
+    # Structure plate pour les flux RSS / Web si besoin
+    data_store_flat = {
         "payloads": {"name": "Payloads", "items": payloads_flat},
         "pkg": {"name": "Packages PKG", "items": pkg_flat},
         "ffpfsc": {"name": "Fichiers FFPFSC", "items": ffpfsc_flat},
         "apps": {"name": "Applications", "items": apps_flat}
     }
 
-    # 2. Génération des fichiers JSON (Globaux + par sous-catégories si nécessaire)
+    # 2. Génération des fichiers JSON
     print("📦 [2/5] Génération des fichiers JSON...")
     os.makedirs(PATHS["json_dir"], exist_ok=True)
     
@@ -48,15 +57,15 @@ def main():
 
     # 3. Génération des flux RSS & OPML
     print("📡 [3/5] Génération des flux RSS et OPML...")
-    build_rss_feed(data_store)
+    build_rss_feed(data_store_flat)
 
     # 4. Génération de la page index.html
     print("🌐 [4/5] Génération de la page index.html...")
-    build_index_html(data_store)
+    build_index_html(data_store_flat)
 
-    # 5. Génération README.md
+    # 5. Génération README.md (Utilise la structure par catégories attendue)
     print("📝 [5/5] Mise à jour du README.md et des Crédits...")
-    build_readme(credits_set, data_store)
+    build_readme(credits_set, data_store_by_cat)
 
     print("✅ Mise à jour du store terminée avec succès !")
 
