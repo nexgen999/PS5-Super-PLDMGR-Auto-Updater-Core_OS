@@ -1,4 +1,3 @@
-# scripts/fetchers/payloads_fetcher.py
 import os
 import re
 import json
@@ -91,14 +90,31 @@ def fetch_payloads_category(credits_set):
                         except Exception as sub_e:
                             print(f"    ⚠️ Échec fallback gh release download pour {repo}: {sub_e}")
 
-            if not downloaded and ("git." in xml_url or "codeberg.org" in xml_url):
+            # --- AJOUT DU SUPPORT FORGEJO / GITEA / GIT ---
+            if not downloaded and any(domain in xml_url for domain in ["git.", "codeberg.org", "gitlab.com", "gitea"]):
                 try:
-                    api_match = re.search(r'(https?://[^/]+)/([^/]+/[^/]+)', xml_url)
-                    if api_match:
-                        base_domain = api_match.group(1)
-                        repo_path = api_match.group(2).rstrip('/')
-                        api_url = f"{base_domain}/api/v1/repos/{repo_path}/releases"
-                        req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
+                    if "git.etawen.dev" in xml_url:
+                        api_repo_match = re.search(r'git\.etawen\.dev/([^/]+/[^/]+)', xml_url)
+                        if api_repo_match:
+                            repo_path = api_repo_match.group(1).rstrip('/')
+                            api_url = f"https://git.etawen.dev/api/v1/repos/{repo_path}/releases"
+                        else:
+                            api_url = None
+                    else:
+                        api_match = re.search(r'(https?://[^/]+)/([^/]+/[^/]+)', xml_url)
+                        if api_match:
+                            base_domain = api_match.group(1)
+                            repo_path = api_match.group(2).rstrip('/')
+                            api_url = f"{base_domain}/api/v1/repos/{repo_path}/releases"
+                        else:
+                            api_url = None
+
+                    if api_url:
+                        headers = {'User-Agent': 'Mozilla/5.0'}
+                        if "git.etawen.dev" in xml_url and os.environ.get('FORGEJO_TOKEN'):
+                            headers['Authorization'] = f"token {os.environ.get('FORGEJO_TOKEN')}"
+
+                        req = urllib.request.Request(api_url, headers=headers)
                         with urllib.request.urlopen(req) as response:
                             releases_data = json.loads(response.read().decode('utf-8'))
                             if releases_data:
@@ -112,11 +128,13 @@ def fetch_payloads_category(credits_set):
                                     asset_url = asset.get('browser_download_url', '')
                                     asset_name = asset.get('name', '')
                                     if asset_name.lower().endswith(('.elf', '.bin', '.ffpfsc')):
-                                        urllib.request.urlretrieve(asset_url, os.path.join(target_dir, asset_name))
+                                        asset_req = urllib.request.Request(asset_url, headers=headers)
+                                        with urllib.request.urlopen(asset_req) as resp_asset, open(os.path.join(target_dir, asset_name), 'wb') as f_out:
+                                            f_out.write(resp_asset.read())
                                         downloaded = True
-                                        break
                 except Exception as e:
                     print(f"    ⚠️ Erreur Forgejo/Gitea pour {xml_url} : {e}")
+            # ---------------------------------------------
 
             version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version) if version != "Source-Fixe" else "Source-Fixe"
             target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
