@@ -2,7 +2,7 @@
 import os
 import json
 import zipfile
-from scripts.config_rules import PATHS
+from scripts.config_rules import PATHS, BASE_URL
 from scripts.fetchers.payloads_fetcher import fetch_payloads_category
 from scripts.fetchers.pkg_fetcher import fetch_pkg_category
 from scripts.fetchers.ffpfsc_fetcher import fetch_ffpfsc_category
@@ -25,10 +25,12 @@ def build_aio_archives(payloads_flat, pkg_flat, ffpfsc_flat, apps_flat):
         zip_path = os.path.join(archives_dir, zip_name)
         with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
             for item in items:
-                file_path = item.get("local_path") or item.get("file") or item.get("path")
+                file_path = item.get("local_path")
                 if file_path and os.path.exists(file_path):
+                    # Ajoute le fichier dans le zip à la racine de l'archive
                     zf.write(file_path, arcname=os.path.basename(file_path))
-        print(f"   ➔ Archive générée : {zip_path}")
+        size_bytes = os.path.getsize(zip_path) if os.path.exists(zip_path) else 0
+        print(f"   ➔ Archive générée : {zip_path} ({size_bytes} octets)")
 
     # Génération des archives par catégorie
     create_zip("PS5_payloads_aio_latest.zip", payloads_flat)
