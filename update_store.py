@@ -7,7 +7,7 @@ from scripts.fetchers.ffpfsc_fetcher import fetch_ffpfsc_category
 from scripts.fetchers.apps_fetcher import fetch_apps_category
 from scripts.generate_rss import build_rss_feed
 from scripts.generate_readme import build_readme
-from scripts.generate_html import build_html_index  # Module de génération de la page Web
+from scripts.generate_web import build_index_html  # Import corrigé vers build_index_html
 
 def main():
     print("🚀 Démarrage de la mise à jour globale du store PS5...")
@@ -50,8 +50,7 @@ def main():
 
     # 4. Génération de la page index.html
     print("🌐 [4/5] Génération de la page index.html...")
-    if 'build_html_index' in globals() or 'build_html_index' in locals():
-        build_html_index(data_store)
+    build_index_html(data_store)
 
     # 5. Génération README.md
     print("📝 [5/5] Mise à jour du README.md et des Crédits...")
