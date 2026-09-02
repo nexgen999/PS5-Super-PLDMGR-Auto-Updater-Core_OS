@@ -45,15 +45,6 @@
         "checksum": "05617c69ea145d1c11b8f7a6b7d3bd9e6df3831afd25d71a4ac85d63fb8e28aa"
     },
     {
-        "name": "ELF_Arsenal",
-        "filename": "ELF_Arsenal_v1.6.22.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf",
-        "description": "Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.",
-        "version": "v1.6.22",
-        "category": "PS5 HEN Loader",
-        "checksum": "ee8f47e4d6a5fd85cef113341aa1eb74d68e373a58fcb1fb5a9274acd2b83bd2"
-    },
-    {
         "name": "Kura",
         "filename": "Kura_v1.6.50.elf",
         "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/Kura/v1.6.50/Kura_v1.6.50.elf",
@@ -90,15 +81,6 @@
         "checksum": "512c74a9d6f56bb5a4ab871a0306a8cbefb8b3d5454ba8f1d833b020b245a126"
     },
     {
-        "name": "ProsperoMgr",
-        "filename": "ProsperoMgr_vbeta.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ProsperoMgr/beta/ProsperoMgr_vbeta.elf",
-        "description": "A Web-Based All-In-One homebrew manager for your PlayStation 5",
-        "version": "beta",
-        "category": "PS5 HEN Loader",
-        "checksum": "6cde8d8e97478ff43f69d2c6b22ac6512311d83b1d9ceb09d56796b9200c1b3c"
-    },
-    {
         "name": "ps5-fan-control",
         "filename": "ps5-fan-control_v0.3.elf",
         "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_fan/ps5-fan-control/v0.3/ps5-fan-control_v0.3.elf",
@@ -106,15 +88,6 @@
         "version": "v0.3",
         "category": "PS5 Fan",
         "checksum": "b10b6b9b9c00efed8bf9202a83b6cb762345d1f84130a419eff7139250026b36"
-    },
-    {
-        "name": "fan_target",
-        "filename": "fan_target_v0.1.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_fan/fan_target/0.1/fan_target_v0.1.elf",
-        "description": "fan_target keeps the PS5 fan controller at a selected target temperature while leaving the console's automatic fan control enabled.",
-        "version": "0.1",
-        "category": "PS5 Fan",
-        "checksum": "a9ad8502123799d58f8ddd9882d842f524c4ecc3ea6743a73c6dcdffd0bf30e0"
     },
     {
         "name": "nanoDNS",
@@ -324,24 +297,6 @@
         "checksum": "b81609da1db061165e44541653b95f524c917a3d5a1fca308965b0d821be3178"
     },
     {
-        "name": "garlic-savemgr",
-        "filename": "garlic-savemgr_v1.13.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf",
-        "description": "Save manager utility hosted on Forgejo.",
-        "version": "v1.13",
-        "category": "PS5 Saves",
-        "checksum": "b6d366f4101fa2fcc14a353d083ef7e45e1cc86ef457bb20502bd8680dce4d73"
-    },
-    {
-        "name": "garlic-worker",
-        "filename": "garlic-worker_v1.1.6.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf",
-        "description": "Garlic worker payload component.",
-        "version": "v1.1.6",
-        "category": "PS5 Saves",
-        "checksum": "b395fd1e35c71c86a9ab13bc42cf7e146757a794ccce722ed6f7e33ad9b81d8b"
-    },
-    {
         "name": "savemnt-offset-dumper",
         "filename": "savemnt-offset-dumper_v1.0.0.elf",
         "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf",
@@ -349,15 +304,6 @@
         "version": "1.0.0",
         "category": "PS5 Saves",
         "checksum": "946328551f74e3b6a34a7c0169f9b40792e392775768b84874b55ecdff71222e"
-    },
-    {
-        "name": "np-fake-signin",
-        "filename": "np-fake-signin_v1.3.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf",
-        "description": "Fake activate PS5 without PSN.",
-        "version": "v1.3",
-        "category": "PS5 Activation",
-        "checksum": "2ace1bb0be6d57f91cb24e4d3a221dec2d6d6114ace0a6b5748c6c0dcdb3b9c6"
     },
     {
         "name": "Common_FPS_PS5",
@@ -388,12 +334,12 @@
     },
     {
         "name": "ShadowMountPlus",
-        "filename": "ShadowMountPlus_v1.7alpha12.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ShadowMountPlus/1.7alpha12/ShadowMountPlus_v1.7alpha12.elf",
+        "filename": "ShadowMountPlus_v1.6beta16.elf",
+        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf",
         "description": "ShadowMountPlus payload for game mounting.",
-        "version": "1.7alpha12",
+        "version": "1.6beta16",
         "category": "PS5 Game Dump",
-        "checksum": "b5496713a2663b378130b3144ad75d287e094e2b2076ed9fd7f880b85e40074f"
+        "checksum": "a35246fb3bb6042b25653b51cdcbc33254b40339342bf1d2dd0d2eceee2ca526"
     },
     {
         "name": "BackPork",
@@ -414,15 +360,6 @@
         "checksum": "4f04464283a6a551883e40e36b59134ecad0e38ecbb7ea89cbec3f91a3bd9122"
     },
     {
-        "name": "BFplayer-standalone",
-        "filename": "BFplayer-standalone_v0.1.0-alpha.44.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/BFplayer-standalone/v0.1.0-alpha.44/BFplayer-standalone_v0.1.0-alpha.44.elf",
-        "description": "BFplayer is a native media library and player for jailbroken PlayStation 5 consoles.",
-        "version": "v0.1.0-alpha.44",
-        "category": "PS5 Video Player",
-        "checksum": "0d028deb145d6fc9a5b55d43a45e072919178fbb261c66cd914ebcfb0b3b05c0"
-    },
-    {
         "name": "ProsperoPlayer",
         "filename": "ProsperoPlayer_v1.0.elf",
         "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/ProsperoPlayer/v1.0/ProsperoPlayer_v1.0.elf",
@@ -433,12 +370,12 @@
     },
     {
         "name": "svtplay",
-        "filename": "svtplay_v0.4.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/svtplay/v0.4/svtplay_v0.4.elf",
+        "filename": "svtplay_v0.3.elf",
+        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/svtplay/v0.3/svtplay_v0.3.elf",
         "description": "This is an unofficial 10-foot UI for SVT Play, the Swedish public service television broadcaster.",
-        "version": "v0.4",
+        "version": "v0.3",
         "category": "PS5 Video Player",
-        "checksum": "b6fdfe6d714298dc49a936ac731493ffc80dabd467da5e0ce595db7ea75f39a1"
+        "checksum": "31f2caac7d53b8754bb37cb0364e615bfc38fc5f02c886d286a4f9e603b56832"
     },
     {
         "name": "PS-Play",
@@ -514,12 +451,12 @@
     },
     {
         "name": "ftpsrv_drakmor",
-        "filename": "ftpsrv_drakmor_v1.6-ng-test2.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_drakmor/1.6-ng-test2/ftpsrv_drakmor_v1.6-ng-test2.elf",
+        "filename": "ftpsrv_drakmor_v1.15-ng-stable.elf",
+        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf",
         "description": "Drakmor's variant of the FTP server. Port: 21",
-        "version": "1.6-ng-test2",
+        "version": "1.15-ng-stable",
         "category": "PS5 Server",
-        "checksum": "6364e0529416f400be123c52acdcda68efd5179d971c060286022131fd047b8e"
+        "checksum": "913a443af847b6861ec11748e2640f62d1fc1027076f576aa0ddccab8507311f"
     },
     {
         "name": "ps5upload",
@@ -559,12 +496,12 @@
     },
     {
         "name": "kstuff-lite_drakmor",
-        "filename": "kstuff-lite_drakmor_v1.2-dr-test2.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_kstuff/kstuff-lite_drakmor/1.2-dr-test2/kstuff-lite_drakmor_v1.2-dr-test2.elf",
+        "filename": "kstuff-lite_drakmor_v1.2-dr-test1.elf",
+        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_kstuff/kstuff-lite_drakmor/1.2-dr-test1/kstuff-lite_drakmor_v1.2-dr-test1.elf",
         "description": "Drakmor's variant of kstuff-lite.",
-        "version": "1.2-dr-test2",
+        "version": "1.2-dr-test1",
         "category": "PS5 Kstuff",
-        "checksum": "2b699d411079a21dba7c39a02993fc0fb21e52f434103e884a0c892fafe56b75"
+        "checksum": "9c1b242eaed3704ef18be45d001a2c4ebf2d9222cfe3cbb0f0c3db33309abac9"
     },
     {
         "name": "ps5-linux-loader",
@@ -619,15 +556,6 @@
         "version": "1.3.0",
         "category": "PS5 Sdk Debug",
         "checksum": "8f75fb90b45d7cc4d59147e3323577d7264cf572c78a27f76722202f492ad16a"
-    },
-    {
-        "name": "ps5-fw-spoof",
-        "filename": "ps5-fw-spoof_v26616621599.elf",
-        "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-fw-spoof/26616621599/ps5-fw-spoof_v26616621599.elf",
-        "description": "Firmware spoofer utility for PS5.",
-        "version": "26616621599",
-        "category": "PS5 Sdk Debug",
-        "checksum": "f1754521caa92a6a1ac313a1b6c969ec49d67750e290ba99870958290a0961f0"
     },
     {
         "name": "ps5-self-pager",

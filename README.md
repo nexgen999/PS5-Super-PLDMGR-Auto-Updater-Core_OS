@@ -8,11 +8,11 @@ Dépôt automatisé regroupant les derniers payloads, packages PKG, fichiers FFP
 
 | Catégorie | Éléments | Listes JSON | Flux RSS | Flux OPML | Archive AIO (Latest) |
 | :--- | :---: | :--- | :--- | :--- | :--- |
-| **Payloads** | 75 | [JSON](json/payloads.json) | [RSS](rss/payloads.xml) | [OPML](rss/payloads.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/payloads_aio_latest.zip) |
+| **Payloads** | 67 | [JSON](json/payloads.json) | [RSS](rss/payloads.xml) | [OPML](rss/payloads.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/payloads_aio_latest.zip) |
 | **Packages PKG** | 10 | [JSON](json/pkg.json) | [RSS](rss/pkg.xml) | [OPML](rss/pkg.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/pkg_aio_latest.zip) |
 | **Fichiers FFPFSC** | 3 | [JSON](json/ffpfsc.json) | [RSS](rss/ffpfsc.xml) | [OPML](rss/ffpfsc.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/ffpfsc_aio_latest.zip) |
 | **Applications (Apps)** | 0 | [JSON](json/apps.json) | [RSS](rss/apps.xml) | [OPML](rss/apps.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/apps_aio_latest.zip) |
-| **GLOBAL** | **88** | [JSON Global](json/list.json) | [RSS Global](rss/feed.xml) | - | [Release Complète Latest](https://github.com/nexgen999/evox-w2jb/releases/tag/latest) |
+| **GLOBAL** | **80** | [JSON Global](json/list.json) | [RSS Global](rss/feed.xml) | - | [Release Complète Latest](https://github.com/nexgen999/evox-w2jb/releases/tag/latest) |
 
 ## 🙏 Remerciements & Crédits
 Les sources et auteurs référencés dans ce dépôt :
@@ -25,7 +25,6 @@ Les sources et auteurs référencés dans ce dépôt :
 - **EchoStretch** : [ps5-app-dumper](https://github.com/EchoStretch/ps5-app-dumper)
 - **Itemzflow** : [Itemzflow_Game_Manager](https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Itemzflow_Game_Manager_v1.14.pkg)
 - **ItsBlurf** : [BFpilot](https://github.com/ItsBlurf/BFpilot)
-- **ItsBlurf** : [BFplayer-standalone](https://github.com/ItsBlurf/BFplayer)
 - **ItsBlurf** : [PoorDS4](https://github.com/ItsBlurf/PoorDS4)
 - **ItsJokerZz** : [FPKGi](https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_FPKGi_v1.10.0.pkg)
 - **KINGDKAK** : [ProsperoPlayer](https://github.com/KINGDKAK/ProsperoPlayer)
@@ -40,7 +39,6 @@ Les sources et auteurs référencés dans ce dépôt :
 - **NookieAI** : [Kura](https://github.com/NookieAI/kura)
 - **OpenSourcereR-dev** : [ps5debug-NG](https://github.com/OpenSourcereR-dev/ps5debug-NG)
 - **Phoenixx1202** : [Spectrum-Library](https://github.com/Phoenixx1202/Spectrum-Library)
-- **SonicIso** : [ELF Arsenal](https://git.etawen.dev/soniciso/elf-arsenal)
 - **StonedModder** : [ChronicLoader-PS5-Payload](https://github.com/StonedModder/ChronicLoader-PS5-Payload)
 - **StonedModder** : [Ghostcontrol-PS5-USB-Controller-Patcher](https://github.com/StonedModder/Ghostcontrol-PS5-USB-Controller-Patcher)
 - **StonedModder** : [Ghostpad](https://github.com/StonedModder/Ghostpad)
@@ -55,18 +53,13 @@ Les sources et auteurs référencés dans ce dépôt :
 - **blackbearreloaded** : [ProsperoRadio](https://github.com/blackbearreloaded/ProsperoRadio)
 - **blackbearreloaded** : [ProsperoTV](https://github.com/blackbearreloaded/ProsperoTV)
 - **drakmor** : [ShadowMountPlus](https://github.com/drakmor/ShadowMountPlus)
-- **drakmor** : [fan_target](https://github.com/drakmor/fan_target)
 - **drakmor** : [ftpsrv_drakmor](https://github.com/drakmor/ftpsrv)
 - **drakmor** : [kstuff-lite_drakmor](https://github.com/drakmor/kstuff-lite)
 - **drakmor** : [ps5-hwinfo](https://github.com/drakmor/ps5-hwinfo)
-- **earthonion** : [garlic-savemgr](https://git.etawen.dev/earthonion/garlic-savemgr)
-- **earthonion** : [garlic-worker](https://git.etawen.dev/earthonion/garlic-worker)
-- **earthonion** : [np-fake-signin](https://git.etawen.dev/earthonion/np-fake-signin)
 - **hgr9519** : [ps5-wallpaper-modd](https://github.com/hgr9519/ps5-wallpaper-modd)
 - **idlesauce** : [PS5-SELF-Decrypter](https://github.com/idlesauce/PS5-SELF-Decrypter)
 - **idlesauce** : [ps5-remoteplay-get-pin](https://github.com/idlesauce/ps5-remoteplay-get-pin)
 - **idlesauce** : [ps5-self-pager](https://github.com/idlesauce/ps5-self-pager)
-- **illusionyy** : [ps5-fw-spoof](https://github.com/illusionyy/ps5-fw-spoof)
 - **itsPLK** : [PS5 Payload Manager](https://github.com/itsPLK/ps5-payload-manager)
 - **itsPLK** : [PS5 Unified Autoloader](https://github.com/itsPLK/ps5-unified-autoloader)
 - **itsPLK** : [ps5-webkit-autoloader](https://github.com/itsPLK/ps5-webkit-autoloader)
@@ -74,7 +67,6 @@ Les sources et auteurs référencés dans ce dépôt :
 - **juma-sayeh** : [PS5-Game-Compressor](https://github.com/juma-sayeh/PS5-Game-Compressor)
 - **kerrdec97** : [ps5-date-time-sync](https://github.com/kerrdec97/ps5-date-time-sync)
 - **notmaj0r** : [CheatRunner](https://github.com/notmaj0r/CheatRunner)
-- **notmaj0r** : [ProsperoMgr](https://github.com/notmaj0r/ProsperoMgr)
 - **owendswang** : [ps5-fan-control](https://github.com/owendswang/ps5-fan-control)
 - **owendswang** : [ps5-web-file-manager](https://github.com/owendswang/ps5-web-file-manager)
 - **pegasus-ps5** : [pegasus-dl](https://github.com/pegasus-ps5/pegasus-dl)

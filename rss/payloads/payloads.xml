@@ -35,12 +35,6 @@
       <pubDate>v0.5.1</pubDate>
     </item>
     <item>
-      <title>ELF_Arsenal</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf</link>
-      <description>Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.</description>
-      <pubDate>v1.6.22</pubDate>
-    </item>
-    <item>
       <title>Kura</title>
       <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/Kura/v1.6.50/Kura_v1.6.50.elf</link>
       <description>Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5.</description>
@@ -65,22 +59,10 @@
       <pubDate>Source-Fixe</pubDate>
     </item>
     <item>
-      <title>ProsperoMgr</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ProsperoMgr/beta/ProsperoMgr_vbeta.elf</link>
-      <description>A Web-Based All-In-One homebrew manager for your PlayStation 5</description>
-      <pubDate>beta</pubDate>
-    </item>
-    <item>
       <title>ps5-fan-control</title>
       <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_fan/ps5-fan-control/v0.3/ps5-fan-control_v0.3.elf</link>
       <description>Small PS5 daemon payload ELF that sets the system fan temperature.</description>
       <pubDate>v0.3</pubDate>
-    </item>
-    <item>
-      <title>fan_target</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_fan/fan_target/0.1/fan_target_v0.1.elf</link>
-      <description>fan_target keeps the PS5 fan controller at a selected target temperature while leaving the console's automatic fan control enabled.</description>
-      <pubDate>0.1</pubDate>
     </item>
     <item>
       <title>nanoDNS</title>
@@ -221,28 +203,10 @@
       <pubDate>v1.2.0</pubDate>
     </item>
     <item>
-      <title>garlic-savemgr</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf</link>
-      <description>Save manager utility hosted on Forgejo.</description>
-      <pubDate>v1.13</pubDate>
-    </item>
-    <item>
-      <title>garlic-worker</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf</link>
-      <description>Garlic worker payload component.</description>
-      <pubDate>v1.1.6</pubDate>
-    </item>
-    <item>
       <title>savemnt-offset-dumper</title>
       <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf</link>
       <description>Offset dumper for save mounting utilities.</description>
       <pubDate>1.0.0</pubDate>
-    </item>
-    <item>
-      <title>np-fake-signin</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf</link>
-      <description>Fake activate PS5 without PSN.</description>
-      <pubDate>v1.3</pubDate>
     </item>
     <item>
       <title>Common_FPS_PS5</title>
@@ -264,9 +228,9 @@
     </item>
     <item>
       <title>ShadowMountPlus</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ShadowMountPlus/1.7alpha12/ShadowMountPlus_v1.7alpha12.elf</link>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf</link>
       <description>ShadowMountPlus payload for game mounting.</description>
-      <pubDate>1.7alpha12</pubDate>
+      <pubDate>1.6beta16</pubDate>
     </item>
     <item>
       <title>BackPork</title>
@@ -281,12 +245,6 @@
       <pubDate>v2.0.6</pubDate>
     </item>
     <item>
-      <title>BFplayer-standalone</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/BFplayer-standalone/v0.1.0-alpha.44/BFplayer-standalone_v0.1.0-alpha.44.elf</link>
-      <description>BFplayer is a native media library and player for jailbroken PlayStation 5 consoles.</description>
-      <pubDate>v0.1.0-alpha.44</pubDate>
-    </item>
-    <item>
       <title>ProsperoPlayer</title>
       <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/ProsperoPlayer/v1.0/ProsperoPlayer_v1.0.elf</link>
       <description>A homebrew media player for jailbroken PS5.</description>
@@ -294,9 +252,9 @@
     </item>
     <item>
       <title>svtplay</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/svtplay/v0.4/svtplay_v0.4.elf</link>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/svtplay/v0.3/svtplay_v0.3.elf</link>
       <description>This is an unofficial 10-foot UI for SVT Play, the Swedish public service television broadcaster.</description>
-      <pubDate>v0.4</pubDate>
+      <pubDate>v0.3</pubDate>
     </item>
     <item>
       <title>PS-Play</title>
@@ -348,9 +306,9 @@
     </item>
     <item>
       <title>ftpsrv_drakmor</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_drakmor/1.6-ng-test2/ftpsrv_drakmor_v1.6-ng-test2.elf</link>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf</link>
       <description>Drakmor's variant of the FTP server. Port: 21</description>
-      <pubDate>1.6-ng-test2</pubDate>
+      <pubDate>1.15-ng-stable</pubDate>
     </item>
     <item>
       <title>ps5upload</title>
@@ -378,9 +336,9 @@
     </item>
     <item>
       <title>kstuff-lite_drakmor</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_kstuff/kstuff-lite_drakmor/1.2-dr-test2/kstuff-lite_drakmor_v1.2-dr-test2.elf</link>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_kstuff/kstuff-lite_drakmor/1.2-dr-test1/kstuff-lite_drakmor_v1.2-dr-test1.elf</link>
       <description>Drakmor's variant of kstuff-lite.</description>
-      <pubDate>1.2-dr-test2</pubDate>
+      <pubDate>1.2-dr-test1</pubDate>
     </item>
     <item>
       <title>ps5-linux-loader</title>
@@ -417,12 +375,6 @@
       <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5debug-NG/1.3.0/ps5debug-NG_v1.3.0.elf</link>
       <description>Next generation debugger payload for PS5.</description>
       <pubDate>1.3.0</pubDate>
-    </item>
-    <item>
-      <title>ps5-fw-spoof</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-fw-spoof/26616621599/ps5-fw-spoof_v26616621599.elf</link>
-      <description>Firmware spoofer utility for PS5.</description>
-      <pubDate>26616621599</pubDate>
     </item>
     <item>
       <title>ps5-self-pager</title>
