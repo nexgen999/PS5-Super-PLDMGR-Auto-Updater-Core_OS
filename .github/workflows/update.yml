@@ -54,9 +54,24 @@ jobs:
           python build_aio_package_apps.py || echo "⚠️ build_aio_package_apps skipped"
           python build_aio_ultimate.py || echo "⚠️ build_aio_ultimate skipped"
 
-      - name: 8. Commit et Push des modifications
+      - name: 8. Commit et Push du code source et des JSONs
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add json/ payloads/ rss/ index.html README.md release_notes.md scripts/ feed/
           git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web [skip ci]" && git push)
+
+      - name: 9. Publication des archives ZIP dans les Releases GitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v$(date +'%Y.%m.%d-%H%M')"
+          
+          # Crée ou met à jour une release 'latest' avec les archives générées
+          gh release view latest && gh release delete latest --yes || true
+          git push origin :refs/tags/latest || true
+          
+          gh release create "$TAG" *.zip \
+            --title "PS5 Store AIO Packages ($TAG)" \
+            --notes "Mise à jour automatique des packages AIO, payloads et applications." \
+            --latest
