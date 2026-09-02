@@ -60,18 +60,23 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add json/ payloads/ rss/ index.html README.md release_notes.md scripts/ feed/
           git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web [skip ci]" && git push)
-
+          
       - name: 9. Publication des archives ZIP dans les Releases GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="v$(date +'%Y.%m.%d-%H%M')"
           
-          # Crée ou met à jour une release 'latest' avec les archives générées
-          gh release view latest && gh release delete latest --yes || true
+          # 1. Gestion de la release horodatée (contient les archives horodatées)
+          gh release create "$TAG" *_${TAG#v}.zip \
+            --title "PS5 Store AIO Release ($TAG)" \
+            --notes "Archives AIO générées automatiquement le $(date)." || true
+
+          # 2. Gestion de la release 'latest' (supprime l'ancienne et recrée avec les fichiers _latest.zip)
+          gh release delete latest --yes || true
           git push origin :refs/tags/latest || true
           
-          gh release create "$TAG" *.zip \
-            --title "PS5 Store AIO Packages ($TAG)" \
-            --notes "Mise à jour automatique des packages AIO, payloads et applications." \
+          gh release create latest *_latest.zip \
+            --title "PS5 Store AIO - Latest (Permanent)" \
+            --notes "Liens permanents pointant toujours vers les dernières versions actualisées des packs AIO." \
             --latest
