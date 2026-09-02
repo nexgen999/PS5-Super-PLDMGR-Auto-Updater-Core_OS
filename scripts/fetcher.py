@@ -28,7 +28,7 @@ def parse_opml_file(opml_path):
     return items
 
 def fetch_payloads(credits_set):
-    """Parse et télécharge tous les payloads (.elf / .bin)."""
+    """Parse et télécharge tous les payloads (.elf / .bin / .ffpfsc)."""
     payload_feed_dir = PATHS["categories"]["payloads"]["feed"]
     all_flat = []
     by_category = {}
@@ -60,7 +60,7 @@ def fetch_payloads(credits_set):
             repo_lower = ""
 
             # --- Source Fixe Directe ---
-            if clean_xml_url.endswith('.elf') or clean_xml_url.endswith('.bin'):
+            if clean_xml_url.endswith(('.elf', '.bin', '.ffpfsc')):
                 try:
                     version = "Source-Fixe"
                     version_clean = "Source-Fixe"
@@ -73,7 +73,7 @@ def fetch_payloads(credits_set):
                     urllib.request.urlretrieve(xml_url, os.path.join(target_dir, f_name))
                     downloaded = True
                 except Exception as e:
-                    print(f"   ⚠️ Échec source fixe ({title}) : {e}")
+                    print(f"    ⚠️ Échec source fixe ({title}) : {e}")
 
             # --- Release GitHub ---
             if not downloaded and "github.com" in xml_url:
@@ -96,6 +96,7 @@ def fetch_payloads(credits_set):
 
                     try:
                         subprocess.call(f"gh release download '{version}' --repo '{repo}' --dir '{target_dir}' --clobber 2>/dev/null", shell=True)
+                        downloaded = True
                     except: pass
 
             # --- Release Forgejo / Gitea ---
@@ -118,8 +119,9 @@ def fetch_payloads(credits_set):
                                 for asset in latest_release.get('assets', []):
                                     asset_url = asset.get('browser_download_url', '')
                                     asset_name = asset.get('name', '')
-                                    if asset_name.lower().endswith(('.elf', '.bin')):
+                                    if asset_name.lower().endswith(('.elf', '.bin', '.ffpfsc')):
                                         urllib.request.urlretrieve(asset_url, os.path.join(target_dir, asset_name))
+                                        downloaded = True
                                         break
                 except: pass
 
@@ -133,6 +135,8 @@ def fetch_payloads(credits_set):
 
             for main_file in eligible_binaries:
                 full_path = os.path.join(target_dir, main_file)
+                if not os.path.exists(full_path):
+                    continue
                 hasher = hashlib.sha256()
                 with open(full_path, 'rb') as fb:
                     for chunk in iter(lambda: fb.read(4096), b""): hasher.update(chunk)
@@ -157,7 +161,7 @@ def fetch_payloads(credits_set):
     return by_category, all_flat
 
 def fetch_generic_category(category_key, item_field, file_ext, credits_set):
-    """Fonction générique pour récupérer les éléments de PKG, FFPFSC et APPS."""
+    """Fonction générique robuste pour récupérer les éléments de PKG, FFPFSC et APPS (scan exhaustif des assets)."""
     feed_dir = PATHS["categories"][category_key]["feed"]
     all_flat = []
     by_category = {}
@@ -180,7 +184,10 @@ def fetch_generic_category(category_key, item_field, file_ext, credits_set):
             if not xml_url: continue
 
             version = "v1.0.0"
-            if "github.com" in xml_url and category_key == "apps":
+            assets_collected = []
+
+            # --- Analyse et balayage complet des assets GitHub pour Apps, Pkg et FFPFSC ---
+            if "github.com" in xml_url:
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
                 if repo_match:
                     repo = repo_match.group(1).rstrip('/')
@@ -192,56 +199,44 @@ def fetch_generic_category(category_key, item_field, file_ext, credits_set):
 
                         if assets:
                             for asset in assets:
-                                asset_url = asset.get('url', '')
                                 asset_name = asset.get('name', '')
-                                credits_set.add(f"- **{author}** : [{title}]({xml_url})")
-                                item_data = {
-                                    "name": f"{title} ({asset_name})",
-                                    "filename": asset_name,
-                                    "url": asset_url,
-                                    "description": description if description else f"Asset {asset_name} pour {title}",
-                                    "version": version,
-                                    "author": author,
-                                    "category": cat_display
-                                }
-                                cat_list.append(item_data)
-                                all_flat.append(item_data)
-                            continue
+                                asset_url = asset.get('url', '')
+                                # Vérifie si l'asset correspond à l'extension attendue (ex: .pkg, .ffpfsc, etc.)
+                                if asset_name.lower().endswith(file_ext):
+                                    assets_collected.append({
+                                        "name": f"{title} ({asset_name})" if category_key == "apps" else title,
+                                        "filename": asset_name,
+                                        "url": asset_url,
+                                        "description": description if description else f"Asset {asset_name} pour {title}",
+                                        "version": version,
+                                        "author": author,
+                                        "category": cat_display
+                                    })
                     except: pass
 
-            elif "github.com" in xml_url and not xml_url.endswith(file_ext):
-                repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
-                if repo_match:
-                    repo = repo_match.group(1).rstrip('/')
-                    try:
-                        assets_json = subprocess.check_output(f"gh release view --repo {repo} --json assets,tagName", shell=True).decode()
-                        data_rel = json.loads(assets_json)
-                        version = data_rel.get('tagName', 'v1.0.0')
-                        for asset in data_rel.get('assets', []):
-                            if asset.get('name', '').lower().endswith(file_ext):
-                                xml_url = asset.get('url', xml_url)
-                                break
-                    except: version = "v1.0.0"
-            else:
+            # Si aucun asset spécifique n'a été trouvé via l'API GitHub release, on se replie sur l'URL directe
+            if not assets_collected:
                 v_match = re.search(r'v(\d+[\.\d+]*)', xml_url, re.IGNORECASE)
                 version = f"v{v_match.group(1)}" if v_match else "v1.0.0"
 
-            raw_filename = xml_url.split('/')[-1].split('?')[0]
-            if not raw_filename.lower().endswith(file_ext):
-                raw_filename = f"{title}{file_ext}"
+                raw_filename = xml_url.split('/')[-1].split('?')[0]
+                if not raw_filename.lower().endswith(file_ext):
+                    raw_filename = f"{title}{file_ext}"
 
-            credits_set.add(f"- **{author}** : [{title}]({xml_url})")
-            item_data = {
-                "name": title,
-                "filename": raw_filename,
-                "url": xml_url,
-                "description": description if description else f"Fichier {title}",
-                "version": version,
-                "author": author,
-                "category": cat_display
-            }
-            cat_list.append(item_data)
-            all_flat.append(item_data)
+                assets_collected.append({
+                    "name": title,
+                    "filename": raw_filename,
+                    "url": xml_url,
+                    "description": description if description else f"Fichier {title}",
+                    "version": version,
+                    "author": author,
+                    "category": cat_display
+                })
+
+            for item_data in assets_collected:
+                credits_set.add(f"- **{author}** : [{title}]({xml_url})")
+                cat_list.append(item_data)
+                all_flat.append(item_data)
 
         by_category[cat_tech] = {"name": cat_display, "items": cat_list}
 
