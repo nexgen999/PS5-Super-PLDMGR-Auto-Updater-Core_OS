@@ -1,6 +1,7 @@
 # update_store.py
 import os
 import json
+import zipfile
 from scripts.config_rules import PATHS
 from scripts.fetchers.payloads_fetcher import fetch_payloads_category
 from scripts.fetchers.pkg_fetcher import fetch_pkg_category
@@ -10,6 +11,33 @@ from scripts.generate_json import build_all
 from scripts.generate_rss import build_rss_feed
 from scripts.generate_readme import build_readme
 from scripts.generate_web import build_index_html
+
+def build_aio_archives(payloads_flat, pkg_flat, ffpfsc_flat, apps_flat):
+    """
+    Génère dynamiquement toutes les archives AIO (Payloads, PKG, FFPFSC, Apps et Ultimate)
+    au format _latest.zip pour les releases permanentes et horodatées de GitHub.
+    """
+    print("📦 [Bonus] Génération des archives AIO ZIP...")
+    archives_dir = PATHS.get("archives_dir", "archives")
+    os.makedirs(archives_dir, exist_ok=True)
+
+    def create_zip(zip_name, items):
+        zip_path = os.path.join(archives_dir, zip_name)
+        with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
+            for item in items:
+                file_path = item.get("local_path") or item.get("file") or item.get("path")
+                if file_path and os.path.exists(file_path):
+                    zf.write(file_path, arcname=os.path.basename(file_path))
+        print(f"   ➔ Archive générée : {zip_path}")
+
+    # Génération des archives par catégorie
+    create_zip("PS5_payloads_aio_latest.zip", payloads_flat)
+    create_zip("PS5_pkg_aio_latest.zip", pkg_flat)
+    create_zip("PS5_ffpfsc_aio_latest.zip", ffpfsc_flat)
+    create_zip("PS5_apps_aio_latest.zip", apps_flat)
+    
+    # Ultimate Pack (regroupement de tout)
+    create_zip("PS5_ultimate_pack_latest.zip", payloads_flat + pkg_flat + ffpfsc_flat + apps_flat)
 
 def main():
     print("🚀 Démarrage de la mise à jour globale du store PS5...")
@@ -66,7 +94,10 @@ def main():
     print("📝 [5/5] Mise à jour du README.md et des Crédits...")
     build_readme(credits_set, data_store_by_cat)
 
-    print("✅ Mise à jour du store terminée avec succès !")
+    # 6. Génération des archives ZIP AIO
+    build_aio_archives(payloads_flat, pkg_flat, ffpfsc_flat, apps_flat)
+
+    print("✅ Mise à jour du store et des packages terminée avec succès !")
 
 if __name__ == "__main__":
     main()
