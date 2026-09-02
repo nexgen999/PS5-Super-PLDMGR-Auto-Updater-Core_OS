@@ -1,95 +1,81 @@
+# build_aio_package.py
 import os
-import sys
 import json
+import urllib.request
 import zipfile
-import datetime
+from datetime import datetime
 
-JSON_DIR = "json"
-PAYLOADS_JSON = os.path.join(JSON_DIR, "payloads.json")
-PAYLOADS_ROOT = "payloads"
-RELEASE_NOTES_FILE = "release_notes.md"
+def build_packages():
+    timestamp = datetime.now().strftime("%Y.%m.%d-%H%M")
+    os.makedirs("archives", exist_ok=True)
+    
+    categories = ["payloads", "pkg", "ffpfsc", "apps"]
+    archive_paths = []
 
-def get_latest_elf_paths():
-    """
-    Extrait les chemins des derniers fichiers ELF/BIN uniquement à partir du fichier payloads.json
-    """
-    elf_files = []
+    for cat in categories:
+        json_path = f"json/{cat}.json"
+        print(f"=== Création du package AIO {cat.capitalize()} ({timestamp}) ===")
+        
+        if not os.path.exists(json_path):
+            print(f"⚠️ Fichier {json_path} introuvable.")
+            continue
+            
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                content = json.load(f)
+                
+            # Gère aussi bien une liste directe qu'un dictionnaire avec 'items'
+            items = content if isinstance(content, list) else content.get("items", [])
+            
+            if not items:
+                print(f"⚠️ Aucun élément trouvé dans {json_path}")
+                continue
 
-    if not os.path.exists(PAYLOADS_JSON):
-        print(f"❌ Erreur: Le fichier {PAYLOADS_JSON} n'existe pas.")
-        sys.exit(1)
+            zip_filename = f"archives/PS5_{cat}_aio_latest.zip"
+            zip_versioned = f"archives/PS5_{cat}_aio_{timestamp}.zip"
+            
+            with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zf, \
+                 zipfile.ZipFile(zip_versioned, 'w', zipfile.ZIP_DEFLATED) as zf_ver:
+                
+                for item in items:
+                    url = item.get("url")
+                    name = item.get("filename") or (url.split('/')[-1].split('?')[0] if url else "unknown")
+                    if not url:
+                        continue
+                    
+                    try:
+                        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                        with urllib.request.urlopen(req, timeout=15) as response:
+                            file_data = response.read()
+                            zf.writestr(name, file_data)
+                            zf_ver.writestr(name, file_data)
+                            print(écrit := f"  -> Ajouté : {name}")
+                    except Exception as e:
+                        print(f"  ❌ Erreur de téléchargement pour {name} : {e}")
+                        
+            archive_paths.append(zip_filename)
+            print(f"✅ Archive créée : {zip_filename}")
+            
+        except Exception as e:
+            print(f"❌ Erreur lors de la lecture de {json_path} : {e}")
 
-    try:
-        with open(PAYLOADS_JSON, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            payloads = data.get("payloads", [])
-
-            for item in payloads:
-                url = item.get("url", "")
-                if url:
-                    # Extraction flexible du chemin relatif quel que soit l'OS
-                    if "/payloads/" in url:
-                        rel_path = url.split("/payloads/")[-1]
-                        full_path = os.path.join(PAYLOADS_ROOT, os.path.normpath(rel_path))
-                    else:
-                        full_path = os.path.normpath(url)
-
-                    if os.path.exists(full_path):
-                        filename = os.path.basename(full_path)
-                        elf_files.append((full_path, filename, item.get("name"), item.get("version")))
-                    else:
-                        print(f"⚠️ Fichier introuvable sur le disque : {full_path}")
-
-    except Exception as e:
-        print(f"❌ Erreur lors de la lecture de {PAYLOADS_JSON} : {e}")
-        sys.exit(1)
-
-    return elf_files
-
-def build_aio():
-    # Priorité à la variable d'environnement DATE_TAG transmise par GitHub Actions
-    date_tag = os.environ.get("DATE_TAG")
-    if not date_tag:
-        now = datetime.datetime.now()
-        date_tag = now.strftime("%Y.%m.%d-%H%M")
-
-    # Nouveaux noms conformes à la nomenclature
-    zip_timestamp_name = f"PS5_payloads_aio_{date_tag}.zip"
-    zip_latest_name = "PS5_payloads_aio_latest.zip"
-
-    print(f"=== Création du package AIO Payloads ({date_tag}) ===")
-
-    elf_to_pack = get_latest_elf_paths()
-
-    if not elf_to_pack:
-        print("⚠️ Aucun fichier ELF/BIN trouvé dans payloads.json.")
-        sys.exit(0)
-
-    print(f"📌 {len(elf_to_pack)} payloads uniques (dernières versions) identifiés dans payloads.json.")
-
-    # Création des deux archives ZIP
-    for zip_name in [zip_timestamp_name, zip_latest_name]:
-        with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zf:
-            for full_p, filename, name, ver in elf_to_pack:
-                zf.write(full_p, arcname=filename)
-        print(f"📦 Archive créée : {zip_name} ({len(elf_to_pack)} fichiers)")
-
-    # Génération / Complétion des Release Notes
-    with open(RELEASE_NOTES_FILE, "w", encoding="utf-8") as rn:
-        rn.write(f"## 🚀 Release AIO Auto-Updated ({date_tag})\n\n")
-        rn.write("Cette archive contient **exclusivement la dernière version** de chaque payload répertorié dans `payloads.json`.\n\n")
-        rn.write("### 📦 Payloads inclus dans ce package :\n")
-        for _, filename, name, ver in sorted(elf_to_pack, key=lambda x: x[1].lower()):
-            rn.write(f"- `{filename}` — **{name}** ({ver})\n")
-
-    # Mise à jour de l'environnement GitHub Actions si disponible
-    github_env = os.environ.get('GITHUB_ENV')
-    if github_env:
-        with open(github_env, 'a', encoding='utf-8') as f:
-            f.write(f"AIO_TAG={date_tag}\n")
-            f.write(f"ZIP_TIMESTAMP_NAME={zip_timestamp_name}\n")
-
-    print("=== Packaging AIO Payloads terminé avec succès ===")
+    # Création du pack ultime regroupant toutes les archives
+    print("📦 Création du pack ultime (Ultimate Pack AIO)...")
+    ultimate_zip = f"archives/PS5_Ultimate_AIO_{timestamp}.zip"
+    ultimate_latest = "archives/PS5_Ultimate_AIO_latest.zip"
+    
+    with zipfile.ZipFile(ultimate_zip, 'w', zipfile.ZIP_DEFLATED) as uzf, \
+         zipfile.ZipFile(ultimate_latest, 'w', zipfile.ZIP_DEFLATED) as uzf_let:
+        for z_path in archive_paths:
+            if os.path.exists(z_path):
+                arcname = os.path.basename(z_path)
+                uzf.write(z_path, arcname)
+                uzf_let.write(z_path, arcname)
+                print(f"  -> Intégré au pack ultime : {arcname}")
+            else:
+                print(f"  ⚠️ Archive non trouvée (ignorée) : {z_path}")
+                
+    print("✅ Ultimate Pack AIO créé avec succès.")
 
 if __name__ == "__main__":
-    build_aio()
+    build_packages()
