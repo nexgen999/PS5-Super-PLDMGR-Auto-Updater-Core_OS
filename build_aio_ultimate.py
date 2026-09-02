@@ -1,31 +1,35 @@
+# build_aio_ultimate.py
 import os
 import zipfile
+from datetime import datetime
 
-DATE_TAG = os.environ.get("DATE_TAG", "latest")
-
-zip_latest = "PS5_ultimate_pack_aio_latest.zip"
-zip_dated = f"PS5_ultimate_pack_aio_{DATE_TAG}.zip"
-
-archives_to_pack = [
-    "PS5_payloads_aio_latest.zip",
-    "PS5_pkg_aio_latest.zip",
-    "PS5_ffpfsc_aio_latest.zip",
-    "PS5_apps_aio_latest.zip"
-]
-
-print("📦 Creation du pack ultime (Ultimate Pack AIO)...")
-
-def create_ultimate_zip(output_filename):
-    with zipfile.ZipFile(output_filename, 'w', zipfile.ZIP_DEFLATED) as zip_out:
-        for archive in archives_to_pack:
-            if os.path.exists(archive):
-                zip_out.write(archive, os.path.basename(archive))
-                print(f"  -> Inclus : {archive}")
+def build_ultimate():
+    timestamp = datetime.now().strftime("%Y.%m.%d-%H%M")
+    os.makedirs("archives", exist_ok=True)
+    
+    print("📦 Création du pack ultime (Ultimate Pack AIO)...")
+    ultimate_zip = f"archives/PS5_Ultimate_AIO_{timestamp}.zip"
+    ultimate_latest = "archives/PS5_Ultimate_AIO_latest.zip"
+    
+    sub_archives = [
+        "archives/PS5_payloads_aio_latest.zip",
+        "archives/PS5_pkg_aio_latest.zip",
+        "archives/PS5_ffpfsc_aio_latest.zip",
+        "archives/PS5_apps_aio_latest.zip"
+    ]
+    
+    with zipfile.ZipFile(ultimate_zip, 'w', zipfile.ZIP_DEFLATED) as uzf, \
+         zipfile.ZipFile(ultimate_latest, 'w', zipfile.ZIP_DEFLATED) as uzf_let:
+        for z_path in sub_archives:
+            if os.path.exists(z_path):
+                arcname = os.path.basename(z_path)
+                uzf.write(z_path, arcname)
+                uzf_let.write(z_path, arcname)
+                print(f"  -> Intégré au pack ultime : {arcname}")
             else:
-                print(f"  ⚠️ Archive non trouvee (ignoree) : {archive}")
+                print(f"  ⚠️ Archive non trouvée (ignorée) : {z_path}")
+                
+    print("✅ Ultimate Pack AIO créé avec succès.")
 
-create_ultimate_zip(zip_latest)
-if DATE_TAG != "latest":
-    create_ultimate_zip(zip_dated)
-
-print("✅ Ultimate Pack AIO cree avec succes.")
+if __name__ == "__main__":
+    build_ultimate()
