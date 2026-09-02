@@ -1,0 +1,23 @@
+{
+  "name": "PS5 Cheat",
+  "payloads": [
+    {
+      "name": "CheatRunner",
+      "filename": "CheatRunner_v0.17.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Cheat/CheatRunner/v0.17/CheatRunner_v0.17.elf",
+      "description": "CheatRunner.",
+      "version": "v0.17",
+      "category": "PS5 Cheat",
+      "checksum": "2f296d3f1e69b65439bb5dc362f0f6504f6dc9f245fa16a3683e9d7ec9533773"
+    },
+    {
+      "name": "kylin-core-community-lite-v131-global-release",
+      "filename": "kylin-core-community-lite-v131-global-release.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Cheat/kylin-core/Source-Fixe/kylin-core-community-lite-v131-global-release.elf",
+      "description": "kylin-core",
+      "version": "Source-Fixe",
+      "category": "PS5 Cheat",
+      "checksum": "2b731fc60b3d7996667b372bb8e31df7125d209ecacbb6838312a51b24b65c29"
+    }
+  ]
+}

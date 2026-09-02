@@ -1,0 +1,50 @@
+{
+  "name": "PS5 Game Dump",
+  "payloads": [
+    {
+      "name": "PS5-Game-Compressor",
+      "filename": "PS5-Game-Compressor_v1.0.4.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/PS5-Game-Compressor/v1.0.4/PS5-Game-Compressor_v1.0.4.elf",
+      "description": "Tool to compress PS5 games.",
+      "version": "v1.0.4",
+      "category": "PS5 Game Dump",
+      "checksum": "e55e90aaade13b6e0d4316c1597ef90a21b67a06475c3e25de054224bc1e941b"
+    },
+    {
+      "name": "ps5-app-dumper",
+      "filename": "ps5-app-dumper_v1.11.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ps5-app-dumper/v1.11/ps5-app-dumper_v1.11.elf",
+      "description": "PS5 App Dumper payload.",
+      "version": "v1.11",
+      "category": "PS5 Game Dump",
+      "checksum": "18483751ebaea6879b020a9dd87c0a4fb4f1bf09f3708d950362a483f78cc0d0"
+    },
+    {
+      "name": "ShadowMountPlus",
+      "filename": "ShadowMountPlus_v1.6beta16.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf",
+      "description": "ShadowMountPlus payload for game mounting.",
+      "version": "1.6beta16",
+      "category": "PS5 Game Dump",
+      "checksum": "a35246fb3bb6042b25653b51cdcbc33254b40339342bf1d2dd0d2eceee2ca526"
+    },
+    {
+      "name": "BackPork",
+      "filename": "BackPork_v0.1.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/BackPork/0.1/BackPork_v0.1.elf",
+      "description": "BackPork PS5 tool.",
+      "version": "0.1",
+      "category": "PS5 Game Dump",
+      "checksum": "d74e4cd119b2bb1fd423f2f5b1c9a7f096b3e588c753af1ab48b983d56216a52"
+    },
+    {
+      "name": "apr_emu_updater",
+      "filename": "apr_emu_updater_v2.0.6.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/apr-emu-updater/v2.0.6/apr_emu_updater_v2.0.6.elf",
+      "description": "APR Emu Updater must always be loaded.",
+      "version": "v2.0.6",
+      "category": "PS5 Game Dump",
+      "checksum": "4f04464283a6a551883e40e36b59134ecad0e38ecbb7ea89cbec3f91a3bd9122"
+    }
+  ]
+}

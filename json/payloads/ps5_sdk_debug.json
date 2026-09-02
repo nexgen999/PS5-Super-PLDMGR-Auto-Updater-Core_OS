@@ -1,0 +1,59 @@
+{
+  "name": "PS5 Sdk Debug",
+  "payloads": [
+    {
+      "name": "ps5debug-NG",
+      "filename": "ps5debug-NG_v1.3.0.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5debug-NG/1.3.0/ps5debug-NG_v1.3.0.elf",
+      "description": "Next generation debugger payload for PS5.",
+      "version": "1.3.0",
+      "category": "PS5 Sdk Debug",
+      "checksum": "8f75fb90b45d7cc4d59147e3323577d7264cf572c78a27f76722202f492ad16a"
+    },
+    {
+      "name": "ps5-self-pager",
+      "filename": "ps5-self-pager_v1.2.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-self-pager/v1.2/ps5-self-pager_v1.2.elf",
+      "description": "SELF pager payload tool.",
+      "version": "v1.2",
+      "category": "PS5 Sdk Debug",
+      "checksum": "2b500bc356b5bcfca5c3e5187bcec0a37c80ed05e39348b8f06bd2e5a6f3342b"
+    },
+    {
+      "name": "PS5-SELF-Decrypter",
+      "filename": "PS5-SELF-Decrypter_v0.5.2.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/PS5-SELF-Decrypter/v0.5.2/PS5-SELF-Decrypter_v0.5.2.elf",
+      "description": "SELF decrypter tool for PS5 binaries.",
+      "version": "v0.5.2",
+      "category": "PS5 Sdk Debug",
+      "checksum": "190b350759b4f9d50949325e84d131e0953f37a9df271c329ba43c80c0ac7a57"
+    },
+    {
+      "name": "ps5-remoteplay-get-pin",
+      "filename": "ps5-remoteplay-get-pin_v0.1.1.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-remoteplay-get-pin/v0.1.1/ps5-remoteplay-get-pin_v0.1.1.elf",
+      "description": "Utility to get Remote Play PIN.",
+      "version": "v0.1.1",
+      "category": "PS5 Sdk Debug",
+      "checksum": "1d611c1856dd2f4b4b6cb42ead1128a7f08a26585788f92de79fa4f67d721472"
+    },
+    {
+      "name": "MemDBG",
+      "filename": "MemDBG_vnightly-20260822-gc39ac30.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/MemDBG/nightly-20260822-gc39ac30/MemDBG_vnightly-20260822-gc39ac30.elf",
+      "description": "Memory debugging and inspection suite.",
+      "version": "nightly-20260822-gc39ac30",
+      "category": "PS5 Sdk Debug",
+      "checksum": "0252539d2f1e0042525652258ff57199e492767b0e21ae9d22ad62721cc3d3d2"
+    },
+    {
+      "name": "ps5-hwinfo",
+      "filename": "ps5-hwinfo_v0.1.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-hwinfo/0.1/ps5-hwinfo_v0.1.elf",
+      "description": "PS5 payload for collecting hardware and runtime telemetry.",
+      "version": "0.1",
+      "category": "PS5 Sdk Debug",
+      "checksum": "4514bdbc0c556df1a66544615942d5087d1cbee5c2026b3b66e688ba01e5a5b0"
+    }
+  ]
+}
