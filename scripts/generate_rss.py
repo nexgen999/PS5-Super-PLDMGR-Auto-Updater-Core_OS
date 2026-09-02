@@ -5,7 +5,6 @@ from xml.dom import minidom
 from scripts.config_rules import BASE_URL
 
 def build_rss_feed(data_store):
-    """Génère les flux RSS et OPML globaux et par catégorie dans leurs sous-dossiers."""
     base_rss_dir = "rss"
     os.makedirs(base_rss_dir, exist_ok=True)
 
