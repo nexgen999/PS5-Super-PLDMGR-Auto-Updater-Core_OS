@@ -61,13 +61,19 @@ jobs:
           git add json/ payloads/ rss/ index.html README.md release_notes.md scripts/ feed/ 2>/dev/null || true
           git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web [skip ci]" && git push)
 
-      - name: 9. Publication des archives ZIP dans les Releases GitHub
+          - name: 9. Publication des archives ZIP dans les Releases GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="v$(date +'%Y.%m.%d-%H%M')"
           
-          # 1. Création de la release horodatée avec vérification des fichiers
+          # Création et push du tag Git obligatoire pour la release horodatée
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git tag "$TAG"
+          git push origin "$TAG"
+
+          # 1. Création de la release horodatée
           files_versioned=$(ls archives/*_${TAG#v}.zip 2>/dev/null || true)
           if [ -n "$files_versioned" ]; then
             gh release create "$TAG" $files_versioned \
@@ -87,6 +93,9 @@ jobs:
               --title "PS5 Store AIO - Latest (Permanent)" \
               --notes "Liens permanents pointant toujours vers les dernières versions actualisées des packs AIO." \
               --latest
+          else
+            echo "⚠️ Aucun fichier 'latest' trouvé pour la release permanente."
+          fi
           else
             echo "⚠️ Aucun fichier 'latest' trouvé pour la release permanente."
           fi
