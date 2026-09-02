@@ -1,0 +1,902 @@
+[
+    {
+        "name": "PS5-Custom-Tool-Manager-",
+        "filename": "PS5.Custom.Tool.Manager.V1.elf",
+        "url": "https://github.com/NikoBellikJR31/PS5-Custom-Tool-Manager-/releases/download/Custom/PS5.Custom.Tool.Manager.V1.elf",
+        "description": "Custom manager tool for PS5 personalization.",
+        "version": "Custom",
+        "author": "NikoBellikJR31",
+        "category": "Ps5 Themes-Avatars"
+    },
+    {
+        "name": "ps5-wallpaper-modd",
+        "filename": "ps5-wallpaper-modd.elf",
+        "url": "https://github.com/hgr9519/ps5-wallpaper-modd/releases/download/v1.0/ps5-wallpaper-modd.elf",
+        "description": "Wallpaper modification utility for PS5.",
+        "version": "v1.0",
+        "author": "hgr9519",
+        "category": "Ps5 Themes-Avatars"
+    },
+    {
+        "name": "etaHEN",
+        "filename": "etaHEN-2.5B.bin",
+        "url": "https://github.com/etaHEN/etaHEN/releases/download/2.5B/etaHEN-2.5B.bin",
+        "description": "Le Homebrew Enabler (HEN) de référence pour la PS5 avec serveurs de triche, plugins et gestionnaire de mémoire intégrés.",
+        "version": "2.5B",
+        "author": "LightningMods",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "PS5 Unified Autoloader",
+        "filename": "ps5-unified-autoloader-v0.1.4-955249d.elf",
+        "url": "https://github.com/itsPLK/ps5-unified-autoloader/releases/download/v0.1.4-955249d/ps5-unified-autoloader-v0.1.4-955249d.elf",
+        "description": "Chargeur universel de payloads permettant de lancer automatiquement vos outils favoris au démarrage de l'exploit.",
+        "version": "v0.1.4-955249d",
+        "author": "itsPLK",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "PS5 Payload Manager",
+        "filename": "pldmgr_v0.5.1.elf",
+        "url": "https://github.com/itsPLK/ps5-payload-manager/releases/download/v0.5.1/pldmgr_v0.5.1.elf",
+        "description": "Interface d'administration et de gestion réseau pour envoyer, activer et ordonner vos fichiers ELF/BIN sur la console.",
+        "version": "v0.5.1",
+        "author": "itsPLK",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "ELF Arsenal",
+        "filename": "elf-arsenal.elf",
+        "url": "https://git.etawen.dev/soniciso/elf-arsenal/releases/download/v1.6.22/elf-arsenal.elf",
+        "description": "Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.",
+        "version": "v1.6.22",
+        "author": "SonicIso",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "Kura (kura-loader-ps4.elf)",
+        "filename": "kura-loader-ps4.elf",
+        "url": "https://github.com/NookieAI/kura/releases/download/v1.6.50/kura-loader-ps4.elf",
+        "description": "Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5.",
+        "version": "v1.6.50",
+        "author": "NookieAI",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "Kura (kura-loader-ps5.elf)",
+        "filename": "kura-loader-ps5.elf",
+        "url": "https://github.com/NookieAI/kura/releases/download/v1.6.50/kura-loader-ps5.elf",
+        "description": "Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5.",
+        "version": "v1.6.50",
+        "author": "NookieAI",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "Kura (kura-loader.elf)",
+        "filename": "kura-loader.elf",
+        "url": "https://github.com/NookieAI/kura/releases/download/v1.6.50/kura-loader.elf",
+        "description": "Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5.",
+        "version": "v1.6.50",
+        "author": "NookieAI",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "PIZZA-HEN",
+        "filename": "PIZZA-HEN-v2.00.elf",
+        "url": "https://github.com/Michele-M-Media/PIZZA-HEN/releases/download/v2.00/PIZZA-HEN-v2.00.elf",
+        "description": "PIZZA HEN is an experimental all-in-one PS5 homebrew environment.",
+        "version": "v2.00",
+        "author": "Michele-M-Media",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "onionHEN",
+        "filename": "OnionHEN.elf",
+        "url": "https://github.com/aydencharles/onionHEN/releases/download/v0.0.12/OnionHEN.elf",
+        "description": "An all-in-one HEN and Toolbox for PlayStation 5.",
+        "version": "v0.0.12",
+        "author": "aydencharles",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "etaHEN-Beta",
+        "filename": "etaHEN-2.6B.bin",
+        "url": "https://github.com/zecoxao/zecoxao.github.io/raw/refs/heads/main/luasauce/payloads/etaHEN-2.6B.bin",
+        "description": "etahen beta version experimental.",
+        "version": "v1.0.0",
+        "author": "zecoxao - LightningMods",
+        "category": "Ps5 Hen Loader"
+    },
+    {
+        "name": "ps5-fan-control (ps5-fan-control-v0.3.elf)",
+        "filename": "ps5-fan-control-v0.3.elf",
+        "url": "https://github.com/owendswang/ps5-fan-control/releases/download/v0.3/ps5-fan-control-v0.3.elf",
+        "description": "Small PS5 daemon payload ELF that sets the system fan temperature.",
+        "version": "v0.3",
+        "author": "owendswang",
+        "category": "Ps5 Fan"
+    },
+    {
+        "name": "nanoDNS (nanodns-ps4.elf)",
+        "filename": "nanodns-ps4.elf",
+        "url": "https://github.com/drakmor/nanoDNS/releases/download/0.4/nanodns-ps4.elf",
+        "description": "Un serveur DNS ultra-léger et rapide idéal pour rediriger les requêtes de la console vers votre hôte local d'exploits.",
+        "version": "0.4",
+        "author": "Drakmor",
+        "category": "Ps5 Dns"
+    },
+    {
+        "name": "nanoDNS (nanodns.elf)",
+        "filename": "nanodns.elf",
+        "url": "https://github.com/drakmor/nanoDNS/releases/download/0.4/nanodns.elf",
+        "description": "Un serveur DNS ultra-léger et rapide idéal pour rediriger les requêtes de la console vers votre hôte local d'exploits.",
+        "version": "0.4",
+        "author": "Drakmor",
+        "category": "Ps5 Dns"
+    },
+    {
+        "name": "Chukei DNS (chukei-ps4.elf)",
+        "filename": "chukei-ps4.elf",
+        "url": "https://github.com/Al-Azif/chukei-dns/releases/download/0.9.0/chukei-ps4.elf",
+        "description": "Serveur DNS de redirection d'envergure conçu spécifiquement pour bloquer les mises à jour de Sony et rediriger le guide de l'utilisateur.",
+        "version": "0.9.0",
+        "author": "Al-Azif",
+        "category": "Ps5 Dns"
+    },
+    {
+        "name": "Chukei DNS (chukei-ps5.elf)",
+        "filename": "chukei-ps5.elf",
+        "url": "https://github.com/Al-Azif/chukei-dns/releases/download/0.9.0/chukei-ps5.elf",
+        "description": "Serveur DNS de redirection d'envergure conçu spécifiquement pour bloquer les mises à jour de Sony et rediriger le guide de l'utilisateur.",
+        "version": "0.9.0",
+        "author": "Al-Azif",
+        "category": "Ps5 Dns"
+    },
+    {
+        "name": "CheatRunner (CheatRunner.elf)",
+        "filename": "CheatRunner.elf",
+        "url": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.17/CheatRunner.elf",
+        "description": "CheatRunner.",
+        "version": "v0.17",
+        "author": "notmaj0r",
+        "category": "Ps5 Cheat"
+    },
+    {
+        "name": "kylin-core",
+        "filename": "kylin-core-community-lite-v131-global-release.elf",
+        "url": "https://raw.githubusercontent.com/nexgen999/PS5_Payload_Manager_Updater/main/ps5_cheat/kylin-core-community-lite-v131-global-release.elf",
+        "description": "kylin-core",
+        "version": "v1.0.0",
+        "author": "aydencharles",
+        "category": "Ps5 Cheat"
+    },
+    {
+        "name": "Spectrum-Library (SpectrumLibrary_1.4.3.elf)",
+        "filename": "SpectrumLibrary_1.4.3.elf",
+        "url": "https://github.com/Phoenixx1202/Spectrum-Library/releases/download/1.4.3/SpectrumLibrary_1.4.3.elf",
+        "description": "free store webadmin http://your-ps5-ip:7575.",
+        "version": "1.4.3",
+        "author": "Phoenixx1202",
+        "category": "Ps5 Freeshop"
+    },
+    {
+        "name": "pegasus-dl",
+        "filename": "pegasus_dl.elf",
+        "url": "https://github.com/pegasus-ps5/pegasus-dl/releases/download/v1.7.0/pegasus_dl.elf",
+        "description": "free store webadmin http://your-ps5-ip:6970.",
+        "version": "v1.7.0",
+        "author": "pegasus-ps5",
+        "category": "Ps5 Freeshop"
+    },
+    {
+        "name": "ps5shopappkg-dpi",
+        "filename": "ps5shopappkg-dpi.elf",
+        "url": "https://github.com/ps5xploit/ps5shopappkg/releases/download/ps5shopappkg/ps5shopappkg-dpi.elf",
+        "description": "You need PS5-SHOP-APPKG.pkg DPI port 9040.",
+        "version": "v1.0.0",
+        "author": "ps5xploit",
+        "category": "Ps5 Freeshop"
+    },
+    {
+        "name": "ChronicLoader-PS5-Payload (chronicloader.elf)",
+        "filename": "chronicloader.elf",
+        "url": "https://github.com/StonedModder/ChronicLoader-PS5-Payload/releases/download/0.1/chronicloader.elf",
+        "description": "ChronicLoader utility payload for PS5.",
+        "version": "0.1",
+        "author": "StonedModder",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "Ghostpad (ghostpad.elf)",
+        "filename": "ghostpad.elf",
+        "url": "https://github.com/StonedModder/Ghostpad/releases/download/v1.0.0/ghostpad.elf",
+        "description": "Ghostpad controller input utility.",
+        "version": "v1.0.0",
+        "author": "StonedModder",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "Ghostcontrol-PS5-USB-Controller-Patcher",
+        "filename": "Ghostcontrol.elf",
+        "url": "https://github.com/StonedModder/Ghostcontrol-PS5-USB-Controller-Patcher/releases/download/1.0.5/Ghostcontrol.elf",
+        "description": "USB Controller patcher tool for PS5.",
+        "version": "1.0.5",
+        "author": "StonedModder",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PoorDS4 (PoorDS4-status.elf)",
+        "filename": "PoorDS4-status.elf",
+        "url": "https://github.com/ItsBlurf/PoorDS4/releases/download/v0.1.0-rc38/PoorDS4-status.elf",
+        "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
+        "version": "v0.1.0-rc38",
+        "author": "ItsBlurf",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PoorDS4 (PoorDS4-stop.elf)",
+        "filename": "PoorDS4-stop.elf",
+        "url": "https://github.com/ItsBlurf/PoorDS4/releases/download/v0.1.0-rc38/PoorDS4-stop.elf",
+        "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
+        "version": "v0.1.0-rc38",
+        "author": "ItsBlurf",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PoorDS4 (PoorDS4rc38.elf)",
+        "filename": "PoorDS4rc38.elf",
+        "url": "https://github.com/ItsBlurf/PoorDS4/releases/download/v0.1.0-rc38/PoorDS4rc38.elf",
+        "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
+        "version": "v0.1.0-rc38",
+        "author": "ItsBlurf",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PS Game State Lib (ps-game-state-lib-v0.1.elf)",
+        "filename": "ps-game-state-lib-v0.1.elf",
+        "url": "https://github.com/StonedModder/ps-game-state-lib/releases/download/v0.1/ps-game-state-lib-v0.1.elf",
+        "description": "Standalone PS5 game-state detection payload - webui ps5ip:9877 .",
+        "version": "v0.1",
+        "author": "StonedModder",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PS-DiscordPresence",
+        "filename": "PS-DiscordPresence.elf",
+        "url": "https://github.com/StonedModder/PS-DiscordPresence/releases/download/v0.01/PS-DiscordPresence.elf",
+        "description": "PS5 game activity service with a local status endpoint and a Python Discord RPC bridge.",
+        "version": "v0.01",
+        "author": "StonedModder",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "unrar-ps5",
+        "filename": "unrar_ps5.elf",
+        "url": "https://github.com/bizkut/unrar-ps5/releases/download/v1.4.0/unrar_ps5.elf",
+        "description": "PS5 ELF payload for extracting RAR and 7z archives on a jailbroken PS5 and installing extracted apps into a configurable layout..",
+        "version": "v1.4.0",
+        "author": "bizkut",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PS5-Power-Payloads-Project (notify_test.elf)",
+        "filename": "notify_test.elf",
+        "url": "https://github.com/MasterPS0/PS5-Power-Payloads-Project/releases/download/1.0/notify_test.elf",
+        "description": "PS5-Power-Payloads-Project utility.",
+        "version": "1.0",
+        "author": "MasterPS0",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PS5-Power-Payloads-Project (poweroff.elf)",
+        "filename": "poweroff.elf",
+        "url": "https://github.com/MasterPS0/PS5-Power-Payloads-Project/releases/download/1.0/poweroff.elf",
+        "description": "PS5-Power-Payloads-Project utility.",
+        "version": "1.0",
+        "author": "MasterPS0",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PS5-Power-Payloads-Project (reboot.elf)",
+        "filename": "reboot.elf",
+        "url": "https://github.com/MasterPS0/PS5-Power-Payloads-Project/releases/download/1.0/reboot.elf",
+        "description": "PS5-Power-Payloads-Project utility.",
+        "version": "1.0",
+        "author": "MasterPS0",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "PS5-Power-Payloads-Project (suspend.elf)",
+        "filename": "suspend.elf",
+        "url": "https://github.com/MasterPS0/PS5-Power-Payloads-Project/releases/download/1.0/suspend.elf",
+        "description": "PS5-Power-Payloads-Project utility.",
+        "version": "1.0",
+        "author": "MasterPS0",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "ps5-date-time-sync",
+        "filename": "ps5-date-time-sync.elf",
+        "url": "https://github.com/kerrdec97/ps5-date-time-sync/releases/download/v1.0.0/ps5-date-time-sync.elf",
+        "description": "A lightweight, standalone PS5 payload that restores the console's system date and time using public NTP servers.",
+        "version": "v1.0.0",
+        "author": "kerrdec97",
+        "category": "Ps5 Utility"
+    },
+    {
+        "name": "ps5-webkit-autoloader (webkit-autoloader-installer_v0.4.0.elf)",
+        "filename": "webkit-autoloader-installer_v0.4.0.elf",
+        "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.4.0/webkit-autoloader-installer_v0.4.0.elf",
+        "description": "Installs WebKit Autoloader on homescreen for firmwares 9.00-12.00.",
+        "version": "v0.4.0",
+        "author": "itsPLK",
+        "category": "Ps5-Webkit-Autoloader"
+    },
+    {
+        "name": "Host-PSM pooP2JB (Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en.elf)",
+        "filename": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en.elf",
+        "url": "https://github.com/ps4macedo/instalador-host-psm-poop2jb/releases/download/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en.elf",
+        "description": "Host-PSM pooP2JB.",
+        "version": "v1.2.0",
+        "author": "ps4macedo",
+        "category": "Ps5-Webkit-Autoloader"
+    },
+    {
+        "name": "Host-PSM pooP2JB (Host-PSM-pooP2JB-v1.2.0-instala-onionhen.elf)",
+        "filename": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen.elf",
+        "url": "https://github.com/ps4macedo/instalador-host-psm-poop2jb/releases/download/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen.elf",
+        "description": "Host-PSM pooP2JB.",
+        "version": "v1.2.0",
+        "author": "ps4macedo",
+        "category": "Ps5-Webkit-Autoloader"
+    },
+    {
+        "name": "Host-PSM pooP2JB (Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en.elf)",
+        "filename": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en.elf",
+        "url": "https://github.com/ps4macedo/instalador-host-psm-poop2jb/releases/download/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en.elf",
+        "description": "Host-PSM pooP2JB.",
+        "version": "v1.2.0",
+        "author": "ps4macedo",
+        "category": "Ps5-Webkit-Autoloader"
+    },
+    {
+        "name": "Host-PSM pooP2JB (Host-PSM-pooP2JB-v1.2.0-instala-pldmgr.elf)",
+        "filename": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr.elf",
+        "url": "https://github.com/ps4macedo/instalador-host-psm-poop2jb/releases/download/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr.elf",
+        "description": "Host-PSM pooP2JB.",
+        "version": "v1.2.0",
+        "author": "ps4macedo",
+        "category": "Ps5-Webkit-Autoloader"
+    },
+    {
+        "name": "garlic-savemgr",
+        "filename": "garlic-savemgr.elf",
+        "url": "https://git.etawen.dev/earthonion/garlic-savemgr/releases/download/v1.13/garlic-savemgr.elf",
+        "description": "Save manager utility hosted on Forgejo.",
+        "version": "v1.13",
+        "author": "earthonion",
+        "category": "Ps5 Saves"
+    },
+    {
+        "name": "garlic-worker",
+        "filename": "garlic-worker-ps4.elf",
+        "url": "https://git.etawen.dev/earthonion/garlic-worker/releases/download/v1.1.6/garlic-worker-ps4.elf",
+        "description": "Garlic worker payload component.",
+        "version": "v1.1.6",
+        "author": "earthonion",
+        "category": "Ps5 Saves"
+    },
+    {
+        "name": "garlic-worker",
+        "filename": "garlic-worker-ps5.elf",
+        "url": "https://git.etawen.dev/earthonion/garlic-worker/releases/download/v1.1.6/garlic-worker-ps5.elf",
+        "description": "Garlic worker payload component.",
+        "version": "v1.1.6",
+        "author": "earthonion",
+        "category": "Ps5 Saves"
+    },
+    {
+        "name": "savemnt-offset-dumper",
+        "filename": "savemnt-offset-dumper.elf",
+        "url": "https://github.com/StonedModder/savemnt-offset-dumper/releases/download/1.0.0/savemnt-offset-dumper.elf",
+        "description": "Offset dumper for save mounting utilities.",
+        "version": "1.0.0",
+        "author": "StonedModder",
+        "category": "Ps5 Saves"
+    },
+    {
+        "name": "np-fake-signin",
+        "filename": "np-fake-signin-ps4.elf",
+        "url": "https://git.etawen.dev/earthonion/np-fake-signin/releases/download/v1.3/np-fake-signin-ps4.elf",
+        "description": "Fake activate PS5 without PSN.",
+        "version": "v1.3",
+        "author": "earthonion",
+        "category": "Ps5 Activation"
+    },
+    {
+        "name": "np-fake-signin",
+        "filename": "np-fake-signin-ps5.elf",
+        "url": "https://git.etawen.dev/earthonion/np-fake-signin/releases/download/v1.3/np-fake-signin-ps5.elf",
+        "description": "Fake activate PS5 without PSN.",
+        "version": "v1.3",
+        "author": "earthonion",
+        "category": "Ps5 Activation"
+    },
+    {
+        "name": "Common-FPS-for-PS5 (Common_FPS_PS5_v1.0.0.elf)",
+        "filename": "Common_FPS_PS5_v1.0.0.elf",
+        "url": "https://github.com/porhe911/Common-FPS-for-PS5/releases/download/v1.0.0/Common_FPS_PS5_v1.0.0.elf",
+        "description": "A lightweight, open-source real-time FPS counter for PlayStation 5.",
+        "version": "v1.0.0",
+        "author": "porhe911",
+        "category": "Ps5 Overlay"
+    },
+    {
+        "name": "PS5-Game-Compressor",
+        "filename": "game-compressor.elf",
+        "url": "https://github.com/juma-sayeh/PS5-Game-Compressor/releases/download/v1.0.4/game-compressor.elf",
+        "description": "Tool to compress PS5 games.",
+        "version": "v1.0.4",
+        "author": "juma-sayeh",
+        "category": "Ps5 Game Dump"
+    },
+    {
+        "name": "ps5-app-dumper",
+        "filename": "ps5-app-dumper.elf",
+        "url": "https://github.com/EchoStretch/ps5-app-dumper/releases/download/v1.11/ps5-app-dumper.elf",
+        "description": "PS5 App Dumper payload.",
+        "version": "v1.11",
+        "author": "EchoStretch",
+        "category": "Ps5 Game Dump"
+    },
+    {
+        "name": "ShadowMountPlus (shadowmountplus.elf)",
+        "filename": "shadowmountplus.elf",
+        "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.6beta16/shadowmountplus.elf",
+        "description": "ShadowMountPlus payload for game mounting.",
+        "version": "1.6beta16",
+        "author": "drakmor",
+        "category": "Ps5 Game Dump"
+    },
+    {
+        "name": "BackPork",
+        "filename": "ps5-backpork.elf",
+        "url": "https://github.com/BestPig/BackPork/releases/download/0.1/ps5-backpork.elf",
+        "description": "BackPork PS5 tool.",
+        "version": "0.1",
+        "author": "BestPig",
+        "category": "Ps5 Game Dump"
+    },
+    {
+        "name": "apr-emu-updater",
+        "filename": "apr_emu_updater_v2.0.6.elf",
+        "url": "https://github.com/tsuramatsu1/apr-emu-updater/releases/download/v2.0.6/apr_emu_updater_v2.0.6.elf",
+        "description": "APR Emu Updater must always be loaded.",
+        "version": "v2.0.6",
+        "author": "tsuramatsu1",
+        "category": "Ps5 Game Dump"
+    },
+    {
+        "name": "ProsperoPlayer",
+        "filename": "ProsperoPlayer_MediaLauncher.elf",
+        "url": "https://github.com/KINGDKAK/ProsperoPlayer/releases/download/v1.0/ProsperoPlayer_MediaLauncher.elf",
+        "description": "A homebrew media player for jailbroken PS5.",
+        "version": "v1.0",
+        "author": "KINGDKAK",
+        "category": "Ps5 Video Player"
+    },
+    {
+        "name": "svtplay",
+        "filename": "svtplay-install.elf",
+        "url": "https://github.com/ps5-payload-dev/svtplay/releases/download/v0.3/svtplay-install.elf",
+        "description": "This is an unofficial 10-foot UI for SVT Play, the Swedish public service television broadcaster.",
+        "version": "v0.3",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Video Player"
+    },
+    {
+        "name": "PS-Play",
+        "filename": "PSPlay-2.1.elf",
+        "url": "https://github.com/MounirHero/PS-Play/releases/download/2.1/PSPlay-2.1.elf",
+        "description": "All-in-one media hub for jailbroken PlayStation 5",
+        "version": "2.1",
+        "author": "MounirHero",
+        "category": "Ps5 Video Player"
+    },
+    {
+        "name": "zftpd (zftpd-ps4-v1.5.0.bin)",
+        "filename": "zftpd-ps4-v1.5.0.bin",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps4-v1.5.0.bin",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "zftpd (zftpd-ps4-v1.5.0.elf)",
+        "filename": "zftpd-ps4-v1.5.0.elf",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps4-v1.5.0.elf",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "zftpd (zftpd-ps4-zhttp-v1.5.0.bin)",
+        "filename": "zftpd-ps4-zhttp-v1.5.0.bin",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps4-zhttp-v1.5.0.bin",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "zftpd (zftpd-ps4-zhttp-v1.5.0.elf)",
+        "filename": "zftpd-ps4-zhttp-v1.5.0.elf",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps4-zhttp-v1.5.0.elf",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "zftpd (zftpd-ps5-v1.5.0.bin)",
+        "filename": "zftpd-ps5-v1.5.0.bin",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps5-v1.5.0.bin",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "zftpd (zftpd-ps5-v1.5.0.elf)",
+        "filename": "zftpd-ps5-v1.5.0.elf",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps5-v1.5.0.elf",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "zftpd (zftpd-ps5-zhttp-v1.5.0.bin)",
+        "filename": "zftpd-ps5-zhttp-v1.5.0.bin",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps5-zhttp-v1.5.0.bin",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "zftpd (zftpd-ps5-zhttp-v1.5.0.elf)",
+        "filename": "zftpd-ps5-zhttp-v1.5.0.elf",
+        "url": "https://github.com/seregonwar/zftpd/releases/download/v1.5.0/zftpd-ps5-zhttp-v1.5.0.elf",
+        "description": "FTP server payload for PS5. Port: 21",
+        "version": "v1.5.0",
+        "author": "seregonwar",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "elfldr",
+        "filename": "elfldr-ps5.elf",
+        "url": "https://github.com/ps5-payload-dev/elfldr/releases/download/v0.26/elfldr-ps5.elf",
+        "description": "ELF Loader utility. Port: 9020 / 9021",
+        "version": "v0.26",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "ftpsrv_ps5-payload (ftpsrv-ps4.elf)",
+        "filename": "ftpsrv-ps4.elf",
+        "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps4.elf",
+        "description": "FTP server background daemon. Port: 21",
+        "version": "v0.21.1",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "ftpsrv_ps5-payload (ftpsrv-ps5-install.elf)",
+        "filename": "ftpsrv-ps5-install.elf",
+        "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5-install.elf",
+        "description": "FTP server background daemon. Port: 21",
+        "version": "v0.21.1",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "ftpsrv_ps5-payload (ftpsrv-ps5.elf)",
+        "filename": "ftpsrv-ps5.elf",
+        "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5.elf",
+        "description": "FTP server background daemon. Port: 21",
+        "version": "v0.21.1",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "websrv (websrv-ps5.elf)",
+        "filename": "websrv-ps5.elf",
+        "url": "https://github.com/ps5-payload-dev/websrv/releases/download/v0.34/websrv-ps5.elf",
+        "description": "HTTP Web server payload. Port: 8080",
+        "version": "v0.34",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "gdbsrv (gdbsrv-ps4.elf)",
+        "filename": "gdbsrv-ps4.elf",
+        "url": "https://github.com/ps5-payload-dev/gdbsrv/releases/download/v0.9/gdbsrv-ps4.elf",
+        "description": "GDB Debugger server payload. Port: 1234",
+        "version": "v0.9",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "gdbsrv (gdbsrv-ps5.elf)",
+        "filename": "gdbsrv-ps5.elf",
+        "url": "https://github.com/ps5-payload-dev/gdbsrv/releases/download/v0.9/gdbsrv-ps5.elf",
+        "description": "GDB Debugger server payload. Port: 1234",
+        "version": "v0.9",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "klogsrv (klogsrv-ps4.elf)",
+        "filename": "klogsrv-ps4.elf",
+        "url": "https://github.com/ps5-payload-dev/klogsrv/releases/download/v0.9/klogsrv-ps4.elf",
+        "description": "Kernel log server daemon. Port: 3232",
+        "version": "v0.9",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "klogsrv (klogsrv-ps5.elf)",
+        "filename": "klogsrv-ps5.elf",
+        "url": "https://github.com/ps5-payload-dev/klogsrv/releases/download/v0.9/klogsrv-ps5.elf",
+        "description": "Kernel log server daemon. Port: 3232",
+        "version": "v0.9",
+        "author": "ps5-payload-dev",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "ftpsrv_drakmor (ftpsrv-ps4.elf)",
+        "filename": "ftpsrv-ps4.elf",
+        "url": "https://github.com/drakmor/ftpsrv/releases/download/1.15-ng-stable/ftpsrv-ps4.elf",
+        "description": "Drakmor's variant of the FTP server. Port: 21",
+        "version": "1.15-ng-stable",
+        "author": "drakmor",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "ftpsrv_drakmor (ftpsrv-ps5.elf)",
+        "filename": "ftpsrv-ps5.elf",
+        "url": "https://github.com/drakmor/ftpsrv/releases/download/1.15-ng-stable/ftpsrv-ps5.elf",
+        "description": "Drakmor's variant of the FTP server. Port: 21",
+        "version": "1.15-ng-stable",
+        "author": "drakmor",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "ps5upload (ps5upload-5.15.0.elf)",
+        "filename": "ps5upload-5.15.0.elf",
+        "url": "https://github.com/phantomptr/ps5upload/releases/download/v5.15.0/ps5upload-5.15.0.elf",
+        "description": "PS5 Upload server / tool. Port: 9025",
+        "version": "v5.15.0",
+        "author": "phantomptr",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "airpsx (airpsx.elf)",
+        "filename": "airpsx.elf",
+        "url": "https://github.com/barisyild/airpsx/releases/download/0.19/airpsx.elf",
+        "description": "AirPSX server tool for PS5 ecosystem.",
+        "version": "0.19",
+        "author": "barisyild",
+        "category": "Ps5 Server"
+    },
+    {
+        "name": "kstuff_EchoStretch",
+        "filename": "kstuff.elf",
+        "url": "https://github.com/EchoStretch/kstuff/releases/download/v1.6.7/kstuff.elf",
+        "description": "Fnd Kstuff payload for PS5.",
+        "version": "v1.6.7",
+        "author": "EchoStretch",
+        "category": "Ps5 Kstuff"
+    },
+    {
+        "name": "kstuff-lite_EchoStretch",
+        "filename": "kstuff.elf",
+        "url": "https://github.com/EchoStretch/kstuff-lite/releases/download/v1.10/kstuff.elf",
+        "description": "Lightweight version of kstuff.",
+        "version": "v1.10",
+        "author": "EchoStretch",
+        "category": "Ps5 Kstuff"
+    },
+    {
+        "name": "kstuff-lite_drakmor",
+        "filename": "kstuff.elf",
+        "url": "https://github.com/drakmor/kstuff-lite/releases/download/1.2-dr-test1/kstuff.elf",
+        "description": "Drakmor's variant of kstuff-lite.",
+        "version": "1.2-dr-test1",
+        "author": "drakmor",
+        "category": "Ps5 Kstuff"
+    },
+    {
+        "name": "ps5-linux-loader",
+        "filename": "ps5-linux-loader.elf",
+        "url": "https://github.com/ps5-linux/ps5-linux-loader/releases/download/v2.4/ps5-linux-loader.elf",
+        "description": "Linux loader payload for the PS5.",
+        "version": "v2.4",
+        "author": "ps5-linux",
+        "category": "Ps5 Linux"
+    },
+    {
+        "name": "BFpilot",
+        "filename": "bfpilot.elf",
+        "url": "https://github.com/ItsBlurf/BFpilot/releases/download/v0.4.4/bfpilot.elf",
+        "description": "BFpilot is a lightweight PS5 payload that serves a browser-based file manager.",
+        "version": "v0.4.4",
+        "author": "ItsBlurf",
+        "category": "Ps5 File Explorer"
+    },
+    {
+        "name": "Lapy JB Daemon",
+        "filename": "lapy_jb_daemon.elf",
+        "url": "https://raw.githubusercontent.com/ArkSama/PS5-Lapy-JB-Daemon/main/lapy_jb_daemon.elf",
+        "description": "Daemon pour le jailbreak de Lapy",
+        "version": "v1.0.0",
+        "author": "ArkSama",
+        "category": "Ps5 File Explorer"
+    },
+    {
+        "name": "ps5-web-file-manager",
+        "filename": "web-file-mgr-v1.7.elf",
+        "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.7/web-file-mgr-v1.7.elf",
+        "description": "PS5 Web File Manager http://your-ps5-ip:8888.",
+        "version": "v1.7",
+        "author": "owendswang",
+        "category": "Ps5 File Explorer"
+    },
+    {
+        "name": "PS5-File-Explorer (file-explorer-core.elf)",
+        "filename": "file-explorer-core.elf",
+        "url": "https://github.com/juma-sayeh/PS5-File-Explorer/releases/download/file-explorer-v0.2.1/file-explorer-core.elf",
+        "description": "PS5 File Explorer http://your-ps5-ip:5905.",
+        "version": "file-explorer-v0.2.1",
+        "author": "juma-sayeh",
+        "category": "Ps5 File Explorer"
+    },
+    {
+        "name": "PS5-File-Explorer (file-explorer.elf)",
+        "filename": "file-explorer.elf",
+        "url": "https://github.com/juma-sayeh/PS5-File-Explorer/releases/download/file-explorer-v0.2.1/file-explorer.elf",
+        "description": "PS5 File Explorer http://your-ps5-ip:5905.",
+        "version": "file-explorer-v0.2.1",
+        "author": "juma-sayeh",
+        "category": "Ps5 File Explorer"
+    },
+    {
+        "name": "ps5debug-NG",
+        "filename": "ps5debug-NG_v1.3.0.elf",
+        "url": "https://github.com/OpenSourcereR-dev/ps5debug-NG/releases/download/1.3.0/ps5debug-NG_v1.3.0.elf",
+        "description": "Next generation debugger payload for PS5.",
+        "version": "1.3.0",
+        "author": "OpenSourcereR-dev",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "ps5-self-pager (ps5-self-pager-full-system.elf)",
+        "filename": "ps5-self-pager-full-system.elf",
+        "url": "https://github.com/idlesauce/ps5-self-pager/releases/download/v1.2/ps5-self-pager-full-system.elf",
+        "description": "SELF pager payload tool.",
+        "version": "v1.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "ps5-self-pager (ps5-self-pager-game.elf)",
+        "filename": "ps5-self-pager-game.elf",
+        "url": "https://github.com/idlesauce/ps5-self-pager/releases/download/v1.2/ps5-self-pager-game.elf",
+        "description": "SELF pager payload tool.",
+        "version": "v1.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "ps5-self-pager (ps5-self-pager-shellcore.elf)",
+        "filename": "ps5-self-pager-shellcore.elf",
+        "url": "https://github.com/idlesauce/ps5-self-pager/releases/download/v1.2/ps5-self-pager-shellcore.elf",
+        "description": "SELF pager payload tool.",
+        "version": "v1.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "ps5-self-pager (ps5-self-pager-system-common-lib.elf)",
+        "filename": "ps5-self-pager-system-common-lib.elf",
+        "url": "https://github.com/idlesauce/ps5-self-pager/releases/download/v1.2/ps5-self-pager-system-common-lib.elf",
+        "description": "SELF pager payload tool.",
+        "version": "v1.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "PS5-SELF-Decrypter (ps5-self-decrypter-full-system.elf)",
+        "filename": "ps5-self-decrypter-full-system.elf",
+        "url": "https://github.com/idlesauce/PS5-SELF-Decrypter/releases/download/v0.5.2/ps5-self-decrypter-full-system.elf",
+        "description": "SELF decrypter tool for PS5 binaries.",
+        "version": "v0.5.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "PS5-SELF-Decrypter (ps5-self-decrypter-game.elf)",
+        "filename": "ps5-self-decrypter-game.elf",
+        "url": "https://github.com/idlesauce/PS5-SELF-Decrypter/releases/download/v0.5.2/ps5-self-decrypter-game.elf",
+        "description": "SELF decrypter tool for PS5 binaries.",
+        "version": "v0.5.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "PS5-SELF-Decrypter (ps5-self-decrypter-shellcore.elf)",
+        "filename": "ps5-self-decrypter-shellcore.elf",
+        "url": "https://github.com/idlesauce/PS5-SELF-Decrypter/releases/download/v0.5.2/ps5-self-decrypter-shellcore.elf",
+        "description": "SELF decrypter tool for PS5 binaries.",
+        "version": "v0.5.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "PS5-SELF-Decrypter (ps5-self-decrypter-system-common-lib.elf)",
+        "filename": "ps5-self-decrypter-system-common-lib.elf",
+        "url": "https://github.com/idlesauce/PS5-SELF-Decrypter/releases/download/v0.5.2/ps5-self-decrypter-system-common-lib.elf",
+        "description": "SELF decrypter tool for PS5 binaries.",
+        "version": "v0.5.2",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "ps5-remoteplay-get-pin",
+        "filename": "rp-get-pin.elf",
+        "url": "https://github.com/idlesauce/ps5-remoteplay-get-pin/releases/download/v0.1.1/rp-get-pin.elf",
+        "description": "Utility to get Remote Play PIN.",
+        "version": "v0.1.1",
+        "author": "idlesauce",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "MemDBG (MemDBG-ps4.elf)",
+        "filename": "MemDBG-ps4.elf",
+        "url": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20260822-gc39ac30/MemDBG-ps4.elf",
+        "description": "Memory debugging and inspection suite.",
+        "version": "nightly-20260822-gc39ac30",
+        "author": "seregonwar",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "MemDBG (MemDBG-ps5.elf)",
+        "filename": "MemDBG-ps5.elf",
+        "url": "https://github.com/seregonwar/MemDBG/releases/download/nightly-20260822-gc39ac30/MemDBG-ps5.elf",
+        "description": "Memory debugging and inspection suite.",
+        "version": "nightly-20260822-gc39ac30",
+        "author": "seregonwar",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "ps5-hwinfo (hwinfo_bench.elf)",
+        "filename": "hwinfo_bench.elf",
+        "url": "https://github.com/drakmor/ps5-hwinfo/releases/download/0.1/hwinfo_bench.elf",
+        "description": "PS5 payload for collecting hardware and runtime telemetry.",
+        "version": "0.1",
+        "author": "drakmor",
+        "category": "Ps5 Sdk Debug"
+    },
+    {
+        "name": "ps5-hwinfo (hwinfo_sysinfo.elf)",
+        "filename": "hwinfo_sysinfo.elf",
+        "url": "https://github.com/drakmor/ps5-hwinfo/releases/download/0.1/hwinfo_sysinfo.elf",
+        "description": "PS5 payload for collecting hardware and runtime telemetry.",
+        "version": "0.1",
+        "author": "drakmor",
+        "category": "Ps5 Sdk Debug"
+    }
+]
