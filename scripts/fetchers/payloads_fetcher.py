@@ -57,29 +57,43 @@ def fetch_payloads_category(credits_set):
                 except Exception as e:
                     print(f"    ⚠️ Échec source fixe ({title}) : {e}")
 
-            # --- Release GitHub ---
+            # --- Release GitHub (Via API gh pour cibler les assets .elf/.bin) ---
             if not downloaded and "github.com" in xml_url:
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
                 if repo_match:
                     repo = repo_match.group(1).rstrip('/')
                     repo_lower = repo.lower()
                     try:
-                        res_tag = subprocess.check_output(f"gh release list --repo {repo} --limit 1 --json tagName --jq '.[0].tagName'", shell=True).decode().strip()
-                        if res_tag: 
-                            version = res_tag
-                        else:
-                            res_tag = subprocess.check_output(f"gh repo view {repo} --json latestRelease --jq '.latestRelease.tagName'", shell=True).decode().strip()
-                            if res_tag: version = res_tag
-                    except: pass
+                        # Récupérer la dernière release via l'API GitHub CLI
+                        release_json_str = subprocess.check_output(f"gh api repos/{repo}/releases/latest", shell=True).decode().strip()
+                        release_data = json.loads(release_json_str)
+                        
+                        if release_data:
+                            version = release_data.get('tag_name', 'v1.0.0')
+                            version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version)
+                            target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
+                            os.makedirs(target_dir, exist_ok=True)
 
-                    version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version)
-                    target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
-                    os.makedirs(target_dir, exist_ok=True)
-
-                    try:
-                        subprocess.call(f"gh release download '{version}' --repo '{repo}' --dir '{target_dir}' --clobber 2>/dev/null", shell=True)
-                        downloaded = True
-                    except: pass
+                            for asset in release_data.get('assets', []):
+                                asset_url = asset.get('browser_download_url', '')
+                                asset_name = asset.get('name', '')
+                                if asset_name.lower().endswith(('.elf', '.bin', '.ffpfsc')):
+                                    opener = urllib.request.build_opener()
+                                    opener.addheaders = [('User-Agent', 'Mozilla/5.0'), ('Accept', 'application/octet-stream')]
+                                    # Si un token GitHub est disponible dans l'environnement, on l'ajoute pour éviter les limites d'API
+                                    if os.environ.get('GITHUB_TOKEN'):
+                                        opener.addheaders.append(('Authorization', f"token {os.environ.get('GITHUB_TOKEN')}"))
+                                    urllib.request.install_opener(opener)
+                                    
+                                    urllib.request.urlretrieve(asset_url, os.path.join(target_dir, asset_name))
+                                    downloaded = True
+                    except Exception as e:
+                        # Fallback sur un téléchargement basique si l'API rate
+                        try:
+                            subprocess.call(f"gh release download --repo '{repo}' --dir '{target_dir}' --clobber 2>/dev/null", shell=True)
+                            if os.listdir(target_dir):
+                                downloaded = True
+                        except: pass
 
             # --- Release Forgejo / Gitea ---
             if not downloaded and ("git." in xml_url or "codeberg.org" in xml_url):
