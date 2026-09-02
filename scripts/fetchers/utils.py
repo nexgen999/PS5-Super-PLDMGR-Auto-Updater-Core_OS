@@ -103,7 +103,12 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
                 else:
                     api_url = f"{base_domain}/api/v1/repos/{repo_path}/releases"
 
-                req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
+                headers = {'User-Agent': 'Mozilla/5.0'}
+                # Injection du token Forgejo/Gitea s'il est présent dans les secrets
+                if "git.etawen.dev" in base_domain and os.environ.get('FORGEJO_TOKEN'):
+                    headers['Authorization'] = f"token {os.environ.get('FORGEJO_TOKEN')}"
+
+                req = urllib.request.Request(api_url, headers=headers)
                 with urllib.request.urlopen(req) as response:
                     releases = json.loads(response.read().decode('utf-8'))
                     if releases:
@@ -115,7 +120,9 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
                                 asset_url = asset.get('browser_download_url', asset.get('url', ''))
                                 local_path = os.path.join(temp_dir, asset_name)
                                 try:
-                                    urllib.request.urlretrieve(asset_url, local_path)
+                                    asset_req = urllib.request.Request(asset_url, headers=headers)
+                                    with urllib.request.urlopen(asset_req) as resp_asset, open(local_path, 'wb') as f_out:
+                                        f_out.write(resp_asset.read())
                                 except Exception as dl_err:
                                     print(f"    ⚠️ Erreur téléchargement asset Forgejo ({asset_name}): {dl_err}")
                                     continue
@@ -131,7 +138,7 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
                                 })
         except urllib.error.HTTPError as e:
             if e.code == 401:
-                print(f"    🔒 Accès non autorisé (401) sur l'instance privée/protégée : {xml_url}")
+                print(f"    🔒 Accès non autorisé (401) sur l'instance : {xml_url}. Pense à configurer le secret FORGEJO_TOKEN.")
             else:
                 print(f"    ⚠️ Erreur HTTP {e.code} pour {xml_url}")
         except Exception as e:
