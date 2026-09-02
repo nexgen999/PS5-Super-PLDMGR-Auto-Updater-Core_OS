@@ -1,16 +1,10 @@
 # scripts/generate_web.py
-
 import os
-import json
-from scripts.config_rules import PATHS, BASE_URL
+from scripts.config_rules import BASE_URL
 
 def generate_index_html(data_store):
-    """
-    Génère la page index.html principale du store à partir des données collectées.
-    """
     index_path = "index.html"
     
-    # Construction d'un contenu HTML propre et fonctionnel pour le store
     html_content = f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,7 +19,6 @@ def generate_index_html(data_store):
         ul {{ line-height: 1.8; }}
         a {{ color: #38bdf8; text-decoration: none; }}
         a:hover {{ text-decoration: underline; }}
-        .badge {{ background: #334155; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; }}
     </style>
 </head>
 <body>
@@ -59,5 +52,4 @@ def generate_index_html(data_store):
 
     print("✅ Génération de la page index.html terminée.")
 
-# Alias indispensable pour l'appel depuis update_store.py
 build_index_html = generate_index_html
