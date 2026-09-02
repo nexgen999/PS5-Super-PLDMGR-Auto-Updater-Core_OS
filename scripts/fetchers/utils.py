@@ -119,12 +119,13 @@ def fetch_repository_assets(xml_url, title, description, author, temp_dir, allow
 
     return assets_collected
 
-# Alias pour compatibilité avec pkg_fetcher.py et autres scripts
+# Alias pour compatibilité
 fetch_assets_from_url = fetch_repository_assets
 
 def parse_opml_file(opml_path):
     """
-    Lit un fichier OPML et extrait la liste des flux/dépôts avec leurs métadonnées.
+    Lit un fichier OPML et extrait la liste des flux/dépôts avec toutes les clés 
+    nécessaires pour éviter les KeyError ('xml_url', 'url', etc.).
     """
     feeds = []
     try:
@@ -133,15 +134,22 @@ def parse_opml_file(opml_path):
         for outline in root.findall('.//outline'):
             xml_url = outline.get('xmlUrl') or outline.get('url')
             if xml_url:
+                title = outline.get('text') or outline.get('title') or "Inconnu"
+                description = outline.get('description', '')
+                author = outline.get('ownerName', '')
+                
                 feeds.append({
-                    "title": outline.get('text') or outline.get('title') or "Inconnu",
+                    "title": title,
+                    "text": title,
                     "xmlUrl": xml_url,
-                    "description": outline.get('description', ''),
-                    "author": outline.get('ownerName', '')
+                    "url": xml_url,
+                    "description": description,
+                    "author": author,
+                    "ownerName": author
                 })
     except Exception as e:
         print(f"⚠️ Erreur lors de la lecture de l'OPML {opml_path}: {e}")
     return feeds
 
-# Alias pour éviter toute future erreur d'importation croisée
+# Alias rétrocompatible
 parse_opml_feeds = parse_opml_file
