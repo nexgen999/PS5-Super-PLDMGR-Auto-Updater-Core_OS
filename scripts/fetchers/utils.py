@@ -119,10 +119,12 @@ def fetch_repository_assets(xml_url, title, description, author, temp_dir, allow
 
     return assets_collected
 
+# Alias pour compatibilité avec pkg_fetcher.py et autres scripts
+fetch_assets_from_url = fetch_repository_assets
+
 def parse_opml_file(opml_path):
     """
     Lit un fichier OPML et extrait la liste des flux/dépôts avec leurs métadonnées.
-    (Alias inclus pour assurer la compatibilité avec parse_opml_feeds)
     """
     feeds = []
     try:
