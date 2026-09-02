@@ -91,32 +91,49 @@ def fetch_payloads_category(credits_set):
                         except Exception as sub_e:
                             print(f"    ⚠️ Échec fallback gh release download pour {repo}: {sub_e}")
 
-            if not downloaded and ("git." in xml_url or "codeberg.org" in xml_url):
+            if not downloaded and any(domain in xml_url for domain in ["git.", "codeberg.org", "gitlab.com", "gitea"]):
                 try:
                     api_match = re.search(r'(https?://[^/]+)/([^/]+/[^/]+)', xml_url)
                     if api_match:
                         base_domain = api_match.group(1)
                         repo_path = api_match.group(2).rstrip('/')
-                        api_url = f"{base_domain}/api/v1/repos/{repo_path}/releases"
-                        req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
+                        
+                        if "gitlab" in base_domain:
+                            api_url = f"{base_domain}/api/v4/projects/{urllib.parse.quote(repo_path, safe='')}/releases"
+                        else:
+                            api_url = f"{base_domain}/api/v1/repos/{repo_path}/releases"
+
+                        headers = {'User-Agent': 'Mozilla/5.0'}
+                        if "git.etawen.dev" in base_domain and os.environ.get('FORGEJO_TOKEN'):
+                            headers['Authorization'] = f"token {os.environ.get('FORGEJO_TOKEN')}"
+
+                        req = urllib.request.Request(api_url, headers=headers)
                         with urllib.request.urlopen(req) as response:
-                            releases_data = json.loads(response.read().decode('utf-8'))
-                            if releases_data:
-                                latest_release = releases_data[0]
-                                version = latest_release.get('tag_name', 'v1.0.0')
+                            releases = json.loads(response.read().decode('utf-8'))
+                            if releases:
+                                latest = releases[0]
+                                version = latest.get('tag_name', latest.get('tagName', 'v1.0.0'))
                                 version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version)
                                 target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
                                 os.makedirs(target_dir, exist_ok=True)
                                 
-                                for asset in latest_release.get('assets', []):
-                                    asset_url = asset.get('browser_download_url', '')
+                                for asset in latest.get('assets', []):
                                     asset_name = asset.get('name', '')
                                     if asset_name.lower().endswith(('.elf', '.bin', '.ffpfsc')):
-                                        urllib.request.urlretrieve(asset_url, os.path.join(target_dir, asset_name))
+                                        asset_url = asset.get('browser_download_url', asset.get('url', ''))
+                                        local_path = os.path.join(target_dir, asset_name)
+                                        
+                                        asset_req = urllib.request.Request(asset_url, headers=headers)
+                                        with urllib.request.urlopen(asset_req) as resp_asset, open(local_path, 'wb') as f_out:
+                                            f_out.write(resp_asset.read())
                                         downloaded = True
-                                        break
+                except urllib.error.HTTPError as e:
+                    if e.code == 401:
+                        print(f"    🔒 Accès non autorisé (401) sur l'instance : {xml_url}. Pense à configurer le secret FORGEJO_TOKEN.")
+                    else:
+                        print(f"    ⚠️ Erreur HTTP {e.code} pour {xml_url}")
                 except Exception as e:
-                    print(f"    ⚠️ Erreur Forgejo/Gitea pour {xml_url} : {e}")
+                    print(f"    ⚠️ Erreur connexion Forgejo/Git pour {xml_url}: {e}")
 
             version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version) if version != "Source-Fixe" else "Source-Fixe"
             target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
