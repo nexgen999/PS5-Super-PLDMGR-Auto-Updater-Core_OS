@@ -1,7 +1,11 @@
 <?xml version="1.0" ?>
 <opml version="2.0">
   <head>
-    <title>PS5 Store Feeds - FFPFSC</title>
+    <title>PS5 Store Feeds - Fichiers FFPFSC</title>
   </head>
-  <body/>
+  <body>
+    <outline text="ProsperoLight (PPSA99002.ffpfsc)" title="ProsperoLight (PPSA99002.ffpfsc)" type="rss" xmlUrl="https://github.com/blackbearreloaded/ProsperoLight/releases/download/01.000.055/PPSA99002.ffpfsc" description="PS5 Moonlight"/>
+    <outline text="ProsperoRadio (PPSA99001.ffpfsc)" title="ProsperoRadio (PPSA99001.ffpfsc)" type="rss" xmlUrl="https://github.com/blackbearreloaded/ProsperoRadio/releases/download/01.000.005/PPSA99001.ffpfsc" description="PS5 Radio Player"/>
+    <outline text="ProsperoTV (PPSA99003.ffpfsc)" title="ProsperoTV (PPSA99003.ffpfsc)" type="rss" xmlUrl="https://github.com/blackbearreloaded/ProsperoTV/releases/download/01.000.002/PPSA99003.ffpfsc" description="PS5 IPTV"/>
+  </body>
 </opml>

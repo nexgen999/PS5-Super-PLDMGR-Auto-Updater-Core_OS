@@ -1,8 +1,26 @@
 <?xml version="1.0" ?>
 <rss version="2.0">
   <channel>
-    <title>PS5 Store AIO - FFPFSC</title>
+    <title>PS5 Store AIO - Fichiers FFPFSC</title>
     <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS</link>
-    <description>Mises à jour automatiques pour la catégorie FFPFSC</description>
+    <description>Mises à jour automatiques pour la catégorie Fichiers FFPFSC</description>
+    <item>
+      <title>ProsperoLight (PPSA99002.ffpfsc)</title>
+      <link>https://github.com/blackbearreloaded/ProsperoLight/releases/download/01.000.055/PPSA99002.ffpfsc</link>
+      <description>PS5 Moonlight</description>
+      <pubDate>01.000.055</pubDate>
+    </item>
+    <item>
+      <title>ProsperoRadio (PPSA99001.ffpfsc)</title>
+      <link>https://github.com/blackbearreloaded/ProsperoRadio/releases/download/01.000.005/PPSA99001.ffpfsc</link>
+      <description>PS5 Radio Player</description>
+      <pubDate>01.000.005</pubDate>
+    </item>
+    <item>
+      <title>ProsperoTV (PPSA99003.ffpfsc)</title>
+      <link>https://github.com/blackbearreloaded/ProsperoTV/releases/download/01.000.002/PPSA99003.ffpfsc</link>
+      <description>PS5 IPTV</description>
+      <pubDate>01.000.002</pubDate>
+    </item>
   </channel>
 </rss>

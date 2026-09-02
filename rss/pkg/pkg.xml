@@ -1,8 +1,68 @@
 <?xml version="1.0" ?>
 <rss version="2.0">
   <channel>
-    <title>PS5 Store AIO - PKG</title>
+    <title>PS5 Store AIO - Packages PKG</title>
     <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS</link>
-    <description>Mises à jour automatiques pour la catégorie PKG</description>
+    <description>Mises à jour automatiques pour la catégorie Packages PKG</description>
+    <item>
+      <title>Avatar-Changer</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Avatar-Changer_v1.00.pkg</link>
+      <description>Avatar-Changer.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>FPKGi</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_FPKGi_v1.10.0.pkg</link>
+      <description>FPKGi.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>HOMEBREWLOADER</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_HOMEBREWLOADER_v0.30.pkg</link>
+      <description>HOMEBREWLOADER.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>Homebrew_Store_installer</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Homebrew_Store_installer.pkg</link>
+      <description>Homebrew_Store.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>InternetBrowser-Game_Menu</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_InternetBrowser-Game_Menu_v1.00.pkg</link>
+      <description>InternetBrowser-Game_Menu.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>InternetBrowser-Media_Menu</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_InternetBrowser-Media_Menu_v1.00.pkg</link>
+      <description>InternetBrowser-Media_Menu.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>PS5-SHOP-APPKG</title>
+      <link>https://github.com/ps5xploit/ps5shopappkg/releases/download/ps5shopappkg/PS5-SHOP-APPKG.pkg</link>
+      <description>PS5-SHOP-APPKG need etahen or ps5shopappkg-dpi .</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>Itemzflow_Game_Manager</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Itemzflow_Game_Manager_v1.14.pkg</link>
+      <description>Itemzflow_Game_Manager.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>PS5-Xplorer</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_PS5-Xplorer_v1.05.pkg</link>
+      <description>PS5-Xplorer.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
+    <item>
+      <title>PS5Webit-Nexgen999_Installer</title>
+      <link>https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_PS5Webit-Nexgen999_Installer_v1.00.pkg</link>
+      <description>PS5Webit-Nexgen999_Installer.</description>
+      <pubDate>v1.0.0</pubDate>
+    </item>
   </channel>
 </rss>

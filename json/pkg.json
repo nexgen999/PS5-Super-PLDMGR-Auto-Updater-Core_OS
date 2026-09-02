@@ -1,92 +1,95 @@
-[
-    {
-        "name": "Avatar-Changer",
-        "filename": "PS5PKG_Avatar-Changer_v1.00.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Avatar-Changer_v1.00.pkg",
-        "description": "Avatar-Changer.",
-        "version": "v1.0.0",
-        "author": "Lapy",
-        "category": "PKG"
-    },
-    {
-        "name": "FPKGi",
-        "filename": "PS5PKG_FPKGi_v1.10.0.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_FPKGi_v1.10.0.pkg",
-        "description": "FPKGi.",
-        "version": "v1.0.0",
-        "author": "ItsJokerZz",
-        "category": "PKG"
-    },
-    {
-        "name": "HOMEBREWLOADER",
-        "filename": "PS5PKG_HOMEBREWLOADER_v0.30.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_HOMEBREWLOADER_v0.30.pkg",
-        "description": "HOMEBREWLOADER.",
-        "version": "v1.0.0",
-        "author": "ps5-payload-dev",
-        "category": "PKG"
-    },
-    {
-        "name": "Homebrew_Store_installer",
-        "filename": "PS5PKG_Homebrew_Store_installer.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Homebrew_Store_installer.pkg",
-        "description": "Homebrew_Store.",
-        "version": "v1.0.0",
-        "author": "pkg-zone",
-        "category": "PKG"
-    },
-    {
-        "name": "InternetBrowser-Game_Menu",
-        "filename": "PS5PKG_InternetBrowser-Game_Menu_v1.00.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_InternetBrowser-Game_Menu_v1.00.pkg",
-        "description": "InternetBrowser-Game_Menu.",
-        "version": "v1.0.0",
-        "author": "ps5xploit",
-        "category": "PKG"
-    },
-    {
-        "name": "InternetBrowser-Media_Menu",
-        "filename": "PS5PKG_InternetBrowser-Media_Menu_v1.00.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_InternetBrowser-Media_Menu_v1.00.pkg",
-        "description": "InternetBrowser-Media_Menu.",
-        "version": "v1.0.0",
-        "author": "ps5xploit",
-        "category": "PKG"
-    },
-    {
-        "name": "PS5-SHOP-APPKG",
-        "filename": "PS5-SHOP-APPKG.pkg",
-        "url": "https://github.com/ps5xploit/ps5shopappkg/releases/download/ps5shopappkg/PS5-SHOP-APPKG.pkg",
-        "description": "PS5-SHOP-APPKG need etahen or ps5shopappkg-dpi .",
-        "version": "v1.0.0",
-        "author": "ps5xploit",
-        "category": "PKG"
-    },
-    {
-        "name": "Itemzflow_Game_Manager",
-        "filename": "PS5PKG_Itemzflow_Game_Manager_v1.14.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Itemzflow_Game_Manager_v1.14.pkg",
-        "description": "Itemzflow_Game_Manager.",
-        "version": "v1.0.0",
-        "author": "Itemzflow",
-        "category": "PKG"
-    },
-    {
-        "name": "PS5-Xplorer",
-        "filename": "PS5PKG_PS5-Xplorer_v1.05.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_PS5-Xplorer_v1.05.pkg",
-        "description": "PS5-Xplorer.",
-        "version": "v1.0.0",
-        "author": "Lapy",
-        "category": "PKG"
-    },
-    {
-        "name": "PS5Webit-Nexgen999_Installer",
-        "filename": "PS5PKG_PS5Webit-Nexgen999_Installer_v1.00.pkg",
-        "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_PS5Webit-Nexgen999_Installer_v1.00.pkg",
-        "description": "PS5Webit-Nexgen999_Installer.",
-        "version": "v1.0.0",
-        "author": "Master0",
-        "category": "PKG"
-    }
-]
+{
+    "name": "AIO Store PKG",
+    "packages": [
+        {
+            "name": "Avatar-Changer",
+            "filename": "PS5PKG_Avatar-Changer_v1.00.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Avatar-Changer_v1.00.pkg",
+            "description": "Avatar-Changer.",
+            "version": "v1.0.0",
+            "author": "Lapy",
+            "category": "PKG"
+        },
+        {
+            "name": "FPKGi",
+            "filename": "PS5PKG_FPKGi_v1.10.0.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_FPKGi_v1.10.0.pkg",
+            "description": "FPKGi.",
+            "version": "v1.0.0",
+            "author": "ItsJokerZz",
+            "category": "PKG"
+        },
+        {
+            "name": "HOMEBREWLOADER",
+            "filename": "PS5PKG_HOMEBREWLOADER_v0.30.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_HOMEBREWLOADER_v0.30.pkg",
+            "description": "HOMEBREWLOADER.",
+            "version": "v1.0.0",
+            "author": "ps5-payload-dev",
+            "category": "PKG"
+        },
+        {
+            "name": "Homebrew_Store_installer",
+            "filename": "PS5PKG_Homebrew_Store_installer.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Homebrew_Store_installer.pkg",
+            "description": "Homebrew_Store.",
+            "version": "v1.0.0",
+            "author": "pkg-zone",
+            "category": "PKG"
+        },
+        {
+            "name": "InternetBrowser-Game_Menu",
+            "filename": "PS5PKG_InternetBrowser-Game_Menu_v1.00.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_InternetBrowser-Game_Menu_v1.00.pkg",
+            "description": "InternetBrowser-Game_Menu.",
+            "version": "v1.0.0",
+            "author": "ps5xploit",
+            "category": "PKG"
+        },
+        {
+            "name": "InternetBrowser-Media_Menu",
+            "filename": "PS5PKG_InternetBrowser-Media_Menu_v1.00.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_InternetBrowser-Media_Menu_v1.00.pkg",
+            "description": "InternetBrowser-Media_Menu.",
+            "version": "v1.0.0",
+            "author": "ps5xploit",
+            "category": "PKG"
+        },
+        {
+            "name": "PS5-SHOP-APPKG",
+            "filename": "PS5-SHOP-APPKG.pkg",
+            "url": "https://github.com/ps5xploit/ps5shopappkg/releases/download/ps5shopappkg/PS5-SHOP-APPKG.pkg",
+            "description": "PS5-SHOP-APPKG need etahen or ps5shopappkg-dpi .",
+            "version": "v1.0.0",
+            "author": "ps5xploit",
+            "category": "PKG"
+        },
+        {
+            "name": "Itemzflow_Game_Manager",
+            "filename": "PS5PKG_Itemzflow_Game_Manager_v1.14.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_Itemzflow_Game_Manager_v1.14.pkg",
+            "description": "Itemzflow_Game_Manager.",
+            "version": "v1.0.0",
+            "author": "Itemzflow",
+            "category": "PKG"
+        },
+        {
+            "name": "PS5-Xplorer",
+            "filename": "PS5PKG_PS5-Xplorer_v1.05.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_PS5-Xplorer_v1.05.pkg",
+            "description": "PS5-Xplorer.",
+            "version": "v1.0.0",
+            "author": "Lapy",
+            "category": "PKG"
+        },
+        {
+            "name": "PS5Webit-Nexgen999_Installer",
+            "filename": "PS5PKG_PS5Webit-Nexgen999_Installer_v1.00.pkg",
+            "url": "https://github.com/nexgen999/Evox_PS5PKG_Private/releases/download/v1.0/PS5PKG_PS5Webit-Nexgen999_Installer_v1.00.pkg",
+            "description": "PS5Webit-Nexgen999_Installer.",
+            "version": "v1.0.0",
+            "author": "Master0",
+            "category": "PKG"
+        }
+    ]
+}
