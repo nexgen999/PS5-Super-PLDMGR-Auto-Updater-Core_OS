@@ -2,11 +2,12 @@
 import os
 
 # --- Configuration Générale ---
-GITHUB_REPO_ENV = os.environ.get('GITHUB_REPOSITORY', 'nexgen999/evox-w2jb')
+# Récupération dynamique depuis l'environnement GitHub Actions, avec un repli neutre/générique si exécuté en local
+GITHUB_REPO_ENV = os.environ.get('GITHUB_REPOSITORY', 'username/repository')
 if '/' in GITHUB_REPO_ENV:
     GITHUB_USER, REPO_NAME = GITHUB_REPO_ENV.split('/', 1)
 else:
-    GITHUB_USER, REPO_NAME = 'nexgen999', GITHUB_REPO_ENV
+    GITHUB_USER, REPO_NAME = 'username', GITHUB_REPO_ENV
 
 BASE_URL = f"https://{GITHUB_USER}.github.io/{REPO_NAME}"
 
@@ -16,7 +17,7 @@ PATHS = {
     "json_dir": "json",
     "payloads_dir": "payloads",
     "rss_dir": "rss",
-    "archives_dir": "archives", # Ajout du dossier d'archives pour les releases
+    "archives_dir": "archives",
     "categories": {
         "payloads": {"feed": "feed/payloads", "json": "json/payloads", "root": "payloads"},
         "pkg": {"feed": "feed/pkg", "json": "json/pkg"},
