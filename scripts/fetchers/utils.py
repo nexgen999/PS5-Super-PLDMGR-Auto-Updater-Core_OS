@@ -8,7 +8,6 @@ import subprocess
 from scripts.config_rules import PATHS
 
 def parse_opml_file(opml_path):
-    """Lit un fichier OPML et retourne la liste des entrées."""
     items = []
     if not os.path.exists(opml_path):
         return items
@@ -25,7 +24,6 @@ def parse_opml_file(opml_path):
     return items
 
 def fetch_assets_from_url(xml_url, title, description, author, allowed_extensions, category_folder="downloads"):
-    """Récupère les assets compatibles pour une URL donnée (Fixe, GitHub, GitLab, Gitea, Forgejo) et les télécharge temporairement."""
     assets_collected = []
     clean_url = xml_url.split('?')[0].lower()
     version = "v1.0.0"
@@ -33,7 +31,6 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
     temp_dir = os.path.join(PATHS.get("archives_dir", "archives"), "temp_" + category_folder)
     os.makedirs(temp_dir, exist_ok=True)
 
-    # 1. URL Fixe directe
     if clean_url.endswith(allowed_extensions):
         try:
             f_name = xml_url.split('/')[-1].split('?')[0]
@@ -56,7 +53,6 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
             print(f"    ⚠️ Erreur URL fixe ({title}): {e}")
         return assets_collected
 
-    # 2. GitHub Repository
     if "github.com" in xml_url:
         repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
         if repo_match:
@@ -95,7 +91,6 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
             except Exception as e:
                 print(f"    ⚠️ Erreur API GitHub pour {repo}: {e}")
 
-    # 3. GitLab / Gitea / Forgejo / Instances autohébergées
     elif any(domain in xml_url for domain in ["git.", "codeberg.org", "gitlab.com", "gitea"]):
         try:
             api_match = re.search(r'(https?://[^/]+)/([^/]+/[^/]+)', xml_url)
@@ -134,8 +129,11 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
                                     "version": version,
                                     "author": author
                                 })
-                    else:
-                        print(f"    ℹ️ Aucune release trouvée pour l'API Forgejo/Gitea : {api_url}")
+        except urllib.error.HTTPError as e:
+            if e.code == 401:
+                print(f"    🔒 Accès non autorisé (401) sur l'instance privée/protégée : {xml_url}")
+            else:
+                print(f"    ⚠️ Erreur HTTP {e.code} pour {xml_url}")
         except Exception as e:
             print(f"    ⚠️ Erreur connexion Forgejo/Git pour {xml_url}: {e}")
 
