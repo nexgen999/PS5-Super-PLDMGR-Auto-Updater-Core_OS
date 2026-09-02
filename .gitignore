@@ -1,0 +1,16 @@
+# Archives et gros paquets AIO (gérés par les Releases GitHub)
+archives/
+
+# Dossiers système et environnements virtuels Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Fichiers de configuration éditeurs et OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
