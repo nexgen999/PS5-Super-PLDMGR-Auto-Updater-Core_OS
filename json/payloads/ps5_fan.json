@@ -5,6 +5,7 @@
       "name": "ps5-fan-control",
       "filename": "ps5-fan-control_v0.3.elf",
       "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_fan/ps5-fan-control/v0.3/ps5-fan-control_v0.3.elf",
+      "local_path": "payloads/ps5_fan/ps5-fan-control/v0.3/ps5-fan-control_v0.3.elf",
       "description": "Small PS5 daemon payload ELF that sets the system fan temperature.",
       "version": "v0.3",
       "category": "PS5 Fan",
