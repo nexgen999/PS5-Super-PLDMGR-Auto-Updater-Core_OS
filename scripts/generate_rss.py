@@ -4,14 +4,20 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from scripts.config_rules import PATHS, BASE_URL
 
-def generate_feeds_by_category(all_categories_data):
+def build_rss_feed(data_store):
     """Génère les flux RSS et OPML globaux et par catégorie."""
     rss_dir = "rss"
     os.makedirs(rss_dir, exist_ok=True)
 
-    global_rss_items = []
+    global_rss_root = ET.Element("rss", version="2.0")
+    global_channel = ET.SubElement(global_rss_root, "channel")
+    ET.SubElement(global_channel, "title").text = "PS5 Store AIO - Global Feed"
+    ET.SubElement(global_channel, "link").text = BASE_URL
+    ET.SubElement(global_channel, "description").text = "Flux RSS global de toutes les mises à jour du store PS5"
 
-    for cat_key, cat_info in all_categories_data.items():
+    for cat_key, cat_info in data_store.items():
+        if not isinstance(cat_info, dict):
+            continue
         cat_name = cat_info.get("name", cat_key.upper())
         items = cat_info.get("items", [])
 
@@ -29,14 +35,19 @@ def generate_feeds_by_category(all_categories_data):
         opml_body = ET.SubElement(opml_root, "body")
 
         for item in items:
-            # Ajout RSS
+            # Ajout RSS Catégorie
             item_elem = ET.SubElement(channel, "item")
             ET.SubElement(item_elem, "title").text = item.get("name")
             ET.SubElement(item_elem, "link").text = item.get("url")
             ET.SubElement(item_elem, "description").text = item.get("description")
             ET.SubElement(item_elem, "pubDate").text = item.get("version", "v1.0.0")
 
-            global_rss_items.append(item_elem)
+            # Ajout doublon dans le flux RSS Global
+            g_item = ET.SubElement(global_channel, "item")
+            ET.SubElement(g_item, "title").text = f"[{cat_name}] {item.get('name')}"
+            ET.SubElement(g_item, "link").text = item.get("url")
+            ET.SubElement(g_item, "description").text = item.get("description")
+            ET.SubElement(g_item, "pubDate").text = item.get("version", "v1.0.0")
 
             # Ajout OPML
             ET.SubElement(opml_body, "outline", {
@@ -47,11 +58,17 @@ def generate_feeds_by_category(all_categories_data):
                 "description": item.get("description", "")
             })
 
-        # Sauvegarde fichiers de la catégorie
+        # Sauvegarde XML de la catégorie
         xml_str = minidom.parseString(ET.tostring(rss_root)).toprettyxml(indent="  ")
         with open(os.path.join(rss_dir, f"{cat_key}.xml"), "w", encoding="utf-8") as f:
             f.write(xml_str)
 
+        # Sauvegarde OPML de la catégorie
         opml_str = minidom.parseString(ET.tostring(opml_root)).toprettyxml(indent="  ")
         with open(os.path.join(rss_dir, f"{cat_key}.opml"), "w", encoding="utf-8") as f:
             f.write(opml_str)
+
+    # Sauvegarde du flux RSS Global (feed.xml)
+    global_xml_str = minidom.parseString(ET.tostring(global_rss_root)).toprettyxml(indent="  ")
+    with open(os.path.join(rss_dir, "feed.xml"), "w", encoding="utf-8") as f:
+        f.write(global_xml_str)
