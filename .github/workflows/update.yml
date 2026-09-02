@@ -82,9 +82,10 @@ jobs:
             echo "⚠️ Aucun fichier horodaté trouvé pour la release $TAG."
           fi
 
-          # 2. Gestion de la release 'latest' (fichiers permanents)
+          # 2. Gestion propre de la release 'latest' (fichiers permanents)
           gh release delete latest --yes || true
-          git push origin :refs/tags/latest || true
+          git push origin --delete latest 2>/dev/null || true
+          git tag -d latest 2>/dev/null || true
           
           files_latest=$(ls archives/*_latest.zip 2>/dev/null || true)
           if [ -n "$files_latest" ]; then
