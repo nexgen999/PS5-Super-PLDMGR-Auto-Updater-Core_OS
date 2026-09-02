@@ -57,14 +57,13 @@ def fetch_payloads_category(credits_set):
                 except Exception as e:
                     print(f"    ⚠️ Échec source fixe ({title}) : {e}")
 
-            # --- Release GitHub (Via API gh pour cibler les assets .elf/.bin) ---
+            # --- Release GitHub ---
             if not downloaded and "github.com" in xml_url:
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
                 if repo_match:
                     repo = repo_match.group(1).rstrip('/')
                     repo_lower = repo.lower()
                     try:
-                        # Récupérer la dernière release via l'API GitHub CLI
                         release_json_str = subprocess.check_output(f"gh api repos/{repo}/releases/latest", shell=True).decode().strip()
                         release_data = json.loads(release_json_str)
                         
@@ -80,20 +79,20 @@ def fetch_payloads_category(credits_set):
                                 if asset_name.lower().endswith(('.elf', '.bin', '.ffpfsc')):
                                     opener = urllib.request.build_opener()
                                     opener.addheaders = [('User-Agent', 'Mozilla/5.0'), ('Accept', 'application/octet-stream')]
-                                    # Si un token GitHub est disponible dans l'environnement, on l'ajoute pour éviter les limites d'API
                                     if os.environ.get('GITHUB_TOKEN'):
                                         opener.addheaders.append(('Authorization', f"token {os.environ.get('GITHUB_TOKEN')}"))
                                     urllib.request.install_opener(opener)
-                                    
                                     urllib.request.urlretrieve(asset_url, os.path.join(target_dir, asset_name))
                                     downloaded = True
                     except Exception as e:
-                        # Fallback sur un téléchargement basique si l'API rate
                         try:
+                            target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), "v1.0.0")
+                            os.makedirs(target_dir, exist_ok=True)
                             subprocess.call(f"gh release download --repo '{repo}' --dir '{target_dir}' --clobber 2>/dev/null", shell=True)
                             if os.listdir(target_dir):
                                 downloaded = True
-                        except: pass
+                        except Exception as sub_e:
+                            print(f"    ⚠️ Échec fallback gh release download pour {repo}: {sub_e}")
 
             # --- Release Forgejo / Gitea ---
             if not downloaded and ("git." in xml_url or "codeberg.org" in xml_url):
@@ -120,7 +119,8 @@ def fetch_payloads_category(credits_set):
                                         urllib.request.urlretrieve(asset_url, os.path.join(target_dir, asset_name))
                                         downloaded = True
                                         break
-                except: pass
+                except Exception as e:
+                    print(f"    ⚠️ Erreur Forgejo/Gitea pour {xml_url} : {e}")
 
             # --- Traitement, Nettoyage & Construction du résultat ---
             version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version) if version != "Source-Fixe" else "Source-Fixe"
@@ -145,6 +145,7 @@ def fetch_payloads_category(credits_set):
                     "name": display_name,
                     "filename": main_file,
                     "url": f"{BASE_URL}/{target_dir.replace(os.sep, '/')}/{main_file}",
+                    "local_path": full_path,  # Indispensable pour l'archivage ZIP
                     "description": description if description else f"Payload {display_name} pour PS5",
                     "version": version,
                     "category": cat_display,
