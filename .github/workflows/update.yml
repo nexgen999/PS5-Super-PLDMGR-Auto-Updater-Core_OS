@@ -58,7 +58,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add -A
+          git add json/ payloads/ rss/ index.html README.md release_notes.md scripts/ feed/ 2>/dev/null || true
           git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web [skip ci]" && git push)
 
       - name: 9. Publication des archives ZIP dans les Releases GitHub
