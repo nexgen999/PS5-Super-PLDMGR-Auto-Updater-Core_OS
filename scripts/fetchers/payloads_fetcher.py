@@ -1,4 +1,3 @@
-# scripts/fetchers/payloads_fetcher.py
 import os
 import re
 import json
@@ -91,23 +90,18 @@ def fetch_payloads_category(credits_set):
                         except Exception as sub_e:
                             print(f"    ⚠️ Échec fallback gh release download pour {repo}: {sub_e}")
 
+            # --- GESTION FORGEJO / GITEA / GIT SANS TOKEN (VIA SCRAPING DES RELEASES) ---
             if not downloaded and any(domain in xml_url for domain in ["git.", "codeberg.org", "gitlab.com", "gitea"]):
                 try:
+                    # 1. On essaie d'abord l'API publique au cas où elle répond
                     api_match = re.search(r'(https?://[^/]+)/([^/]+/[^/]+)', xml_url)
+                    api_success = False
                     if api_match:
                         base_domain = api_match.group(1)
                         repo_path = api_match.group(2).rstrip('/')
-                        
-                        if "gitlab" in base_domain:
-                            api_url = f"{base_domain}/api/v4/projects/{urllib.parse.quote(repo_path, safe='')}/releases"
-                        else:
-                            api_url = f"{base_domain}/api/v1/repos/{repo_path}/releases"
+                        api_url = f"{base_domain}/api/v1/repos/{repo_path}/releases"
 
-                        headers = {'User-Agent': 'Mozilla/5.0'}
-                        if "git.etawen.dev" in base_domain and os.environ.get('FORGEJO_TOKEN'):
-                            headers['Authorization'] = f"token {os.environ.get('FORGEJO_TOKEN')}"
-
-                        req = urllib.request.Request(api_url, headers=headers)
+                        req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
                         with urllib.request.urlopen(req) as response:
                             releases = json.loads(response.read().decode('utf-8'))
                             if releases:
@@ -123,17 +117,58 @@ def fetch_payloads_category(credits_set):
                                         asset_url = asset.get('browser_download_url', asset.get('url', ''))
                                         local_path = os.path.join(target_dir, asset_name)
                                         
-                                        asset_req = urllib.request.Request(asset_url, headers=headers)
+                                        asset_req = urllib.request.Request(asset_url, headers={'User-Agent': 'Mozilla/5.0'})
                                         with urllib.request.urlopen(asset_req) as resp_asset, open(local_path, 'wb') as f_out:
                                             f_out.write(resp_asset.read())
                                         downloaded = True
-                except urllib.error.HTTPError as e:
-                    if e.code == 401:
-                        print(f"    🔒 Accès non autorisé (401) sur l'instance : {xml_url}. Pense à configurer le secret FORGEJO_TOKEN.")
-                    else:
-                        print(f"    ⚠️ Erreur HTTP {e.code} pour {xml_url}")
+                                        api_success = True
+                    
+                    # 2. Si l'API échoue (401/403/404), on passe directement par l'analyse de la page HTML des releases
+                    if not api_success:
+                        html_releases_url = f"{xml_url.rstrip('/')}/releases"
+                        req_html = urllib.request.Request(html_releases_url, headers={'User-Agent': 'Mozilla/5.0'})
+                        with urllib.request.urlopen(req_html) as resp_html:
+                            html_content = resp_html.read().decode('utf-8', errors='ignore')
+                            
+                            # Recherche des liens directs vers les binaires (.elf, .bin, .ffpfsc)
+                            direct_links = re.findall(r'href="([^"]+\.(?:elf|bin|ffpfsc))"', html_content, re.IGNORECASE)
+                            if direct_links:
+                                # Filtrer pour prendre le premier lien pertinent de téléchargement
+                                direct_url = None
+                                for link in direct_links:
+                                    if "releases/download" in link:
+                                        direct_url = link
+                                        break
+                                if not direct_url:
+                                    direct_url = direct_links[0]
+
+                                if not direct_url.startswith('http'):
+                                    base_uri = re.match(r'(https?://[^/]+)', xml_url).group(1)
+                                    direct_url = base_uri + direct_url
+                                
+                                f_name = direct_url.split('/')[-1].split('?')[0]
+                                
+                                # Extraire la version de l'URL si possible (ex: /v1.13/)
+                                ver_match = re.search(r'/releases/download/([^/]+)/', direct_url)
+                                version = ver_match.group(1) if ver_match else "latest"
+                                version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version)
+
+                                target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
+                                os.makedirs(target_dir, exist_ok=True)
+                                local_path = os.path.join(target_dir, f_name)
+                                
+                                opener = urllib.request.build_opener()
+                                opener.addheaders = [('User-Agent', 'Mozilla/5.0')]
+                                urllib.request.install_opener(opener)
+                                urllib.request.urlretrieve(direct_url, local_path)
+                                
+                                if os.path.exists(local_path) and os.path.getsize(local_path) > 0:
+                                    downloaded = True
+                                    print(f"    ✅ Récupération réussie (sans token) pour {title}")
+
                 except Exception as e:
-                    print(f"    ⚠️ Erreur connexion Forgejo/Git pour {xml_url}: {e}")
+                    print(f"    ⚠️ Erreur alternative Forgejo pour {xml_url} : {e}")
+            # ------------------------------------------------------------------
 
             version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version) if version != "Source-Fixe" else "Source-Fixe"
             target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
