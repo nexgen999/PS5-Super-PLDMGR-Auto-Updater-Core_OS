@@ -58,8 +58,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add json/ rss/ index.html README.md release_notes.md scripts/ feed/
-          git status
+          git add json/ rss/ index.html README.md scripts/ feed/ 2>/dev/null || true
           git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web [skip ci]" && git push)
 
       - name: 9. Publication des archives ZIP dans les Releases GitHub
@@ -68,7 +67,6 @@ jobs:
         run: |
           TAG="v$(date +'%Y.%m.%d-%H%M')"
           
-          # Création et push du tag Git obligatoire pour la release horodatée
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git tag "$TAG"
@@ -79,7 +77,7 @@ jobs:
           if [ -n "$files_versioned" ]; then
             gh release create "$TAG" $files_versioned \
               --title "PS5 Store AIO Release ($TAG)" \
-              --notes "Archives AIO générées automatiquement le $(date)."
+              --notes "Archives AIO générées automatiquement."
           else
             echo "⚠️ Aucun fichier horodaté trouvé pour la release $TAG."
           fi
@@ -91,8 +89,8 @@ jobs:
           files_latest=$(ls archives/*_latest.zip 2>/dev/null || true)
           if [ -n "$files_latest" ]; then
             gh release create latest $files_latest \
-              --title "PS5Store AIO - Latest (Permanent)" \
-              --notes "Liens permanents pointant toujours vers les dernières versions actualisées des packs AIO." \
+              --title "PS5 Store AIO - Latest (Permanent)" \
+              --notes "Liens permanents pointant toujours vers les dernières versions actualisées." \
               --latest
           else
             echo "⚠️ Aucun fichier 'latest' trouvé pour la release permanente."
