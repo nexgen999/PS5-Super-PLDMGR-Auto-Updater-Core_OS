@@ -8,11 +8,17 @@ def build_index_html(data_store):
     """
     Génère index.html avec une interface claire listant le contenu disponible dans le store.
     """
+    # Calcul sécurisé basé sur la structure des dictionnaires de catégories retournés par les fetchers
+    def count_items(cat_dict):
+        if not isinstance(cat_dict, dict):
+            return 0
+        return sum(len(cat.get("items", [])) for cat in cat_dict.values() if isinstance(cat, dict))
+
     counts = {
-        "payloads": len(data_store.get("payloads", (None, []))[1]),
-        "pkg": len(data_store.get("pkg", (None, []))[1]),
-        "ffpfsc": len(data_store.get("ffpfsc", (None, []))[1]),
-        "apps": len(data_store.get("apps", (None, []))[1])
+        "payloads": count_items(data_store.get("payloads")),
+        "pkg": count_items(data_store.get("pkg")),
+        "ffpfsc": count_items(data_store.get("ffpfsc")),
+        "apps": count_items(data_store.get("apps"))
     }
 
     html_content = f"""<!DOCTYPE html>
