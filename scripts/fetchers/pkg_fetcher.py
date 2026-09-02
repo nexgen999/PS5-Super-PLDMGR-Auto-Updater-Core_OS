@@ -21,7 +21,7 @@ def fetch_pkg_category(credits_set):
             title, xml_url, author, desc = entry['title'], entry['xml_url'], entry['author'], entry['description']
             if not xml_url: continue
 
-            assets = fetch_assets_from_url(xml_url, title, desc, author, ('.pkg',))
+            assets = fetch_assets_from_url(xml_url, title, desc, author, ('.pkg',), category_folder="pkg")
             for item in assets:
                 item["category"] = cat_display
                 credits_set.add(f"- **{author}** : [{title}]({xml_url})")
