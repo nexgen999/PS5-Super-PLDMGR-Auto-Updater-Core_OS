@@ -1,46 +1,35 @@
-# build_aio_package_pkg.py
-import os
 import json
-import urllib.request
+import os
 import zipfile
-from datetime import datetime
 
-def build_pkg_package():
-    timestamp = datetime.now().strftime("%Y.%m.%d-%H%M")
-    os.makedirs("archives", exist_ok=True)
-    json_path = "json/pkg.json"
-    
-    print(f"=== Création du package AIO PKG ({timestamp}) ===")
+def build_payloads_archive():
+    json_path = "json/payloads.json"  # Utilisation du JSON généré par update_store.py
     if not os.path.exists(json_path):
-        print(f"⚠️ Fichier {json_path} introuvable.")
+        print(f"❌ Erreur : {json_path} introuvable. Exécute update_store.py d'abord.")
         return
 
-    try:
-        with open(json_path, 'r', encoding='utf-8') as f:
-            content = json.load(f)
-        items = content if isinstance(content, list) else content.get("items", [])
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    os.makedirs("archives", exist_ok=True)
+    timestamp = os.popen("date +'%Y.%m.%d-%H%M'").read().strip()
+    
+    # Création des deux versions : horodatée et latest
+    for suffix in [timestamp, "latest"]:
+        zip_name = f"archives/PS5_payloads_aio_{suffix}.zip"
+        print(f"=== Création du package AIO Payloads ({suffix}) ===")
         
-        zip_filename = f"archives/PS5_pkg_aio_latest.zip"
-        zip_versioned = f"archives/PS5_pkg_aio_{timestamp}.zip"
-        
-        with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zf, \
-             zipfile.ZipFile(zip_versioned, 'w', zipfile.ZIP_DEFLATED) as zf_ver:
+        with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zf:
+            # Itération sur les éléments listés dans le JSON du store
+            items = data if isinstance(data, list) else data.get("items", [])
             for item in items:
-                url = item.get("url")
-                name = item.get("filename") or (url.split('/')[-1].split('?')[0] if url else "unknown")
-                if not url: continue
-                try:
-                    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-                    with urllib.request.urlopen(req, timeout=15) as resp:
-                        data = resp.read()
-                        zf.writestr(name, data)
-                        zf_ver.writestr(name, data)
-                        print(f"  -> Ajouté : {name}")
-                except Exception as e:
-                    print(f"  ❌ Erreur {name} : {e}")
-        print(f"✅ Archive PKG créée : {zip_filename}")
-    except Exception as e:
-        print(f"❌ Erreur lecture {json_path} : {e}")
+                file_path = item.get("path") or item.get("local_path")
+                if file_path and os.path.exists(file_path):
+                    arcname = os.path.basename(file_path)
+                    zf.write(file_path, arcname)
+                    print(f"  -> Ajouté : {arcname}")
+                
+        print(f"✅ Archive Payloads créée : {zip_name}")
 
 if __name__ == "__main__":
-    build_pkg_package()
+    build_payloads_archive()
