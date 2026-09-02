@@ -1,62 +1,57 @@
 # scripts/generate_rss.py
-
 import os
-import html
-from datetime import datetime
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
 from scripts.config_rules import PATHS, BASE_URL
 
-def ensure_rss_directory():
-    os.makedirs(PATHS["rss_dir"], exist_ok=True)
+def generate_feeds_by_category(all_categories_data):
+    """Génère les flux RSS et OPML globaux et par catégorie."""
+    rss_dir = "rss"
+    os.makedirs(rss_dir, exist_ok=True)
 
-def build_rss_feed(data_store):
-    """
-    Génère rss/feed.xml contenant les dernières mises à jour de toutes les catégories.
-    """
-    ensure_rss_directory()
-    rss_path = os.path.join(PATHS["rss_dir"], "feed.xml")
-    
-    now_rfc822 = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
+    global_rss_items = []
 
-    items_xml = []
+    for cat_key, cat_info in all_categories_data.items():
+        cat_name = cat_info.get("name", cat_key.upper())
+        items = cat_info.get("items", [])
 
-    # Rassemblement de tous les items plat
-    all_items = []
-    for cat_key in ["payloads", "pkg", "ffpfsc", "apps"]:
-        if cat_key in data_store:
-            _, flat_list = data_store[cat_key]
-            for item in flat_list:
-                all_items.append((cat_key, item))
+        # Construction RSS spécifique à la catégorie
+        rss_root = ET.Element("rss", version="2.0")
+        channel = ET.SubElement(rss_root, "channel")
+        ET.SubElement(channel, "title").text = f"PS5 Store AIO - {cat_name}"
+        ET.SubElement(channel, "link").text = BASE_URL
+        ET.SubElement(channel, "description").text = f"Mises à jour automatiques pour la catégorie {cat_name}"
 
-    for cat_key, item in all_items:
-        title = html.escape(item.get("name", "Inconnu"))
-        link = html.escape(item.get("url", BASE_URL))
-        desc = html.escape(item.get("description", ""))
-        version = html.escape(item.get("version", "1.0.0"))
-        category = html.escape(item.get("category", cat_key.upper()))
-        
-        item_xml = f"""    <item>
-      <title>[{category}] {title} ({version})</title>
-      <link>{link}</link>
-      <description>{desc}</description>
-      <pubDate>{now_rfc822}</pubDate>
-      <guid isPermaLink="false">{link}#{version}</guid>
-    </item>"""
-        items_xml.append(item_xml)
+        # Construction OPML spécifique à la catégorie
+        opml_root = ET.Element("opml", version="2.0")
+        head = ET.SubElement(opml_root, "head")
+        ET.SubElement(head, "title").text = f"PS5 Store AIO Feeds - {cat_name}"
+        opml_body = ET.SubElement(opml_root, "body")
 
-    items_block = "\n".join(items_xml)
+        for item in items:
+            # Ajout RSS
+            item_elem = ET.SubElement(channel, "item")
+            ET.SubElement(item_elem, "title").text = item.get("name")
+            ET.SubElement(item_elem, "link").text = item.get("url")
+            ET.SubElement(item_elem, "description").text = item.get("description")
+            ET.SubElement(item_elem, "pubDate").text = item.get("version", "v1.0.0")
 
-    rss_content = f"""<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
-  <channel>
-    <title>AIO PS5 Store Updates</title>
-    <link>{BASE_URL}</link>
-    <description>Flux RSS automatisé des mises à jour du AIO PS5 Store</description>
-    <lastBuildDate>{now_rfc822}</lastBuildDate>
-{items_block}
-  </channel>
-</rss>"""
+            global_rss_items.append(item_elem)
 
-    with open(rss_path, 'w', encoding='utf-8') as f:
-        f.write(rss_content)
+            # Ajout OPML
+            ET.SubElement(opml_body, "outline", {
+                "text": item.get("name"),
+                "title": item.get("name"),
+                "type": "rss",
+                "xmlUrl": item.get("url"),
+                "description": item.get("description", "")
+            })
 
-    print("✅ Génération du flux RSS (rss/feed.xml) terminée.")
+        # Sauvegarde fichiers de la catégorie
+        xml_str = minidom.parseString(ET.tostring(rss_root)).toprettyxml(indent="  ")
+        with open(os.path.join(rss_dir, f"{cat_key}.xml"), "w", encoding="utf-8") as f:
+            f.write(xml_str)
+
+        opml_str = minidom.parseString(ET.tostring(opml_root)).toprettyxml(indent="  ")
+        with open(os.path.join(rss_dir, f"{cat_key}.opml"), "w", encoding="utf-8") as f:
+            f.write(opml_str)
