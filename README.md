@@ -1,29 +1,21 @@
-# 🚀 PS5 Super PLDMGR Auto-Updater & Store
+# PS5 Store AIO (All-In-One)
 
-Mise à jour automatique des Payloads, PKG, FFPFSC et Applications PS5.
+Dépôt automatisé regroupant les derniers payloads, packages PKG, fichiers FFPFSC et applications pour PS5.
 
-Dernière mise à jour automatique : **2026-09-02 10:25 UTC**
+🌐 **Site Web Officiel / Hébergement :** [Accéder au site](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS)
 
----
+## 📊 Statistiques, Listes JSON & Flux
 
-### 📊 Contenu du Store
+| Catégorie | Éléments | Listes JSON | Flux RSS | Flux OPML | Archive AIO (Latest) |
+| :--- | :---: | :--- | :--- | :--- | :--- |
+| **Payloads** | 0 | [JSON](json/payloads.json) | [RSS](rss/payloads.xml) | [OPML](rss/payloads.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/payloads_aio_latest.zip) |
+| **Packages PKG** | 0 | [JSON](json/pkg.json) | [RSS](rss/pkg.xml) | [OPML](rss/pkg.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/pkg_aio_latest.zip) |
+| **Fichiers FFPFSC** | 0 | [JSON](json/ffpfsc.json) | [RSS](rss/ffpfsc.xml) | [OPML](rss/ffpfsc.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/ffpfsc_aio_latest.zip) |
+| **Applications (Apps)** | 0 | [JSON](json/apps.json) | [RSS](rss/apps.xml) | [OPML](rss/apps.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/apps_aio_latest.zip) |
+| **GLOBAL** | **0** | [JSON Global](json/list.json) | [RSS Global](rss/feed.xml) | - | [Release Complète Latest](https://github.com/nexgen999/evox-w2jb/releases/tag/latest) |
 
-* ⚡ **Payloads** : `75` éléments ([json/payloads.json](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/payloads.json))
-* 📦 **Packages (PKG)** : `10` éléments ([json/pkg.json](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/pkg.json))
-* 📄 **FFPFSC** : `3` éléments ([json/ffpfsc.json](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/ffpfsc.json))
-* 📱 **Applications** : `0` éléments ([json/apps.json](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/apps.json))
-
----
-
-### 📡 Flux RSS & Index Web
-
-* 🌐 **Interface Web** : [Voir l'index HTML](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/index.html)
-* 📻 **Flux RSS** : [Accéder à feed.xml](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/rss/feed.xml)
-
----
-
-### 👏 Crédits & Projets Sources
-
+## 🙏 Remerciements & Crédits
+Les sources et auteurs référencés dans ce dépôt :
 - **Al-Azif** : [Chukei DNS](https://github.com/Al-Azif/chukei-dns)
 - **ArkSama** : [Lapy JB Daemon](https://raw.githubusercontent.com/ArkSama/PS5-Lapy-JB-Daemon/main/lapy_jb_daemon.elf)
 - **BestPig** : [BackPork](https://github.com/BestPig/BackPork)

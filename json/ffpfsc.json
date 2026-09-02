@@ -6,7 +6,7 @@
       "filename": "ProsperoLight.bin",
       "url": "https://github.com/blackbearreloaded/ProsperoLight",
       "description": "PS5 Moonlight",
-      "version": "01.000.055",
+      "version": "v1.0.0",
       "author": "blackbearreloaded",
       "category": "FFPFSC_APPS"
     },
@@ -15,7 +15,7 @@
       "filename": "ProsperoRadio.bin",
       "url": "https://github.com/blackbearreloaded/ProsperoRadio",
       "description": "PS5 Radio Player",
-      "version": "01.000.005",
+      "version": "v1.0.0",
       "author": "blackbearreloaded",
       "category": "FFPFSC_APPS"
     },
@@ -24,7 +24,7 @@
       "filename": "ProsperoTV.bin",
       "url": "https://github.com/blackbearreloaded/ProsperoTV",
       "description": "PS5 IPTV",
-      "version": "01.000.002",
+      "version": "v1.0.0",
       "author": "blackbearreloaded",
       "category": "FFPFSC_APPS"
     }
