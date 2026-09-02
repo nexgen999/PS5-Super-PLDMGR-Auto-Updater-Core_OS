@@ -5,17 +5,24 @@ import json
 from scripts.config_rules import PATHS
 
 def ensure_directories():
-    """Vérifie et crée l'arborescence des dossiers JSON de sortie."""
+    """Vérifie et crée l'arborescence complète des dossiers JSON de sortie."""
     os.makedirs(PATHS["json_dir"], exist_ok=True)
-    for cat_name, cfg in PATHS["categories"].items():
-        os.makedirs(cfg["json"], exist_ok=True)
+    
+    # Création explicite des sous-dossiers par catégorie pour éviter les erreurs de chemin
+    for cat_name, cfg in PATHS.get("categories", {}).items():
+        if isinstance(cfg, dict):
+            if "json" in cfg:
+                os.makedirs(cfg["json"], exist_ok=True)
+            if "root" in cfg:
+                os.makedirs(cfg["root"], exist_ok=True)
 
 def build_payloads_json(by_category, all_flat):
     """
     Génère json/payloads/<cat>.json et json/payloads.json.
-    Structure 100% conservée : { "name": ..., "payloads": [...] }
+    Structure : { "name": ..., "payloads": [...] }
     """
     payload_cfg = PATHS["categories"]["payloads"]
+    os.makedirs(payload_cfg["json"], exist_ok=True)
     
     # 1. JSONs par sous-catégorie
     for cat_tech, data in by_category.items():
@@ -39,12 +46,9 @@ def build_payloads_json(by_category, all_flat):
 def build_generic_json(category_key, list_key_name, global_title, by_category, all_flat):
     """
     Génère les JSONs pour PKG, FFPFSC et APPS.
-    Structure conservée :
-    - PKG : { "name": ..., "packages": [...] }
-    - FFPFSC : { "name": ..., "files": [...] }
-    - APPS : { "name": ..., "apps": [...] }
     """
     cat_cfg = PATHS["categories"][category_key]
+    os.makedirs(cat_cfg["json"], exist_ok=True)
 
     # 1. JSONs par sous-catégorie
     for cat_tech, data in by_category.items():
@@ -68,9 +72,16 @@ def build_generic_json(category_key, list_key_name, global_title, by_category, a
 def build_all(data_store):
     """
     Point d'entrée principal pour la génération de tous les JSONs.
-    `data_store` est un dictionnaire contenant les données retournées par fetcher.py.
     """
     ensure_directories()
+
+    # Nettoyage préventif du fichier parasite list.json s'il existe
+    list_json_path = os.path.join(PATHS["json_dir"], "list.json")
+    if os.path.exists(list_json_path):
+        try:
+            os.remove(list_json_path)
+        except:
+            pass
 
     # Payloads
     if "payloads" in data_store:
