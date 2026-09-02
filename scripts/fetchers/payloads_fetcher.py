@@ -10,7 +10,6 @@ from scripts.fetchers.utils import parse_opml_file
 from scripts.cleaner import process_downloaded_payloads
 
 def fetch_payloads_category(credits_set):
-    """Parse, télécharge, nettoie et référence tous les payloads (.elf / .bin / .ffpfsc)."""
     payload_feed_dir = PATHS["categories"]["payloads"]["feed"]
     all_flat = []
     by_category = {}
@@ -41,7 +40,6 @@ def fetch_payloads_category(credits_set):
             clean_xml_url = xml_url.split('?')[0].lower()
             repo_lower = ""
 
-            # --- Source Fixe Directe ---
             if clean_xml_url.endswith(('.elf', '.bin', '.ffpfsc')):
                 try:
                     version = "Source-Fixe"
@@ -57,7 +55,6 @@ def fetch_payloads_category(credits_set):
                 except Exception as e:
                     print(f"    ⚠️ Échec source fixe ({title}) : {e}")
 
-            # --- Release GitHub ---
             if not downloaded and "github.com" in xml_url:
                 repo_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
                 if repo_match:
@@ -94,7 +91,6 @@ def fetch_payloads_category(credits_set):
                         except Exception as sub_e:
                             print(f"    ⚠️ Échec fallback gh release download pour {repo}: {sub_e}")
 
-            # --- Release Forgejo / Gitea ---
             if not downloaded and ("git." in xml_url or "codeberg.org" in xml_url):
                 try:
                     api_match = re.search(r'(https?://[^/]+)/([^/]+/[^/]+)', xml_url)
@@ -122,7 +118,6 @@ def fetch_payloads_category(credits_set):
                 except Exception as e:
                     print(f"    ⚠️ Erreur Forgejo/Gitea pour {xml_url} : {e}")
 
-            # --- Traitement, Nettoyage & Construction du résultat ---
             version_clean = re.sub(r'[^a-zA-Z0-9._-]', '', version) if version != "Source-Fixe" else "Source-Fixe"
             target_dir = os.path.join(PATHS["categories"]["payloads"]["root"], cat_tech, title.replace(" ", "_"), version_clean)
             default_base_name = re.sub(r'[^a-zA-Z0-9._-]', '_', title)
@@ -145,7 +140,7 @@ def fetch_payloads_category(credits_set):
                     "name": display_name,
                     "filename": main_file,
                     "url": f"{BASE_URL}/{target_dir.replace(os.sep, '/')}/{main_file}",
-                    "local_path": full_path,  # Indispensable pour l'archivage ZIP
+                    "local_path": full_path,
                     "description": description if description else f"Payload {display_name} pour PS5",
                     "version": version,
                     "category": cat_display,
