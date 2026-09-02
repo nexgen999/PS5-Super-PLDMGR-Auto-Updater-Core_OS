@@ -21,9 +21,8 @@ def fetch_apps_category(credits_set):
             title, xml_url, author, desc = entry['title'], entry['xml_url'], entry['author'], entry['description']
             if not xml_url: continue
 
-            # Les applications peuvent accepter une large gamme d'extensions (zip, pkg, elf, tar.gz, etc.)
             allowed_exts = ('.pkg', '.zip', '.elf', '.bin', '.tar.gz', '.rar')
-            assets = fetch_assets_from_url(xml_url, title, desc, author, allowed_exts)
+            assets = fetch_assets_from_url(xml_url, title, desc, author, allowed_exts, category_folder="apps")
             
             for item in assets:
                 item["category"] = cat_display
