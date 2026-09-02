@@ -35,6 +35,12 @@
       <pubDate>v0.5.1</pubDate>
     </item>
     <item>
+      <title>ELF_Arsenal</title>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf</link>
+      <description>Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.</description>
+      <pubDate>v1.6.22</pubDate>
+    </item>
+    <item>
       <title>Kura</title>
       <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/Kura/v1.6.50/Kura_v1.6.50.elf</link>
       <description>Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5.</description>
@@ -203,10 +209,28 @@
       <pubDate>v1.2.0</pubDate>
     </item>
     <item>
+      <title>garlic-savemgr</title>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf</link>
+      <description>Save manager utility hosted on Forgejo.</description>
+      <pubDate>v1.13</pubDate>
+    </item>
+    <item>
+      <title>garlic-worker</title>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf</link>
+      <description>Garlic worker payload component.</description>
+      <pubDate>v1.1.6</pubDate>
+    </item>
+    <item>
       <title>savemnt-offset-dumper</title>
       <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf</link>
       <description>Offset dumper for save mounting utilities.</description>
       <pubDate>1.0.0</pubDate>
+    </item>
+    <item>
+      <title>np-fake-signin</title>
+      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf</link>
+      <description>Fake activate PS5 without PSN.</description>
+      <pubDate>v1.3</pubDate>
     </item>
     <item>
       <title>Common_FPS_PS5</title>

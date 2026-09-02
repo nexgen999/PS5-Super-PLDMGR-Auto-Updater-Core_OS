@@ -52,6 +52,16 @@
       "checksum": "05617c69ea145d1c11b8f7a6b7d3bd9e6df3831afd25d71a4ac85d63fb8e28aa"
     },
     {
+      "name": "ELF_Arsenal",
+      "filename": "ELF_Arsenal_v1.6.22.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf",
+      "local_path": "payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf",
+      "description": "Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.",
+      "version": "v1.6.22",
+      "category": "PS5 HEN Loader",
+      "checksum": "ee8f47e4d6a5fd85cef113341aa1eb74d68e373a58fcb1fb5a9274acd2b83bd2"
+    },
+    {
       "name": "Kura",
       "filename": "Kura_v1.6.50.elf",
       "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/Kura/v1.6.50/Kura_v1.6.50.elf",
@@ -332,6 +342,26 @@
       "checksum": "b81609da1db061165e44541653b95f524c917a3d5a1fca308965b0d821be3178"
     },
     {
+      "name": "garlic-savemgr",
+      "filename": "garlic-savemgr_v1.13.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf",
+      "local_path": "payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf",
+      "description": "Save manager utility hosted on Forgejo.",
+      "version": "v1.13",
+      "category": "PS5 Saves",
+      "checksum": "b6d366f4101fa2fcc14a353d083ef7e45e1cc86ef457bb20502bd8680dce4d73"
+    },
+    {
+      "name": "garlic-worker",
+      "filename": "garlic-worker_v1.1.6.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf",
+      "local_path": "payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf",
+      "description": "Garlic worker payload component.",
+      "version": "v1.1.6",
+      "category": "PS5 Saves",
+      "checksum": "b395fd1e35c71c86a9ab13bc42cf7e146757a794ccce722ed6f7e33ad9b81d8b"
+    },
+    {
       "name": "savemnt-offset-dumper",
       "filename": "savemnt-offset-dumper_v1.0.0.elf",
       "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf",
@@ -340,6 +370,16 @@
       "version": "1.0.0",
       "category": "PS5 Saves",
       "checksum": "946328551f74e3b6a34a7c0169f9b40792e392775768b84874b55ecdff71222e"
+    },
+    {
+      "name": "np-fake-signin",
+      "filename": "np-fake-signin_v1.3.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf",
+      "local_path": "payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf",
+      "description": "Fake activate PS5 without PSN.",
+      "version": "v1.3",
+      "category": "PS5 Activation",
+      "checksum": "2ace1bb0be6d57f91cb24e4d3a221dec2d6d6114ace0a6b5748c6c0dcdb3b9c6"
     },
     {
       "name": "Common_FPS_PS5",

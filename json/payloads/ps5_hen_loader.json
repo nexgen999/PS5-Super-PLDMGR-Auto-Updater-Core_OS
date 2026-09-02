@@ -32,6 +32,16 @@
       "checksum": "05617c69ea145d1c11b8f7a6b7d3bd9e6df3831afd25d71a4ac85d63fb8e28aa"
     },
     {
+      "name": "ELF_Arsenal",
+      "filename": "ELF_Arsenal_v1.6.22.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf",
+      "local_path": "payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf",
+      "description": "Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.",
+      "version": "v1.6.22",
+      "category": "PS5 HEN Loader",
+      "checksum": "ee8f47e4d6a5fd85cef113341aa1eb74d68e373a58fcb1fb5a9274acd2b83bd2"
+    },
+    {
       "name": "Kura",
       "filename": "Kura_v1.6.50.elf",
       "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/Kura/v1.6.50/Kura_v1.6.50.elf",
