@@ -1,43 +1,57 @@
 # scripts/generate_readme.py
+
 import os
-from scripts.config_rules import BASE_URL
+from scripts.config_rules import PATHS, BASE_URL
 
-def build_readme(credits_set, data_store):
-    """Génère le README.md complet avec statistiques, listes JSON, flux et crédits."""
+def generate_readme(credits_list):
+    """
+    Génère le README.md principal en utilisant strictement les règles et BASE_URL du projet.
+    """
+    readme_path = "README.md"
     
-    by_category_payloads = data_store.get("payloads", {})
-    pkg_data = data_store.get("pkg", {})
-    ffpfsc_data = data_store.get("ffpfsc", {})
-    apps_data = data_store.get("apps", {})
+    # Tri et nettoyage des crédits
+    sorted_credits = sorted(list(set(credits_list)))
+    credits_content = "\n".join(sorted_credits) if sorted_credits else "_Aucun crédit répertorié._"
 
-    total_payloads = sum(len(cat.get("items", [])) for cat in by_category_payloads.values()) if isinstance(by_category_payloads, dict) else 0
-    total_pkg = sum(len(cat.get("items", [])) for cat in pkg_data.values()) if isinstance(pkg_data, dict) else 0
-    total_ffpfsc = sum(len(cat.get("items", [])) for cat in ffpfsc_data.values()) if isinstance(ffpfsc_data, dict) else 0
-    total_apps = sum(len(cat.get("items", [])) for cat in apps_data.values()) if isinstance(apps_data, dict) else 0
-    total_elements = total_payloads + total_pkg + total_ffpfsc + total_apps
+    content = f"""# 🚀 PS5 Super PLDMGR Auto-Updater Store
 
-    readme_content = f"""# PS5 Store AIO (All-In-One)
+Store automatisé pour PlayStation 5 regroupant les payloads, packages (PKG), fichiers FFPFSC et applications utilitaires.
 
-Dépôt automatisé regroupant les derniers payloads, packages PKG, fichiers FFPFSC et applications pour PS5.
+---
 
-🌐 **Site Web Officiel / Hébergement :** [Accéder au site]({BASE_URL})
+## 📂 Accès Rapide & Liens Directs
 
-## 📊 Statistiques, Listes JSON & Flux
+| Catégorie | Fichier JSON Global | Flux RSS | Fichier OPML |
+| :--- | :--- | :--- | :--- |
+| **Payloads** | [JSON]({BASE_URL}/json/payloads.json) | [RSS]({BASE_URL}/rss/payloads_rss.xml) | [OPML]({BASE_URL}/feed/payloads/) |
+| **Packages (PKG)** | [JSON]({BASE_URL}/json/pkg.json) | [RSS]({BASE_URL}/rss/pkg_rss.xml) | [OPML]({BASE_URL}/feed/pkg/) |
+| **Fichiers FFPFSC** | [JSON]({BASE_URL}/json/ffpfsc.json) | [RSS]({BASE_URL}/rss/ffpfsc_rss.xml) | [OPML]({BASE_URL}/feed/ffpfsc/) |
+| **Applications** | [JSON]({BASE_URL}/json/apps.json) | [RSS]({BASE_URL}/rss/apps_rss.xml) | [OPML]({BASE_URL}/feed/apps/) |
 
-| Catégorie | Éléments | Listes JSON | Flux RSS | Flux OPML | Archive AIO (Latest) |
-| :--- | :---: | :--- | :--- | :--- | :--- |
-| **Payloads** | {total_payloads} | [JSON](json/payloads.json) | [RSS](rss/payloads.xml) | [OPML](rss/payloads.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/payloads_aio_latest.zip) |
-| **Packages PKG** | {total_pkg} | [JSON](json/pkg.json) | [RSS](rss/pkg.xml) | [OPML](rss/pkg.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/pkg_aio_latest.zip) |
-| **Fichiers FFPFSC** | {total_ffpfsc} | [JSON](json/ffpfsc.json) | [RSS](rss/ffpfsc.xml) | [OPML](rss/ffpfsc.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/ffpfsc_aio_latest.zip) |
-| **Applications (Apps)** | {total_apps} | [JSON](json/apps.json) | [RSS](rss/apps.xml) | [OPML](rss/apps.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/apps_aio_latest.zip) |
-| **GLOBAL** | **{total_elements}** | [JSON Global](json/list.json) | [RSS Global](rss/feed.xml) | - | [Release Complète Latest](https://github.com/nexgen999/evox-w2jb/releases/tag/latest) |
+---
 
-## 🙏 Remerciements & Crédits
-Les sources et auteurs référencés dans ce dépôt :
+## 📦 Packs AIO (All-in-One) et Packs Ultimes
+
+Les archives globales prêtes à l'emploi sont générées automatiquement à chaque mise à jour et stockées dans le dossier des archives :
+- **Pack Payloads AIO** : `{BASE_URL}/archives/PS5_payloads_aio_latest.zip`
+- **Pack PKG AIO** : `{BASE_URL}/archives/PS5_pkg_aio_latest.zip`
+- **Pack FFPFSC AIO** : `{BASE_URL}/archives/PS5_ffpfsc_aio_latest.zip`
+- **Pack Apps AIO** : `{BASE_URL}/archives/PS5_apps_aio_latest.zip`
+- **Ultimate Pack AIO** : `{BASE_URL}/archives/PS5_ultimate_pack_latest.zip` (Regroupe l'ensemble des stores et des binaires)
+
+---
+
+## ☕ Crédits & Sources
+
+Ce projet agrège le travail de divers développeurs et contributeurs de la scène PS5 :
+
+{credits_content}
+
+---
+*Mise à jour automatique assurée par GitHub Actions.*
 """
 
-    for credit in sorted(credits_set):
-        readme_content += f"{credit}\n"
+    with open(readme_path, 'w', encoding='utf-8') as f:
+        f.write(content)
 
-    with open("README.md", "w", encoding="utf-8") as f:
-        f.write(readme_content)
+    print("✅ Génération du README.md terminée avec succès (liens unifiés via config_rules).")
