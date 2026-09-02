@@ -15,7 +15,6 @@ def fetch_repository_assets(xml_url, title, description, author, temp_dir, allow
     # 1. Gestion des dépôts GitHub (via l'API Releases)
     if "github.com" in xml_url:
         try:
-            # Extraction propre de owner/repo depuis l'URL GitHub
             github_match = re.search(r'github\.com/([^/]+/[^/]+?)(?:/releases|\.atom|/|$)', xml_url)
             if not github_match:
                 github_match = re.search(r'github\.com/([^/]+/[^/]+)', xml_url)
@@ -120,9 +119,10 @@ def fetch_repository_assets(xml_url, title, description, author, temp_dir, allow
 
     return assets_collected
 
-def parse_opml_feeds(opml_path):
+def parse_opml_file(opml_path):
     """
     Lit un fichier OPML et extrait la liste des flux/dépôts avec leurs métadonnées.
+    (Alias inclus pour assurer la compatibilité avec parse_opml_feeds)
     """
     feeds = []
     try:
@@ -140,3 +140,6 @@ def parse_opml_feeds(opml_path):
     except Exception as e:
         print(f"⚠️ Erreur lors de la lecture de l'OPML {opml_path}: {e}")
     return feeds
+
+# Alias pour éviter toute future erreur d'importation croisée
+parse_opml_feeds = parse_opml_file
