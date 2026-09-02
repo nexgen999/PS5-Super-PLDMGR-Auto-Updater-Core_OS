@@ -2,8 +2,8 @@ name: Auto Update Store & Packages
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # S'exécute toutes les 6 heures
-  workflow_dispatch:        # Permet le lancement manuel depuis GitHub
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -46,12 +46,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python update_store.py
 
-      - name: 7. Commit et Push du code source, des JSONs et des archives
+      - name: 7. Commit et Push du code source, des JSONs, des payloads et des archives
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add json/ rss/ index.html README.md scripts/ feed/ archives/ 2>/dev/null || true
-          git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web & Packages [skip ci]" && git push)
+          git add json/ rss/ index.html README.md scripts/ feed/ payloads/ archives/ 2>/dev/null || true
+          git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web, Payloads & Packages [skip ci]" && git push)
 
       - name: 8. Publication des archives ZIP dans les Releases GitHub
         env:
@@ -64,27 +64,24 @@ jobs:
           git tag "$TAG"
           git push origin "$TAG"
 
-          # 1. Création de la release horodatée
-          files_versioned=$(ls archives/*_${TAG#v}.zip 2>/dev/null || true)
-          if [ -n "$files_versioned" ]; then
-            gh release create "$TAG" $files_versioned \
+          # 1. Création de la release horodatée pointant vers les archives latest générées
+          files_latest=$(ls archives/*_latest.zip 2>/dev/null || true)
+          if [ -n "$files_latest" ]; then
+            gh release create "$TAG" $files_latest \
               --title "PS5 Store AIO Release ($TAG)" \
-              --notes "Archives AIO générées automatiquement."
+              --notes "Archives AIO générées automatiquement à la date du $TAG."
           else
-            echo "⚠️ Aucun fichier horodaté trouvé pour la release $TAG."
+            echo "⚠️ Aucun fichier d'archive trouvé pour la release horodatée."
           fi
 
-          # 2. Gestion propre de la release 'latest' (fichiers permanents)
+          # 2. Gestion propre de la release 'latest' permanente
           gh release delete latest --yes || true
           git push origin --delete latest 2>/dev/null || true
           git tag -d latest 2>/dev/null || true
           
-          files_latest=$(ls archives/*_latest.zip 2>/dev/null || true)
           if [ -n "$files_latest" ]; then
             gh release create latest $files_latest \
               --title "PS5 Store AIO - Latest (Permanent)" \
               --notes "Liens permanents pointant toujours vers les dernières versions actualisées." \
               --latest
-          else
-            echo "⚠️ Aucun fichier 'latest' trouvé pour la release permanente."
           fi
