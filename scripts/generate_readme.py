@@ -3,9 +3,9 @@
 import os
 from scripts.config_rules import PATHS, BASE_URL
 
-def generate_readme(credits_list):
+def generate_readme(credits_list, data_store=None):
     """
-    Génère le README.md principal structuré selon les exigences précises du projet.
+    Génère le README.md principal structuré selon les exigences du projet.
     """
     readme_path = "README.md"
     
@@ -81,7 +81,7 @@ Ce projet agrège et structure le travail des développeurs de la scène PS5 :
     with open(readme_path, 'w', encoding='utf-8') as f:
         f.write(content)
 
-    print("✅ Génération du README.md structuré et unifié avec flux RSS détaillée terminée.")
+    print("✅ Génération du README.md terminée avec succès.")
 
-# Alias requis par update_store.py
+# Alias indispensable pour l'appel depuis update_store.py
 build_readme = generate_readme
