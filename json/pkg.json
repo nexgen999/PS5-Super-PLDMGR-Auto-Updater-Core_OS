@@ -1,6 +1,6 @@
 {
     "name": "AIO Store PKG",
-    "packages": [
+    "items": [
         {
             "name": "Avatar-Changer",
             "filename": "PS5PKG_Avatar-Changer_v1.00.pkg",
