@@ -48,7 +48,7 @@ jobs:
 
       - name: 7. Génération de tous les packages AIO
         run: |
-          python build_aio_package.py || echo "⚠️ build_aio_package skipped"
+          build_aio_package_payloads.py || echo "⚠️ build_aio_package skipped"
           python build_aio_package_pkg.py || echo "⚠️ build_aio_package_pkg skipped"
           python build_aio_package_ffpfsc.py || echo "⚠️ build_aio_package_ffpfsc skipped"
           python build_aio_package_apps.py || echo "⚠️ build_aio_package_apps skipped"
