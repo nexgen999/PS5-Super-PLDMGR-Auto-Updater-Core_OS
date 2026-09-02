@@ -2,14 +2,18 @@
 import os
 from scripts.config_rules import BASE_URL
 
-def update_readme(by_category_payloads, pkg_data, ffpfsc_data, apps_data, credits_set):
-    """Génère un README complet avec listes JSON, flux RSS/OPML, liens latest et URL du site."""
+def build_readme(credits_set, data_store):
+    """Génère le README.md complet avec statistiques, listes JSON, flux et crédits."""
     
-    # Calcul des totaux par catégorie
-    total_payloads = sum(len(cat["items"]) for cat in by_category_payloads.values())
-    total_pkg = sum(len(cat["items"]) for cat in pkg_data.values())
-    total_ffpfsc = sum(len(cat["items"]) for cat in ffpfsc_data.values())
-    total_apps = sum(len(cat["items"]) for cat in apps_data.values())
+    by_category_payloads = data_store.get("payloads", {})
+    pkg_data = data_store.get("pkg", {})
+    ffpfsc_data = data_store.get("ffpfsc", {})
+    apps_data = data_store.get("apps", {})
+
+    total_payloads = sum(len(cat.get("items", [])) for cat in by_category_payloads.values()) if isinstance(by_category_payloads, dict) else 0
+    total_pkg = sum(len(cat.get("items", [])) for cat in pkg_data.values()) if isinstance(pkg_data, dict) else 0
+    total_ffpfsc = sum(len(cat.get("items", [])) for cat in ffpfsc_data.values()) if isinstance(ffpfsc_data, dict) else 0
+    total_apps = sum(len(cat.get("items", [])) for cat in apps_data.values()) if isinstance(apps_data, dict) else 0
     total_elements = total_payloads + total_pkg + total_ffpfsc + total_apps
 
     readme_content = f"""# PS5 Store AIO (All-In-One)
