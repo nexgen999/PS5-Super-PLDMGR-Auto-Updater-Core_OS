@@ -1,9 +1,8 @@
 # scripts/config_rules.py
-
 import os
 
 # --- Configuration Générale ---
-GITHUB_REPO_ENV = os.environ.get('GITHUB_REPOSITORY', 'nexgen999/PS5-Super-PLDMGR-Auto-Updater')
+GITHUB_REPO_ENV = os.environ.get('GITHUB_REPOSITORY', 'nexgen999/evox-w2jb')
 if '/' in GITHUB_REPO_ENV:
     GITHUB_USER, REPO_NAME = GITHUB_REPO_ENV.split('/', 1)
 else:
@@ -17,6 +16,7 @@ PATHS = {
     "json_dir": "json",
     "payloads_dir": "payloads",
     "rss_dir": "rss",
+    "archives_dir": "archives", # Ajout du dossier d'archives pour les releases
     "categories": {
         "payloads": {"feed": "feed/payloads", "json": "json/payloads", "root": "payloads"},
         "pkg": {"feed": "feed/pkg", "json": "json/pkg"},
@@ -27,22 +27,17 @@ PATHS = {
 
 # --- Règles Spécifiques par Dépôt ---
 REPO_RULES = {
-    # Dépôts exigeant l'extraction de fichiers binaire depuis un ZIP
     "extract_zip_repos": [
         "poords4", 
         "fan_target", 
         "shadowmountplus", 
         "instalador-host-psm-poop2jb"
     ],
-    
-    # Dépôts exigeant un nettoyage strict (garder UNIQUEMENT .elf et .bin)
     "strict_clean_repos": [
         "ps5-payload-dev/websrv", 
         "phantomptr/ps5upload", 
         "boazvdwansem/ps5-debugger"
     ],
-    
-    # Dépôts devant conserver le nom de fichier d'origine au lieu du nommage basé sur le titre OPML
     "keep_original_filename_repos": [
         "instalador-host-psm-poop2jb", 
         "psm", 
@@ -50,5 +45,4 @@ REPO_RULES = {
     ]
 }
 
-# Extensions indésirables à purger dans le cas général
 DISALLOWED_EXTENSIONS = ('.dmg', '.exe', '.appimage', '.msi', '.txt')
