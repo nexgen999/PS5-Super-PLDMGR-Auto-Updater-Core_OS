@@ -1,0 +1,14 @@
+{
+  "name": "PS5 Saves",
+  "payloads": [
+    {
+      "name": "savemnt-offset-dumper",
+      "filename": "savemnt-offset-dumper_v1.0.0.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf",
+      "description": "Offset dumper for save mounting utilities.",
+      "version": "1.0.0",
+      "category": "PS5 Saves",
+      "checksum": "946328551f74e3b6a34a7c0169f9b40792e392775768b84874b55ecdff71222e"
+    }
+  ]
+}
