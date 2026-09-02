@@ -12,6 +12,16 @@
       "checksum": "179d5e52ec3e0f595900b40883c0e10cc1fba1efc275a547f47e828d45d05915"
     },
     {
+      "name": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en",
+      "filename": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
+      "local_path": "payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
+      "description": "Host-PSM pooP2JB.",
+      "version": "v1.2.0",
+      "category": "Ps5-Webkit-Autoloader",
+      "checksum": "3ccc45938dcc1bb6ee766195106c928049fd632993828bcf73b5368fdebfc496"
+    },
+    {
       "name": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en",
       "filename": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en_v1.2.0.elf",
       "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en_v1.2.0.elf",
@@ -30,16 +40,6 @@
       "version": "v1.2.0",
       "category": "Ps5-Webkit-Autoloader",
       "checksum": "894432bb3161559a272bbdd07cc66dd80ac487f6ddbcc9ae5718090dc0f6e716"
-    },
-    {
-      "name": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en",
-      "filename": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
-      "local_path": "payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
-      "description": "Host-PSM pooP2JB.",
-      "version": "v1.2.0",
-      "category": "Ps5-Webkit-Autoloader",
-      "checksum": "3ccc45938dcc1bb6ee766195106c928049fd632993828bcf73b5368fdebfc496"
     },
     {
       "name": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr",
