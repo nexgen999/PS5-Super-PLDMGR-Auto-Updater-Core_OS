@@ -41,27 +41,19 @@ jobs:
       - name: 5. Authentification GitHub CLI
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
-      - name: 6. Lancement de la mise à jour globale (Scripts & JSONs)
+      - name: 6. Lancement de la mise à jour globale (Scripts, JSONs, Web & AIO)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python update_store.py
 
-      - name: 7. Génération de tous les packages AIO
-        run: |
-          python build_aio_package_payloads.py || echo "⚠️ build_aio_package_payloads skipped"
-          python build_aio_package_pkg.py || echo "⚠️ build_aio_package_pkg skipped"
-          python build_aio_package_ffpfsc.py || echo "⚠️ build_aio_package_ffpfsc skipped"
-          python build_aio_package_apps.py || echo "⚠️ build_aio_package_apps skipped"
-          python build_aio_ultimate.py || echo "⚠️ build_aio_ultimate skipped"
-
-      - name: 8. Commit et Push du code source et des JSONs
+      - name: 7. Commit et Push du code source, des JSONs et des archives
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add json/ rss/ index.html README.md scripts/ feed/ 2>/dev/null || true
-          git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web [skip ci]" && git push)
+          git add json/ rss/ index.html README.md scripts/ feed/ archives/ 2>/dev/null || true
+          git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web & Packages [skip ci]" && git push)
 
-      - name: 9. Publication des archives ZIP dans les Releases GitHub
+      - name: 8. Publication des archives ZIP dans les Releases GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
