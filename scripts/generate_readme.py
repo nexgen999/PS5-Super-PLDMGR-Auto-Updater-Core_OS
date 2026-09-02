@@ -1,54 +1,39 @@
 # scripts/generate_readme.py
-
 import os
-from datetime import datetime
 from scripts.config_rules import BASE_URL
 
-def build_readme(credits_set, data_store):
-    """
-    Génère le fichier README.md avec la liste des crédits et le résumé des éléments.
-    """
-    now_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+def update_readme(by_category_payloads, pkg_data, ffpfsc_data, apps_data, credits_set):
+    """Génère un README complet avec listes JSON, flux RSS/OPML, liens latest et URL du site."""
+    
+    # Calcul des totaux par catégorie
+    total_payloads = sum(len(cat["items"]) for cat in by_category_payloads.values())
+    total_pkg = sum(len(cat["items"]) for cat in pkg_data.values())
+    total_ffpfsc = sum(len(cat["items"]) for cat in ffpfsc_data.values())
+    total_apps = sum(len(cat["items"]) for cat in apps_data.values())
+    total_elements = total_payloads + total_pkg + total_ffpfsc + total_apps
 
-    counts = {
-        "payloads": len(data_store.get("payloads", (None, []))[1]),
-        "pkg": len(data_store.get("pkg", (None, []))[1]),
-        "ffpfsc": len(data_store.get("ffpfsc", (None, []))[1]),
-        "apps": len(data_store.get("apps", (None, []))[1])
-    }
+    readme_content = f"""# PS5 Store AIO (All-In-One)
 
-    credits_list = "\n".join(sorted(list(credits_set))) if credits_set else "_Aucun crédit spécifié._"
+Dépôt automatisé regroupant les derniers payloads, packages PKG, fichiers FFPFSC et applications pour PS5.
 
-    readme_content = f"""# 🚀 PS5 Super PLDMGR Auto-Updater & Store
+🌐 **Site Web Officiel / Hébergement :** [Accéder au site]({BASE_URL})
 
-Mise à jour automatique des Payloads, PKG, FFPFSC et Applications PS5.
+## 📊 Statistiques, Listes JSON & Flux
 
-Dernière mise à jour automatique : **{now_str}**
+| Catégorie | Éléments | Listes JSON | Flux RSS | Flux OPML | Archive AIO (Latest) |
+| :--- | :---: | :--- | :--- | :--- | :--- |
+| **Payloads** | {total_payloads} | [JSON](json/payloads.json) | [RSS](rss/payloads.xml) | [OPML](rss/payloads.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/payloads_aio_latest.zip) |
+| **Packages PKG** | {total_pkg} | [JSON](json/pkg.json) | [RSS](rss/pkg.xml) | [OPML](rss/pkg.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/pkg_aio_latest.zip) |
+| **Fichiers FFPFSC** | {total_ffpfsc} | [JSON](json/ffpfsc.json) | [RSS](rss/ffpfsc.xml) | [OPML](rss/ffpfsc.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/ffpfsc_aio_latest.zip) |
+| **Applications (Apps)** | {total_apps} | [JSON](json/apps.json) | [RSS](rss/apps.xml) | [OPML](rss/apps.opml) | [Télécharger](https://github.com/nexgen999/evox-w2jb/releases/download/latest/apps_aio_latest.zip) |
+| **GLOBAL** | **{total_elements}** | [JSON Global](json/list.json) | [RSS Global](rss/feed.xml) | - | [Release Complète Latest](https://github.com/nexgen999/evox-w2jb/releases/tag/latest) |
 
----
-
-### 📊 Contenu du Store
-
-* ⚡ **Payloads** : `{counts['payloads']}` éléments ([json/payloads.json]({BASE_URL}/json/payloads.json))
-* 📦 **Packages (PKG)** : `{counts['pkg']}` éléments ([json/pkg.json]({BASE_URL}/json/pkg.json))
-* 📄 **FFPFSC** : `{counts['ffpfsc']}` éléments ([json/ffpfsc.json]({BASE_URL}/json/ffpfsc.json))
-* 📱 **Applications** : `{counts['apps']}` éléments ([json/apps.json]({BASE_URL}/json/apps.json))
-
----
-
-### 📡 Flux RSS & Index Web
-
-* 🌐 **Interface Web** : [Voir l'index HTML]({BASE_URL}/index.html)
-* 📻 **Flux RSS** : [Accéder à feed.xml]({BASE_URL}/rss/feed.xml)
-
----
-
-### 👏 Crédits & Projets Sources
-
-{credits_list}
+## 🙏 Remerciements & Crédits
+Les sources et auteurs référencés dans ce dépôt :
 """
+
+    for credit in sorted(credits_set):
+        readme_content += f"{credit}\n"
 
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
-
-    print("✅ Génération du README.md terminée.")
