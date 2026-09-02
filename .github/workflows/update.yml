@@ -41,47 +41,70 @@ jobs:
       - name: 5. Authentification GitHub CLI
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
-      - name: 6. Lancement de la mise à jour globale (Scripts, JSONs, Web & AIO)
+      - name: 6. Lancement de la mise à jour globale
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORGEJO_TOKEN: ${{ secrets.FORGEJO_TOKEN }}
         run: python update_store.py
 
-      - name: 7. Commit et Push du code source, des JSONs, des payloads et des archives
+      - name: 7. Commit et Push du code source et des binaires
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add json/ rss/ index.html README.md scripts/ feed/ payloads/ archives/ 2>/dev/null || true
           git diff-index --quiet HEAD || (git commit -m "🤖 Auto-update store, RSS, Web, Payloads & Packages [skip ci]" && git push)
 
-      - name: 8. Publication des archives ZIP dans les Releases GitHub
+      - name: 8. Nettoyage et Publication des Releases avec listes détaillées
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="v$(date +'%Y.%m.%d-%H%M')"
           
+          # Génération de la liste détaillée des fichiers pour les notes de version
+          PAYLOADS_LIST=$(find payloads/ -type f 2>/dev/null | sed 's/^/- /' || echo "Aucun")
+          ARCHIVES_LIST=$(find archives/ -name "*_latest.zip" -exec basename {} \; 2>/dev/null | sed 's/^/- /' || echo "Aucun")
+
+          RELEASE_NOTES="### 🚀 Synthèse de la mise à jour ($TAG)
+          
+          Le store PlayStation 5 a été mis à jour avec succès.
+          
+          #### 📦 Archives AIO Disponibles :
+          $ARCHIVES_LIST
+
+          #### 📂 Fichiers inclus / mis à jour :
+          <details>
+          <summary>Voir la liste détaillée des payloads</summary>
+
+          $PAYLOADS_LIST
+          </details>"
+
+          # Nettoyage radical de TOUTES les anciennes releases et tags du dépôt pour ne garder que le strict nécessaire
+          echo "🧹 Suppression des anciennes releases et tags..."
+          for rel in $(gh release list --limit 100 --json tagName -q ".[].tagName"); do
+            gh release delete "$rel" --yes || true
+            git push origin --delete "$rel" || true
+            git tag -d "$rel" || true
+          done
+
+          # Création du nouveau tag horodaté
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git tag "$TAG"
           git push origin "$TAG"
 
-          # 1. Création de la release horodatée pointant vers les archives latest générées
           files_latest=$(ls archives/*_latest.zip 2>/dev/null || true)
+
+          # 1. Publication de la release horodatée unique
           if [ -n "$files_latest" ]; then
             gh release create "$TAG" $files_latest \
               --title "PS5 Store AIO Release ($TAG)" \
-              --notes "Archives AIO générées automatiquement à la date du $TAG."
-          else
-            echo "⚠️ Aucun fichier d'archive trouvé pour la release horodatée."
+              --notes "$RELEASE_NOTES"
           fi
 
-          # 2. Gestion propre de la release 'latest' permanente
-          gh release delete latest --yes || true
-          git push origin --delete latest 2>/dev/null || true
-          git tag -d latest 2>/dev/null || true
-          
+          # 2. Publication de la release permanente 'latest'
           if [ -n "$files_latest" ]; then
             gh release create latest $files_latest \
               --title "PS5 Store AIO - Latest (Permanent)" \
-              --notes "Liens permanents pointant toujours vers les dernières versions actualisées." \
+              --notes "Liens permanents pointant toujours vers les dernières versions actualisées du store." \
               --latest
           fi
