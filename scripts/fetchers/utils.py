@@ -5,6 +5,7 @@ import html
 import json
 import urllib.request
 import subprocess
+from scripts.config_rules import PATHS
 
 def parse_opml_file(opml_path):
     """Lit un fichier OPML et retourne la liste des entrées."""
@@ -23,23 +24,36 @@ def parse_opml_file(opml_path):
         })
     return items
 
-def fetch_assets_from_url(xml_url, title, description, author, allowed_extensions):
-    """Récupère les assets compatibles pour une URL donnée (Fixe, GitHub, GitLab, Gitea, Forgejo)."""
+def fetch_assets_from_url(xml_url, title, description, author, allowed_extensions, category_folder="downloads"):
+    """Récupère les assets compatibles pour une URL donnée (Fixe, GitHub, GitLab, Gitea, Forgejo) et les télécharge temporairement."""
     assets_collected = []
     clean_url = xml_url.split('?')[0].lower()
     version = "v1.0.0"
 
+    temp_dir = os.path.join(PATHS.get("archives_dir", "archives"), "temp_" + category_folder)
+    os.makedirs(temp_dir, exist_ok=True)
+
     # 1. URL Fixe directe
     if clean_url.endswith(allowed_extensions):
-        f_name = xml_url.split('/')[-1].split('?')[0]
-        assets_collected.append({
-            "name": title,
-            "filename": f_name,
-            "url": xml_url,
-            "description": description or f"Fichier {title}",
-            "version": version,
-            "author": author
-        })
+        try:
+            f_name = xml_url.split('/')[-1].split('?')[0]
+            local_path = os.path.join(temp_dir, f_name)
+            opener = urllib.request.build_opener()
+            opener.addheaders = [('User-Agent', 'Mozilla/5.0')]
+            urllib.request.install_opener(opener)
+            urllib.request.urlretrieve(xml_url, local_path)
+            
+            assets_collected.append({
+                "name": title,
+                "filename": f_name,
+                "url": xml_url,
+                "local_path": local_path,
+                "description": description or f"Fichier {title}",
+                "version": version,
+                "author": author
+            })
+        except Exception as e:
+            print(f"    ⚠️ Erreur URL fixe ({title}): {e}")
         return assets_collected
 
     # 2. GitHub Repository
@@ -52,18 +66,36 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
                 data = json.loads(res)
                 version = data.get('tagName', 'v1.0.0')
                 for asset in data.get('assets', []):
-                    if asset.get('name', '').lower().endswith(allowed_extensions):
+                    asset_name = asset.get('name', '')
+                    if asset_name.lower().endswith(allowed_extensions):
+                        asset_url = asset.get('url') or asset.get('browser_download_url')
+                        local_path = os.path.join(temp_dir, asset_name)
+                        
+                        try:
+                            req_headers = {'User-Agent': 'Mozilla/5.0', 'Accept': 'application/octet-stream'}
+                            if os.environ.get('GITHUB_TOKEN'):
+                                req_headers['Authorization'] = f"token {os.environ.get('GITHUB_TOKEN')}"
+                            
+                            req = urllib.request.Request(asset_url, headers=req_headers)
+                            with urllib.request.urlopen(req) as resp, open(local_path, 'wb') as out_file:
+                                out_file.write(resp.read())
+                        except Exception as dl_err:
+                            print(f"    ⚠️ Téléchargement asset GitHub échoué ({asset_name}): {dl_err}")
+                            continue
+
                         assets_collected.append({
-                            "name": f"{title} ({asset.get('name')})" if len(data.get('assets', [])) > 1 else title,
-                            "filename": asset.get('name'),
-                            "url": asset.get('url'),
-                            "description": description or f"Asset {asset.get('name')} pour {title}",
+                            "name": f"{title} ({asset_name})" if len(data.get('assets', [])) > 1 else title,
+                            "filename": asset_name,
+                            "url": asset_url,
+                            "local_path": local_path,
+                            "description": description or f"Asset {asset_name} pour {title}",
                             "version": version,
                             "author": author
                         })
-            except: pass
+            except Exception as e:
+                print(f"    ⚠️ Erreur API GitHub pour {repo}: {e}")
 
-    # 3. GitLab / Gitea / Forgejo / Instances autohébergées (ex: git.etawen.dev, codeberg.org, etc.)
+    # 3. GitLab / Gitea / Forgejo / Instances autohébergées
     elif any(domain in xml_url for domain in ["git.", "codeberg.org", "gitlab.com", "gitea"]):
         try:
             api_match = re.search(r'(https?://[^/]+)/([^/]+/[^/]+)', xml_url)
@@ -71,7 +103,6 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
                 base_domain = api_match.group(1)
                 repo_path = api_match.group(2).rstrip('/')
                 
-                # Détection Gitea/Forgejo vs GitLab
                 if "gitlab" in base_domain:
                     api_url = f"{base_domain}/api/v4/projects/{urllib.parse.quote(repo_path, safe='')}/releases"
                 else:
@@ -84,15 +115,28 @@ def fetch_assets_from_url(xml_url, title, description, author, allowed_extension
                         latest = releases[0]
                         version = latest.get('tag_name', latest.get('tagName', 'v1.0.0'))
                         for asset in latest.get('assets', []):
-                            if asset.get('name', '').lower().endswith(allowed_extensions):
+                            asset_name = asset.get('name', '')
+                            if asset_name.lower().endswith(allowed_extensions):
+                                asset_url = asset.get('browser_download_url', asset.get('url', ''))
+                                local_path = os.path.join(temp_dir, asset_name)
+                                try:
+                                    urllib.request.urlretrieve(asset_url, local_path)
+                                except Exception as dl_err:
+                                    print(f"    ⚠️ Erreur téléchargement asset Forgejo ({asset_name}): {dl_err}")
+                                    continue
+
                                 assets_collected.append({
                                     "name": title,
-                                    "filename": asset.get('name'),
-                                    "url": asset.get('browser_download_url', asset.get('url')),
-                                    "description": description or f"Asset {asset.get('name')}",
+                                    "filename": asset_name,
+                                    "url": asset_url,
+                                    "local_path": local_path,
+                                    "description": description or f"Asset {asset_name}",
                                     "version": version,
                                     "author": author
                                 })
-        except: pass
+                    else:
+                        print(f"    ℹ️ Aucune release trouvée pour l'API Forgejo/Gitea : {api_url}")
+        except Exception as e:
+            print(f"    ⚠️ Erreur connexion Forgejo/Git pour {xml_url}: {e}")
 
     return assets_collected
