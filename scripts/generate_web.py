@@ -1,88 +1,63 @@
-# scripts/generate_readme.py
+# scripts/generate_web.py
 
 import os
+import json
 from scripts.config_rules import PATHS, BASE_URL
 
-def generate_readme(credits_list, data_store=None):
+def generate_index_html(data_store):
     """
-    Génère le README.md principal structuré selon les exigences précises du projet.
-    Accepte optionnellement data_store pour la compatibilité avec update_store.py.
+    Génère la page index.html principale du store à partir des données collectées.
     """
-    readme_path = "README.md"
+    index_path = "index.html"
     
-    # Tri et nettoyage des crédits
-    sorted_credits = sorted(list(set(credits_list)))
-    credits_content = "\n".join(sorted_credits) if sorted_credits else "_Aucun crédit répertorié._"
+    # Construction d'un contenu HTML propre et fonctionnel pour le store
+    html_content = f"""<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS5 Super PLDMGR Auto-Updater Store</title>
+    <style>
+        body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }}
+        .container {{ max-width: 900px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }}
+        h1 {{ color: #38bdf8; border-bottom: 2px solid #334155; padding-bottom: 10px; }}
+        h2 {{ color: #fb7185; margin-top: 30px; }}
+        ul {{ line-height: 1.8; }}
+        a {{ color: #38bdf8; text-decoration: none; }}
+        a:hover {{ text-decoration: underline; }}
+        .badge {{ background: #334155; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 PS5 Super PLDMGR Store</h1>
+        <p>Bienvenue sur l'interface Web officielle et autogénérée de votre store PlayStation 5.</p>
+        
+        <h2>🔗 Accès Rapides aux Données JSON</h2>
+        <ul>
+            <li><strong>Payloads :</strong> <a href="{BASE_URL}/json/payloads.json" target="_blank">json/payloads.json</a></li>
+            <li><strong>Packages (PKG) :</strong> <a href="{BASE_URL}/json/pkg.json" target="_blank">json/pkg.json</a></li>
+            <li><strong>Fichiers FFPFSC :</strong> <a href="{BASE_URL}/json/ffpfsc.json" target="_blank">json/ffpfsc.json</a></li>
+            <li><strong>Applications :</strong> <a href="{BASE_URL}/json/apps.json" target="_blank">json/apps.json</a></li>
+        </ul>
 
-    content = f"""# 🚀 PS5 Super PLDMGR Auto-Updater Core OS
-
-Store automatisé et intelligent pour PlayStation 5 regroupant les payloads, packages (PKG), fichiers FFPFSC et applications utilitaires avec synchronisation continue.
-
----
-
-## 🌐 Page Web du Store
-
-Accédez à l'interface web interactive générée automatiquement pour explorer le catalogue :
-- **Interface Web Principale (index.html)** : [{BASE_URL}/index.html]({BASE_URL}/index.html)
-
----
-
-## 🔗 Liste des URLs JSON Globales
-
-Retrouvez l'ensemble des points d'accès aux données JSON du store :
-- **Payloads Global** : `{BASE_URL}/json/payloads.json`
-- **Packages (PKG) Global** : `{BASE_URL}/json/pkg.json`
-- **Fichiers FFPFSC Global** : `{BASE_URL}/json/ffpfsc.json`
-- **Applications Global** : `{BASE_URL}/json/apps.json`
-
----
-
-## 📡 Flux RSS & Veille Technologique
-
-Les flux RSS générés automatiquement permettent de suivre en temps réel les mises à jour des dépôts, des outils et des binaires de la scène PS5. Vous pouvez les intégrer dans n'importe quel lecteur RSS (comme FreshRSS) ou les automatiser via des webhooks (Discord, Telegram, etc.) :
-- **Flux RSS Payloads** : `{BASE_URL}/rss/payloads_rss.xml` — _Suivi des nouveautés et mises à jour de payloads (.elf, .bin, .ffpfsc)._
-- **Flux RSS Packages (PKG)** : `{BASE_URL}/rss/pkg_rss.xml` — _Suivi des publications de jeux, homebrews et applications au format PKG._
-- **Flux RSS Fichiers FFPFSC** : `{BASE_URL}/rss/ffpfsc_rss.xml` — _Suivi des modifications et ajouts de patches de configuration FFPFSC._
-- **Flux RSS Applications** : `{BASE_URL}/rss/apps_rss.xml` — _Suivi des mises à jour des outils utilitaires et interfaces de gestion._
-
----
-
-## 📦 Packs Latest à Télécharger (AIO)
-
-Téléchargez les archives globales prêtes à l'emploi mises à jour à chaque release :
-- **Pack Payloads AIO** : [{BASE_URL}/archives/PS5_payloads_aio_latest.zip]({BASE_URL}/archives/PS5_payloads_aio_latest.zip)
-- **Pack PKG AIO** : [{BASE_URL}/archives/PS5_pkg_aio_latest.zip]({BASE_URL}/archives/PS5_pkg_aio_latest.zip)
-- **Pack FFPFSC AIO** : [{BASE_URL}/archives/PS5_ffpfsc_aio_latest.zip]({BASE_URL}/archives/PS5_ffpfsc_aio_latest.zip)
-- **Pack Apps AIO** : [{BASE_URL}/archives/PS5_apps_aio_latest.zip]({BASE_URL}/archives/PS5_apps_aio_latest.zip)
-- **Ultimate Pack AIO** : [{BASE_URL}/archives/PS5_ultimate_pack_latest.zip]({BASE_URL}/archives/PS5_ultimate_pack_latest.zip)
-
----
-
-## 📂 Tableaux par Catégorie et par Section
-
-| Catégorie | Fichier JSON | Flux RSS | Fichiers OPML / Sources |
-| :--- | :--- | :--- | :--- |
-| **Payloads** | [JSON Global]({BASE_URL}/json/payloads.json) | [RSS]({BASE_URL}/rss/payloads_rss.xml) | [Dossier OPML]({BASE_URL}/feed/payloads/) |
-| **Packages (PKG)** | [JSON Global]({BASE_URL}/json/pkg.json) | [RSS]({BASE_URL}/rss/pkg_rss.xml) | [Dossier OPML]({BASE_URL}/feed/pkg/) |
-| **Fichiers FFPFSC** | [JSON Global]({BASE_URL}/json/ffpfsc.json) | [RSS]({BASE_URL}/rss/ffpfsc_rss.xml) | [Dossier OPML]({BASE_URL}/feed/ffpfsc/) |
-| **Applications** | [JSON Global]({BASE_URL}/json/apps.json) | [RSS]({BASE_URL}/rss/apps_rss.xml) | [Dossier OPML]({BASE_URL}/feed/apps/) |
-
----
-
-## ☕ Crédits & Sources
-
-Ce projet agrège et structure le travail des développeurs de la scène PS5 :
-
-{credits_content}
-
----
-*Mise à jour automatique assurée par GitHub Actions.*
+        <h2>📦 Archives Globales (AIO)</h2>
+        <ul>
+            <li><a href="{BASE_URL}/archives/PS5_payloads_aio_latest.zip">Pack Payloads AIO (Latest)</a></li>
+            <li><a href="{BASE_URL}/archives/PS5_pkg_aio_latest.zip">Pack PKG AIO (Latest)</a></li>
+            <li><a href="{BASE_URL}/archives/PS5_ffpfsc_aio_latest.zip">Pack FFPFSC AIO (Latest)</a></li>
+            <li><a href="{BASE_URL}/archives/PS5_apps_aio_latest.zip">Pack Apps AIO (Latest)</a></li>
+            <li><a href="{BASE_URL}/archives/PS5_ultimate_pack_latest.zip">Ultimate Pack AIO</a></li>
+        </ul>
+    </div>
+</body>
+</html>
 """
 
-    with open(readme_path, 'w', encoding='utf-8') as f:
-        f.write(content)
+    with open(index_path, 'w', encoding='utf-8') as f:
+        f.write(html_content)
 
-    print("✅ Génération du README.md structuré et unifié avec flux RSS détaillée terminée.")
+    print("✅ Génération de la page index.html terminée.")
 
-# Alias requis par update_store.py
-build_readme = generate_readme
+# Alias indispensable pour l'appel depuis update_store.py
+build_index_html = generate_index_html
