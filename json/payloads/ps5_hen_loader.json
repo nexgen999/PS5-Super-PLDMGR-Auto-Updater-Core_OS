@@ -1,0 +1,86 @@
+{
+  "name": "PS5 HEN Loader",
+  "payloads": [
+    {
+      "name": "etaHEN",
+      "filename": "etaHEN_v2.5B.bin",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/etaHEN/2.5B/etaHEN_v2.5B.bin",
+      "description": "Le Homebrew Enabler (HEN) de référence pour la PS5 avec serveurs de triche, plugins et gestionnaire de mémoire intégrés.",
+      "version": "2.5B",
+      "category": "PS5 HEN Loader",
+      "checksum": "4845cac45095361b8983b14d6690622183b0dcfbf6d7fda16e161aa91ff0531e"
+    },
+    {
+      "name": "PS5_Unified_Autoloader",
+      "filename": "PS5_Unified_Autoloader_v0.1.4-955249d.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/PS5_Unified_Autoloader/v0.1.4-955249d/PS5_Unified_Autoloader_v0.1.4-955249d.elf",
+      "description": "Chargeur universel de payloads permettant de lancer automatiquement vos outils favoris au démarrage de l'exploit.",
+      "version": "v0.1.4-955249d",
+      "category": "PS5 HEN Loader",
+      "checksum": "31d12ba2b0b11462a91756f4b8c7857e90674fc8df02fe74155c7c2a8f27a4fd"
+    },
+    {
+      "name": "pldmgr",
+      "filename": "pldmgr_v0.5.1.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/PS5_Payload_Manager/v0.5.1/pldmgr_v0.5.1.elf",
+      "description": "Interface d'administration et de gestion réseau pour envoyer, activer et ordonner vos fichiers ELF/BIN sur la console.",
+      "version": "v0.5.1",
+      "category": "PS5 HEN Loader",
+      "checksum": "05617c69ea145d1c11b8f7a6b7d3bd9e6df3831afd25d71a4ac85d63fb8e28aa"
+    },
+    {
+      "name": "ELF_Arsenal",
+      "filename": "ELF_Arsenal_v1.6.22.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf",
+      "description": "Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.",
+      "version": "v1.6.22",
+      "category": "PS5 HEN Loader",
+      "checksum": "ee8f47e4d6a5fd85cef113341aa1eb74d68e373a58fcb1fb5a9274acd2b83bd2"
+    },
+    {
+      "name": "Kura",
+      "filename": "Kura_v1.6.49.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/Kura/v1.6.49/Kura_v1.6.49.elf",
+      "description": "Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5.",
+      "version": "v1.6.49",
+      "category": "PS5 HEN Loader",
+      "checksum": "bf3bac2a7197a2b656efe6bd40ffd07ea99ec051a3ad4f5291892e829519b197"
+    },
+    {
+      "name": "PIZZA-HEN",
+      "filename": "PIZZA-HEN_v2.00.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/PIZZA-HEN/v2.00/PIZZA-HEN_v2.00.elf",
+      "description": "PIZZA HEN is an experimental all-in-one PS5 homebrew environment.",
+      "version": "v2.00",
+      "category": "PS5 HEN Loader",
+      "checksum": "8535d399612d61c50a528b2ae416f2fc3ccfb7480296df99c17302583fb3e345"
+    },
+    {
+      "name": "onionHEN",
+      "filename": "onionHEN_v0.0.12.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/onionHEN/v0.0.12/onionHEN_v0.0.12.elf",
+      "description": "An all-in-one HEN and Toolbox for PlayStation 5.",
+      "version": "v0.0.12",
+      "category": "PS5 HEN Loader",
+      "checksum": "a5c8dafe2af2681e8014421400c4ade4183a8d8be6dad6080dbd0930fa159e00"
+    },
+    {
+      "name": "etaHEN-2.6B",
+      "filename": "etaHEN-2.6B.bin",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/etaHEN-Beta/Source-Fixe/etaHEN-2.6B.bin",
+      "description": "etahen beta version experimental.",
+      "version": "Source-Fixe",
+      "category": "PS5 HEN Loader",
+      "checksum": "512c74a9d6f56bb5a4ab871a0306a8cbefb8b3d5454ba8f1d833b020b245a126"
+    },
+    {
+      "name": "ProsperoMgr",
+      "filename": "ProsperoMgr_vbeta.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ProsperoMgr/beta/ProsperoMgr_vbeta.elf",
+      "description": "A Web-Based All-In-One homebrew manager for your PlayStation 5",
+      "version": "beta",
+      "category": "PS5 HEN Loader",
+      "checksum": "6cde8d8e97478ff43f69d2c6b22ac6512311d83b1d9ceb09d56796b9200c1b3c"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "PS5 Freeshop",
+  "payloads": [
+    {
+      "name": "Spectrum-Library",
+      "filename": "Spectrum-Library_v1.4.3.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_freeshop/Spectrum-Library/1.4.3/Spectrum-Library_v1.4.3.elf",
+      "description": "free store webadmin http://your-ps5-ip:7575.",
+      "version": "1.4.3",
+      "category": "PS5 Freeshop",
+      "checksum": "11b261457dbb7fee013028a667699ba3c673e4a8ae376a377efb51d2f6b6b257"
+    },
+    {
+      "name": "pegasus-dl",
+      "filename": "pegasus-dl_v1.7.0.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_freeshop/pegasus-dl/v1.7.0/pegasus-dl_v1.7.0.elf",
+      "description": "free store webadmin http://your-ps5-ip:6970.",
+      "version": "v1.7.0",
+      "category": "PS5 Freeshop",
+      "checksum": "cb2a4b3c248323f2432ce118cb1bf4975146035239ce9b571a9bdb51b3fee226"
+    },
+    {
+      "name": "ps5shopappkg-dpi",
+      "filename": "ps5shopappkg-dpi.elf",
+      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_freeshop/ps5shopappkg-dpi/Source-Fixe/ps5shopappkg-dpi.elf",
+      "description": "You need PS5-SHOP-APPKG.pkg DPI port 9040.",
+      "version": "Source-Fixe",
+      "category": "PS5 Freeshop",
+      "checksum": "c4672cfa909463843c537f67d5f2df9eb3456d4036d26a4fb81fc34d7853170b"
+    }
+  ]
+}

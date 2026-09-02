@@ -1,866 +1,98 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PS5 Payload Manager & Store</title>
-    <style>
-        :root {
-            --bg-main: #15202b;
-            --bg-card: #1e2732;
-            --bg-hover: #273340;
-            --border-color: #38444d;
-            --text-main: #f7f9fa;
-            --text-muted: #8899a6;
-            --accent-blue: #1da1f2;
-            --accent-blue-hover: #1a91da;
-            --accent-green: #00ba7c;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); display: flex; min-height: 100vh; }
-
-        .sidebar { width: 280px; background-color: var(--bg-main); border-right: 1px solid var(--border-color); padding: 20px; display: flex; flex-direction: column; position: fixed; height: 100vh; overflow-y: auto; }
-        .profile-card { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
-        .profile-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--accent-blue); margin-bottom: 10px; }
-        .profile-name { font-size: 1.2rem; font-weight: bold; }
-        .profile-handle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; }
-        
-        .social-links { display: flex; justify-content: center; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-        .social-btn { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; padding: 4px 8px; border: 1px solid var(--border-color); border-radius: 15px; transition: 0.2s; }
-        .social-btn:hover { background-color: var(--bg-hover); color: var(--accent-blue); border-color: var(--accent-blue); }
-
-        .nav-menu { display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
-        .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: var(--text-main); text-decoration: none; border-radius: 25px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .nav-item:hover, .nav-item.active { background-color: var(--bg-hover); color: var(--accent-blue); }
-
-        .main-content { margin-left: 280px; flex-grow: 1; padding: 30px; max-width: 1000px; }
-        .tab-panel { display: none; }
-        .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        .card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
-        h1, h2, h3 { margin-bottom: 15px; }
-        p { color: var(--text-muted); line-height: 1.6; margin-bottom: 15px; }
-        code { background-color: #10171e; color: var(--accent-blue); padding: 3px 8px; border-radius: 6px; font-family: monospace; font-size: 0.9rem; }
-
-        .btn-primary { display: inline-block; background-color: var(--accent-blue); color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; transition: 0.2s; border: none; cursor: pointer; }
-        .btn-primary:hover { background-color: var(--accent-blue-hover); }
-        .badge { padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
-        .badge-cat { background-color: #253341; color: var(--accent-blue); }
-        .badge-ver { background-color: #193a32; color: var(--accent-green); }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
-        th { background-color: var(--bg-card); color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; }
-        tr:hover { background-color: var(--bg-hover); }
-        .btn-download-sm { color: var(--accent-blue); text-decoration: none; font-weight: bold; }
-        .btn-download-sm:hover { text-decoration: underline; }
-        .credits-list { list-style: none; line-height: 2; color: var(--text-muted); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIO PS5 Store Directory</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #58a6ff;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #79c0ff;
+    }
+    .card .count {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #f0f6fc;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 0.8rem;
+      color: #58a6ff;
+      text-decoration: none;
+    }
+    .card a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 3rem;
+      border-top: 1px solid #30363d;
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      color: #8b949e;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>🚀 AIO PS5 Store Directory</h1>
+    <p>Index dynamique du dépôt synchronisé automatiquement.</p>
 
-    <div class="sidebar">
-        <div class="profile-card">
-            <img src="https://github.com/nexgen999.png" alt="Profile" class="profile-img">
-            <div class="profile-name">nexgen999</div>
-            <div class="profile-handle">@nexgen999</div>
-            <p style="font-size: 0.8rem; margin-bottom: 0;">PS5 Scene & Homebrew Automation</p>
-            <div class="social-links">
-                <a href="https://github.com/nexgen999" target="_blank" class="social-btn">GitHub</a>
-                <a href="https://x.com/nexgen999" target="_blank" class="social-btn">X</a>
-                <a href="https://bsky.app/profile/nexgen999.bsky.social" target="_blank" class="social-btn">Bluesky</a>
-            </div>
-        </div>
-
-        <nav class="nav-menu">
-            <div class="nav-item active" onclick="switchTab('home')">🏠 Accueil</div>
-            <div class="nav-item" onclick="switchTab('json-info')">📄 payloads.json</div>
-            <div class="nav-item" onclick="switchTab('aio-package')">📦 Package AIO</div>
-            <div class="nav-item" onclick="switchTab('payloads-list')">🛠️ Payloads ELF (87)</div>
-            <div class="nav-item" onclick="switchTab('credits')">🤝 Crédits</div>
-            <div class="nav-item" onclick="switchTab('about')">ℹ️ À Propos</div>
-        </nav>
+    <div class="grid">
+      <div class="card">
+        <h3>⚡ Payloads</h3>
+        <div class="count">75</div>
+        <a href="json/payloads.json">Voir payloads.json</a>
+      </div>
+      <div class="card">
+        <h3>📦 Packages (PKG)</h3>
+        <div class="count">10</div>
+        <a href="json/pkg.json">Voir pkg.json</a>
+      </div>
+      <div class="card">
+        <h3>📄 FFPFSC</h3>
+        <div class="count">3</div>
+        <a href="json/ffpfsc.json">Voir ffpfsc.json</a>
+      </div>
+      <div class="card">
+        <h3>📱 Applications</h3>
+        <div class="count">0</div>
+        <a href="json/apps.json">Voir apps.json</a>
+      </div>
     </div>
 
-    <div class="main-content">
-
-        <div id="home" class="tab-panel active">
-            <div class="card">
-                <h1>🎮 PS5 Payload Manager & Store</h1>
-                <p>Bienvenue sur le hub automatisé de gestion de payloads pour la scène PS5 jailbreak.</p>
-                <p><strong>Dernière synchronisation :</strong> <code>24/08/2026 à 12:50</code></p>
-                <div style="display: flex; gap: 15px; margin-top: 20px;">
-                    <a href="https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/latest/download/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip" class="btn-primary">📦 Télécharger AIO Latest (.zip)</a>
-                    <button class="btn-primary" style="background-color: var(--bg-hover);" onclick="switchTab('json-info')">⚙️ Configurer le JSON</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="json-info" class="tab-panel">
-            <div class="card">
-                <h2>📄 Configuration du fichier JSON central</h2>
-                <p>URL pour connecter votre application PS5 :</p>
-                <p><code>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/json/payloads.json</code></p>
-            </div>
-        </div>
-
-        <div id="aio-package" class="tab-panel">
-            <div class="card">
-                <h2>📦 Package All-In-One (AIO) Hors-ligne</h2>
-                <p>Contient uniquement la dernière version de chaque payload ELF disponible.</p>
-                <p><strong>Lien direct Latest :</strong></p>
-                <p><code>https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/latest/download/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip</code></p>
-                <br>
-                <a href="https://github.com/nexgen999/PS5-Super-PLDMGR-Auto-Updater/releases/latest/download/ps5_super_pldmgr_auto_updated_offline.aio_latest.zip" class="btn-primary">Télécharger le Package AIO Latest (.zip)</a>
-            </div>
-        </div>
-
-        <div id="payloads-list" class="tab-panel">
-            <div class="card">
-                <h2>🛠️ Payloads ELF disponibles</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Catégorie</th>
-                            <th>Version</th>
-                            <th>Checksum</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-        <tr>
-            <td><strong>PS5-Custom-Tool-Manager-</strong></td>
-            <td><span class="badge badge-cat">PS5 Themes-Avatars</span></td>
-            <td><span class="badge badge-ver">Custom</span></td>
-            <td><code>297824ceaf...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_themes-avatars/PS5-Custom-Tool-Manager-/Custom/PS5-Custom-Tool-Manager-_vCustom.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-wallpaper-modd</strong></td>
-            <td><span class="badge badge-cat">PS5 Themes-Avatars</span></td>
-            <td><span class="badge badge-ver">v1.0</span></td>
-            <td><code>b18a866bac...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_themes-avatars/ps5-wallpaper-modd/v1.0/ps5-wallpaper-modd_v1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>etaHEN</strong></td>
-            <td><span class="badge badge-cat">PS5 HEN Loader</span></td>
-            <td><span class="badge badge-ver">2.5B</span></td>
-            <td><code>4845cac450...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_hen_loader/etaHEN/2.5B/etaHEN_v2.5B.bin" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PS5_Unified_Autoloader</strong></td>
-            <td><span class="badge badge-cat">PS5 HEN Loader</span></td>
-            <td><span class="badge badge-ver">v0.1.4-955249d</span></td>
-            <td><code>31d12ba2b0...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_hen_loader/PS5_Unified_Autoloader/v0.1.4-955249d/PS5_Unified_Autoloader_v0.1.4-955249d.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>pldmgr</strong></td>
-            <td><span class="badge badge-cat">PS5 HEN Loader</span></td>
-            <td><span class="badge badge-ver">v0.5.1</span></td>
-            <td><code>05617c69ea...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_hen_loader/PS5_Payload_Manager/v0.5.1/pldmgr_v0.5.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ELF_Arsenal</strong></td>
-            <td><span class="badge badge-cat">PS5 HEN Loader</span></td>
-            <td><span class="badge badge-ver">v1.6.22</span></td>
-            <td><code>ee8f47e4d6...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Kura</strong></td>
-            <td><span class="badge badge-cat">PS5 HEN Loader</span></td>
-            <td><span class="badge badge-ver">v1.6.48</span></td>
-            <td><code>49a1b46fa2...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_hen_loader/Kura/v1.6.48/Kura_v1.6.48.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PIZZA-HEN</strong></td>
-            <td><span class="badge badge-cat">PS5 HEN Loader</span></td>
-            <td><span class="badge badge-ver">v1.0</span></td>
-            <td><code>4708beca5c...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_hen_loader/PIZZA-HEN/v1.0/PIZZA-HEN_v1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>etaHEN-2.6B</strong></td>
-            <td><span class="badge badge-cat">PS5 HEN Loader</span></td>
-            <td><span class="badge badge-ver">Source-Fixe</span></td>
-            <td><code>512c74a9d6...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_hen_loader/etaHEN-Beta/Source-Fixe/etaHEN-2.6B.bin" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-fan-control</strong></td>
-            <td><span class="badge badge-cat">PS5 Fan</span></td>
-            <td><span class="badge badge-ver">v0.3</span></td>
-            <td><code>b10b6b9b9c...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_fan/ps5-fan-control/v0.3/ps5-fan-control_v0.3.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>fan_target_75c</strong></td>
-            <td><span class="badge badge-cat">PS5 Fan</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>4b52e09c48...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_fan/fan_target/0.1/fan_target_75c_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>fan_target_85c</strong></td>
-            <td><span class="badge badge-cat">PS5 Fan</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>c37019c351...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_fan/fan_target/0.1/fan_target_85c_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>fan_target_80c</strong></td>
-            <td><span class="badge badge-cat">PS5 Fan</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>ccf2e70921...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_fan/fan_target/0.1/fan_target_80c_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>fan_target_65c</strong></td>
-            <td><span class="badge badge-cat">PS5 Fan</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>0bedeb5649...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_fan/fan_target/0.1/fan_target_65c_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>fan_target_70c</strong></td>
-            <td><span class="badge badge-cat">PS5 Fan</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>a9ad850212...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_fan/fan_target/0.1/fan_target_70c_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>nanoDNS</strong></td>
-            <td><span class="badge badge-cat">PS5 Dns</span></td>
-            <td><span class="badge badge-ver">0.4</span></td>
-            <td><code>18a93655c5...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_dns/nanoDNS/0.4/nanoDNS_v0.4.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Chukei_DNS</strong></td>
-            <td><span class="badge badge-cat">PS5 Dns</span></td>
-            <td><span class="badge badge-ver">0.9.0</span></td>
-            <td><code>0cf13e1ed8...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_dns/Chukei_DNS/0.9.0/Chukei_DNS_v0.9.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>uds-trophy-unlocker</strong></td>
-            <td><span class="badge badge-cat">PS5 Trophy</span></td>
-            <td><span class="badge badge-ver">v1.0.0</span></td>
-            <td><code>3a338eccaa...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_trophy/uds-trophy-unlocker/v1.0.0/uds-trophy-unlocker_v1.0.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>CheatRunner</strong></td>
-            <td><span class="badge badge-cat">PS5 Cheat</span></td>
-            <td><span class="badge badge-ver">v0.17</span></td>
-            <td><code>2f296d3f1e...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/PS5_Cheat/CheatRunner/v0.17/CheatRunner_v0.17.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>kylin-core-community-lite-v131-global-release</strong></td>
-            <td><span class="badge badge-cat">PS5 Cheat</span></td>
-            <td><span class="badge badge-ver">Source-Fixe</span></td>
-            <td><code>2b731fc60b...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/PS5_Cheat/kylin-core/Source-Fixe/kylin-core-community-lite-v131-global-release.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Spectrum-Library</strong></td>
-            <td><span class="badge badge-cat">PS5 Freeshop</span></td>
-            <td><span class="badge badge-ver">1.4.2</span></td>
-            <td><code>54755ce62d...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_freeshop/Spectrum-Library/1.4.2/Spectrum-Library_v1.4.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>pegasus-dl</strong></td>
-            <td><span class="badge badge-cat">PS5 Freeshop</span></td>
-            <td><span class="badge badge-ver">v1.7.0</span></td>
-            <td><code>cb2a4b3c24...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_freeshop/pegasus-dl/v1.7.0/pegasus-dl_v1.7.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ChronicLoader-PS5-Payload</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>3561120f85...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/ChronicLoader-PS5-Payload/0.1/ChronicLoader-PS5-Payload_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Ghostpad</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">v1.0.0</span></td>
-            <td><code>94d43a8db7...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/Ghostpad/v1.0.0/Ghostpad_v1.0.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Ghostcontrol-PS5-USB-Controller-Patcher</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">1.0.5</span></td>
-            <td><code>69271d91f2...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/Ghostcontrol-PS5-USB-Controller-Patcher/1.0.5/Ghostcontrol-PS5-USB-Controller-Patcher_v1.0.5.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PoorDS4-status</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">v0.1.0-rc38</span></td>
-            <td><code>c26a35a2c9...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PoorDS4-stop</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">v0.1.0-rc38</span></td>
-            <td><code>bf9f1dec35...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-stop_v0.1.0-rc38.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PoorDS4rc38</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">v0.1.0-rc38</span></td>
-            <td><code>62d21fe837...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4rc38_v0.1.0-rc38.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PS_Game_State_Lib</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">v0.1</span></td>
-            <td><code>a550e1494b...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PS_Game_State_Lib/v0.1/PS_Game_State_Lib_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PS-DiscordPresence</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">v0.01</span></td>
-            <td><code>375cf619ea...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PS-DiscordPresence/v0.01/PS-DiscordPresence_v0.01.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>unrar-ps5</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">v1.4.0</span></td>
-            <td><code>2ef04b0bc8...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/unrar-ps5/v1.4.0/unrar-ps5_v1.4.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5power-reboot</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">1.0</span></td>
-            <td><code>3614f68981...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/ps5power-reboot_v1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5power-poweroff</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">1.0</span></td>
-            <td><code>42ed798361...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/ps5power-poweroff_v1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5power-notify_test</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">1.0</span></td>
-            <td><code>a06cf9ace6...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/ps5power-notify_test_v1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5power-suspend</strong></td>
-            <td><span class="badge badge-cat">PS5 Utility</span></td>
-            <td><span class="badge badge-ver">1.0</span></td>
-            <td><code>1a36a01c92...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/ps5power-suspend_v1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>webkit-autoloader-installer</strong></td>
-            <td><span class="badge badge-cat">Ps5-Webkit-Autoloader</span></td>
-            <td><span class="badge badge-ver">v0.4.0</span></td>
-            <td><code>179d5e52ec...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5-webkit-autoloader/ps5-webkit-autoloader/v0.4.0/webkit-autoloader-installer_v0.4.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Host-PSM-pooP2JB-v1.1.0-instala-onionhen</strong></td>
-            <td><span class="badge badge-cat">Ps5-Webkit-Autoloader</span></td>
-            <td><span class="badge badge-ver">v1.1.0</span></td>
-            <td><code>67a84db170...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.1.0/Host-PSM-pooP2JB-v1.1.0-instala-onionhen_v1.1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Host-PSM-pooP2JB-v1.1.0-instala-pldmgr</strong></td>
-            <td><span class="badge badge-cat">Ps5-Webkit-Autoloader</span></td>
-            <td><span class="badge badge-ver">v1.1.0</span></td>
-            <td><code>038946be06...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.1.0/Host-PSM-pooP2JB-v1.1.0-instala-pldmgr_v1.1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Host-PSM-pooP2JB-v1.1.0-instala-pldmgr-en</strong></td>
-            <td><span class="badge badge-cat">Ps5-Webkit-Autoloader</span></td>
-            <td><span class="badge badge-ver">v1.1.0</span></td>
-            <td><code>34c040c757...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.1.0/Host-PSM-pooP2JB-v1.1.0-instala-pldmgr-en_v1.1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>Host-PSM-pooP2JB-v1.1.0-instala-onionhen-en</strong></td>
-            <td><span class="badge badge-cat">Ps5-Webkit-Autoloader</span></td>
-            <td><span class="badge badge-ver">v1.1.0</span></td>
-            <td><code>aa0dca2b98...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.1.0/Host-PSM-pooP2JB-v1.1.0-instala-onionhen-en_v1.1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>garlic-savemgr</strong></td>
-            <td><span class="badge badge-cat">PS5 Saves</span></td>
-            <td><span class="badge badge-ver">v1.13</span></td>
-            <td><code>b6d366f410...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>garlic-worker</strong></td>
-            <td><span class="badge badge-cat">PS5 Saves</span></td>
-            <td><span class="badge badge-ver">v1.1.6</span></td>
-            <td><code>b395fd1e35...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>savemnt-offset-dumper</strong></td>
-            <td><span class="badge badge-cat">PS5 Saves</span></td>
-            <td><span class="badge badge-ver">1.0.0</span></td>
-            <td><code>946328551f...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>np-fake-signin</strong></td>
-            <td><span class="badge badge-cat">PS5 Activation</span></td>
-            <td><span class="badge badge-ver">v1.3</span></td>
-            <td><code>2ace1bb0be...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PS5-Game-Compressor</strong></td>
-            <td><span class="badge badge-cat">PS5 Game Dump</span></td>
-            <td><span class="badge badge-ver">v1.0.4</span></td>
-            <td><code>e55e90aaad...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_game_dump/PS5-Game-Compressor/v1.0.4/PS5-Game-Compressor_v1.0.4.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-app-dumper</strong></td>
-            <td><span class="badge badge-cat">PS5 Game Dump</span></td>
-            <td><span class="badge badge-ver">v1.11</span></td>
-            <td><code>18483751eb...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_game_dump/ps5-app-dumper/v1.11/ps5-app-dumper_v1.11.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>shadowmountplus</strong></td>
-            <td><span class="badge badge-cat">PS5 Game Dump</span></td>
-            <td><span class="badge badge-ver">1.7alpha8</span></td>
-            <td><code>f15653fe90...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_game_dump/ShadowMountPlus/1.7alpha8/shadowmountplus_v1.7alpha8.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>BackPork</strong></td>
-            <td><span class="badge badge-cat">PS5 Game Dump</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>d74e4cd119...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_game_dump/BackPork/0.1/BackPork_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>apr-emu-updater</strong></td>
-            <td><span class="badge badge-cat">PS5 Game Dump</span></td>
-            <td><span class="badge badge-ver">v1.5.1</span></td>
-            <td><code>42a0b98ed0...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_game_dump/apr-emu-updater/v1.5.1/apr-emu-updater_v1.5.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>BFplayer-standalone</strong></td>
-            <td><span class="badge badge-cat">PS5 Video Player</span></td>
-            <td><span class="badge badge-ver">v0.1.0-alpha.44</span></td>
-            <td><code>0d028deb14...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_video_player/BFplayer-standalone/v0.1.0-alpha.44/BFplayer-standalone_v0.1.0-alpha.44.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ProsperoPlayer</strong></td>
-            <td><span class="badge badge-cat">PS5 Video Player</span></td>
-            <td><span class="badge badge-ver">v1.0</span></td>
-            <td><code>40b9955273...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_video_player/ProsperoPlayer/v1.0/ProsperoPlayer_v1.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>svtplay</strong></td>
-            <td><span class="badge badge-cat">PS5 Video Player</span></td>
-            <td><span class="badge badge-ver">v0.2</span></td>
-            <td><code>5bdf251425...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_video_player/svtplay/v0.2/svtplay_v0.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PS-Play</strong></td>
-            <td><span class="badge badge-cat">PS5 Video Player</span></td>
-            <td><span class="badge badge-ver">2.1</span></td>
-            <td><code>e3392379d5...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_video_player/PS-Play/2.1/PS-Play_v2.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>zftp</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v1.5.0</span></td>
-            <td><code>0f724dc57c...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/zftpd/v1.5.0/zftp_v1.5.0.bin" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>zftp</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v1.5.0</span></td>
-            <td><code>bc21772cea...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/zftpd/v1.5.0/zftp_v1.5.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>zhttp</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v1.5.0</span></td>
-            <td><code>9340aa91f8...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/zftpd/v1.5.0/zhttp_v1.5.0.bin" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>zhttp</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v1.5.0</span></td>
-            <td><code>5d2f96ccf0...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/zftpd/v1.5.0/zhttp_v1.5.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>elfldr</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v0.25</span></td>
-            <td><code>de70a47e6d...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/elfldr/v0.25/elfldr_v0.25.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ftpsrv_ps5-payload</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v0.21.1</span></td>
-            <td><code>0ccfe00970...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/ftpsrv_ps5-payload/v0.21.1/ftpsrv_ps5-payload_v0.21.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>websrv</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v0.34</span></td>
-            <td><code>54730c867c...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/websrv/v0.34/websrv_v0.34.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>gdbsrv</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v0.9</span></td>
-            <td><code>80952d75f4...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/gdbsrv/v0.9/gdbsrv_v0.9.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>klogsrv</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v0.9</span></td>
-            <td><code>e828ec1442...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/klogsrv/v0.9/klogsrv_v0.9.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ftpsrv_drakmor</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">1.6-ng-test2</span></td>
-            <td><code>6364e05294...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/ftpsrv_drakmor/1.6-ng-test2/ftpsrv_drakmor_v1.6-ng-test2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5upload</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">v5.4.19</span></td>
-            <td><code>33665dd87e...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/ps5upload/v5.4.19/ps5upload_v5.4.19.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>airpsx</strong></td>
-            <td><span class="badge badge-cat">PS5 Server</span></td>
-            <td><span class="badge badge-ver">0.19</span></td>
-            <td><code>ae025ca772...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_server/airpsx/0.19/airpsx_v0.19.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>kstuff_EchoStretch</strong></td>
-            <td><span class="badge badge-cat">PS5 Kstuff</span></td>
-            <td><span class="badge badge-ver">v1.6.7</span></td>
-            <td><code>f1c1f4b2b6...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_kstuff/kstuff_EchoStretch/v1.6.7/kstuff_EchoStretch_v1.6.7.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>kstuff-lite_EchoStretch</strong></td>
-            <td><span class="badge badge-cat">PS5 Kstuff</span></td>
-            <td><span class="badge badge-ver">v1.10</span></td>
-            <td><code>b1dfe57f36...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_kstuff/kstuff-lite_EchoStretch/v1.10/kstuff-lite_EchoStretch_v1.10.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>kstuff-lite_drakmor</strong></td>
-            <td><span class="badge badge-cat">PS5 Kstuff</span></td>
-            <td><span class="badge badge-ver">1.2-dr-test2</span></td>
-            <td><code>2b699d4110...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_kstuff/kstuff-lite_drakmor/1.2-dr-test2/kstuff-lite_drakmor_v1.2-dr-test2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-linux-loader</strong></td>
-            <td><span class="badge badge-cat">PS5 Linux</span></td>
-            <td><span class="badge badge-ver">v2.4</span></td>
-            <td><code>51382795b4...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_linux/ps5-linux-loader/v2.4/ps5-linux-loader_v2.4.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>bfpilot</strong></td>
-            <td><span class="badge badge-cat">PS5 File Explorer</span></td>
-            <td><span class="badge badge-ver">v0.4.4</span></td>
-            <td><code>5a82376302...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_file_explorer/BFpilot/v0.4.4/bfpilot_v0.4.4.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>lapy_jb_daemon</strong></td>
-            <td><span class="badge badge-cat">PS5 File Explorer</span></td>
-            <td><span class="badge badge-ver">Source-Fixe</span></td>
-            <td><code>e8230ac459...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_file_explorer/Lapy_JB_Daemon/Source-Fixe/lapy_jb_daemon.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-web-file-manager</strong></td>
-            <td><span class="badge badge-cat">PS5 File Explorer</span></td>
-            <td><span class="badge badge-ver">v1.6</span></td>
-            <td><code>3b2bd4f8c8...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_file_explorer/ps5-web-file-manager/v1.6/ps5-web-file-manager_v1.6.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>PS5-File-Explorer</strong></td>
-            <td><span class="badge badge-cat">PS5 File Explorer</span></td>
-            <td><span class="badge badge-ver">file-explorer-v0.2.1</span></td>
-            <td><code>6d4b905b42...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_file_explorer/PS5-File-Explorer/file-explorer-v0.2.1/PS5-File-Explorer_vfile-explorer-v0.2.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5debug-NG</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">1.3.0</span></td>
-            <td><code>8f75fb90b4...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5debug-NG/1.3.0/ps5debug-NG_v1.3.0.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-fw-spoof</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">26616621599</span></td>
-            <td><code>f1754521ca...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-fw-spoof/26616621599/ps5-fw-spoof_v26616621599.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-pager-game</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v1.2</span></td>
-            <td><code>73d94fea5d...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-self-pager/v1.2/ps5-self-pager-game_v1.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-pager-system-common-lib</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v1.2</span></td>
-            <td><code>a86c3e69ed...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-self-pager/v1.2/ps5-self-pager-system-common-lib_v1.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-pager-shellcore</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v1.2</span></td>
-            <td><code>2b500bc356...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-self-pager/v1.2/ps5-self-pager-shellcore_v1.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-pager-full-system</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v1.2</span></td>
-            <td><code>fb498d4112...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-self-pager/v1.2/ps5-self-pager-full-system_v1.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-decrypter-shellcore</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v0.5.2</span></td>
-            <td><code>15050c691c...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/PS5-SELF-Decrypter/v0.5.2/ps5-self-decrypter-shellcore_v0.5.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-decrypter-system-common-lib</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v0.5.2</span></td>
-            <td><code>6a16c6457c...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/PS5-SELF-Decrypter/v0.5.2/ps5-self-decrypter-system-common-lib_v0.5.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-decrypter-full-system</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v0.5.2</span></td>
-            <td><code>46340d3048...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/PS5-SELF-Decrypter/v0.5.2/ps5-self-decrypter-full-system_v0.5.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-self-decrypter-game</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v0.5.2</span></td>
-            <td><code>190b350759...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/PS5-SELF-Decrypter/v0.5.2/ps5-self-decrypter-game_v0.5.2.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>ps5-remoteplay-get-pin</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">v0.1.1</span></td>
-            <td><code>1d611c1856...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-remoteplay-get-pin/v0.1.1/ps5-remoteplay-get-pin_v0.1.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>MemDBG</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">nightly-20260822-gc39ac30</span></td>
-            <td><code>0252539d2f...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/MemDBG/nightly-20260822-gc39ac30/MemDBG_vnightly-20260822-gc39ac30.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>hwinfo_bench</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>4514bdbc0c...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-hwinfo/0.1/hwinfo_bench_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-        <tr>
-            <td><strong>hwinfo_sysinfo</strong></td>
-            <td><span class="badge badge-cat">PS5 Sdk Debug</span></td>
-            <td><span class="badge badge-ver">0.1</span></td>
-            <td><code>ad5014112d...</code></td>
-            <td><a href="https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater/payloads/ps5_sdk_debug/ps5-hwinfo/0.1/hwinfo_sysinfo_v0.1.elf" class="btn-download-sm" target="_blank">ELF</a></td>
-        </tr>
-        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div id="credits" class="tab-panel">
-            <div class="card">
-                <h2>🤝 Remerciements & Crédits</h2>
-                <p>Un grand merci à tous les développeurs et chercheurs de la scène PS5 homebrew :</p>
-                <ul class="credits-list">
-                    <li><strong>Al-Azif</strong> : <a href="https://github.com/Al-Azif/chukei-dns" target="_blank" style="color:var(--accent-blue); text-decoration:none;">Chukei DNS</a></li><li><strong>ArkSama</strong> : <a href="https://raw.githubusercontent.com/ArkSama/PS5-Lapy-JB-Daemon/main/lapy_jb_daemon.elf" target="_blank" style="color:var(--accent-blue); text-decoration:none;">Lapy JB Daemon</a></li><li><strong>BestPig</strong> : <a href="https://github.com/BestPig/BackPork" target="_blank" style="color:var(--accent-blue); text-decoration:none;">BackPork</a></li><li><strong>Drakmor</strong> : <a href="https://github.com/drakmor/nanoDNS" target="_blank" style="color:var(--accent-blue); text-decoration:none;">nanoDNS</a></li><li><strong>EchoStretch</strong> : <a href="https://github.com/EchoStretch/kstuff-lite" target="_blank" style="color:var(--accent-blue); text-decoration:none;">kstuff-lite_EchoStretch</a></li><li><strong>EchoStretch</strong> : <a href="https://github.com/EchoStretch/kstuff" target="_blank" style="color:var(--accent-blue); text-decoration:none;">kstuff_EchoStretch</a></li><li><strong>EchoStretch</strong> : <a href="https://github.com/EchoStretch/ps5-app-dumper" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-app-dumper</a></li><li><strong>ItsBlurf</strong> : <a href="https://github.com/ItsBlurf/BFpilot" target="_blank" style="color:var(--accent-blue); text-decoration:none;">BFpilot</a></li><li><strong>ItsBlurf</strong> : <a href="https://github.com/ItsBlurf/BFplayer" target="_blank" style="color:var(--accent-blue); text-decoration:none;">BFplayer-standalone</a></li><li><strong>ItsBlurf</strong> : <a href="https://github.com/ItsBlurf/PoorDS4" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PoorDS4</a></li><li><strong>KINGDKAK</strong> : <a href="https://github.com/KINGDKAK/ProsperoPlayer" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ProsperoPlayer</a></li><li><strong>LightningMods</strong> : <a href="https://github.com/etaHEN/etaHEN" target="_blank" style="color:var(--accent-blue); text-decoration:none;">etaHEN</a></li><li><strong>MasterPS0</strong> : <a href="https://github.com/MasterPS0/PS5-Power-Payloads-Project" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS5-Power-Payloads-Project</a></li><li><strong>Michele-M-Media</strong> : <a href="https://github.com/Michele-M-Media/PIZZA-HEN" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PIZZA-HEN</a></li><li><strong>MounirHero</strong> : <a href="https://github.com/MounirHero/PS-Play" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS-Play</a></li><li><strong>NikoBellikJR31</strong> : <a href="https://github.com/NikoBellikJR31/PS5-Custom-Tool-Manager-" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS5-Custom-Tool-Manager-</a></li><li><strong>NookieAI</strong> : <a href="https://github.com/NookieAI/kura" target="_blank" style="color:var(--accent-blue); text-decoration:none;">Kura</a></li><li><strong>OpenSourcereR-dev</strong> : <a href="https://github.com/OpenSourcereR-dev/ps5debug-NG" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5debug-NG</a></li><li><strong>Phoenixx1202</strong> : <a href="https://github.com/Phoenixx1202/Spectrum-Library" target="_blank" style="color:var(--accent-blue); text-decoration:none;">Spectrum-Library</a></li><li><strong>SonicIso</strong> : <a href="https://git.etawen.dev/soniciso/elf-arsenal" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ELF Arsenal</a></li><li><strong>StonedModder</strong> : <a href="https://github.com/StonedModder/ChronicLoader-PS5-Payload" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ChronicLoader-PS5-Payload</a></li><li><strong>StonedModder</strong> : <a href="https://github.com/StonedModder/Ghostcontrol-PS5-USB-Controller-Patcher" target="_blank" style="color:var(--accent-blue); text-decoration:none;">Ghostcontrol-PS5-USB-Controller-Patcher</a></li><li><strong>StonedModder</strong> : <a href="https://github.com/StonedModder/Ghostpad" target="_blank" style="color:var(--accent-blue); text-decoration:none;">Ghostpad</a></li><li><strong>StonedModder</strong> : <a href="https://github.com/StonedModder/ps-game-state-lib" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS Game State Lib</a></li><li><strong>StonedModder</strong> : <a href="https://github.com/StonedModder/PS-DiscordPresence" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS-DiscordPresence</a></li><li><strong>StonedModder</strong> : <a href="https://github.com/StonedModder/savemnt-offset-dumper" target="_blank" style="color:var(--accent-blue); text-decoration:none;">savemnt-offset-dumper</a></li><li><strong>aydencharles</strong> : <a href="https://raw.githubusercontent.com/nexgen999/PS5_Payload_Manager_Updater/main/ps5_cheat/kylin-core-community-lite-v131-global-release.elf" target="_blank" style="color:var(--accent-blue); text-decoration:none;">kylin-core</a></li><li><strong>barisyild</strong> : <a href="https://github.com/barisyild/airpsx" target="_blank" style="color:var(--accent-blue); text-decoration:none;">airpsx</a></li><li><strong>bizkut</strong> : <a href="https://github.com/bizkut/unrar-ps5" target="_blank" style="color:var(--accent-blue); text-decoration:none;">unrar-ps5</a></li><li><strong>drakmor</strong> : <a href="https://github.com/drakmor/ShadowMountPlus" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ShadowMountPlus</a></li><li><strong>drakmor</strong> : <a href="https://github.com/drakmor/fan_target" target="_blank" style="color:var(--accent-blue); text-decoration:none;">fan_target</a></li><li><strong>drakmor</strong> : <a href="https://github.com/drakmor/ftpsrv" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ftpsrv_drakmor</a></li><li><strong>drakmor</strong> : <a href="https://github.com/drakmor/kstuff-lite" target="_blank" style="color:var(--accent-blue); text-decoration:none;">kstuff-lite_drakmor</a></li><li><strong>drakmor</strong> : <a href="https://github.com/drakmor/ps5-hwinfo" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-hwinfo</a></li><li><strong>earthonion</strong> : <a href="https://git.etawen.dev/earthonion/garlic-savemgr" target="_blank" style="color:var(--accent-blue); text-decoration:none;">garlic-savemgr</a></li><li><strong>earthonion</strong> : <a href="https://git.etawen.dev/earthonion/garlic-worker" target="_blank" style="color:var(--accent-blue); text-decoration:none;">garlic-worker</a></li><li><strong>earthonion</strong> : <a href="https://git.etawen.dev/earthonion/np-fake-signin" target="_blank" style="color:var(--accent-blue); text-decoration:none;">np-fake-signin</a></li><li><strong>hgr9519</strong> : <a href="https://github.com/hgr9519/ps5-wallpaper-modd" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-wallpaper-modd</a></li><li><strong>idlesauce</strong> : <a href="https://github.com/idlesauce/PS5-SELF-Decrypter" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS5-SELF-Decrypter</a></li><li><strong>idlesauce</strong> : <a href="https://github.com/idlesauce/ps5-remoteplay-get-pin" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-remoteplay-get-pin</a></li><li><strong>idlesauce</strong> : <a href="https://github.com/idlesauce/ps5-self-pager" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-self-pager</a></li><li><strong>illusionyy</strong> : <a href="https://github.com/illusionyy/ps5-fw-spoof" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-fw-spoof</a></li><li><strong>itsPLK</strong> : <a href="https://github.com/itsPLK/ps5-payload-manager" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS5 Payload Manager</a></li><li><strong>itsPLK</strong> : <a href="https://github.com/itsPLK/ps5-unified-autoloader" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS5 Unified Autoloader</a></li><li><strong>itsPLK</strong> : <a href="https://github.com/itsPLK/ps5-webkit-autoloader" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-webkit-autoloader</a></li><li><strong>juma-sayeh</strong> : <a href="https://github.com/juma-sayeh/PS5-File-Explorer" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS5-File-Explorer</a></li><li><strong>juma-sayeh</strong> : <a href="https://github.com/juma-sayeh/PS5-Game-Compressor" target="_blank" style="color:var(--accent-blue); text-decoration:none;">PS5-Game-Compressor</a></li><li><strong>notmaj0r</strong> : <a href="https://github.com/notmaj0r/CheatRunner" target="_blank" style="color:var(--accent-blue); text-decoration:none;">CheatRunner</a></li><li><strong>owendswang</strong> : <a href="https://github.com/owendswang/ps5-fan-control" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-fan-control</a></li><li><strong>owendswang</strong> : <a href="https://github.com/owendswang/ps5-web-file-manager" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-web-file-manager</a></li><li><strong>pegasus-ps5</strong> : <a href="https://github.com/pegasus-ps5/pegasus-dl" target="_blank" style="color:var(--accent-blue); text-decoration:none;">pegasus-dl</a></li><li><strong>phantomptr</strong> : <a href="https://github.com/phantomptr/ps5upload" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5upload</a></li><li><strong>ps4macedo</strong> : <a href="https://github.com/ps4macedo/instalador-host-psm-poop2jb" target="_blank" style="color:var(--accent-blue); text-decoration:none;">Host-PSM pooP2JB</a></li><li><strong>ps5-linux</strong> : <a href="https://github.com/ps5-linux/ps5-linux-loader" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ps5-linux-loader</a></li><li><strong>ps5-payload-dev</strong> : <a href="https://github.com/ps5-payload-dev/elfldr" target="_blank" style="color:var(--accent-blue); text-decoration:none;">elfldr</a></li><li><strong>ps5-payload-dev</strong> : <a href="https://github.com/ps5-payload-dev/ftpsrv" target="_blank" style="color:var(--accent-blue); text-decoration:none;">ftpsrv_ps5-payload</a></li><li><strong>ps5-payload-dev</strong> : <a href="https://github.com/ps5-payload-dev/gdbsrv" target="_blank" style="color:var(--accent-blue); text-decoration:none;">gdbsrv</a></li><li><strong>ps5-payload-dev</strong> : <a href="https://github.com/ps5-payload-dev/klogsrv" target="_blank" style="color:var(--accent-blue); text-decoration:none;">klogsrv</a></li><li><strong>ps5-payload-dev</strong> : <a href="https://github.com/ps5-payload-dev/svtplay" target="_blank" style="color:var(--accent-blue); text-decoration:none;">svtplay</a></li><li><strong>ps5-payload-dev</strong> : <a href="https://github.com/ps5-payload-dev/websrv" target="_blank" style="color:var(--accent-blue); text-decoration:none;">websrv</a></li><li><strong>seregonwar</strong> : <a href="https://github.com/seregonwar/MemDBG" target="_blank" style="color:var(--accent-blue); text-decoration:none;">MemDBG</a></li><li><strong>seregonwar</strong> : <a href="https://github.com/seregonwar/zftpd" target="_blank" style="color:var(--accent-blue); text-decoration:none;">zftpd</a></li><li><strong>soniciso</strong> : <a href="https://git.etawen.dev/soniciso/uds-trophy-unlocker" target="_blank" style="color:var(--accent-blue); text-decoration:none;">uds-trophy-unlocker</a></li><li><strong>tsuramatsu1</strong> : <a href="https://github.com/tsuramatsu1/apr-emu-updater" target="_blank" style="color:var(--accent-blue); text-decoration:none;">apr-emu-updater</a></li><li><strong>zecoxao & LightningMods</strong> : <a href="https://github.com/zecoxao/zecoxao.github.io/raw/refs/heads/main/luasauce/payloads/etaHEN-2.6B.bin" target="_blank" style="color:var(--accent-blue); text-decoration:none;">etaHEN-Beta</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="about" class="tab-panel">
-            <div class="card">
-                <h2>ℹ️ À Propos</h2>
-                <p>Projet développé et maintenu par <strong>nexgen999</strong>.</p>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-    </script>
+    <footer>
+      Dernière synchronisation automatique | <a href="rss/feed.xml" style="color:#58a6ff;">Flux RSS</a>
+    </footer>
+  </div>
 </body>
 </html>

@@ -1,0 +1,1604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ChronicLoader Settings Builder</title>
+  <style>
+    :root {
+      --bg: #0b0e13;
+      --surface-1: #13171e;
+      --surface-2: #1a1f28;
+      --surface-3: #222832;
+      --text: #e8edf4;
+      --text-2: #a0aec0;
+      --text-3: #6b7a8d;
+      --accent: #5b9cf6;
+      --accent-glow: rgba(91, 156, 246, 0.15);
+      --green: #4ade80;
+      --green-bg: rgba(74, 222, 128, 0.1);
+      --green-border: rgba(74, 222, 128, 0.25);
+      --orange: #fb923c;
+      --orange-bg: rgba(251, 146, 60, 0.1);
+      --orange-border: rgba(251, 146, 60, 0.25);
+      --red: #f87171;
+      --red-bg: rgba(248, 113, 113, 0.08);
+      --red-border: rgba(248, 113, 113, 0.2);
+      --border: rgba(255,255,255,0.07);
+      --border-2: rgba(255,255,255,0.12);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-xs: 8px;
+      --transition: 150ms cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: 100dvh;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    /* ── Scrollbar ─────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 99px; }
+
+    /* ── Shell ─────────────────────────────────────────── */
+    .shell {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px calc(80px + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* ── Header ───────────────────────────────────────── */
+    .header {
+      text-align: center;
+      padding: 32px 0 28px;
+    }
+    .header-icon {
+      font-size: 2.4rem;
+      margin-bottom: 8px;
+    }
+    .header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .header p {
+      color: var(--text-2);
+      font-size: 0.92rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── Section ───────────────────────────────────────── */
+    .section {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: background var(--transition);
+    }
+    .section-head:active { background: rgba(255,255,255,0.03); }
+    .section-head-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .section-icon.blue   { background: var(--accent-glow); }
+    .section-icon.green  { background: var(--green-bg); }
+    .section-icon.orange { background: var(--orange-bg); }
+    .section-icon.red    { background: var(--red-bg); }
+
+    .section-title {
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+    .section-subtitle {
+      color: var(--text-3);
+      font-size: 0.82rem;
+      margin-top: 1px;
+    }
+    .section-chevron {
+      width: 20px;
+      height: 20px;
+      color: var(--text-3);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+    .section.open .section-chevron { transform: rotate(180deg); }
+    .section-body {
+      display: none;
+      padding: 0 18px 18px;
+    }
+    .section.open .section-body { display: block; }
+
+    /* ── Form Controls ────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 540px) {
+      .form-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+
+    .field { display: grid; gap: 5px; }
+    .field-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-2);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .field-hint {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    input[type="text"], input[type="number"], input[type="url"],
+    input:not([type]), select {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      min-height: 48px;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7a8d'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    /* ── Toggle Switch ────────────────────────────────── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+    }
+    .toggle-row + .toggle-row {
+      border-top: 1px solid var(--border);
+    }
+    .toggle-info { min-width: 0; }
+    .toggle-label {
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .toggle-desc {
+      font-size: 0.82rem;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+    .toggle {
+      position: relative;
+      width: 52px;
+      height: 30px;
+      flex-shrink: 0;
+    }
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: var(--surface-3);
+      border-radius: 99px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .toggle-track::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform var(--transition);
+    }
+    .toggle input:checked + .toggle-track {
+      background: var(--green);
+    }
+    .toggle input:checked + .toggle-track::after {
+      transform: translateX(22px);
+    }
+    .toggle input:focus-visible + .toggle-track {
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    /* ── Buttons ───────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform var(--transition), opacity var(--transition), background var(--transition);
+      touch-action: manipulation;
+      min-height: 46px;
+      white-space: nowrap;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a1628;
+    }
+    .btn-green {
+      background: var(--green);
+      color: #072014;
+    }
+    .btn-orange {
+      background: var(--orange);
+      color: #1c0f04;
+    }
+    .btn-danger {
+      background: var(--red);
+      color: #1a0808;
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.84rem;
+      min-height: 36px;
+      border-radius: var(--radius-xs);
+    }
+    .btn-block { width: 100%; }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── Repo Cards ────────────────────────────────────── */
+    .repo-list { display: grid; gap: 10px; }
+    .repo-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color var(--transition);
+    }
+    .repo-card:hover { border-color: var(--border-2); }
+    .repo-card-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+    }
+    .repo-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .repo-card-info { flex: 1; min-width: 0; }
+    .repo-card-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .repo-card-meta {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      margin-top: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .repo-card-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .repo-empty {
+      text-align: center;
+      padding: 28px 16px;
+      color: var(--text-3);
+      font-size: 0.9rem;
+    }
+
+    /* ── Inline Modal (slide-down panel) ───────────────── */
+    .inline-modal {
+      display: none;
+      background: var(--surface-1);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px var(--accent-glow);
+      animation: slideDown 200ms ease-out;
+    }
+    .inline-modal.active { display: block; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .inline-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .inline-modal-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .inline-modal-body {
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+    .inline-modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 18px 18px;
+    }
+    .inline-modal-step {
+      display: grid;
+      gap: 14px;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .inline-modal-step[hidden] { display: none; }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+
+    /* ── Asset Radio ───────────────────────────────────── */
+    .asset-choice-list { display: grid; gap: 8px; }
+    .asset-choice-list[hidden] { display: none; }
+    .asset-radio {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface-1);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .asset-radio:has(input:checked) {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+    .asset-radio input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      min-height: 0;
+    }
+    .asset-radio-title { font-weight: 600; font-size: 0.92rem; }
+    .asset-radio-meta {
+      color: var(--text-3);
+      font-size: 0.82rem;
+      margin-top: 2px;
+      word-break: break-all;
+    }
+
+    /* ── Autoload Queue ────────────────────────────────── */
+    .queue-list { display: grid; gap: 8px; }
+    .queue-item {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .queue-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .queue-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(91,156,246,0.2);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .queue-item-info { flex: 1; min-width: 0; }
+    .queue-item-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .queue-item-meta {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      margin-top: 1px;
+    }
+    .queue-item-controls {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .queue-item-controls .form-grid { margin-bottom: 0; }
+    .queue-move-row {
+      display: flex;
+      gap: 6px;
+    }
+    .queue-empty {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-3);
+      font-size: 0.88rem;
+      border: 1px dashed var(--border-2);
+      border-radius: var(--radius-sm);
+    }
+
+    /* ── JSON Preview ──────────────────────────────────── */
+    .code-preview {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: "SF Mono", "Cascadia Code", "Consolas", "Fira Code", monospace;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      max-height: 480px;
+      color: var(--text-2);
+    }
+
+    /* ── Import Drop Zone ──────────────────────────────── */
+    .dropzone {
+      border: 2px dashed var(--border-2);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      text-align: center;
+      transition: border-color var(--transition), background var(--transition);
+      margin-bottom: 14px;
+    }
+    .dropzone.dragover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+    .dropzone-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+    .dropzone-copy {
+      font-size: 0.84rem;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+
+    /* ── Full-page Drop Overlay ────────────────────────── */
+    .page-drop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+    }
+    .page-drop[hidden] { display: none; }
+    .page-drop-card {
+      max-width: 420px;
+      width: 100%;
+      padding: 32px;
+      border-radius: var(--radius);
+      border: 2px solid var(--accent);
+      background: var(--surface-1);
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .page-drop-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .page-drop-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 6px; }
+    .page-drop-copy { color: var(--text-3); font-size: 0.88rem; }
+
+    /* ── Status Toast ──────────────────────────────────── */
+    .status-bar {
+      min-height: 1.4em;
+      font-size: 0.84rem;
+      color: var(--text-3);
+      padding: 8px 0;
+      text-align: center;
+    }
+    .status-bar.ok { color: var(--green); }
+    .status-bar.error { color: var(--red); }
+
+    /* ── Sticky Bottom Bar ─────────────────────────────── */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: linear-gradient(to top, var(--bg) 60%, transparent);
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    }
+    .bottom-bar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .bottom-bar .btn { width: 100%; }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 540px) {
+      .shell { padding: 12px 10px calc(80px + env(safe-area-inset-bottom, 0px)); }
+      .header { padding: 20px 0 20px; }
+      .header h1 { font-size: 1.35rem; }
+      .section-head { padding: 14px 14px; }
+      .section-body { padding: 0 14px 14px; }
+      .inline-modal-head { padding: 14px; }
+      .inline-modal-body { padding: 14px; }
+      .inline-modal-actions { padding: 0 14px 14px; }
+      .bottom-bar-inner { grid-template-columns: 1fr; }
+      .repo-card-row { padding: 12px; }
+      .repo-card-actions { flex-direction: column; }
+    }
+    @media (pointer: coarse) {
+      .btn { min-height: 48px; }
+      input[type="text"], input[type="number"], input[type="url"],
+      input:not([type]), select { min-height: 50px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="header">
+      <div class="header-icon">&#x1F525;&#x1F33F;</div>
+      <h1>ChronicLoader Settings</h1>
+      <p>Build your <code>chronicloaderSettings.json</code> visually. Add repos, configure backups, set autoload order, then copy or download.</p>
+    </header>
+
+    <!-- ── Notifications ──────────────────────────────── -->
+    <div class="section open" data-section="notifications">
+      <div class="section-head" onclick="toggleSection(this)">
+        <div class="section-head-left">
+          <div class="section-icon blue">&#x1F514;</div>
+          <div>
+            <div class="section-title">Notifications</div>
+            <div class="section-subtitle">Control on-screen PS5 popups</div>
+          </div>
+        </div>
+        <svg class="section-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="toggle-label">Verbose Notifications</div>
+            <div class="toggle-desc">Show step-by-step progress popups, not just the final result.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="verboseToggle">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Autoload ───────────────────────────────────── -->
+    <div class="section open" data-section="autoload">
+      <div class="section-head" onclick="toggleSection(this)">
+        <div class="section-head-left">
+          <div class="section-icon green">&#x26A1;</div>
+          <div>
+            <div class="section-title">Autoload</div>
+            <div class="section-subtitle">Manage autoload.txt and boot order</div>
+          </div>
+        </div>
+        <svg class="section-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="toggle-label">Maintain autoload.txt</div>
+            <div class="toggle-desc">Let ChronicLoader write and manage the autoload file.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="autoloadEnabledToggle" checked>
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="toggle-label">Self-Autoload</div>
+            <div class="toggle-desc">Append ChronicLoader itself to the end of autoload.txt so it runs automatically on every boot.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="selfAutoloadToggle" checked>
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="form-grid" style="margin-top: 10px;">
+          <div class="field full">
+            <div class="field-label">Output Path</div>
+            <input type="text" id="autoloadPath" value="/data/ps5_autoloader/autoload.txt">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Backup ─────────────────────────────────────── -->
+    <div class="section open" data-section="backup">
+      <div class="section-head" onclick="toggleSection(this)">
+        <div class="section-head-left">
+          <div class="section-icon orange">&#x1F4BE;</div>
+          <div>
+            <div class="section-title">Backup</div>
+            <div class="section-subtitle">Autoloader folder snapshots with retention</div>
+          </div>
+        </div>
+        <svg class="section-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <div class="toggle-label">Enable Backups</div>
+            <div class="toggle-desc">Zip the autoloader folder before each update run. Saved to <code>/data/chronicloader/chronicBackups/</code>.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="backupEnabledToggle" checked>
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="form-grid" style="margin-top: 10px;">
+          <div class="field">
+            <div class="field-label">Max Backups to Keep</div>
+            <input type="number" id="maxBackupsInput" value="5" min="1" max="100" inputmode="numeric">
+            <div class="field-hint">Oldest backups are automatically deleted when this limit is exceeded.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Repos ──────────────────────────────────────── -->
+    <div class="section open" data-section="repos">
+      <div class="section-head" onclick="toggleSection(this)">
+        <div class="section-head-left">
+          <div class="section-icon blue">&#x1F4E6;</div>
+          <div>
+            <div class="section-title">Repos</div>
+            <div class="section-subtitle" id="repoCountLabel">No repos configured</div>
+          </div>
+        </div>
+        <svg class="section-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="section-body">
+        <!-- Inline modal for add/edit repo -->
+        <div class="inline-modal" id="repoModal">
+          <div class="inline-modal-head">
+            <div class="inline-modal-title" id="repoModalTitle">Add Release Page</div>
+            <button class="btn btn-ghost btn-sm" id="repoModalCloseBtn" type="button">Cancel</button>
+          </div>
+          <div class="inline-modal-body">
+            <div class="inline-modal-step" id="repoModalStepUrl">
+              <div class="step-badge">Step 1 &mdash; Source</div>
+              <div class="form-grid cols-2">
+                <div class="field full">
+                  <div class="field-label">GitHub Release URL</div>
+                  <input type="url" id="repoModalUrl" placeholder="https://github.com/owner/repo/releases">
+                </div>
+                <div class="field">
+                  <div class="field-label">Formats</div>
+                  <select id="repoModalFormats">
+                    <option value="all">Auto (ELF, BIN, ZIP)</option>
+                    <option value="elf">ELF Only</option>
+                    <option value="bin">BIN Only</option>
+                    <option value="zip">ZIP Only</option>
+                    <option value="elf,bin">ELF + BIN</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <div class="field-label">Destination Directory</div>
+                  <input type="text" id="repoModalDestDir" placeholder="/data/ps5_autoloader">
+                </div>
+              </div>
+              <div class="status-bar" id="repoModalStatus"></div>
+            </div>
+
+            <div class="inline-modal-step" id="repoModalStepOptions" hidden>
+              <div class="step-badge">Step 2 &mdash; Pick Asset Family</div>
+              <div class="asset-choice-list" id="repoModalChoices"></div>
+              <div class="form-grid cols-2">
+                <div class="field">
+                  <div class="field-label">Add To Autoload</div>
+                  <select id="repoModalAutoload">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <div class="field-label">Delay Before (ms)</div>
+                  <input type="number" id="repoModalDelay" inputmode="numeric" value="0" min="0">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inline-modal-actions">
+            <button class="btn btn-primary" id="repoModalInspectBtn" type="button">Inspect Release</button>
+            <button class="btn btn-green" id="repoModalAddBtn" type="button" hidden>Add Repo</button>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-bottom: 12px;">
+          <button class="btn btn-primary" id="addRepoBtn" type="button">+ Add Release Page</button>
+          <button class="btn btn-ghost" id="resetBtn" type="button">Clear All</button>
+        </div>
+        <div class="repo-list" id="repoList">
+          <div class="repo-empty" id="repoEmpty">No repos added yet. Tap <strong>Add Release Page</strong> to get started.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Autoload Queue ─────────────────────────────── -->
+    <div class="section" data-section="queue">
+      <div class="section-head" onclick="toggleSection(this)">
+        <div class="section-head-left">
+          <div class="section-icon green">&#x1F4CB;</div>
+          <div>
+            <div class="section-title">Autoload Queue</div>
+            <div class="section-subtitle">Reorder payloads and set delays</div>
+          </div>
+        </div>
+        <svg class="section-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="queue-list" id="autoloadEditor"></div>
+        <div class="btn-row" style="margin-top: 12px;">
+          <button class="btn btn-ghost btn-sm" id="addCustomEntryBtn" type="button">+ Custom Entry</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Import / Export ────────────────────────────── -->
+    <div class="section" data-section="output">
+      <div class="section-head" onclick="toggleSection(this)">
+        <div class="section-head-left">
+          <div class="section-icon blue">&#x1F4C4;</div>
+          <div>
+            <div class="section-title">Output &amp; Import</div>
+            <div class="section-subtitle">Preview, copy, download, or import settings</div>
+          </div>
+        </div>
+        <svg class="section-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="dropzone" id="importDropzone">
+          <div class="dropzone-title">Import Existing Settings</div>
+          <div class="dropzone-copy">Drop <code>chronicloaderSettings.json</code> or <code>autoload.txt</code> here, or use the buttons below.</div>
+          <div class="btn-row" style="justify-content: center;">
+            <button class="btn btn-ghost btn-sm" id="importJsonBtn" type="button">Import JSON</button>
+            <button class="btn btn-ghost btn-sm" id="importAutoloadBtn" type="button">Import autoload.txt</button>
+            <input id="importJsonInput" type="file" accept=".json,application/json" multiple hidden>
+            <input id="importAutoloadInput" type="file" accept=".txt,text/plain" multiple hidden>
+          </div>
+        </div>
+        <div style="margin-bottom: 12px; font-weight: 600; font-size: 0.9rem;">JSON Preview</div>
+        <div class="code-preview" id="jsonPreview"></div>
+        <div style="margin-top: 16px; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem;">Autoload Preview</div>
+        <div class="code-preview" id="autoloadPreview" style="max-height: 240px;"></div>
+      </div>
+    </div>
+
+    <div class="status-bar" id="statusLine"></div>
+  </div>
+
+  <!-- Sticky bottom bar -->
+  <div class="bottom-bar">
+    <div class="bottom-bar-inner">
+      <button class="btn btn-primary" id="touchAddRepoBtn" type="button">+ Add Repo</button>
+      <button class="btn btn-green" id="copyBtn" type="button">Copy JSON</button>
+      <button class="btn btn-ghost" id="downloadBtn" type="button">Download</button>
+    </div>
+  </div>
+
+  <!-- Full-page drop overlay -->
+  <div class="page-drop" id="pageDropOverlay" hidden>
+    <div class="page-drop-card">
+      <div class="page-drop-icon">&#x1F4E5;</div>
+      <div class="page-drop-title">Drop Your Files</div>
+      <div class="page-drop-copy">Drop <code>chronicloaderSettings.json</code>, <code>autoload.txt</code>, or both.</div>
+    </div>
+  </div>
+
+  <script>
+    /* ── DOM refs ──────────────────────────────────────── */
+    const $ = (id) => document.getElementById(id);
+    const repoList = $("repoList");
+    const repoEmpty = $("repoEmpty");
+    const jsonPreview = $("jsonPreview");
+    const autoloadPreview = $("autoloadPreview");
+    const autoloadEditor = $("autoloadEditor");
+    const importDropzone = $("importDropzone");
+    const importJsonInput = $("importJsonInput");
+    const importAutoloadInput = $("importAutoloadInput");
+    const pageDropOverlay = $("pageDropOverlay");
+    const statusLine = $("statusLine");
+    const repoCountLabel = $("repoCountLabel");
+
+    const verboseToggle = $("verboseToggle");
+    const autoloadEnabledToggle = $("autoloadEnabledToggle");
+    const selfAutoloadToggle = $("selfAutoloadToggle");
+    const autoloadPathInput = $("autoloadPath");
+    const backupEnabledToggle = $("backupEnabledToggle");
+    const maxBackupsInput = $("maxBackupsInput");
+
+    const repoModal = $("repoModal");
+    const repoModalTitle = $("repoModalTitle");
+    const repoModalUrl = $("repoModalUrl");
+    const repoModalFormats = $("repoModalFormats");
+    const repoModalStatus = $("repoModalStatus");
+    const repoModalStepOptions = $("repoModalStepOptions");
+    const repoModalChoices = $("repoModalChoices");
+    const repoModalDestDir = $("repoModalDestDir");
+    const repoModalAutoload = $("repoModalAutoload");
+    const repoModalDelay = $("repoModalDelay");
+    const repoModalInspectBtn = $("repoModalInspectBtn");
+    const repoModalAddBtn = $("repoModalAddBtn");
+
+    let editingRepoCard = null;
+    let autoloadCustomEntries = [];
+    let pageDragDepth = 0;
+
+    let repoModalState = {
+      release_url: "",
+      formats: "all",
+      dest_dir: "/data/ps5_autoloader",
+      autoload: true,
+      delay_before_ms: 0,
+      selectedRule: "",
+      selectedStableName: "",
+      matching: [],
+    };
+
+    /* ── Sections ──────────────────────────────────────── */
+    function toggleSection(head) {
+      head.closest(".section").classList.toggle("open");
+    }
+
+    /* ── Status ────────────────────────────────────────── */
+    function setStatus(message, kind = "") {
+      statusLine.textContent = message;
+      statusLine.className = `status-bar ${kind}`.trim();
+    }
+    function setModalStatus(message, kind = "") {
+      repoModalStatus.textContent = message;
+      repoModalStatus.className = `status-bar ${kind}`.trim();
+    }
+
+    /* ── URL helpers ───────────────────────────────────── */
+    function parseOwnerRepoFromUrl(url) {
+      try {
+        const parsed = new URL(url);
+        const parts = parsed.pathname.split("/").filter(Boolean);
+        if (parsed.hostname.toLowerCase() !== "github.com" || parts.length < 2) return null;
+        return { owner: parts[0], repo: parts[1] };
+      } catch (_) { return null; }
+    }
+    function guessBaseNameFromUrl(url) {
+      try {
+        const parts = new URL(url).pathname.split("/").filter(Boolean);
+        return parts.length >= 2 ? parts[1] : "payload";
+      } catch (_) { return "payload"; }
+    }
+
+    /* ── Asset matching ────────────────────────────────── */
+    function matchesPs5(name) {
+      const l = name.toLowerCase();
+      if (l.includes("ps5") || l.includes("ps4")) return l.includes("ps5");
+      return true;
+    }
+    function matchesFormats(formats, name) {
+      const dot = name.lastIndexOf(".");
+      if (dot === -1) return false;
+      const ext = name.slice(dot + 1).toLowerCase();
+      if (!formats || formats === "all") return ext === "elf" || ext === "bin" || ext === "zip";
+      return formats.split(",").map(v => v.trim().toLowerCase()).includes(ext);
+    }
+    function stableNameFromAsset(name) {
+      const dot = name.lastIndexOf(".");
+      if (dot === -1) return name;
+      const m = name.match(/([_-])(?:v)?[0-9][0-9A-Za-z.\-_]*/);
+      if (!m) return name;
+      return name.slice(0, m.index) + name.slice(dot);
+    }
+    function escapeRegex(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+    function familyRuleFromAsset(name) {
+      const dot = name.lastIndexOf(".");
+      if (dot === -1) return `exact:${name}`;
+      const body = name.slice(0, dot), ext = name.slice(dot);
+      const v = body.match(/([_-])(?:v)?[0-9][0-9A-Za-z._-]*$/);
+      if (v) return `re:^${escapeRegex(body.slice(0, v.index))}${escapeRegex(v[1])}(v)?[0-9][0-9A-Za-z._-]*${escapeRegex(ext)}$`;
+      return `exact:${name}`;
+    }
+
+    /* ── Repo card data ────────────────────────────────── */
+    function repoCardData(card) {
+      try { return JSON.parse(card.dataset.repo || "{}"); }
+      catch (_) { return {}; }
+    }
+    function cardLabel(card, fallback) {
+      const d = repoCardData(card);
+      if (d.autoload_preview_name) return d.autoload_preview_name;
+      const p = parseOwnerRepoFromUrl(d.release_url || "");
+      return p ? `${p.owner}/${p.repo}` : `Repo ${fallback + 1}`;
+    }
+
+    /* ── Repo modal ────────────────────────────────────── */
+    function openRepoModal(existingData = null, existingCard = null) {
+      const isEdit = Boolean(existingCard && existingData?.release_url);
+      repoModalState = {
+        release_url: existingData?.release_url || "",
+        formats: existingData?.formats || "all",
+        dest_dir: existingData?.dest_dir || "/data/ps5_autoloader",
+        autoload: existingData?.autoload ?? true,
+        delay_before_ms: existingData?.delay_before_ms || 0,
+        selectedRule: existingData?.asset_rule || "",
+        selectedStableName: existingData?.autoload_preview_name || "",
+        matching: [],
+      };
+      editingRepoCard = existingCard;
+      repoModal.classList.add("active");
+      repoModalTitle.textContent = existingCard ? "Edit Release Page" : "Add Release Page";
+      repoModalUrl.value = repoModalState.release_url;
+      repoModalFormats.value = repoModalState.formats;
+      repoModalDestDir.value = repoModalState.dest_dir;
+      repoModalAutoload.value = String(repoModalState.autoload);
+      repoModalDelay.value = String(repoModalState.delay_before_ms);
+      repoModalChoices.innerHTML = "";
+      repoModalStepOptions.hidden = true;
+      repoModalInspectBtn.hidden = false;
+      repoModalInspectBtn.textContent = "Inspect Release";
+      repoModalAddBtn.hidden = true;
+      repoModalAddBtn.textContent = existingCard ? "Save Changes" : "Add Repo";
+      setModalStatus("");
+      repoModal.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => repoModalUrl.focus(), 80);
+      if (isEdit) inspectRepoModal();
+    }
+
+    function closeRepoModal() {
+      repoModal.classList.remove("active");
+      editingRepoCard = null;
+    }
+
+    function renderRepoModalChoices() {
+      repoModalChoices.innerHTML = "";
+      if (!repoModalState.matching.length) return;
+
+      repoModalState.matching.forEach((asset) => {
+        const row = document.createElement("label");
+        row.className = "asset-radio";
+        const checked = repoModalState.selectedRule === asset.rule;
+        row.innerHTML = `
+          <input type="radio" name="repoModalAssetChoice" value="${asset.rule.replace(/"/g, "&quot;")}" data-stable-name="${asset.stableName.replace(/"/g, "&quot;")}" ${checked ? "checked" : ""}>
+          <div>
+            <div class="asset-radio-title">${asset.name}</div>
+            <div class="asset-radio-meta">Stable name: <strong>${asset.stableName}</strong></div>
+          </div>`;
+        repoModalChoices.appendChild(row);
+      });
+
+      repoModalChoices.querySelectorAll('input[name="repoModalAssetChoice"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          repoModalState.selectedRule = input.value || "";
+          repoModalState.selectedStableName = input.dataset.stableName || "";
+        });
+      });
+
+      const allRow = document.createElement("label");
+      allRow.className = "asset-radio";
+      const noRule = !repoModalState.selectedRule;
+      allRow.innerHTML = `
+        <input type="radio" name="repoModalAssetChoice" value="" ${noRule ? "checked" : ""}>
+        <div>
+          <div class="asset-radio-title">Track every matching asset</div>
+          <div class="asset-radio-meta">Downloads all files matching your format filters.</div>
+        </div>`;
+      repoModalChoices.appendChild(allRow);
+      allRow.querySelector("input").addEventListener("change", (e) => {
+        repoModalState.selectedRule = "";
+        repoModalState.selectedStableName = "";
+      });
+    }
+
+    async function inspectRepoModal() {
+      const parsed = parseOwnerRepoFromUrl(repoModalUrl.value.trim());
+      repoModalState.release_url = repoModalUrl.value.trim();
+      repoModalState.formats = repoModalFormats.value;
+
+      if (!parsed) {
+        setModalStatus("Enter a valid GitHub release URL.", "error");
+        return;
+      }
+
+      setModalStatus(`Fetching latest release for ${parsed.owner}/${parsed.repo}...`);
+      repoModalStepOptions.hidden = true;
+      repoModalAddBtn.hidden = true;
+      repoModalInspectBtn.disabled = true;
+      repoModalInspectBtn.textContent = "Loading...";
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${parsed.owner}/${parsed.repo}/releases/latest`, {
+          headers: { Accept: "application/vnd.github+json" }
+        });
+        if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+        const release = await res.json();
+        const assets = Array.isArray(release.assets) ? release.assets : [];
+        const matching = assets
+          .filter(a => matchesPs5(a.name || "") && matchesFormats(repoModalState.formats, a.name || ""))
+          .map(a => ({
+            name: a.name || "",
+            stableName: stableNameFromAsset(a.name || ""),
+            rule: familyRuleFromAsset(a.name || ""),
+          }));
+
+        if (!matching.length) {
+          setModalStatus(`Release ${release.tag_name || "?"} has no matching assets.`, "error");
+          return;
+        }
+
+        repoModalState.matching = matching;
+        const em = matching.find(a => a.rule === repoModalState.selectedRule);
+        const esm = !em && repoModalState.selectedStableName ? matching.find(a => a.stableName === repoModalState.selectedStableName) : null;
+        const chosen = em || esm || matching[0];
+        repoModalState.selectedRule = chosen?.rule || "";
+        repoModalState.selectedStableName = chosen?.stableName || "";
+
+        renderRepoModalChoices();
+        repoModalStepOptions.hidden = false;
+        repoModalAddBtn.hidden = false;
+        setModalStatus(`${matching.length} matching asset${matching.length === 1 ? "" : "s"} in ${release.tag_name || "latest"}.`, "ok");
+      } catch (err) {
+        setModalStatus(`Inspect failed: ${err.message}`, "error");
+      } finally {
+        repoModalInspectBtn.disabled = false;
+        repoModalInspectBtn.textContent = "Inspect Release";
+      }
+    }
+
+    /* ── Repo card CRUD ────────────────────────────────── */
+    function applyRepoCardData(card, data) {
+      const parsed = parseOwnerRepoFromUrl(data.release_url);
+      const title = data.autoload_preview_name || (parsed ? `${parsed.owner}/${parsed.repo}` : "Repo Entry");
+      const meta = [];
+      meta.push(data.formats === "all" ? "auto" : data.formats);
+      meta.push(data.dest_dir || "/data/ps5_autoloader");
+      if (data.autoload) meta.push(`autoload${data.delay_before_ms > 0 ? ` +${data.delay_before_ms}ms` : ""}`);
+
+      card.dataset.repo = JSON.stringify(data);
+      card.querySelector(".repo-card-title").textContent = title;
+      card.querySelector(".repo-card-meta").textContent = meta.join(" \u00B7 ");
+    }
+
+    function addRepoFromModal() {
+      const data = {
+        release_url: repoModalUrl.value.trim(),
+        formats: repoModalFormats.value,
+        dest_dir: repoModalDestDir.value.trim() || "/data/ps5_autoloader",
+        asset_rule: repoModalState.selectedRule || "",
+        autoload_preview_name: repoModalState.selectedStableName || "",
+        autoload: repoModalAutoload.value === "true",
+        delay_before_ms: parseInt(repoModalDelay.value || "0", 10) || 0,
+      };
+      if (editingRepoCard) {
+        applyRepoCardData(editingRepoCard, data);
+      } else {
+        addRepoCard(data);
+      }
+      closeRepoModal();
+      setStatus(editingRepoCard ? "Repo updated." : "Repo added.", "ok");
+    }
+
+    function addRepoCard(data = {}) {
+      repoEmpty.hidden = true;
+      const card = document.createElement("div");
+      card.className = "repo-card";
+      card.innerHTML = `
+        <div class="repo-card-row">
+          <div class="repo-card-icon">&#x1F4E6;</div>
+          <div class="repo-card-info">
+            <div class="repo-card-title">Repo Entry</div>
+            <div class="repo-card-meta">Not configured</div>
+          </div>
+          <div class="repo-card-actions">
+            <button class="btn btn-ghost btn-sm edit-btn" type="button">Edit</button>
+            <button class="btn btn-danger btn-sm remove-btn" type="button">Remove</button>
+          </div>
+        </div>`;
+      applyRepoCardData(card, {
+        release_url: data.release_url || "",
+        formats: data.formats || "all",
+        dest_dir: data.dest_dir || "/data/ps5_autoloader",
+        asset_rule: data.asset_rule || "",
+        autoload_preview_name: data.autoload_preview_name || "",
+        autoload: data.autoload ?? true,
+        delay_before_ms: data.delay_before_ms ?? 0,
+      });
+      card.querySelector(".remove-btn").addEventListener("click", () => {
+        card.remove();
+        updateRepoEmpty();
+        renderJson();
+      });
+      card.querySelector(".edit-btn").addEventListener("click", () => {
+        openRepoModal(repoCardData(card), card);
+      });
+      repoList.appendChild(card);
+      renderJson();
+    }
+
+    function updateRepoEmpty() {
+      const cards = repoList.querySelectorAll(".repo-card");
+      repoEmpty.hidden = cards.length > 0;
+    }
+
+    function collectRepos() {
+      return Array.from(repoList.querySelectorAll(".repo-card"))
+        .map(c => { try { return JSON.parse(c.dataset.repo || "{}"); } catch (_) { return null; } })
+        .filter(e => e && e.release_url);
+    }
+
+    function moveRepoCard(card, direction) {
+      if (!card) return;
+      if (direction < 0 && card.previousElementSibling && card.previousElementSibling.classList.contains("repo-card")) {
+        repoList.insertBefore(card, card.previousElementSibling);
+      } else if (direction > 0) {
+        const next = card.nextElementSibling;
+        if (next && next.classList.contains("repo-card")) repoList.insertBefore(next, card);
+      }
+      renderJson();
+    }
+
+    /* ── Autoload Queue Editor ─────────────────────────── */
+    function renderAutoloadEditor() {
+      const cards = Array.from(repoList.querySelectorAll(".repo-card"));
+      const enabledCards = cards.filter(c => {
+        try { return JSON.parse(c.dataset.repo || "{}").autoload === true; }
+        catch (_) { return false; }
+      });
+      autoloadEditor.innerHTML = "";
+
+      if (!enabledCards.length && !autoloadCustomEntries.length) {
+        autoloadEditor.innerHTML = `<div class="queue-empty">Enable autoload on a repo or add a custom entry to build the queue.</div>`;
+        return;
+      }
+
+      enabledCards.forEach((card, index) => {
+        const d = repoCardData(card);
+        const parsed = parseOwnerRepoFromUrl(d.release_url || "");
+        const meta = parsed ? `${parsed.owner}/${parsed.repo}` : "No URL";
+
+        const item = document.createElement("div");
+        item.className = "queue-item";
+        item.innerHTML = `
+          <div class="queue-item-head">
+            <div class="queue-badge">${index + 1}</div>
+            <div class="queue-item-info">
+              <div class="queue-item-title">${cardLabel(card, index)}</div>
+              <div class="queue-item-meta">${meta}</div>
+            </div>
+          </div>
+          <div class="queue-item-controls">
+            <div class="form-grid cols-2">
+              <div class="field">
+                <div class="field-label">Delay Before (ms)</div>
+                <input type="number" class="queue-delay" inputmode="numeric" value="${d.delay_before_ms || 0}" min="0">
+              </div>
+              <div class="field">
+                <div class="field-label">In Autoload</div>
+                <select class="queue-toggle">
+                  <option value="true"${d.autoload ? " selected" : ""}>Yes</option>
+                  <option value="false"${!d.autoload ? " selected" : ""}>No</option>
+                </select>
+              </div>
+            </div>
+            <div class="queue-move-row">
+              <button class="btn btn-ghost btn-sm move-up" type="button">&uarr; Earlier</button>
+              <button class="btn btn-ghost btn-sm move-down" type="button">&darr; Later</button>
+            </div>
+          </div>`;
+
+        item.querySelector(".queue-delay").addEventListener("input", (e) => {
+          d.delay_before_ms = parseInt(e.target.value || "0", 10) || 0;
+          card.dataset.repo = JSON.stringify(d);
+          applyRepoCardData(card, d);
+          renderJson();
+        });
+        item.querySelector(".queue-toggle").addEventListener("change", (e) => {
+          d.autoload = e.target.value === "true";
+          card.dataset.repo = JSON.stringify(d);
+          applyRepoCardData(card, d);
+          renderJson();
+        });
+        item.querySelector(".move-up").addEventListener("click", () => moveRepoCard(card, -1));
+        item.querySelector(".move-down").addEventListener("click", () => moveRepoCard(card, 1));
+        autoloadEditor.appendChild(item);
+      });
+
+      autoloadCustomEntries.forEach((entry, index) => {
+        const item = document.createElement("div");
+        item.className = "queue-item";
+        item.innerHTML = `
+          <div class="queue-item-head">
+            <div class="queue-badge" style="background:var(--orange-bg);border-color:var(--orange-border);color:var(--orange);">C</div>
+            <div class="queue-item-info">
+              <div class="queue-item-title">${entry.line || "Empty"}</div>
+              <div class="queue-item-meta">Custom autoload entry</div>
+            </div>
+          </div>
+          <div class="queue-item-controls">
+            <div class="form-grid cols-2">
+              <div class="field">
+                <div class="field-label">Delay Before (ms)</div>
+                <input type="number" class="custom-delay" inputmode="numeric" value="${entry.delay_before_ms || 0}" min="0">
+              </div>
+              <div class="field">
+                <div class="field-label">Line</div>
+                <input type="text" class="custom-line" value="${(entry.line || "").replace(/"/g, "&quot;")}">
+              </div>
+            </div>
+            <div class="queue-move-row">
+              <button class="btn btn-danger btn-sm remove-custom" type="button">Remove</button>
+            </div>
+          </div>`;
+
+        item.querySelector(".custom-delay").addEventListener("input", (e) => {
+          entry.delay_before_ms = parseInt(e.target.value || "0", 10) || 0;
+          renderJson();
+        });
+        item.querySelector(".custom-line").addEventListener("input", (e) => {
+          entry.line = e.target.value;
+          renderJson();
+        });
+        item.querySelector(".remove-custom").addEventListener("click", () => {
+          autoloadCustomEntries.splice(index, 1);
+          renderJson();
+        });
+        autoloadEditor.appendChild(item);
+      });
+    }
+
+    /* ── JSON building ─────────────────────────────────── */
+    function buildAutoloadSettings() {
+      const s = {
+        enabled: autoloadEnabledToggle.checked,
+        output_path: autoloadPathInput.value.trim() || "/data/ps5_autoloader/autoload.txt",
+        self_autoload: selfAutoloadToggle.checked,
+      };
+      if (autoloadCustomEntries.length) {
+        s.custom_entries = autoloadCustomEntries
+          .filter(e => e.line)
+          .map(e => ({ line: e.line, delay_before_ms: e.delay_before_ms || 0 }));
+      }
+      return s;
+    }
+
+    function buildJson() {
+      const obj = {
+        notifications: { verbose: verboseToggle.checked },
+        autoload: buildAutoloadSettings(),
+        backup: {
+          enabled: backupEnabledToggle.checked,
+          max_backups: parseInt(maxBackupsInput.value || "5", 10) || 5,
+        },
+        repos: collectRepos(),
+      };
+      return obj;
+    }
+
+    function buildAutoloadPreview() {
+      const autoload = buildAutoloadSettings();
+      const repos = collectRepos().filter(e => e.autoload);
+      const lines = ["# ChronicLoader managed autoload file", "# Delays use !<milliseconds>", ""];
+
+      if (!autoload.enabled) {
+        lines.push("# autoload maintenance disabled");
+        return lines.join("\n");
+      }
+      if (!repos.length && !autoloadCustomEntries.length && !autoload.self_autoload) {
+        lines.push("# no entries");
+        return lines.join("\n");
+      }
+      repos.forEach((e, i) => {
+        if (e.delay_before_ms > 0 && i > 0) lines.push(`!${e.delay_before_ms}`);
+        lines.push(e.autoload_preview_name || "# tracked asset");
+      });
+      autoloadCustomEntries.forEach((e) => {
+        if (e.delay_before_ms > 0 && lines.length > 3) lines.push(`!${e.delay_before_ms}`);
+        lines.push(e.line);
+      });
+      if (autoload.self_autoload) {
+        if (repos.length > 0 || autoloadCustomEntries.length > 0) {
+          lines.push("!8000");
+        }
+        lines.push("chronicloader.elf");
+      }
+      return lines.join("\n");
+    }
+
+    function renderJson() {
+      const data = buildJson();
+      jsonPreview.textContent = JSON.stringify(data, null, 2);
+      autoloadPreview.textContent = buildAutoloadPreview();
+      renderAutoloadEditor();
+      const n = data.repos.length;
+      repoCountLabel.textContent = n === 0 ? "No repos configured" : `${n} repo${n === 1 ? "" : "s"} configured`;
+      if (n === 0) {
+        setStatus("Add at least one release URL to generate a config.");
+      } else {
+        setStatus(`Ready. ${n} repo${n === 1 ? "" : "s"} in config.`, "ok");
+      }
+    }
+
+    /* ── Import / Export ───────────────────────────────── */
+    function loadBuilderState(data) {
+      repoList.querySelectorAll(".repo-card").forEach(c => c.remove());
+      verboseToggle.checked = !!data?.notifications?.verbose;
+      autoloadEnabledToggle.checked = data?.autoload?.enabled !== false;
+      selfAutoloadToggle.checked = data?.autoload?.self_autoload !== false;
+      autoloadPathInput.value = data?.autoload?.output_path || "/data/ps5_autoloader/autoload.txt";
+      backupEnabledToggle.checked = data?.backup?.enabled !== false;
+      maxBackupsInput.value = String(data?.backup?.max_backups ?? 5);
+      autoloadCustomEntries = Array.isArray(data?.autoload?.custom_entries)
+        ? data.autoload.custom_entries.map(e => ({ line: e.line || "", delay_before_ms: e.delay_before_ms || 0 })).filter(e => e.line)
+        : [];
+      (Array.isArray(data?.repos) ? data.repos : []).forEach(r => {
+        addRepoCard({
+          release_url: r.release_url || "",
+          formats: r.formats || "all",
+          dest_dir: r.dest_dir || "/data/ps5_autoloader",
+          asset_rule: r.asset_rule || "",
+          autoload_preview_name: r.autoload_preview_name || "",
+          autoload: r.autoload ?? true,
+          delay_before_ms: r.delay_before_ms ?? 0,
+        });
+      });
+      updateRepoEmpty();
+      renderJson();
+    }
+
+    async function importJsonText(text) {
+      try {
+        loadBuilderState(JSON.parse(text));
+        setStatus("Imported settings successfully.", "ok");
+      } catch (err) {
+        setStatus(`Import failed: ${err.message}`, "error");
+      }
+    }
+    async function importJsonFile(file) {
+      if (file) await importJsonText(await file.text());
+    }
+    async function importBuilderFiles(fileList) {
+      const files = Array.from(fileList || []).filter(Boolean);
+      if (!files.length) { setStatus("No files detected.", "error"); return; }
+      for (const f of files.filter(f => f.name.toLowerCase().endsWith(".json"))) await importJsonFile(f);
+      for (const f of files.filter(f => f.name.toLowerCase().endsWith(".txt"))) importAutoloadText(await f.text());
+      setStatus("Import complete.", "ok");
+    }
+
+    function importAutoloadText(text) {
+      const repoCards = Array.from(repoList.querySelectorAll(".repo-card"));
+      const repoMap = new Map();
+      let pendingDelay = 0;
+
+      repoCards.forEach(card => {
+        const d = repoCardData(card);
+        if (!d.release_url) return;
+        d.autoload = false;
+        d.delay_before_ms = 0;
+        card.dataset.repo = JSON.stringify(d);
+        if (d.autoload_preview_name) repoMap.set(d.autoload_preview_name.toLowerCase(), { card, data: d });
+      });
+
+      autoloadCustomEntries = [];
+      text.split(/\r?\n/).forEach(raw => {
+        const line = raw.trim();
+        if (!line || line.startsWith("#")) return;
+        if (line.startsWith("!")) {
+          pendingDelay = parseInt(line.slice(1), 10) || 0;
+          return;
+        }
+        const match = repoMap.get(line.toLowerCase());
+        if (match) {
+          match.data.autoload = true;
+          match.data.delay_before_ms = pendingDelay;
+          match.card.dataset.repo = JSON.stringify(match.data);
+        } else {
+          autoloadCustomEntries.push({ line, delay_before_ms: pendingDelay });
+        }
+        pendingDelay = 0;
+      });
+      renderJson();
+    }
+
+    function downloadJson() {
+      const blob = new Blob([JSON.stringify(buildJson(), null, 2) + "\n"], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "chronicloaderSettings.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setStatus("Downloaded chronicloaderSettings.json", "ok");
+    }
+
+    async function copyJson() {
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(buildJson(), null, 2) + "\n");
+        setStatus("Copied JSON to clipboard.", "ok");
+      } catch (_) {
+        setStatus("Clipboard copy failed. Use Download instead.", "error");
+      }
+    }
+
+    function resetBuilder() {
+      repoList.querySelectorAll(".repo-card").forEach(c => c.remove());
+      autoloadCustomEntries = [];
+      verboseToggle.checked = false;
+      autoloadEnabledToggle.checked = true;
+      selfAutoloadToggle.checked = true;
+      autoloadPathInput.value = "/data/ps5_autoloader/autoload.txt";
+      backupEnabledToggle.checked = true;
+      maxBackupsInput.value = "5";
+      updateRepoEmpty();
+      renderJson();
+      setStatus("Reset to defaults.", "ok");
+    }
+
+    /* ── Event wiring ──────────────────────────────────── */
+    $("addRepoBtn").addEventListener("click", () => openRepoModal());
+    $("touchAddRepoBtn").addEventListener("click", () => openRepoModal());
+    $("repoModalCloseBtn").addEventListener("click", closeRepoModal);
+    repoModalInspectBtn.addEventListener("click", inspectRepoModal);
+    repoModalAddBtn.addEventListener("click", addRepoFromModal);
+    $("copyBtn").addEventListener("click", copyJson);
+    $("downloadBtn").addEventListener("click", downloadJson);
+    $("resetBtn").addEventListener("click", resetBuilder);
+    $("importJsonBtn").addEventListener("click", () => importJsonInput.click());
+    $("importAutoloadBtn").addEventListener("click", () => importAutoloadInput.click());
+    $("addCustomEntryBtn").addEventListener("click", () => {
+      autoloadCustomEntries.push({ line: "", delay_before_ms: 0 });
+      renderJson();
+      const section = document.querySelector('[data-section="queue"]');
+      if (!section.classList.contains("open")) section.classList.add("open");
+    });
+
+    importJsonInput.addEventListener("change", async (e) => { await importBuilderFiles(e.target.files); e.target.value = ""; });
+    importAutoloadInput.addEventListener("change", async (e) => { await importBuilderFiles(e.target.files); e.target.value = ""; });
+
+    // Dropzone
+    importDropzone.addEventListener("dragover", (e) => { e.preventDefault(); importDropzone.classList.add("dragover"); });
+    importDropzone.addEventListener("dragleave", () => importDropzone.classList.remove("dragover"));
+    importDropzone.addEventListener("drop", async (e) => {
+      e.preventDefault(); e.stopPropagation();
+      pageDragDepth = 0; pageDropOverlay.hidden = true;
+      importDropzone.classList.remove("dragover");
+      await importBuilderFiles(e.dataTransfer?.files);
+    });
+
+    // Full-page drop
+    document.addEventListener("dragenter", (e) => {
+      if (!e.dataTransfer?.types?.includes("Files")) return;
+      e.preventDefault(); pageDragDepth++; pageDropOverlay.hidden = false;
+    });
+    document.addEventListener("dragover", (e) => {
+      if (!e.dataTransfer?.types?.includes("Files")) return;
+      e.preventDefault(); pageDropOverlay.hidden = false;
+    });
+    document.addEventListener("dragleave", (e) => {
+      if (!e.dataTransfer?.types?.includes("Files")) return;
+      e.preventDefault(); pageDragDepth = Math.max(0, pageDragDepth - 1);
+      if (pageDragDepth === 0) pageDropOverlay.hidden = true;
+    });
+    document.addEventListener("drop", async (e) => {
+      if (!e.dataTransfer?.files?.length) return;
+      e.preventDefault(); pageDragDepth = 0; pageDropOverlay.hidden = true;
+      importDropzone.classList.remove("dragover");
+      await importBuilderFiles(e.dataTransfer.files);
+    });
+
+    // Re-render on settings changes
+    verboseToggle.addEventListener("change", renderJson);
+    autoloadEnabledToggle.addEventListener("change", renderJson);
+    selfAutoloadToggle.addEventListener("change", renderJson);
+    autoloadPathInput.addEventListener("input", renderJson);
+    backupEnabledToggle.addEventListener("change", renderJson);
+    maxBackupsInput.addEventListener("input", renderJson);
+
+    // Init
+    resetBuilder();
+  </script>
+</body>
+</html>

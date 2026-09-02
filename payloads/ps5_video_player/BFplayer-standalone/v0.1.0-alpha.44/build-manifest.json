@@ -1,0 +1,39 @@
+{
+    "name":  "BFplayer",
+    "version":  "0.1.0-alpha.44",
+    "target":  "x86_64-sie-ps5",
+    "package":  "single standalone payload",
+    "direct_tile":  "PSMC00001 via loopback-only localhost:9040/launch",
+    "websrv_required":  false,
+    "embedded_player":  true,
+    "embedded_player_compression":  "gzip",
+    "embedded_player_bytes":  36933112,
+    "embedded_player_compressed_bytes":  15760250,
+    "pacbrew":  "v0.37",
+    "ffmpeg":  "7.0.1",
+    "player_sha256":  "14680ab3436d104dee295426d2307d67c61326cea8a828ce901fbec8b60c27dd",
+    "standalone_sha256":  "0d028deb145d6fc9a5b55d43a45e072919178fbb261c66cd914ebcfb0b3b05c0",
+    "built_utc":  "2026-07-31T00:33:37.3560735Z",
+    "files":  [
+                  {
+                      "path":  "bfplayer-standalone.elf",
+                      "bytes":  17936496,
+                      "sha256":  "0d028deb145d6fc9a5b55d43a45e072919178fbb261c66cd914ebcfb0b3b05c0"
+                  },
+                  {
+                      "path":  "INSTALL.md",
+                      "bytes":  4333,
+                      "sha256":  "acbf67b124d693896b044e8616102b32314710d40114b0e42faf73bd6003785b"
+                  },
+                  {
+                      "path":  "LICENSE",
+                      "bytes":  35823,
+                      "sha256":  "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809"
+                  },
+                  {
+                      "path":  "THIRD_PARTY_NOTICES.md",
+                      "bytes":  6295,
+                      "sha256":  "1a6dfd440134807ee05ea3ce199a4c81e38cf42d63a6a95dd15c54d6bea26e56"
+                  }
+              ]
+}
