@@ -4,7 +4,7 @@
     {
       "name": "PS5-Game-Compressor",
       "filename": "PS5-Game-Compressor_v1.0.4.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/PS5-Game-Compressor/v1.0.4/PS5-Game-Compressor_v1.0.4.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/PS5-Game-Compressor/v1.0.4/PS5-Game-Compressor_v1.0.4.elf",
       "local_path": "payloads/ps5_game_dump/PS5-Game-Compressor/v1.0.4/PS5-Game-Compressor_v1.0.4.elf",
       "description": "Tool to compress PS5 games.",
       "version": "v1.0.4",
@@ -14,7 +14,7 @@
     {
       "name": "ps5-app-dumper",
       "filename": "ps5-app-dumper_v1.11.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ps5-app-dumper/v1.11/ps5-app-dumper_v1.11.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/ps5-app-dumper/v1.11/ps5-app-dumper_v1.11.elf",
       "local_path": "payloads/ps5_game_dump/ps5-app-dumper/v1.11/ps5-app-dumper_v1.11.elf",
       "description": "PS5 App Dumper payload.",
       "version": "v1.11",
@@ -24,7 +24,7 @@
     {
       "name": "ShadowMountPlus",
       "filename": "ShadowMountPlus_v1.6beta16.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf",
       "local_path": "payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf",
       "description": "ShadowMountPlus payload for game mounting.",
       "version": "1.6beta16",
@@ -34,7 +34,7 @@
     {
       "name": "BackPork",
       "filename": "BackPork_v0.1.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/BackPork/0.1/BackPork_v0.1.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/BackPork/0.1/BackPork_v0.1.elf",
       "local_path": "payloads/ps5_game_dump/BackPork/0.1/BackPork_v0.1.elf",
       "description": "BackPork PS5 tool.",
       "version": "0.1",
@@ -44,7 +44,7 @@
     {
       "name": "apr_emu_updater",
       "filename": "apr_emu_updater_v2.0.6.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/apr-emu-updater/v2.0.6/apr_emu_updater_v2.0.6.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/apr-emu-updater/v2.0.6/apr_emu_updater_v2.0.6.elf",
       "local_path": "payloads/ps5_game_dump/apr-emu-updater/v2.0.6/apr_emu_updater_v2.0.6.elf",
       "description": "APR Emu Updater must always be loaded.",
       "version": "v2.0.6",

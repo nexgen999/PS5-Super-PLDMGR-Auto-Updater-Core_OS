@@ -4,7 +4,7 @@
     {
       "name": "Common_FPS_PS5",
       "filename": "Common_FPS_PS5_v1.0.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Overlay/Common-FPS-for-PS5/v1.0.0/Common_FPS_PS5_v1.0.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/PS5_Overlay/Common-FPS-for-PS5/v1.0.0/Common_FPS_PS5_v1.0.0.elf",
       "local_path": "payloads/PS5_Overlay/Common-FPS-for-PS5/v1.0.0/Common_FPS_PS5_v1.0.0.elf",
       "description": "A lightweight, open-source real-time FPS counter for PlayStation 5.",
       "version": "v1.0.0",

@@ -7,37 +7,37 @@ Store automatisé et intelligent pour PlayStation 5 regroupant les payloads, pac
 ## 🌐 Page Web du Store
 
 Accédez à l'interface web interactive générée automatiquement pour explorer le catalogue :
-- **Interface Web Principale (index.html)** : [https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/index.html](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/index.html)
+- **Interface Web Principale (index.html)** : [https://nexgen999.github.io/evoX-CoreOS/index.html](https://nexgen999.github.io/evoX-CoreOS/index.html)
 
 ---
 
 ## 🔗 Liste des URLs JSON Globales
 
 Retrouvez l'ensemble des points d'accès aux données JSON du store :
-- **Payloads Global** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/payloads.json`
-- **Packages (PKG) Global** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/pkg.json`
-- **Fichiers FFPFSC Global** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/ffpfsc.json`
-- **Applications Global** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/json/apps.json`
+- **Payloads Global** : `https://nexgen999.github.io/evoX-CoreOS/json/payloads.json`
+- **Packages (PKG) Global** : `https://nexgen999.github.io/evoX-CoreOS/json/pkg.json`
+- **Fichiers FFPFSC Global** : `https://nexgen999.github.io/evoX-CoreOS/json/ffpfsc.json`
+- **Applications Global** : `https://nexgen999.github.io/evoX-CoreOS/json/apps.json`
 
 ---
 
 ## 📡 Flux RSS & Veille Technologique
 
 Les flux RSS générés automatiquement permettent de suivre en temps réel les mises à jour des dépôts, des outils et des binaires de la scène PS5 :
-- **Flux RSS Payloads** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/rss/payloads_rss.xml`
-- **Flux RSS Packages (PKG)** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/rss/pkg_rss.xml`
-- **Flux RSS Fichiers FFPFSC** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/rss/ffpfsc_rss.xml`
-- **Flux RSS Applications** : `https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/rss/apps_rss.xml`
+- **Flux RSS Payloads** : `https://nexgen999.github.io/evoX-CoreOS/rss/payloads_rss.xml`
+- **Flux RSS Packages (PKG)** : `https://nexgen999.github.io/evoX-CoreOS/rss/pkg_rss.xml`
+- **Flux RSS Fichiers FFPFSC** : `https://nexgen999.github.io/evoX-CoreOS/rss/ffpfsc_rss.xml`
+- **Flux RSS Applications** : `https://nexgen999.github.io/evoX-CoreOS/rss/apps_rss.xml`
 
 ---
 
 ## 📦 Packs Latest à Télécharger (AIO)
 
-- **Pack Payloads AIO** : [https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_payloads_aio_latest.zip](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_payloads_aio_latest.zip)
-- **Pack PKG AIO** : [https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_pkg_aio_latest.zip](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_pkg_aio_latest.zip)
-- **Pack FFPFSC AIO** : [https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_ffpfsc_aio_latest.zip](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_ffpfsc_aio_latest.zip)
-- **Pack Apps AIO** : [https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_apps_aio_latest.zip](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_apps_aio_latest.zip)
-- **Ultimate Pack AIO** : [https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_ultimate_pack_latest.zip](https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/archives/PS5_ultimate_pack_latest.zip)
+- **Pack Payloads AIO** : [https://nexgen999.github.io/evoX-CoreOS/archives/PS5_payloads_aio_latest.zip](https://nexgen999.github.io/evoX-CoreOS/archives/PS5_payloads_aio_latest.zip)
+- **Pack PKG AIO** : [https://nexgen999.github.io/evoX-CoreOS/archives/PS5_pkg_aio_latest.zip](https://nexgen999.github.io/evoX-CoreOS/archives/PS5_pkg_aio_latest.zip)
+- **Pack FFPFSC AIO** : [https://nexgen999.github.io/evoX-CoreOS/archives/PS5_ffpfsc_aio_latest.zip](https://nexgen999.github.io/evoX-CoreOS/archives/PS5_ffpfsc_aio_latest.zip)
+- **Pack Apps AIO** : [https://nexgen999.github.io/evoX-CoreOS/archives/PS5_apps_aio_latest.zip](https://nexgen999.github.io/evoX-CoreOS/archives/PS5_apps_aio_latest.zip)
+- **Ultimate Pack AIO** : [https://nexgen999.github.io/evoX-CoreOS/archives/PS5_ultimate_pack_latest.zip](https://nexgen999.github.io/evoX-CoreOS/archives/PS5_ultimate_pack_latest.zip)
 
 ---
 

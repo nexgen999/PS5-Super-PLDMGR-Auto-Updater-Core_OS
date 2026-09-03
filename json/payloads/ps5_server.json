@@ -4,7 +4,7 @@
     {
       "name": "zftpd",
       "filename": "zftpd_v1.5.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf",
       "local_path": "payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf",
       "description": "FTP server payload for PS5. Port: 21",
       "version": "v1.5.0",
@@ -14,7 +14,7 @@
     {
       "name": "zftpd",
       "filename": "zftpd_v1.5.0.bin",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.bin",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.bin",
       "local_path": "payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.bin",
       "description": "FTP server payload for PS5. Port: 21",
       "version": "v1.5.0",
@@ -24,7 +24,7 @@
     {
       "name": "elfldr",
       "filename": "elfldr_v0.26.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/elfldr/v0.26/elfldr_v0.26.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/elfldr/v0.26/elfldr_v0.26.elf",
       "local_path": "payloads/ps5_server/elfldr/v0.26/elfldr_v0.26.elf",
       "description": "ELF Loader utility. Port: 9020 / 9021",
       "version": "v0.26",
@@ -34,7 +34,7 @@
     {
       "name": "ftpsrv_ps5-payload",
       "filename": "ftpsrv_ps5-payload_v0.21.1.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_ps5-payload/v0.21.1/ftpsrv_ps5-payload_v0.21.1.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ftpsrv_ps5-payload/v0.21.1/ftpsrv_ps5-payload_v0.21.1.elf",
       "local_path": "payloads/ps5_server/ftpsrv_ps5-payload/v0.21.1/ftpsrv_ps5-payload_v0.21.1.elf",
       "description": "FTP server background daemon. Port: 21",
       "version": "v0.21.1",
@@ -44,7 +44,7 @@
     {
       "name": "websrv",
       "filename": "websrv_v0.34.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/websrv/v0.34/websrv_v0.34.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/websrv/v0.34/websrv_v0.34.elf",
       "local_path": "payloads/ps5_server/websrv/v0.34/websrv_v0.34.elf",
       "description": "HTTP Web server payload. Port: 8080",
       "version": "v0.34",
@@ -54,7 +54,7 @@
     {
       "name": "gdbsrv",
       "filename": "gdbsrv_v0.9.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/gdbsrv/v0.9/gdbsrv_v0.9.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/gdbsrv/v0.9/gdbsrv_v0.9.elf",
       "local_path": "payloads/ps5_server/gdbsrv/v0.9/gdbsrv_v0.9.elf",
       "description": "GDB Debugger server payload. Port: 1234",
       "version": "v0.9",
@@ -64,7 +64,7 @@
     {
       "name": "klogsrv",
       "filename": "klogsrv_v0.9.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/klogsrv/v0.9/klogsrv_v0.9.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/klogsrv/v0.9/klogsrv_v0.9.elf",
       "local_path": "payloads/ps5_server/klogsrv/v0.9/klogsrv_v0.9.elf",
       "description": "Kernel log server daemon. Port: 3232",
       "version": "v0.9",
@@ -74,7 +74,7 @@
     {
       "name": "ftpsrv_drakmor",
       "filename": "ftpsrv_drakmor_v1.15-ng-stable.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf",
       "local_path": "payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf",
       "description": "Drakmor's variant of the FTP server. Port: 21",
       "version": "1.15-ng-stable",
@@ -84,7 +84,7 @@
     {
       "name": "ps5upload",
       "filename": "ps5upload_v5.15.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ps5upload/v5.15.0/ps5upload_v5.15.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ps5upload/v5.15.0/ps5upload_v5.15.0.elf",
       "local_path": "payloads/ps5_server/ps5upload/v5.15.0/ps5upload_v5.15.0.elf",
       "description": "PS5 Upload server / tool. Port: 9025",
       "version": "v5.15.0",
@@ -94,7 +94,7 @@
     {
       "name": "airpsx",
       "filename": "airpsx_v0.19.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/airpsx/0.19/airpsx_v0.19.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/airpsx/0.19/airpsx_v0.19.elf",
       "local_path": "payloads/ps5_server/airpsx/0.19/airpsx_v0.19.elf",
       "description": "AirPSX server tool for PS5 ecosystem.",
       "version": "0.19",

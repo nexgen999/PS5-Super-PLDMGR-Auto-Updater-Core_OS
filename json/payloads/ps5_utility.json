@@ -4,7 +4,7 @@
     {
       "name": "ChronicLoader-PS5-Payload",
       "filename": "ChronicLoader-PS5-Payload_v0.1.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/ChronicLoader-PS5-Payload/0.1/ChronicLoader-PS5-Payload_v0.1.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/ChronicLoader-PS5-Payload/0.1/ChronicLoader-PS5-Payload_v0.1.elf",
       "local_path": "payloads/ps5_utility/ChronicLoader-PS5-Payload/0.1/ChronicLoader-PS5-Payload_v0.1.elf",
       "description": "ChronicLoader utility payload for PS5.",
       "version": "0.1",
@@ -14,7 +14,7 @@
     {
       "name": "Ghostpad",
       "filename": "Ghostpad_v1.0.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/Ghostpad/v1.0.0/Ghostpad_v1.0.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/Ghostpad/v1.0.0/Ghostpad_v1.0.0.elf",
       "local_path": "payloads/ps5_utility/Ghostpad/v1.0.0/Ghostpad_v1.0.0.elf",
       "description": "Ghostpad controller input utility.",
       "version": "v1.0.0",
@@ -24,7 +24,7 @@
     {
       "name": "Ghostcontrol-PS5-USB-Controller-Patcher",
       "filename": "Ghostcontrol-PS5-USB-Controller-Patcher_v1.0.5.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/Ghostcontrol-PS5-USB-Controller-Patcher/1.0.5/Ghostcontrol-PS5-USB-Controller-Patcher_v1.0.5.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/Ghostcontrol-PS5-USB-Controller-Patcher/1.0.5/Ghostcontrol-PS5-USB-Controller-Patcher_v1.0.5.elf",
       "local_path": "payloads/ps5_utility/Ghostcontrol-PS5-USB-Controller-Patcher/1.0.5/Ghostcontrol-PS5-USB-Controller-Patcher_v1.0.5.elf",
       "description": "USB Controller patcher tool for PS5.",
       "version": "1.0.5",
@@ -34,7 +34,7 @@
     {
       "name": "PoorDS4-status",
       "filename": "PoorDS4-status_v0.1.0-rc38.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf",
       "local_path": "payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf",
       "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
       "version": "v0.1.0-rc38",
@@ -44,7 +44,7 @@
     {
       "name": "PoorDS4-stop",
       "filename": "PoorDS4-stop_v0.1.0-rc38.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-stop_v0.1.0-rc38.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-stop_v0.1.0-rc38.elf",
       "local_path": "payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-stop_v0.1.0-rc38.elf",
       "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
       "version": "v0.1.0-rc38",
@@ -54,7 +54,7 @@
     {
       "name": "PoorDS4rc38",
       "filename": "PoorDS4rc38_v0.1.0-rc38.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4rc38_v0.1.0-rc38.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4rc38_v0.1.0-rc38.elf",
       "local_path": "payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4rc38_v0.1.0-rc38.elf",
       "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
       "version": "v0.1.0-rc38",
@@ -64,7 +64,7 @@
     {
       "name": "PS_Game_State_Lib",
       "filename": "PS_Game_State_Lib_v0.1.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PS_Game_State_Lib/v0.1/PS_Game_State_Lib_v0.1.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PS_Game_State_Lib/v0.1/PS_Game_State_Lib_v0.1.elf",
       "local_path": "payloads/ps5_utility/PS_Game_State_Lib/v0.1/PS_Game_State_Lib_v0.1.elf",
       "description": "Standalone PS5 game-state detection payload - webui ps5ip:9877 .",
       "version": "v0.1",
@@ -74,7 +74,7 @@
     {
       "name": "PS-DiscordPresence",
       "filename": "PS-DiscordPresence_v0.01.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PS-DiscordPresence/v0.01/PS-DiscordPresence_v0.01.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PS-DiscordPresence/v0.01/PS-DiscordPresence_v0.01.elf",
       "local_path": "payloads/ps5_utility/PS-DiscordPresence/v0.01/PS-DiscordPresence_v0.01.elf",
       "description": "PS5 game activity service with a local status endpoint and a Python Discord RPC bridge.",
       "version": "v0.01",
@@ -84,7 +84,7 @@
     {
       "name": "unrar-ps5",
       "filename": "unrar-ps5_v1.4.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/unrar-ps5/v1.4.0/unrar-ps5_v1.4.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/unrar-ps5/v1.4.0/unrar-ps5_v1.4.0.elf",
       "local_path": "payloads/ps5_utility/unrar-ps5/v1.4.0/unrar-ps5_v1.4.0.elf",
       "description": "PS5 ELF payload for extracting RAR and 7z archives on a jailbroken PS5 and installing extracted apps into a configurable layout..",
       "version": "v1.4.0",
@@ -94,7 +94,7 @@
     {
       "name": "PS5-Power-Payloads-Project",
       "filename": "PS5-Power-Payloads-Project_v1.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/PS5-Power-Payloads-Project_v1.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/PS5-Power-Payloads-Project_v1.0.elf",
       "local_path": "payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/PS5-Power-Payloads-Project_v1.0.elf",
       "description": "PS5-Power-Payloads-Project utility.",
       "version": "1.0",
@@ -104,7 +104,7 @@
     {
       "name": "ps5-date-time-sync",
       "filename": "ps5-date-time-sync_v1.0.0.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/ps5-date-time-sync/v1.0.0/ps5-date-time-sync_v1.0.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/ps5-date-time-sync/v1.0.0/ps5-date-time-sync_v1.0.0.elf",
       "local_path": "payloads/ps5_utility/ps5-date-time-sync/v1.0.0/ps5-date-time-sync_v1.0.0.elf",
       "description": "A lightweight, standalone PS5 payload that restores the console's system date and time using public NTP servers.",
       "version": "v1.0.0",

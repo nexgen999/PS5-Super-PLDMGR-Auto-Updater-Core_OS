@@ -2,431 +2,431 @@
 <rss version="2.0">
   <channel>
     <title>PS5 Store AIO - Payloads</title>
-    <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS</link>
+    <link>https://nexgen999.github.io/evoX-CoreOS</link>
     <description>Mises à jour automatiques pour la catégorie Payloads</description>
     <item>
       <title>PS5-Custom-Tool-Manager-</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_themes-avatars/PS5-Custom-Tool-Manager-/Custom/PS5-Custom-Tool-Manager-_vCustom.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_themes-avatars/PS5-Custom-Tool-Manager-/Custom/PS5-Custom-Tool-Manager-_vCustom.elf</link>
       <description>Custom manager tool for PS5 personalization.</description>
       <pubDate>Custom</pubDate>
     </item>
     <item>
       <title>ps5-wallpaper-modd</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_themes-avatars/ps5-wallpaper-modd/v1.0/ps5-wallpaper-modd_v1.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_themes-avatars/ps5-wallpaper-modd/v1.0/ps5-wallpaper-modd_v1.0.elf</link>
       <description>Wallpaper modification utility for PS5.</description>
       <pubDate>v1.0</pubDate>
     </item>
     <item>
       <title>etaHEN</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/etaHEN/2.5B/etaHEN_v2.5B.bin</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/etaHEN/2.5B/etaHEN_v2.5B.bin</link>
       <description>Le Homebrew Enabler (HEN) de référence pour la PS5 avec serveurs de triche, plugins et gestionnaire de mémoire intégrés.</description>
       <pubDate>2.5B</pubDate>
     </item>
     <item>
       <title>PS5_Unified_Autoloader</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/PS5_Unified_Autoloader/v0.1.4-955249d/PS5_Unified_Autoloader_v0.1.4-955249d.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/PS5_Unified_Autoloader/v0.1.4-955249d/PS5_Unified_Autoloader_v0.1.4-955249d.elf</link>
       <description>Chargeur universel de payloads permettant de lancer automatiquement vos outils favoris au démarrage de l'exploit.</description>
       <pubDate>v0.1.4-955249d</pubDate>
     </item>
     <item>
       <title>pldmgr</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/PS5_Payload_Manager/v0.5.1/pldmgr_v0.5.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/PS5_Payload_Manager/v0.5.1/pldmgr_v0.5.1.elf</link>
       <description>Interface d'administration et de gestion réseau pour envoyer, activer et ordonner vos fichiers ELF/BIN sur la console.</description>
       <pubDate>v0.5.1</pubDate>
     </item>
     <item>
       <title>ELF_Arsenal</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/ELF_Arsenal/v1.6.22/ELF_Arsenal_v1.6.22.elf</link>
       <description>Boîte à outils regroupant une collection complète de payloads utilitaires pour les consoles jailbreakées.</description>
       <pubDate>v1.6.22</pubDate>
     </item>
     <item>
       <title>Kura</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/Kura/v1.6.50/Kura_v1.6.50.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/Kura/v1.6.50/Kura_v1.6.50.elf</link>
       <description>Un loader de payloads moderne et épuré conçu pour optimiser l'injection de code sur PS5.</description>
       <pubDate>v1.6.50</pubDate>
     </item>
     <item>
       <title>PIZZA-HEN</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/PIZZA-HEN/v2.00/PIZZA-HEN_v2.00.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/PIZZA-HEN/v2.00/PIZZA-HEN_v2.00.elf</link>
       <description>PIZZA HEN is an experimental all-in-one PS5 homebrew environment.</description>
       <pubDate>v2.00</pubDate>
     </item>
     <item>
       <title>onionHEN</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/onionHEN/v0.0.12/onionHEN_v0.0.12.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/onionHEN/v0.0.12/onionHEN_v0.0.12.elf</link>
       <description>An all-in-one HEN and Toolbox for PlayStation 5.</description>
       <pubDate>v0.0.12</pubDate>
     </item>
     <item>
       <title>etaHEN-2.6B</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_hen_loader/etaHEN-Beta/Source-Fixe/etaHEN-2.6B.bin</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_hen_loader/etaHEN-Beta/Source-Fixe/etaHEN-2.6B.bin</link>
       <description>etahen beta version experimental.</description>
       <pubDate>Source-Fixe</pubDate>
     </item>
     <item>
       <title>ps5-fan-control</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_fan/ps5-fan-control/v0.3/ps5-fan-control_v0.3.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_fan/ps5-fan-control/v0.3/ps5-fan-control_v0.3.elf</link>
       <description>Small PS5 daemon payload ELF that sets the system fan temperature.</description>
       <pubDate>v0.3</pubDate>
     </item>
     <item>
       <title>nanoDNS</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_dns/nanoDNS/0.4/nanoDNS_v0.4.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_dns/nanoDNS/0.4/nanoDNS_v0.4.elf</link>
       <description>Un serveur DNS ultra-léger et rapide idéal pour rediriger les requêtes de la console vers votre hôte local d'exploits.</description>
       <pubDate>0.4</pubDate>
     </item>
     <item>
       <title>Chukei_DNS</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_dns/Chukei_DNS/0.9.0/Chukei_DNS_v0.9.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_dns/Chukei_DNS/0.9.0/Chukei_DNS_v0.9.0.elf</link>
       <description>Serveur DNS de redirection d'envergure conçu spécifiquement pour bloquer les mises à jour de Sony et rediriger le guide de l'utilisateur.</description>
       <pubDate>0.9.0</pubDate>
     </item>
     <item>
       <title>CheatRunner</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Cheat/CheatRunner/v0.17/CheatRunner_v0.17.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/PS5_Cheat/CheatRunner/v0.17/CheatRunner_v0.17.elf</link>
       <description>CheatRunner.</description>
       <pubDate>v0.17</pubDate>
     </item>
     <item>
       <title>kylin-core-community-lite-v131-global-release</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Cheat/kylin-core/Source-Fixe/kylin-core-community-lite-v131-global-release.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/PS5_Cheat/kylin-core/Source-Fixe/kylin-core-community-lite-v131-global-release.elf</link>
       <description>kylin-core</description>
       <pubDate>Source-Fixe</pubDate>
     </item>
     <item>
       <title>Spectrum-Library</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_freeshop/Spectrum-Library/1.4.3/Spectrum-Library_v1.4.3.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_freeshop/Spectrum-Library/1.4.3/Spectrum-Library_v1.4.3.elf</link>
       <description>free store webadmin http://your-ps5-ip:7575.</description>
       <pubDate>1.4.3</pubDate>
     </item>
     <item>
       <title>pegasus-dl</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_freeshop/pegasus-dl/v1.7.0/pegasus-dl_v1.7.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_freeshop/pegasus-dl/v1.7.0/pegasus-dl_v1.7.0.elf</link>
       <description>free store webadmin http://your-ps5-ip:6970.</description>
       <pubDate>v1.7.0</pubDate>
     </item>
     <item>
       <title>ps5shopappkg-dpi</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_freeshop/ps5shopappkg-dpi/Source-Fixe/ps5shopappkg-dpi.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_freeshop/ps5shopappkg-dpi/Source-Fixe/ps5shopappkg-dpi.elf</link>
       <description>You need PS5-SHOP-APPKG.pkg DPI port 9040.</description>
       <pubDate>Source-Fixe</pubDate>
     </item>
     <item>
       <title>ChronicLoader-PS5-Payload</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/ChronicLoader-PS5-Payload/0.1/ChronicLoader-PS5-Payload_v0.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/ChronicLoader-PS5-Payload/0.1/ChronicLoader-PS5-Payload_v0.1.elf</link>
       <description>ChronicLoader utility payload for PS5.</description>
       <pubDate>0.1</pubDate>
     </item>
     <item>
       <title>Ghostpad</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/Ghostpad/v1.0.0/Ghostpad_v1.0.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/Ghostpad/v1.0.0/Ghostpad_v1.0.0.elf</link>
       <description>Ghostpad controller input utility.</description>
       <pubDate>v1.0.0</pubDate>
     </item>
     <item>
       <title>Ghostcontrol-PS5-USB-Controller-Patcher</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/Ghostcontrol-PS5-USB-Controller-Patcher/1.0.5/Ghostcontrol-PS5-USB-Controller-Patcher_v1.0.5.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/Ghostcontrol-PS5-USB-Controller-Patcher/1.0.5/Ghostcontrol-PS5-USB-Controller-Patcher_v1.0.5.elf</link>
       <description>USB Controller patcher tool for PS5.</description>
       <pubDate>1.0.5</pubDate>
     </item>
     <item>
       <title>PoorDS4-status</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf</link>
       <description>PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.</description>
       <pubDate>v0.1.0-rc38</pubDate>
     </item>
     <item>
       <title>PoorDS4-stop</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-stop_v0.1.0-rc38.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-stop_v0.1.0-rc38.elf</link>
       <description>PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.</description>
       <pubDate>v0.1.0-rc38</pubDate>
     </item>
     <item>
       <title>PoorDS4rc38</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4rc38_v0.1.0-rc38.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4rc38_v0.1.0-rc38.elf</link>
       <description>PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.</description>
       <pubDate>v0.1.0-rc38</pubDate>
     </item>
     <item>
       <title>PS_Game_State_Lib</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PS_Game_State_Lib/v0.1/PS_Game_State_Lib_v0.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PS_Game_State_Lib/v0.1/PS_Game_State_Lib_v0.1.elf</link>
       <description>Standalone PS5 game-state detection payload - webui ps5ip:9877 .</description>
       <pubDate>v0.1</pubDate>
     </item>
     <item>
       <title>PS-DiscordPresence</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PS-DiscordPresence/v0.01/PS-DiscordPresence_v0.01.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PS-DiscordPresence/v0.01/PS-DiscordPresence_v0.01.elf</link>
       <description>PS5 game activity service with a local status endpoint and a Python Discord RPC bridge.</description>
       <pubDate>v0.01</pubDate>
     </item>
     <item>
       <title>unrar-ps5</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/unrar-ps5/v1.4.0/unrar-ps5_v1.4.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/unrar-ps5/v1.4.0/unrar-ps5_v1.4.0.elf</link>
       <description>PS5 ELF payload for extracting RAR and 7z archives on a jailbroken PS5 and installing extracted apps into a configurable layout..</description>
       <pubDate>v1.4.0</pubDate>
     </item>
     <item>
       <title>PS5-Power-Payloads-Project</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/PS5-Power-Payloads-Project_v1.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PS5-Power-Payloads-Project/1.0/PS5-Power-Payloads-Project_v1.0.elf</link>
       <description>PS5-Power-Payloads-Project utility.</description>
       <pubDate>1.0</pubDate>
     </item>
     <item>
       <title>ps5-date-time-sync</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_utility/ps5-date-time-sync/v1.0.0/ps5-date-time-sync_v1.0.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/ps5-date-time-sync/v1.0.0/ps5-date-time-sync_v1.0.0.elf</link>
       <description>A lightweight, standalone PS5 payload that restores the console's system date and time using public NTP servers.</description>
       <pubDate>v1.0.0</pubDate>
     </item>
     <item>
       <title>webkit-autoloader-installer</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/ps5-webkit-autoloader/v0.4.0/webkit-autoloader-installer_v0.4.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/ps5-webkit-autoloader/v0.4.0/webkit-autoloader-installer_v0.4.0.elf</link>
       <description>Installs WebKit Autoloader on homescreen for firmwares 9.00-12.00.</description>
       <pubDate>v0.4.0</pubDate>
     </item>
     <item>
       <title>Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf</link>
       <description>Host-PSM pooP2JB.</description>
       <pubDate>v1.2.0</pubDate>
     </item>
     <item>
       <title>Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en_v1.2.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en_v1.2.0.elf</link>
       <description>Host-PSM pooP2JB.</description>
       <pubDate>v1.2.0</pubDate>
     </item>
     <item>
       <title>Host-PSM-pooP2JB-v1.2.0-instala-onionhen</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf</link>
       <description>Host-PSM pooP2JB.</description>
       <pubDate>v1.2.0</pubDate>
     </item>
     <item>
       <title>Host-PSM-pooP2JB-v1.2.0-instala-pldmgr</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr_v1.2.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr_v1.2.0.elf</link>
       <description>Host-PSM pooP2JB.</description>
       <pubDate>v1.2.0</pubDate>
     </item>
     <item>
       <title>garlic-savemgr</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_saves/garlic-savemgr/v1.13/garlic-savemgr_v1.13.elf</link>
       <description>Save manager utility hosted on Forgejo.</description>
       <pubDate>v1.13</pubDate>
     </item>
     <item>
       <title>garlic-worker</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf</link>
       <description>Garlic worker payload component.</description>
       <pubDate>v1.1.6</pubDate>
     </item>
     <item>
       <title>savemnt-offset-dumper</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_saves/savemnt-offset-dumper/1.0.0/savemnt-offset-dumper_v1.0.0.elf</link>
       <description>Offset dumper for save mounting utilities.</description>
       <pubDate>1.0.0</pubDate>
     </item>
     <item>
       <title>np-fake-signin</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf</link>
       <description>Fake activate PS5 without PSN.</description>
       <pubDate>v1.3</pubDate>
     </item>
     <item>
       <title>Common_FPS_PS5</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/PS5_Overlay/Common-FPS-for-PS5/v1.0.0/Common_FPS_PS5_v1.0.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/PS5_Overlay/Common-FPS-for-PS5/v1.0.0/Common_FPS_PS5_v1.0.0.elf</link>
       <description>A lightweight, open-source real-time FPS counter for PlayStation 5.</description>
       <pubDate>v1.0.0</pubDate>
     </item>
     <item>
       <title>PS5-Game-Compressor</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/PS5-Game-Compressor/v1.0.4/PS5-Game-Compressor_v1.0.4.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/PS5-Game-Compressor/v1.0.4/PS5-Game-Compressor_v1.0.4.elf</link>
       <description>Tool to compress PS5 games.</description>
       <pubDate>v1.0.4</pubDate>
     </item>
     <item>
       <title>ps5-app-dumper</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ps5-app-dumper/v1.11/ps5-app-dumper_v1.11.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/ps5-app-dumper/v1.11/ps5-app-dumper_v1.11.elf</link>
       <description>PS5 App Dumper payload.</description>
       <pubDate>v1.11</pubDate>
     </item>
     <item>
       <title>ShadowMountPlus</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/ShadowMountPlus/1.6beta16/ShadowMountPlus_v1.6beta16.elf</link>
       <description>ShadowMountPlus payload for game mounting.</description>
       <pubDate>1.6beta16</pubDate>
     </item>
     <item>
       <title>BackPork</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/BackPork/0.1/BackPork_v0.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/BackPork/0.1/BackPork_v0.1.elf</link>
       <description>BackPork PS5 tool.</description>
       <pubDate>0.1</pubDate>
     </item>
     <item>
       <title>apr_emu_updater</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_game_dump/apr-emu-updater/v2.0.6/apr_emu_updater_v2.0.6.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_game_dump/apr-emu-updater/v2.0.6/apr_emu_updater_v2.0.6.elf</link>
       <description>APR Emu Updater must always be loaded.</description>
       <pubDate>v2.0.6</pubDate>
     </item>
     <item>
       <title>ProsperoPlayer</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/ProsperoPlayer/v1.0/ProsperoPlayer_v1.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_video_player/ProsperoPlayer/v1.0/ProsperoPlayer_v1.0.elf</link>
       <description>A homebrew media player for jailbroken PS5.</description>
       <pubDate>v1.0</pubDate>
     </item>
     <item>
       <title>svtplay</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/svtplay/v0.3/svtplay_v0.3.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_video_player/svtplay/v0.3/svtplay_v0.3.elf</link>
       <description>This is an unofficial 10-foot UI for SVT Play, the Swedish public service television broadcaster.</description>
       <pubDate>v0.3</pubDate>
     </item>
     <item>
       <title>PS-Play</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_video_player/PS-Play/2.1/PS-Play_v2.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_video_player/PS-Play/2.1/PS-Play_v2.1.elf</link>
       <description>All-in-one media hub for jailbroken PlayStation 5</description>
       <pubDate>2.1</pubDate>
     </item>
     <item>
       <title>zftpd</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf</link>
       <description>FTP server payload for PS5. Port: 21</description>
       <pubDate>v1.5.0</pubDate>
     </item>
     <item>
       <title>zftpd</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.bin</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.bin</link>
       <description>FTP server payload for PS5. Port: 21</description>
       <pubDate>v1.5.0</pubDate>
     </item>
     <item>
       <title>elfldr</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/elfldr/v0.26/elfldr_v0.26.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/elfldr/v0.26/elfldr_v0.26.elf</link>
       <description>ELF Loader utility. Port: 9020 / 9021</description>
       <pubDate>v0.26</pubDate>
     </item>
     <item>
       <title>ftpsrv_ps5-payload</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_ps5-payload/v0.21.1/ftpsrv_ps5-payload_v0.21.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ftpsrv_ps5-payload/v0.21.1/ftpsrv_ps5-payload_v0.21.1.elf</link>
       <description>FTP server background daemon. Port: 21</description>
       <pubDate>v0.21.1</pubDate>
     </item>
     <item>
       <title>websrv</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/websrv/v0.34/websrv_v0.34.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/websrv/v0.34/websrv_v0.34.elf</link>
       <description>HTTP Web server payload. Port: 8080</description>
       <pubDate>v0.34</pubDate>
     </item>
     <item>
       <title>gdbsrv</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/gdbsrv/v0.9/gdbsrv_v0.9.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/gdbsrv/v0.9/gdbsrv_v0.9.elf</link>
       <description>GDB Debugger server payload. Port: 1234</description>
       <pubDate>v0.9</pubDate>
     </item>
     <item>
       <title>klogsrv</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/klogsrv/v0.9/klogsrv_v0.9.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/klogsrv/v0.9/klogsrv_v0.9.elf</link>
       <description>Kernel log server daemon. Port: 3232</description>
       <pubDate>v0.9</pubDate>
     </item>
     <item>
       <title>ftpsrv_drakmor</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf</link>
       <description>Drakmor's variant of the FTP server. Port: 21</description>
       <pubDate>1.15-ng-stable</pubDate>
     </item>
     <item>
       <title>ps5upload</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/ps5upload/v5.15.0/ps5upload_v5.15.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ps5upload/v5.15.0/ps5upload_v5.15.0.elf</link>
       <description>PS5 Upload server / tool. Port: 9025</description>
       <pubDate>v5.15.0</pubDate>
     </item>
     <item>
       <title>airpsx</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_server/airpsx/0.19/airpsx_v0.19.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/airpsx/0.19/airpsx_v0.19.elf</link>
       <description>AirPSX server tool for PS5 ecosystem.</description>
       <pubDate>0.19</pubDate>
     </item>
     <item>
       <title>kstuff_EchoStretch</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_kstuff/kstuff_EchoStretch/v1.6.7/kstuff_EchoStretch_v1.6.7.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_kstuff/kstuff_EchoStretch/v1.6.7/kstuff_EchoStretch_v1.6.7.elf</link>
       <description>Fnd Kstuff payload for PS5.</description>
       <pubDate>v1.6.7</pubDate>
     </item>
     <item>
       <title>kstuff-lite_EchoStretch</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_kstuff/kstuff-lite_EchoStretch/v1.10/kstuff-lite_EchoStretch_v1.10.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_kstuff/kstuff-lite_EchoStretch/v1.10/kstuff-lite_EchoStretch_v1.10.elf</link>
       <description>Lightweight version of kstuff.</description>
       <pubDate>v1.10</pubDate>
     </item>
     <item>
       <title>kstuff-lite_drakmor</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_kstuff/kstuff-lite_drakmor/1.2-dr-test1/kstuff-lite_drakmor_v1.2-dr-test1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_kstuff/kstuff-lite_drakmor/1.2-dr-test1/kstuff-lite_drakmor_v1.2-dr-test1.elf</link>
       <description>Drakmor's variant of kstuff-lite.</description>
       <pubDate>1.2-dr-test1</pubDate>
     </item>
     <item>
       <title>ps5-linux-loader</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_linux/ps5-linux-loader/v2.4/ps5-linux-loader_v2.4.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_linux/ps5-linux-loader/v2.4/ps5-linux-loader_v2.4.elf</link>
       <description>Linux loader payload for the PS5.</description>
       <pubDate>v2.4</pubDate>
     </item>
     <item>
       <title>BFpilot</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_file_explorer/BFpilot/v0.4.4/BFpilot_v0.4.4.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_file_explorer/BFpilot/v0.4.4/BFpilot_v0.4.4.elf</link>
       <description>BFpilot is a lightweight PS5 payload that serves a browser-based file manager.</description>
       <pubDate>v0.4.4</pubDate>
     </item>
     <item>
       <title>lapy_jb_daemon</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_file_explorer/Lapy_JB_Daemon/Source-Fixe/lapy_jb_daemon.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_file_explorer/Lapy_JB_Daemon/Source-Fixe/lapy_jb_daemon.elf</link>
       <description>Daemon pour le jailbreak de Lapy</description>
       <pubDate>Source-Fixe</pubDate>
     </item>
     <item>
       <title>ps5-web-file-manager</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_file_explorer/ps5-web-file-manager/v1.7/ps5-web-file-manager_v1.7.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_file_explorer/ps5-web-file-manager/v1.7/ps5-web-file-manager_v1.7.elf</link>
       <description>PS5 Web File Manager http://your-ps5-ip:8888.</description>
       <pubDate>v1.7</pubDate>
     </item>
     <item>
       <title>PS5-File-Explorer</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_file_explorer/PS5-File-Explorer/file-explorer-v0.2.1/PS5-File-Explorer_vfile-explorer-v0.2.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_file_explorer/PS5-File-Explorer/file-explorer-v0.2.1/PS5-File-Explorer_vfile-explorer-v0.2.1.elf</link>
       <description>PS5 File Explorer http://your-ps5-ip:5905.</description>
       <pubDate>file-explorer-v0.2.1</pubDate>
     </item>
     <item>
       <title>ps5debug-NG</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5debug-NG/1.3.0/ps5debug-NG_v1.3.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/ps5debug-NG/1.3.0/ps5debug-NG_v1.3.0.elf</link>
       <description>Next generation debugger payload for PS5.</description>
       <pubDate>1.3.0</pubDate>
     </item>
     <item>
       <title>ps5-self-pager</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-self-pager/v1.2/ps5-self-pager_v1.2.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/ps5-self-pager/v1.2/ps5-self-pager_v1.2.elf</link>
       <description>SELF pager payload tool.</description>
       <pubDate>v1.2</pubDate>
     </item>
     <item>
       <title>PS5-SELF-Decrypter</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/PS5-SELF-Decrypter/v0.5.2/PS5-SELF-Decrypter_v0.5.2.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/PS5-SELF-Decrypter/v0.5.2/PS5-SELF-Decrypter_v0.5.2.elf</link>
       <description>SELF decrypter tool for PS5 binaries.</description>
       <pubDate>v0.5.2</pubDate>
     </item>
     <item>
       <title>ps5-remoteplay-get-pin</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-remoteplay-get-pin/v0.1.1/ps5-remoteplay-get-pin_v0.1.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/ps5-remoteplay-get-pin/v0.1.1/ps5-remoteplay-get-pin_v0.1.1.elf</link>
       <description>Utility to get Remote Play PIN.</description>
       <pubDate>v0.1.1</pubDate>
     </item>
     <item>
       <title>MemDBG</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/MemDBG/nightly-20260822-gc39ac30/MemDBG_vnightly-20260822-gc39ac30.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/MemDBG/nightly-20260822-gc39ac30/MemDBG_vnightly-20260822-gc39ac30.elf</link>
       <description>Memory debugging and inspection suite.</description>
       <pubDate>nightly-20260822-gc39ac30</pubDate>
     </item>
     <item>
       <title>ps5-hwinfo</title>
-      <link>https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_sdk_debug/ps5-hwinfo/0.1/ps5-hwinfo_v0.1.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/ps5-hwinfo/0.1/ps5-hwinfo_v0.1.elf</link>
       <description>PS5 payload for collecting hardware and runtime telemetry.</description>
       <pubDate>0.1</pubDate>
     </item>

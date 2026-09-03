@@ -4,7 +4,7 @@
     {
       "name": "ps5-linux-loader",
       "filename": "ps5-linux-loader_v2.4.elf",
-      "url": "https://nexgen999.github.io/PS5-Super-PLDMGR-Auto-Updater-Core_OS/payloads/ps5_linux/ps5-linux-loader/v2.4/ps5-linux-loader_v2.4.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_linux/ps5-linux-loader/v2.4/ps5-linux-loader_v2.4.elf",
       "local_path": "payloads/ps5_linux/ps5-linux-loader/v2.4/ps5-linux-loader_v2.4.elf",
       "description": "Linux loader payload for the PS5.",
       "version": "v2.4",
