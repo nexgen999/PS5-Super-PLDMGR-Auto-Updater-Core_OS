@@ -115,7 +115,7 @@
       {
         "id": "payloads",
         "label": "Payloads",
-        "url": "/rss/payloads_rss.xml",
+        "url": "/rss/payloads/payloads.opml",
         "enabled": true
       },
       {
