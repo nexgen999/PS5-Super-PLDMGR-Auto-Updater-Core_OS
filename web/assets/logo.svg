@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#e8f8ff"/><stop offset=".52" stop-color="#66d9ff"/><stop offset="1" stop-color="#087cff"/></linearGradient></defs>
+<rect width="520" height="150" rx="34" fill="#07111f"/>
+<circle cx="74" cy="75" r="45" fill="#071b31" stroke="#0aa9ff" stroke-width="3"/>
+<path d="M74 40l9 22 24 3-18 16 5 24-20-12-21 12 5-24-18-16 24-3z" fill="url(#g)"/>
+<text x="138" y="92" font-family="Arial,sans-serif" font-size="64" font-weight="800" fill="url(#g)">evoX</text>
+<text x="345" y="92" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#9edfff">Core OS</text>
+</svg>

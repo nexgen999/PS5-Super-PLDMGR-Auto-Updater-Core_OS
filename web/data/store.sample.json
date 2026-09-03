@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "name": "Example Tool",
+      "filename": "example.elf",
+      "url": "/payloads/example.elf",
+      "description": "Example store item.",
+      "version": "1.0.0",
+      "author": "Author",
+      "category": "Tools",
+      "subcategory": "Examples",
+      "icon": "/web/assets/favicon.svg",
+      "checksum": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}
