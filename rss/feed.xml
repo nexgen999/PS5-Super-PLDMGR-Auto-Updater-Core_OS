@@ -180,9 +180,9 @@
     </item>
     <item>
       <title>[Payloads] garlic-worker</title>
-      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_saves/garlic-worker/v1.1.7/garlic-worker_v1.1.7.elf</link>
       <description>Garlic worker payload component.</description>
-      <pubDate>v1.1.6</pubDate>
+      <pubDate>v1.1.7</pubDate>
     </item>
     <item>
       <title>[Payloads] savemnt-offset-dumper</title>

@@ -293,13 +293,13 @@
     },
     {
       "name": "garlic-worker",
-      "filename": "garlic-worker_v1.1.6.elf",
-      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf",
-      "local_path": "payloads/ps5_saves/garlic-worker/v1.1.6/garlic-worker_v1.1.6.elf",
+      "filename": "garlic-worker_v1.1.7.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_saves/garlic-worker/v1.1.7/garlic-worker_v1.1.7.elf",
+      "local_path": "payloads/ps5_saves/garlic-worker/v1.1.7/garlic-worker_v1.1.7.elf",
       "description": "Garlic worker payload component.",
-      "version": "v1.1.6",
+      "version": "v1.1.7",
       "category": "PS5 Saves",
-      "checksum": "b395fd1e35c71c86a9ab13bc42cf7e146757a794ccce722ed6f7e33ad9b81d8b"
+      "checksum": "4d0055b1cd83701cd5d480ca7917843b3b50ff1d53eac6ca7e67a8f3b8643a0d"
     },
     {
       "name": "savemnt-offset-dumper",
