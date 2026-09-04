@@ -3,23 +3,23 @@
   "payloads": [
     {
       "name": "zftpd",
-      "filename": "zftpd_v1.5.0.elf",
-      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf",
-      "local_path": "payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf",
-      "description": "FTP server payload for PS5. Port: 21",
-      "version": "v1.5.0",
-      "category": "PS5 Server",
-      "checksum": "5d2f96ccf0630ab5803552dd3f99ad9eeaaea998daa2812f1c4dc5e7a0b45a84"
-    },
-    {
-      "name": "zftpd",
       "filename": "zftpd_v1.5.0.bin",
       "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.bin",
       "local_path": "payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.bin",
       "description": "FTP server payload for PS5. Port: 21",
       "version": "v1.5.0",
       "category": "PS5 Server",
-      "checksum": "9340aa91f8f1eeb619473d716e0b6ab7af1c6fbb3ad815648520872ad6c86ccf"
+      "checksum": "f430dc1fdeaea425c9e8248708b4b8f4d11b662d2a3f74ac7e85cf7d785d82c3"
+    },
+    {
+      "name": "zftpd",
+      "filename": "zftpd_v1.5.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf",
+      "local_path": "payloads/ps5_server/zftpd/v1.5.0/zftpd_v1.5.0.elf",
+      "description": "FTP server payload for PS5. Port: 21",
+      "version": "v1.5.0",
+      "category": "PS5 Server",
+      "checksum": "bc21772ceafde44d81fce968a04e585509da3c70f8e48d5a6980e28b5bad17fb"
     },
     {
       "name": "elfldr",
@@ -59,7 +59,7 @@
       "description": "GDB Debugger server payload. Port: 1234",
       "version": "v0.9",
       "category": "PS5 Server",
-      "checksum": "80952d75f423768b95385f0944e5a5c2f417dcc10c22c1bb6516a923ad8894e5"
+      "checksum": "fc91ea233cdbb47acd8087b93d557d9f8a663d0f47cb75908a05a024d07e7efb"
     },
     {
       "name": "klogsrv",

@@ -2,6 +2,16 @@
   "name": "PS5 Freeshop",
   "payloads": [
     {
+      "name": "Spectrum-Library",
+      "filename": "Spectrum-Library_v1.4.4.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_freeshop/Spectrum-Library/1.4.4/Spectrum-Library_v1.4.4.elf",
+      "local_path": "payloads/ps5_freeshop/Spectrum-Library/1.4.4/Spectrum-Library_v1.4.4.elf",
+      "description": "free store webadmin http://your-ps5-ip:7575.",
+      "version": "1.4.4",
+      "category": "PS5 Freeshop",
+      "checksum": "2005b5e169dc360c52b9033cc02bce4169a9d4a078627c543b9bbcf66607b9d5"
+    },
+    {
       "name": "pegasus-dl",
       "filename": "pegasus-dl_v1.7.0.elf",
       "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_freeshop/pegasus-dl/v1.7.0/pegasus-dl_v1.7.0.elf",

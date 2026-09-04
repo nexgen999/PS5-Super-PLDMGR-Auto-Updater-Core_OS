@@ -12,14 +12,14 @@
       "checksum": "179d5e52ec3e0f595900b40883c0e10cc1fba1efc275a547f47e828d45d05915"
     },
     {
-      "name": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en",
-      "filename": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
-      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
-      "local_path": "payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
+      "name": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen",
+      "filename": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf",
+      "local_path": "payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf",
       "description": "Host-PSM pooP2JB.",
       "version": "v1.2.0",
       "category": "Ps5-Webkit-Autoloader",
-      "checksum": "3ccc45938dcc1bb6ee766195106c928049fd632993828bcf73b5368fdebfc496"
+      "checksum": "894432bb3161559a272bbdd07cc66dd80ac487f6ddbcc9ae5718090dc0f6e716"
     },
     {
       "name": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen-en",
@@ -32,16 +32,6 @@
       "checksum": "90f1ec197e66bbf4fa1a3bce040d6a5d04d571c4f8290f608401e8f7c2e9e0a4"
     },
     {
-      "name": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen",
-      "filename": "Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf",
-      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf",
-      "local_path": "payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-onionhen_v1.2.0.elf",
-      "description": "Host-PSM pooP2JB.",
-      "version": "v1.2.0",
-      "category": "Ps5-Webkit-Autoloader",
-      "checksum": "894432bb3161559a272bbdd07cc66dd80ac487f6ddbcc9ae5718090dc0f6e716"
-    },
-    {
       "name": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr",
       "filename": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr_v1.2.0.elf",
       "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr_v1.2.0.elf",
@@ -50,6 +40,16 @@
       "version": "v1.2.0",
       "category": "Ps5-Webkit-Autoloader",
       "checksum": "b81609da1db061165e44541653b95f524c917a3d5a1fca308965b0d821be3178"
+    },
+    {
+      "name": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en",
+      "filename": "Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
+      "local_path": "payloads/ps5-webkit-autoloader/Host-PSM_pooP2JB/v1.2.0/Host-PSM-pooP2JB-v1.2.0-instala-pldmgr-en_v1.2.0.elf",
+      "description": "Host-PSM pooP2JB.",
+      "version": "v1.2.0",
+      "category": "Ps5-Webkit-Autoloader",
+      "checksum": "3ccc45938dcc1bb6ee766195106c928049fd632993828bcf73b5368fdebfc496"
     }
   ]
 }

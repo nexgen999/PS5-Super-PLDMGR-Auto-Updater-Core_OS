@@ -19,7 +19,7 @@
       "description": "SELF pager payload tool.",
       "version": "v1.2",
       "category": "PS5 Sdk Debug",
-      "checksum": "2b500bc356b5bcfca5c3e5187bcec0a37c80ed05e39348b8f06bd2e5a6f3342b"
+      "checksum": "73d94fea5de9086cac26385c117a0b3098890c447d67536877fb7b51c9145aac"
     },
     {
       "name": "PS5-SELF-Decrypter",
@@ -49,7 +49,7 @@
       "description": "Memory debugging and inspection suite.",
       "version": "nightly-20260822-gc39ac30",
       "category": "PS5 Sdk Debug",
-      "checksum": "0252539d2f1e0042525652258ff57199e492767b0e21ae9d22ad62721cc3d3d2"
+      "checksum": "0a14c658caeb0558d16efcda9ca84ddda3a48b1206b17c91d00d56dd2bb9ed09"
     },
     {
       "name": "ps5-hwinfo",
@@ -59,7 +59,7 @@
       "description": "PS5 payload for collecting hardware and runtime telemetry.",
       "version": "0.1",
       "category": "PS5 Sdk Debug",
-      "checksum": "4514bdbc0c556df1a66544615942d5087d1cbee5c2026b3b66e688ba01e5a5b0"
+      "checksum": "ad5014112dec619779619d0ea01a984b3c8267fed682eca5687f34c9eade51cb"
     }
   ]
 }

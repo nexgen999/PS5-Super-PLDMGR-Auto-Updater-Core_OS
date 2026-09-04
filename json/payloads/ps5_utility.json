@@ -32,16 +32,6 @@
       "checksum": "69271d91f27397c9ad42150129639ce452ecb405021108f42c6c87926123a6f1"
     },
     {
-      "name": "PoorDS4-status",
-      "filename": "PoorDS4-status_v0.1.0-rc38.elf",
-      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf",
-      "local_path": "payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf",
-      "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
-      "version": "v0.1.0-rc38",
-      "category": "PS5 Utility",
-      "checksum": "c26a35a2c9ba9074ad33cf27a5afbd05536978518c546552df21d512b07a273d"
-    },
-    {
       "name": "PoorDS4-stop",
       "filename": "PoorDS4-stop_v0.1.0-rc38.elf",
       "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-stop_v0.1.0-rc38.elf",
@@ -60,6 +50,16 @@
       "version": "v0.1.0-rc38",
       "category": "PS5 Utility",
       "checksum": "62d21fe837ee53dd4291e45d99259d4557def05e2d4196ab54e020ba28b5399e"
+    },
+    {
+      "name": "PoorDS4-status",
+      "filename": "PoorDS4-status_v0.1.0-rc38.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf",
+      "local_path": "payloads/ps5_utility/PoorDS4/v0.1.0-rc38/PoorDS4-status_v0.1.0-rc38.elf",
+      "description": "PoorDS4 lets a wireless DualShock 4 paired with a jailbroken PS5.",
+      "version": "v0.1.0-rc38",
+      "category": "PS5 Utility",
+      "checksum": "c26a35a2c9ba9074ad33cf27a5afbd05536978518c546552df21d512b07a273d"
     },
     {
       "name": "PS_Game_State_Lib",
@@ -99,7 +99,7 @@
       "description": "PS5-Power-Payloads-Project utility.",
       "version": "1.0",
       "category": "PS5 Utility",
-      "checksum": "1a36a01c92cd73fc89645ce73e3f33c71979b5b677c92b6f4c26d269e3f9a2c1"
+      "checksum": "a06cf9ace6e13f3c0241a709c6a8d23969d74e6559ec2a2290298f480f62da79"
     },
     {
       "name": "ps5-date-time-sync",
