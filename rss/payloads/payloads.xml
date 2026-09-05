@@ -60,9 +60,9 @@
     </item>
     <item>
       <title>ps5-linux-loader</title>
-      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_linux/ps5-linux-loader/v2.4/ps5-linux-loader_v2.4.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_linux/ps5-linux-loader/v2.5/ps5-linux-loader_v2.5.elf</link>
       <description>Linux loader payload for the PS5.</description>
-      <pubDate>v2.4</pubDate>
+      <pubDate>v2.5</pubDate>
     </item>
     <item>
       <title>ChronicLoader-PS5-Payload</title>
@@ -414,9 +414,9 @@
     </item>
     <item>
       <title>ps5upload</title>
-      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ps5upload/v5.15.0/ps5upload_v5.15.0.elf</link>
+      <link>https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ps5upload/v5.16.0/ps5upload_v5.16.0.elf</link>
       <description>PS5 Upload server / tool. Port: 9025</description>
-      <pubDate>v5.15.0</pubDate>
+      <pubDate>v5.16.0</pubDate>
     </item>
     <item>
       <title>airpsx</title>
