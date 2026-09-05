@@ -43,13 +43,13 @@
     },
     {
       "name": "MemDBG",
-      "filename": "MemDBG_vnightly-20260904-gc5ed6b8.elf",
-      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/MemDBG/nightly-20260904-gc5ed6b8/MemDBG_vnightly-20260904-gc5ed6b8.elf",
-      "local_path": "payloads/ps5_sdk_debug/MemDBG/nightly-20260904-gc5ed6b8/MemDBG_vnightly-20260904-gc5ed6b8.elf",
+      "filename": "MemDBG_vnightly-20260904-g29a46df.elf",
+      "url": "https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_sdk_debug/MemDBG/nightly-20260904-g29a46df/MemDBG_vnightly-20260904-g29a46df.elf",
+      "local_path": "payloads/ps5_sdk_debug/MemDBG/nightly-20260904-g29a46df/MemDBG_vnightly-20260904-g29a46df.elf",
       "description": "Memory debugging and inspection suite.",
-      "version": "nightly-20260904-gc5ed6b8",
+      "version": "nightly-20260904-g29a46df",
       "category": "PS5 Sdk Debug",
-      "checksum": "ed09a91dc6385b5618f2f0b3a0056f78a1e29d3552ee12139b10499e7b973ee0"
+      "checksum": "2835b34516ecfdfcd04a0333a19a6ff026f48f7cd3fd2d7f877aeb929083336b"
     },
     {
       "name": "ps5-hwinfo",
