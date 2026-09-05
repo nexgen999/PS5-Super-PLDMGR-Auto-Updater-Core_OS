@@ -72,7 +72,7 @@
     <outline text="gdbsrv" title="gdbsrv" type="rss" xmlUrl="https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/gdbsrv/v0.9/gdbsrv_v0.9.elf" description="GDB Debugger server payload. Port: 1234"/>
     <outline text="klogsrv" title="klogsrv" type="rss" xmlUrl="https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/klogsrv/v0.9/klogsrv_v0.9.elf" description="Kernel log server daemon. Port: 3232"/>
     <outline text="ftpsrv_drakmor" title="ftpsrv_drakmor" type="rss" xmlUrl="https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ftpsrv_drakmor/1.15-ng-stable/ftpsrv_drakmor_v1.15-ng-stable.elf" description="Drakmor's variant of the FTP server. Port: 21"/>
-    <outline text="ps5upload" title="ps5upload" type="rss" xmlUrl="https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ps5upload/v5.16.0/ps5upload_v5.16.0.elf" description="PS5 Upload server / tool. Port: 9025"/>
+    <outline text="ps5upload" title="ps5upload" type="rss" xmlUrl="https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/ps5upload/v5.17.0/ps5upload_v5.17.0.elf" description="PS5 Upload server / tool. Port: 9025"/>
     <outline text="airpsx" title="airpsx" type="rss" xmlUrl="https://nexgen999.github.io/evoX-CoreOS/payloads/ps5_server/airpsx/0.19/airpsx_v0.19.elf" description="AirPSX server tool for PS5 ecosystem."/>
     <outline text="np-fake-signin" title="np-fake-signin" type="rss" xmlUrl="https://nexgen999.github.io/evoX-CoreOS/payloads/PS5_Activation/np-fake-signin/v1.3/np-fake-signin_v1.3.elf" description="Fake activate PS5 without PSN."/>
   </body>
